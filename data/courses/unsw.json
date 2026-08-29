@@ -1,0 +1,824 @@
+{
+  "university": "UNSW",
+  "capturedOn": "2026-08-27",
+  "institutionRule": {
+    "hasSubjectPrerequisites": false,
+    "quote": "we don't have formal subject prerequisites for any of our degrees, we have assumed knowledge",
+    "source": "https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge",
+    "verification": "verified"
+  },
+  "bridging": {
+    "subjects": [
+      "Physics",
+      "Chemistry",
+      "Mathematics"
+    ],
+    "costAud": 380,
+    "timing": "3-4 weeks, pre-session",
+    "source": "https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge",
+    "verification": "verified"
+  },
+  "courses": [
+    {
+      "id": "unsw-engineering-honours",
+      "name": "Bachelor of Engineering (Honours)",
+      "field": "engineering",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1, Physics",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours",
+          "tier": "A"
+        },
+        {
+          "subject": "Physics",
+          "quote": "Mathematics Extension 1, Physics",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "high",
+      "verification": "verified",
+      "_note": "Faculty-level statement. Individual streams may add assumptions - verify per stream via the pipeline."
+    },
+    {
+      "id": "unsw-medical-science",
+      "name": "Bachelor of Medical Science",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry, Mathematics Advanced",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-medical-science",
+          "tier": "A"
+        },
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Chemistry, Mathematics Advanced",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-medical-science",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "high",
+      "verification": "verified",
+      "_note": "Biology NOT listed. Contrast with usyd-medical-science, which requires it. This pair is the product demo."
+    },
+    {
+      "id": "unsw-renewable-energy-engineering",
+      "name": "Bachelor of Engineering (Honours) (Renewable Energy)",
+      "field": "engineering",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-renewable-energy",
+          "tier": "A"
+        },
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-renewable-energy",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-renewable-energy"
+    },
+    {
+      "id": "unsw-engineering-honours-nuclear-engineering",
+      "name": "Bachelor of Engineering (Honours) (Nuclear Engineering)",
+      "field": "engineering",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-nuclear-engineering",
+          "tier": "A"
+        },
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-nuclear-engineering",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-nuclear-engineering",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-nuclear-engineering"
+    },
+    {
+      "id": "unsw-engineering-honours-robotics-and-mechatronics",
+      "name": "Bachelor of Engineering (Honours) (Robotics and Mechatronics)",
+      "field": "engineering",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-robotics-mechatronics",
+          "tier": "A"
+        },
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-robotics-mechatronics",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-robotics-mechatronics"
+    },
+    {
+      "id": "unsw-advanced-computer-science-honours",
+      "name": "Bachelor of Advanced Computer Science (Honours)",
+      "field": "computing",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-computer-science-honours",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-computer-science-honours"
+    },
+    {
+      "id": "unsw-engineering-honours-engineering-science",
+      "name": "Bachelor of Engineering (Honours) / Bachelor of Engineering Science",
+      "field": "engineering",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-engineering-science",
+          "tier": "A"
+        },
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-engineering-science",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-engineering-science"
+    },
+    {
+      "id": "unsw-exercise-science-m-physiotherapy-and-exercise-physiology",
+      "name": "Bachelor of Exercise Science / Master of Physiotherapy and Exercise Physiology",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-exercise-science-master-of-physiotherapy-and-exercise-physiology",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-exercise-science-master-of-physiotherapy-and-exercise-physiology",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-exercise-science-master-of-physiotherapy-and-exercise-physiology"
+    },
+    {
+      "id": "unsw-applied-exercise-science-m-clinical-exercise-physiology",
+      "name": "Bachelor of Applied Exercise Science / Master of Clinical Exercise Physiology",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-applied-exercise-science-master-of-clinical-exercise-physiology",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-applied-exercise-science-master-of-clinical-exercise-physiology",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-applied-exercise-science-master-of-clinical-exercise-physiology"
+    },
+    {
+      "id": "unsw-advanced-science-honours-computer-science",
+      "name": "Bachelor of Advanced Science (Honours)/Computer Science",
+      "field": "computing",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours-computer-science",
+          "tier": "A"
+        },
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours-computer-science",
+          "tier": "A"
+        },
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours-computer-science",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours-computer-science",
+          "tier": "A"
+        },
+        {
+          "subject": "Biology",
+          "quote": "Biology",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours-computer-science",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours-computer-science"
+    },
+    {
+      "id": "unsw-engineering-honours-materials-science-engineering-engineering-science",
+      "name": "Bachelor of Engineering (Honours) (Materials Science & Engineering) / Engineering Science",
+      "field": "engineering",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-materials-science-and-engineering-honours-engineering-science",
+          "tier": "A"
+        },
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-materials-science-and-engineering-honours-engineering-science",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-materials-science-and-engineering-honours-engineering-science",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-materials-science-and-engineering-honours-engineering-science"
+    },
+    {
+      "id": "unsw-engineering-honours-commerce",
+      "name": "Bachelor of Engineering (Honours) / Commerce",
+      "field": "engineering",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-commerce",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-commerce"
+    },
+    {
+      "id": "unsw-science-advanced-mathematics-honours-science-computer-science",
+      "name": "Bachelor of Science (Advanced Mathematics)(Honours)/Science (Computer Science)",
+      "field": "computing",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-mathematics-honours-computer-science",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-mathematics-honours-computer-science"
+    },
+    {
+      "id": "unsw-science-advanced-mathematics-honours",
+      "name": "Bachelor of Science (Advanced Mathematics) (Honours)",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-science-advanced-mathematics-honours",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-science-advanced-mathematics-honours"
+    },
+    {
+      "id": "unsw-medical-studies-d-medicine",
+      "name": "Bachelor of Medical Studies / Doctor of Medicine",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "English Standard",
+          "quote": "English Standard",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-medical-studies-doctor-of-medicine",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-medical-studies-doctor-of-medicine"
+    },
+    {
+      "id": "unsw-medicinal-chemistry-honours",
+      "name": "Bachelor of Medicinal Chemistry (Honours)",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-medicinal-chemistry-honours",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-medicinal-chemistry-honours",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-medicinal-chemistry-honours"
+    },
+    {
+      "id": "unsw-science-honours",
+      "name": "Bachelor of Science (Honours)",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "English Standard",
+          "quote": "English",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-science-honours",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-science-honours"
+    },
+    {
+      "id": "unsw-engineering-honours-civil-surveying",
+      "name": "Bachelor of Engineering (Honours) (Civil) / Surveying",
+      "field": "engineering",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-civil-surveying",
+          "tier": "A"
+        },
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-civil-surveying",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-civil-surveying"
+    },
+    {
+      "id": "unsw-engineering-honours-science",
+      "name": "Bachelor of Engineering (Honours) / Science",
+      "field": "engineering",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-science",
+          "tier": "A"
+        },
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-science",
+          "tier": "A"
+        },
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-science",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-science",
+          "tier": "A"
+        },
+        {
+          "subject": "Biology",
+          "quote": "Biology",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-science",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-science"
+    },
+    {
+      "id": "unsw-advanced-science-honours-engineering-honours",
+      "name": "Bachelor of Advanced Science (Honours)/Engineering (Honours)",
+      "field": "engineering",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours-engineering-honours",
+          "tier": "A"
+        },
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours-engineering-honours",
+          "tier": "A"
+        },
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours-engineering-honours",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours-engineering-honours",
+          "tier": "A"
+        },
+        {
+          "subject": "Biology",
+          "quote": "Biology",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours-engineering-honours",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours-engineering-honours"
+    },
+    {
+      "id": "unsw-engineering-honours-materials-science-engineering-commerce",
+      "name": "Bachelor of Engineering (Honours) (Materials Science & Engineering) / Commerce",
+      "field": "engineering",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-and-materials-science-honours-commerce",
+          "tier": "A"
+        },
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-and-materials-science-honours-commerce",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-and-materials-science-honours-commerce"
+    },
+    {
+      "id": "unsw-information-systems-co-op-honours",
+      "name": "Bachelor of Information Systems (Co-op) (Honours)",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics advanced",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-information-systems-co-op-honours",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-information-systems-co-op-honours"
+    },
+    {
+      "id": "unsw-computational-design-honours",
+      "name": "Bachelor of Computational Design (Honours)",
+      "field": "computing",
+      "hardRules": [],
+      "assumedKnowledge": [],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-computational-design-honours"
+    },
+    {
+      "id": "unsw-advanced-science-honours",
+      "name": "Bachelor of Advanced Science (Honours)",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours",
+          "tier": "A"
+        },
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours",
+          "tier": "A"
+        },
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours",
+          "tier": "A"
+        },
+        {
+          "subject": "Biology",
+          "quote": "Biology",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours"
+    },
+    {
+      "id": "unsw-engineering-civil-engineering-with-architecture-honours",
+      "name": "Bachelor of Engineering (Civil Engineering with Architecture) (Honours)",
+      "field": "engineering",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-civil-architecture",
+          "tier": "A"
+        },
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-civil-architecture",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-civil-architecture"
+    },
+    {
+      "id": "unsw-psychological-science-honours",
+      "name": "Bachelor of Psychological Science (Honours)",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-psychological-science-honours"
+    },
+    {
+      "id": "unsw-science-advanced-mathematics-honours-commerce",
+      "name": "Bachelor of Science (Advanced Mathematics) (Honours) / Commerce",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-science-advanced-mathematics-honours-commerce",
+          "tier": "A"
+        },
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-science-advanced-mathematics-honours-commerce",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-science-advanced-mathematics-honours-commerce"
+    },
+    {
+      "id": "unsw-engineering-honours-m-engineering-electrical-engineering",
+      "name": "Bachelor of Engineering (Honours) / Master of Engineering (Electrical Engineering)",
+      "field": "engineering",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-master-of-electrical-engineering",
+          "tier": "A"
+        },
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-master-of-electrical-engineering",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-master-of-electrical-engineering",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-master-of-electrical-engineering"
+    },
+    {
+      "id": "unsw-engineering-honours-materials-science-engineering-m-biomedical-engineering",
+      "name": "Bachelor of Engineering (Honours) (Materials Science & Engineering) / Master of Biomedical Engineering",
+      "field": "engineering",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-and-materials-science-honours-master-of-biomedical-engineering",
+          "tier": "A"
+        },
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-and-materials-science-honours-master-of-biomedical-engineering",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-and-materials-science-honours-master-of-biomedical-engineering",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-and-materials-science-honours-master-of-biomedical-engineering"
+    },
+    {
+      "id": "unsw-psychological-science",
+      "name": "Bachelor of Psychological Science",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-psychological-science",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-psychological-science"
+    },
+    {
+      "id": "unsw-engineering-honours-materials-science-engineering",
+      "name": "Bachelor of Engineering (Honours) (Materials Science & Engineering)",
+      "field": "engineering",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-material-science",
+          "tier": "A"
+        },
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-material-science",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-material-science",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-28",
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-material-science"
+    }
+  ]
+}

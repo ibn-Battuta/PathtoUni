@@ -1,0 +1,1813 @@
+{
+  "university": "University of Sydney",
+  "capturedOn": "2026-08-27",
+  "institutionRule": {
+    "hasSubjectPrerequisites": true,
+    "quote": "A small number of courses in education, engineering, mathematics, law and health require you to achieve a Band 4 in HSC Mathematics Advanced or the equivalent.",
+    "source": "https://www.sydney.edu.au/study/help/advice/prerequisites-and-assumed-knowledge-explained.html",
+    "verification": "verified",
+    "_note": "The ONLY university in the MVP set with hard subject prerequisites. From the 2025 intake it dropped maths prerequisites for Commerce, Science, Medicine, Psychology, Veterinary Science and Economics."
+  },
+  "bridging": {
+    "route": "Introduction to Calculus MOOC + post-MOOC examination, completed before intake",
+    "source": "https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html",
+    "verification": "verified"
+  },
+  "_mathsGate": {
+    "id": "usyd-maths-gate",
+    "quote": "Mathematics Advanced (Band 4) or Mathematics Extension 1 or 2 (Band E3)",
+    "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/university-calendar/assumed-knowledge.pdf",
+    "routes": [
+      {
+        "subject": "Mathematics Advanced",
+        "minBand": 4,
+        "bandScale": "hsc"
+      },
+      {
+        "subject": "Mathematics Extension 1",
+        "minBand": 3,
+        "bandScale": "extension"
+      },
+      {
+        "subject": "Mathematics Extension 2",
+        "minBand": 3,
+        "bandScale": "extension"
+      }
+    ]
+  },
+  "courses": [
+    {
+      "id": "usyd-engineering-honours",
+      "name": "Bachelor of Engineering (Honours)",
+      "field": "engineering",
+      "hardRules": [
+        "usyd-maths-gate"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1, Physics",
+          "tier": "A"
+        },
+        {
+          "subject": "Physics",
+          "quote": "Mathematics Extension 1, Physics",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "high",
+      "verification": "verified"
+    },
+    {
+      "id": "usyd-advanced-computing",
+      "name": "Bachelor of Advanced Computing",
+      "field": "computing",
+      "hardRules": [
+        "usyd-maths-gate"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "high",
+      "verification": "verified"
+    },
+    {
+      "id": "usyd-chemical-engineering",
+      "name": "Bachelor of Engineering (Honours) (Chemical)",
+      "field": "engineering",
+      "hardRules": [
+        "usyd-maths-gate"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1, Chemistry",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Mathematics Extension 1, Chemistry",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "medium",
+      "verification": "verified"
+    },
+    {
+      "id": "usyd-biomedical-engineering",
+      "name": "Bachelor of Engineering (Honours) (Biomedical)",
+      "field": "engineering",
+      "hardRules": [
+        "usyd-maths-gate"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "medium",
+      "verification": "verified",
+      "recommendedStudies": [
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+        },
+        {
+          "subject": "Biology",
+          "quote": "Biology",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+        }
+      ],
+      "capturedOn": "2026-08-27",
+      "_correctedBy": "pipeline usyd-table 2026-08-27 - superseded a hand-seeded row that misread the source columns"
+    },
+    {
+      "id": "usyd-medical-science",
+      "name": "Bachelor of Science (Medical Science)",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Biology",
+          "quote": "Biology",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "high",
+      "verification": "verified",
+      "_note": "From 2024. Contrast with unsw-medical-science, which does not require Biology.",
+      "capturedOn": "2026-08-27",
+      "_correctedBy": "pipeline usyd-table 2026-08-27 - superseded a hand-seeded row that misread the source columns"
+    },
+    {
+      "id": "usyd-pharmacy",
+      "name": "Bachelor of Pharmacy (Honours) / Master of Pharmacy Practice",
+      "field": "health",
+      "hardRules": [
+        "usyd-maths-gate"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Biology",
+          "quote": "Biology",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "high",
+      "verification": "verified",
+      "_note": "Counter-intuitive: Pharmacy KEPT the maths prerequisite that Medicine, Science and Psychology lost from 2025.",
+      "recommendedStudies": [
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+        }
+      ],
+      "capturedOn": "2026-08-27",
+      "_correctedBy": "pipeline usyd-table 2026-08-27 - superseded a hand-seeded row that misread the source columns"
+    },
+    {
+      "id": "usyd-commerce-and-science",
+      "name": "Bachelor of Commerce and Bachelor of Science",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Standard",
+          "quote": "Mathematics Standard",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-advanced-computing-and-commerce",
+      "name": "Bachelor of Advanced Computing and Bachelor of Commerce",
+      "field": "computing",
+      "hardRules": [
+        "usyd-maths-gate"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Sep 2023"
+    },
+    {
+      "id": "usyd-advanced-computing-and-science",
+      "name": "Bachelor of Advanced Computing and Bachelor of Science",
+      "field": "computing",
+      "hardRules": [
+        "usyd-maths-gate"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Sep 2023"
+    },
+    {
+      "id": "usyd-advanced-computing-and-science-health",
+      "name": "Bachelor of Advanced Computing and Bachelor of Science (Health)",
+      "field": "computing",
+      "hardRules": [
+        "usyd-maths-gate"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Biology",
+          "quote": "Biology",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Sep 2023"
+    },
+    {
+      "id": "usyd-advanced-computing-and-science-medical-science",
+      "name": "Bachelor of Advanced Computing and Bachelor of Science (Medical Science)",
+      "field": "computing",
+      "hardRules": [
+        "usyd-maths-gate"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Biology",
+          "quote": "Biology",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Sep 2023"
+    },
+    {
+      "id": "usyd-engineering-honours-aeronautical-engineering",
+      "name": "Bachelor of Engineering Honours (Aeronautical Engineering)",
+      "field": "engineering",
+      "hardRules": [
+        "usyd-maths-gate"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "recommendedStudies": [
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+        }
+      ],
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-engineering-honours-civil-engineering",
+      "name": "Bachelor of Engineering Honours (Civil Engineering)",
+      "field": "engineering",
+      "hardRules": [
+        "usyd-maths-gate"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "recommendedStudies": [
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+        }
+      ],
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-engineering-honours-civil-engineering-and-design-in-architecture",
+      "name": "Bachelor of Engineering Honours (Civil Engineering) and Bachelor of Design in Architecture",
+      "field": "engineering",
+      "hardRules": [
+        "usyd-maths-gate"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "English Advanced",
+          "quote": "English Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "recommendedStudies": [
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+        }
+      ],
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-engineering-honours-dalyell-scholars",
+      "name": "Bachelor of Engineering Honours (Dalyell Scholars)",
+      "field": "engineering",
+      "hardRules": [
+        "usyd-maths-gate"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "assumedChoices": [
+        [
+          "Physics",
+          "Chemistry"
+        ]
+      ]
+    },
+    {
+      "id": "usyd-engineering-honours-electrical-engineering",
+      "name": "Bachelor of Engineering Honours (Electrical Engineering)",
+      "field": "engineering",
+      "hardRules": [
+        "usyd-maths-gate"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Sep 2023"
+    },
+    {
+      "id": "usyd-engineering-honours-environmental-engineering",
+      "name": "Bachelor of Engineering Honours (Environmental Engineering)",
+      "field": "engineering",
+      "hardRules": [
+        "usyd-maths-gate"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+    },
+    {
+      "id": "usyd-engineering-honours-flexible-first-year",
+      "name": "Bachelor of Engineering Honours (Flexible First Year)",
+      "field": "engineering",
+      "hardRules": [
+        "usyd-maths-gate"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "assumedChoices": [
+        [
+          "Physics",
+          "Chemistry"
+        ]
+      ],
+      "reviewed": "Sep 2023"
+    },
+    {
+      "id": "usyd-engineering-honours-mechanical-engineering",
+      "name": "Bachelor of Engineering Honours (Mechanical Engineering)",
+      "field": "engineering",
+      "hardRules": [
+        "usyd-maths-gate"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "recommendedStudies": [
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+        }
+      ],
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-engineering-honours-mechatronic-engineering",
+      "name": "Bachelor of Engineering Honours (Mechatronic Engineering)",
+      "field": "engineering",
+      "hardRules": [
+        "usyd-maths-gate"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "recommendedStudies": [
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+        }
+      ],
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-engineering-honours-software-engineering",
+      "name": "Bachelor of Engineering Honours (Software Engineering)",
+      "field": "engineering",
+      "hardRules": [
+        "usyd-maths-gate"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "recommendedStudies": [
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+        }
+      ],
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-engineering-honours-and-arts",
+      "name": "Bachelor of Engineering Honours and Bachelor of Arts",
+      "field": "engineering",
+      "hardRules": [
+        "usyd-maths-gate"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "assumedChoices": [
+        [
+          "Physics",
+          "Chemistry"
+        ]
+      ],
+      "reviewed": "Sept 2023"
+    },
+    {
+      "id": "usyd-engineering-honours-and-commerce",
+      "name": "Bachelor of Engineering Honours and Bachelor of Commerce",
+      "field": "engineering",
+      "hardRules": [
+        "usyd-maths-gate"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "assumedChoices": [
+        [
+          "Physics",
+          "Chemistry"
+        ]
+      ],
+      "reviewed": "Sept 2023"
+    },
+    {
+      "id": "usyd-engineering-honours-and-project-management",
+      "name": "Bachelor of Engineering Honours and Bachelor of Project Management",
+      "field": "engineering",
+      "hardRules": [
+        "usyd-maths-gate"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "assumedChoices": [
+        [
+          "Physics",
+          "Chemistry"
+        ]
+      ]
+    },
+    {
+      "id": "usyd-engineering-honours-and-science",
+      "name": "Bachelor of Engineering Honours and Bachelor of Science",
+      "field": "engineering",
+      "hardRules": [
+        "usyd-maths-gate"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "assumedChoices": [
+        [
+          "Physics",
+          "Chemistry"
+        ]
+      ],
+      "reviewed": "Sep 2023"
+    },
+    {
+      "id": "usyd-engineering-honours-biomedical-engineering-and-science-health",
+      "name": "Bachelor of Engineering Honours (Biomedical Engineering) and Bachelor of Science (Health)",
+      "field": "engineering",
+      "hardRules": [
+        "usyd-maths-gate"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Biology",
+          "quote": "Biology",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "recommendedStudies": [
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+        }
+      ],
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-engineering-honours-biomedical-engineering-and-science-medical-science",
+      "name": "Bachelor of Engineering Honours (Biomedical Engineering) and Bachelor of Science (Medical Science)",
+      "field": "engineering",
+      "hardRules": [
+        "usyd-maths-gate"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Biology",
+          "quote": "Biology",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "recommendedStudies": [
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+        }
+      ],
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-engineering-honours-with-space",
+      "name": "Bachelor of Engineering Honours with Space",
+      "field": "engineering",
+      "hardRules": [
+        "usyd-maths-gate"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "recommendedStudies": [
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+        }
+      ],
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-project-management",
+      "name": "Bachelor of Project Management",
+      "field": "engineering",
+      "hardRules": [],
+      "assumedKnowledge": [],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-engineering-honours-and-laws",
+      "name": "Bachelor of Engineering Honours and Bachelor of Laws",
+      "field": "engineering",
+      "hardRules": [
+        "usyd-maths-gate"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "English Advanced",
+          "quote": "English Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "assumedChoices": [
+        [
+          "Physics",
+          "Chemistry"
+        ]
+      ],
+      "reviewed": "Sep 2023"
+    },
+    {
+      "id": "usyd-science-and-laws",
+      "name": "Bachelor of Science and Bachelor of Laws",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-applied-science-diagnostic-radiography",
+      "name": "Bachelor of Applied Science (Diagnostic Radiography)",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "recommendedStudies": [
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+        },
+        {
+          "subject": "Biology",
+          "quote": "Biology",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+        }
+      ],
+      "reviewed": "Sep 2023"
+    },
+    {
+      "id": "usyd-applied-science-exercise-and-sport-science",
+      "name": "Bachelor of Applied Science (Exercise and Sport Science)",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Sep 2023"
+    },
+    {
+      "id": "usyd-applied-science-exercise-physiology",
+      "name": "Bachelor of Applied Science (Exercise Physiology)",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Sep 2023"
+    },
+    {
+      "id": "usyd-applied-science-occupational-therapy",
+      "name": "Bachelor of Applied Science (Occupational Therapy)",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "recommendedStudies": [
+        {
+          "subject": "Biology",
+          "quote": "Biology",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+        }
+      ]
+    },
+    {
+      "id": "usyd-applied-science-physiotherapy",
+      "name": "Bachelor of Applied Science (Physiotherapy)",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "recommendedStudies": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+        }
+      ],
+      "reviewed": "Sep 2023"
+    },
+    {
+      "id": "usyd-applied-science-speech-pathology",
+      "name": "Bachelor of Applied Science (Speech Pathology)",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "recommendedStudies": [
+        {
+          "subject": "English Advanced",
+          "quote": "English Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+        }
+      ]
+    },
+    {
+      "id": "usyd-biomedicine-and-health",
+      "name": "Bachelor of Biomedicine and Health",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "recommendedStudies": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+        },
+        {
+          "subject": "Biology",
+          "quote": "Biology",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+        }
+      ],
+      "reviewed": "Dec 2024"
+    },
+    {
+      "id": "usyd-oral-health",
+      "name": "Bachelor of Oral Health",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "recommendedStudies": [
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+        },
+        {
+          "subject": "Biology",
+          "quote": "Biology",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+        }
+      ],
+      "reviewed": "Sep 2023"
+    },
+    {
+      "id": "usyd-pharmacy-and-management-honours-and-m-pharmacy-practice",
+      "name": "Bachelor of Pharmacy and Management (Honours) and Master of Pharmacy Practice",
+      "field": "health",
+      "hardRules": [
+        "usyd-maths-gate"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Biology",
+          "quote": "Biology",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "recommendedStudies": [
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+        }
+      ],
+      "reviewed": "Sep 2023"
+    },
+    {
+      "id": "usyd-arts-and-m-nursing",
+      "name": "Bachelor of Arts and Master of Nursing",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Sep 2023"
+    },
+    {
+      "id": "usyd-science-health-and-m-nursing",
+      "name": "Bachelor of Science (Health) and Master of Nursing",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-science-and-m-nursing",
+      "name": "Bachelor of Science and Master of Nursing",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-science-and-d-dental-medicine-no-intake-from-01-january-2027",
+      "name": "Bachelor of Science and Doctor of Dental Medicine [No intake from 01 January 2027]",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-science-and-d-medicine",
+      "name": "Bachelor of Science and Doctor of Medicine",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-science-and-m-nutrition-and-dietetics",
+      "name": "Bachelor of Science and Master of Nutrition and Dietetics",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Biology",
+          "quote": "Biology",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-agricultural-science",
+      "name": "Bachelor of Agricultural Science",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Standard",
+          "quote": "Mathematics Standard",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "English Standard",
+          "quote": "English Standard",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+    },
+    {
+      "id": "usyd-agricultural-science-honours",
+      "name": "Bachelor of Agricultural Science Honours",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Standard",
+          "quote": "Mathematics Standard",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "English Standard",
+          "quote": "English Standard",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+    },
+    {
+      "id": "usyd-animal-and-veterinary-bioscience",
+      "name": "Bachelor of Animal and Veterinary Bioscience",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Standard",
+          "quote": "Mathematics Standard",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Biology",
+          "quote": "Biology",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Jun 2024"
+    },
+    {
+      "id": "usyd-liberal-arts-and-science",
+      "name": "Bachelor of Liberal Arts and Science",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+    },
+    {
+      "id": "usyd-liberal-arts-and-science-advanced",
+      "name": "Bachelor of Liberal Arts and Science (Advanced)",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Sep 2023"
+    },
+    {
+      "id": "usyd-mathematical-sciences",
+      "name": "Bachelor of Mathematical Sciences",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Dec 2024"
+    },
+    {
+      "id": "usyd-psychology",
+      "name": "Bachelor of Psychology",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-psychology-honours",
+      "name": "Bachelor of Psychology Honours",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-science",
+      "name": "Bachelor of Science",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-science-advanced",
+      "name": "Bachelor of Science (Advanced)",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-science-health",
+      "name": "Bachelor of Science (Health)",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Biology",
+          "quote": "Biology",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-science-and-advanced-studies",
+      "name": "Bachelor of Science and Bachelor of Advanced Studies",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-science-and-advanced-studies-advanced",
+      "name": "Bachelor of Science and Bachelor of Advanced Studies (Advanced)",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-science-and-advanced-studies-dalyell-scholars",
+      "name": "Bachelor of Science and Bachelor of Advanced Studies (Dalyell Scholars)",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-science-and-advanced-studies-health",
+      "name": "Bachelor of Science and Bachelor of Advanced Studies (Health)",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Biology",
+          "quote": "Biology",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-science-and-advanced-studies-medical-science",
+      "name": "Bachelor of Science and Bachelor of Advanced Studies (Medical Science)",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Biology",
+          "quote": "Biology",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-science-and-arts",
+      "name": "Bachelor of Science and Bachelor of Arts",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-science-and-m-mathematical-sciences",
+      "name": "Bachelor of Science and Master of Mathematical Sciences",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 2",
+          "quote": "Mathematics Extension 2",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-veterinary-biology-and-d-veterinary-medicine",
+      "name": "Bachelor of Veterinary Biology and Doctor of Veterinary Medicine",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Biology",
+          "quote": "Biology",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [
+        {
+          "type": "situational_judgement"
+        }
+      ],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "recommendedStudies": [
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+        }
+      ],
+      "reviewed": "Jan 2024"
+    },
+    {
+      "id": "usyd-wildlife-conservation-taronga",
+      "name": "Bachelor of Wildlife Conservation (Taronga)",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Standard",
+          "quote": "Mathematics Standard",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        },
+        {
+          "subject": "Biology",
+          "quote": "Biology",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "reviewed": "Jun 2024"
+    },
+    {
+      "id": "usyd-science-extended",
+      "name": "Bachelor of Science (Extended)",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [],
+      "extraHurdles": [
+        {
+          "type": "portfolio"
+        },
+        {
+          "type": "interview"
+        },
+        {
+          "type": "personal_statement"
+        }
+      ],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+    },
+    {
+      "id": "usyd-science-extended-health",
+      "name": "Bachelor of Science (Extended) (Health)",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [],
+      "extraHurdles": [
+        {
+          "type": "portfolio"
+        },
+        {
+          "type": "interview"
+        },
+        {
+          "type": "personal_statement"
+        }
+      ],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+    }
+  ]
+}

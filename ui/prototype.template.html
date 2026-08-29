@@ -1,0 +1,563 @@
+<title>Open To You</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+  :root{
+    --paper:#EEF2F6; --surface:#FFFFFF; --surface-2:#E3EAF1; --sunk:#F6F9FB;
+    --ink:#111926; --ink-2:#3C4A5C; --ink-3:#68778A;
+    --rule:#CFD9E3; --rule-soft:#E1E8EF;
+    --accent:#2F5183; --accent-soft:#E2E9F4;
+    --prep:#1F6349;  --prep-soft:#DCEBE3;
+    --minor:#2F5183; --minor-soft:#E2E9F4;
+    --bridge:#9B6206; --bridge-soft:#F7EBD6;
+    --hard:#8A4114;  --hard-soft:#F6E4D7;
+    --gated:#9E2F27; --gated-soft:#F6DFDC;
+    --shadow:0 1px 2px rgba(17,25,38,.06), 0 10px 28px -18px rgba(17,25,38,.30);
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#0C1119; --surface:#141C27; --surface-2:#1C2634; --sunk:#101822;
+    --ink:#E7EDF4; --ink-2:#AEBBC9; --ink-3:#7A8899;
+    --rule:#293544; --rule-soft:#202A37;
+    --accent:#8DB0E4; --accent-soft:#19263A;
+    --prep:#63C39A;  --prep-soft:#102420;
+    --minor:#8DB0E4; --minor-soft:#19263A;
+    --bridge:#DFA34D; --bridge-soft:#2A2010;
+    --hard:#DE8F5E;  --hard-soft:#2B1A11;
+    --gated:#E27A70; --gated-soft:#2C1512;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -18px rgba(0,0,0,.8);
+  }}
+  :root[data-theme="dark"]{
+    --paper:#0C1119; --surface:#141C27; --surface-2:#1C2634; --sunk:#101822;
+    --ink:#E7EDF4; --ink-2:#AEBBC9; --ink-3:#7A8899;
+    --rule:#293544; --rule-soft:#202A37;
+    --accent:#8DB0E4; --accent-soft:#19263A;
+    --prep:#63C39A;  --prep-soft:#102420;
+    --minor:#8DB0E4; --minor-soft:#19263A;
+    --bridge:#DFA34D; --bridge-soft:#2A2010;
+    --hard:#DE8F5E;  --hard-soft:#2B1A11;
+    --gated:#E27A70; --gated-soft:#2C1512;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -18px rgba(0,0,0,.8);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Public Sans",ui-sans-serif,system-ui,-apple-system,sans-serif;
+    font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+
+  /* ---------- shell ---------- */
+  .shell{max-width:76rem; margin:0 auto; padding:0 1.25rem 5rem}
+  header.top{padding:2.25rem 0 1.25rem; border-bottom:1px solid var(--rule); margin-bottom:1.5rem}
+  .brandline{display:flex; align-items:baseline; gap:.85rem; flex-wrap:wrap}
+  h1{
+    font-family:"Newsreader",Georgia,serif; font-weight:500;
+    font-size:clamp(1.7rem,3.4vw,2.3rem); letter-spacing:-.015em;
+    margin:0; line-height:1.1;
+  }
+  .stamp{
+    font-family:"IBM Plex Mono",monospace; font-size:.68rem; font-weight:500;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3);
+  }
+  .lead{margin:.7rem 0 0; font-size:.95rem; color:var(--ink-2); max-width:46rem}
+  .trust{
+    list-style:none; margin:.9rem 0 0; padding:0; max-width:52rem;
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:.45rem 1.4rem;
+  }
+  .trust li{font-size:.81rem; color:var(--ink-3); line-height:1.45}
+  .trust b{color:var(--ink-2); font-weight:600}
+
+  .cols{display:grid; grid-template-columns:19rem 1fr; gap:1.5rem; align-items:start}
+  @media (max-width:56rem){ .cols{grid-template-columns:1fr} }
+
+  /* ---------- picker ---------- */
+  .picker{
+    position:sticky; top:1rem; background:var(--surface); border:1px solid var(--rule);
+    border-radius:4px; box-shadow:var(--shadow); overflow:hidden;
+  }
+  @media (max-width:56rem){ .picker{position:static} }
+  .pk{padding:.95rem 1.05rem; border-bottom:1px solid var(--rule-soft)}
+  .pk:last-child{border-bottom:none}
+  .pk > label.q{
+    display:block; font-family:"IBM Plex Mono",monospace; font-size:.65rem; font-weight:600;
+    letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3); margin-bottom:.55rem;
+  }
+  .chips{display:flex; flex-wrap:wrap; gap:.35rem}
+  .chip{
+    font:inherit; font-size:.81rem; line-height:1.2; cursor:pointer;
+    background:var(--sunk); color:var(--ink-2);
+    border:1px solid var(--rule); border-radius:3px; padding:.34rem .55rem;
+    transition:background .12s, border-color .12s, color .12s;
+  }
+  .chip:hover{border-color:var(--accent)}
+  .chip[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600}
+  :root[data-theme="dark"] .chip[aria-pressed="true"],
+  :root:not([data-theme="light"]) .chip[aria-pressed="true"]{color:#0C1119}
+  @media (prefers-color-scheme:light){ :root:not([data-theme="dark"]) .chip[aria-pressed="true"]{color:#fff} }
+  .chip:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+  .units{
+    display:flex; justify-content:space-between; align-items:center; gap:.5rem;
+    font-family:"IBM Plex Mono",monospace; font-size:.76rem;
+  }
+  .units b{font-variant-numeric:tabular-nums}
+  .units .bad{color:var(--gated)}
+  .units .ok{color:var(--prep)}
+  .stepper{display:flex; align-items:center; gap:.4rem}
+  .stepper button{
+    font:inherit; cursor:pointer; width:1.6rem; height:1.6rem; line-height:1;
+    border:1px solid var(--rule); background:var(--sunk); color:var(--ink); border-radius:3px;
+  }
+  .stepper button:hover{border-color:var(--accent)}
+  .stepper button:focus-visible{outline:2px solid var(--accent); outline-offset:1px}
+
+  .bandask{background:var(--bridge-soft); border-top:1px solid var(--rule-soft)}
+  .bandask .why{font-size:.78rem; color:var(--ink-2); margin:0 0 .5rem}
+
+  /* ---------- summary ---------- */
+  .summary{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(7.5rem,1fr)); gap:.6rem;
+    margin-bottom:1.25rem;
+  }
+  .stat{
+    background:var(--surface); border:1px solid var(--rule); border-radius:4px;
+    padding:.75rem .85rem; box-shadow:var(--shadow); border-top:3px solid var(--rule);
+  }
+  .stat.s-prep{border-top-color:var(--prep)}
+  .stat.s-minor{border-top-color:var(--minor)}
+  .stat.s-bridge{border-top-color:var(--bridge)}
+  .stat.s-hard{border-top-color:var(--hard)}
+  .stat.s-gated{border-top-color:var(--gated)}
+  .stat .n{
+    font-family:"IBM Plex Mono",monospace; font-size:1.6rem; font-weight:600;
+    font-variant-numeric:tabular-nums; line-height:1; display:block;
+  }
+  .stat.s-prep .n{color:var(--prep)} .stat.s-minor .n{color:var(--minor)}
+  .stat.s-bridge .n{color:var(--bridge)} .stat.s-hard .n{color:var(--hard)}
+  .stat.s-gated .n{color:var(--gated)}
+  .stat .l{font-size:.75rem; color:var(--ink-2); display:block; margin-top:.3rem}
+
+  /* ---------- sections ---------- */
+  section{margin-bottom:1.75rem}
+  .sh{display:flex; align-items:baseline; gap:.7rem; margin-bottom:.7rem; flex-wrap:wrap}
+  .sh h2{
+    font-family:"Public Sans",sans-serif; font-weight:700; font-size:1rem;
+    letter-spacing:-.005em; margin:0;
+  }
+  .sh .count{font-family:"IBM Plex Mono",monospace; font-size:.75rem; color:var(--ink-3)}
+  .lede{font-size:.86rem; color:var(--ink-2); margin:0 0 .75rem; max-width:44rem}
+
+  .rows{display:flex; flex-direction:column; gap:.4rem}
+  .row{
+    background:var(--surface); border:1px solid var(--rule); border-radius:4px;
+    border-left:3px solid var(--rule); padding:.6rem .8rem;
+    display:grid; grid-template-columns:1fr auto; gap:.3rem .8rem; align-items:baseline;
+  }
+  .row.b-PREPARED{border-left-color:var(--prep)}
+  .row.b-MINOR_GAP{border-left-color:var(--minor)}
+  .row.b-BRIDGE_IT{border-left-color:var(--bridge)}
+  .row.b-HARD_GAP{border-left-color:var(--hard)}
+  .row.b-GATED{border-left-color:var(--gated)}
+  .row .nm{font-size:.88rem; font-weight:600}
+  .row .uni{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--ink-3); white-space:nowrap}
+  .row .why{grid-column:1/-1; font-size:.81rem; color:var(--ink-2); margin:0}
+  .row .why em{color:var(--ink-3)}
+
+  .tag{
+    display:inline-block; font-family:"IBM Plex Mono",monospace; font-size:.63rem;
+    font-weight:600; padding:.12rem .38rem; border-radius:2px; white-space:nowrap;
+  }
+  .t-PREPARED{background:var(--prep-soft); color:var(--prep)}
+  .t-MINOR_GAP{background:var(--minor-soft); color:var(--minor)}
+  .t-BRIDGE_IT{background:var(--bridge-soft); color:var(--bridge)}
+  .t-HARD_GAP{background:var(--hard-soft); color:var(--hard)}
+  .t-GATED{background:var(--gated-soft); color:var(--gated)}
+  .t-info{background:var(--surface-2); color:var(--ink-3)}
+
+  details.fold{
+    background:var(--surface); border:1px solid var(--rule); border-radius:4px;
+    box-shadow:var(--shadow); overflow:hidden;
+  }
+  details.fold > summary{
+    cursor:pointer; padding:.7rem .9rem; font-size:.88rem; font-weight:600;
+    display:flex; justify-content:space-between; gap:1rem; align-items:center;
+  }
+  details.fold > summary:focus-visible{outline:2px solid var(--accent); outline-offset:-2px}
+  details.fold > summary::-webkit-details-marker{display:none}
+  details.fold > summary .hint{font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--ink-3); font-weight:400}
+  .foldbody{padding:0 .9rem .9rem; border-top:1px solid var(--rule-soft)}
+  .unigroup{margin-top:.8rem}
+  .unigroup h3{
+    font-family:"IBM Plex Mono",monospace; font-size:.66rem; font-weight:600;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin:0 0 .35rem;
+  }
+  .clist{display:flex; flex-wrap:wrap; gap:.3rem}
+  .clist span{
+    font-size:.78rem; background:var(--sunk); border:1px solid var(--rule-soft);
+    border-radius:3px; padding:.2rem .45rem; color:var(--ink-2);
+  }
+
+  /* ---------- drop impact ---------- */
+  .drops{display:flex; flex-wrap:wrap; gap:.4rem}
+  .drop{
+    background:var(--surface); border:1px solid var(--rule); border-radius:4px;
+    padding:.5rem .7rem; font-size:.81rem; display:flex; align-items:center; gap:.5rem;
+  }
+  .drop b{font-weight:600}
+  .drop .delta{font-family:"IBM Plex Mono",monospace; font-size:.72rem}
+  .drop .free{color:var(--prep)}
+  .drop .cost{color:var(--hard)}
+
+  footer.foot{
+    border-top:1px solid var(--rule); margin-top:2rem; padding-top:1rem;
+    font-size:.78rem; color:var(--ink-3);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="shell">
+  <header class="top">
+    <div class="brandline">
+      <h1>Open To You</h1>
+      <span class="stamp" id="stamp"></span>
+    </div>
+    <p class="lead">
+      Tell us what you are studying. We check it against every STEM degree at six NSW
+      universities and show you three things: which ones you are ready for, which ones have a
+      gap, and exactly what closing that gap would take.
+    </p>
+    <ul class="trust">
+      <li><b>Independent.</b> We are not UAC and not a university. Nobody pays to appear here.</li>
+      <li><b>Quoted, not summarised.</b> Every requirement is the university&rsquo;s own wording,
+        copied word for word, with the date we read it.</li>
+      <li><b>Private by design.</b> The calculation happens on your own device. Your subjects are
+        never sent anywhere, and there is no account.</li>
+      <li><b>Not the last word.</b> Rules change. Check UAC before you submit preferences.</li>
+    </ul>
+  </header>
+
+  <div class="cols">
+    <form class="picker" id="picker" aria-label="Your subjects"></form>
+    <main id="results" aria-live="polite"></main>
+  </div>
+
+  <footer class="foot" id="foot"></footer>
+</div>
+
+<script type="module">
+/*__ENGINE__*/
+
+/* ---------------- state ---------------- */
+const state = {
+  year: 12,
+  mathsPathway: 'advanced_ext1_ext2',
+  english: ['english_advanced'],
+  sciences: ['physics', 'chemistry'],
+  technology: ['engineering_studies'],
+  otherCount: 1,
+  bands: {}
+};
+
+const MATHS = [
+  ['standard1','Standard 1'], ['standard2','Standard 2'], ['advanced','Advanced'],
+  ['advanced_ext1','Advanced + Ext 1'], ['advanced_ext1_ext2','Ext 1 + Ext 2']
+];
+const ENGLISH = [
+  ['english_standard','Standard'], ['english_advanced','Advanced'], ['english_eald','EAL/D']
+];
+
+const profile = () => ({
+  year: state.year,
+  intakeYear: 2028,
+  mathsPathway: state.mathsPathway,
+  english: state.english,
+  sciences: state.sciences,
+  technology: state.technology,
+  other: Array.from({length: state.otherCount}, (_, i) => ({ name: `Other subject ${i+1}`, units: 2, area: `other${i}` })),
+  bands: state.bands
+});
+
+const FAMILIAR = /engineering \(honours\)$|^bachelor of science$|^bachelor of engineering|computer science|information technology|medical science|advanced computing|^bachelor of nursing|psychology|commerce/i;
+
+/* ---------------- render: picker ---------------- */
+function chip(label, on, onClick, key) {
+  const b = document.createElement('button');
+  b.type = 'button'; b.className = 'chip'; b.textContent = label;
+  b.setAttribute('aria-pressed', on ? 'true' : 'false');
+  if (key) b.dataset.k = key;
+  b.addEventListener('click', () => { onClick(); render(); });
+  return b;
+}
+
+function group(title, nodes) {
+  const d = document.createElement('div'); d.className = 'pk';
+  const l = document.createElement('label'); l.className = 'q'; l.textContent = title;
+  const c = document.createElement('div'); c.className = 'chips';
+  nodes.forEach(n => c.appendChild(n));
+  d.appendChild(l); d.appendChild(c); return d;
+}
+
+function toggle(arr, v) {
+  const i = arr.indexOf(v);
+  if (i < 0) arr.push(v); else arr.splice(i, 1);
+}
+
+function renderPicker(results) {
+  const f = document.getElementById('picker');
+  f.replaceChildren();
+
+  f.appendChild(group('Year', [11, 12].map(y =>
+    chip('Year ' + y, state.year === y, () => {
+      state.year = y;
+      if (y === 11 && state.mathsPathway === 'advanced_ext1_ext2') state.mathsPathway = 'advanced_ext1';
+    }))));
+
+  f.appendChild(group('Which mathematics?', MATHS.map(([k, l]) => {
+    const locked = k === 'advanced_ext1_ext2' && state.year === 11;
+    const c = chip(l + (locked ? ' · Yr 12' : ''), state.mathsPathway === k, () => {
+      if (!locked) state.mathsPathway = k;
+    });
+    if (locked) { c.style.opacity = '.45'; c.title = 'Extension 2 is a Year 12 course'; }
+    return c;
+  })));
+
+  f.appendChild(group('English', ENGLISH.map(([k, l]) =>
+    chip(l, state.english.includes(k), () => { state.english = [k]; }))));
+
+  f.appendChild(group('Sciences', subjects.sciences.map(s =>
+    chip(s.name.replace(' Science',''), state.sciences.includes(s.id), () => toggle(state.sciences, s.id)))));
+
+  f.appendChild(group('Technology', subjects.technology.map(t =>
+    chip(t.name.replace('Engineering Studies','Eng Studies'), state.technology.includes(t.id), () => toggle(state.technology, t.id)))));
+
+  // other subjects stepper
+  const od = document.createElement('div'); od.className = 'pk';
+  const ol = document.createElement('label'); ol.className = 'q'; ol.textContent = 'Anything else (2 units each)';
+  const orow = document.createElement('div'); orow.className = 'units';
+  const st = document.createElement('div'); st.className = 'stepper';
+  const minus = document.createElement('button'); minus.type='button'; minus.textContent='−';
+  minus.setAttribute('aria-label','One fewer other subject');
+  minus.addEventListener('click', () => { state.otherCount = Math.max(0, state.otherCount - 1); render(); });
+  const plus = document.createElement('button'); plus.type='button'; plus.textContent='+';
+  plus.setAttribute('aria-label','One more other subject');
+  plus.addEventListener('click', () => { state.otherCount = Math.min(4, state.otherCount + 1); render(); });
+  const n = document.createElement('b'); n.textContent = String(state.otherCount);
+  st.append(minus, n, plus);
+  const note = document.createElement('span'); note.className='mono'; note.style.color='var(--ink-3)';
+  note.style.fontSize='.72rem'; note.textContent='no STEM effect';
+  orow.append(note, st);
+  od.append(ol, orow); f.appendChild(od);
+
+  // units + pattern
+  const pat = validateAtarPattern(profile());
+  const ud = document.createElement('div'); ud.className = 'pk';
+  const urow = document.createElement('div'); urow.className = 'units';
+  const left = document.createElement('span');
+  left.innerHTML = `Units <b>${pat.units}</b> · subject areas <b>${pat.areas}</b>`;
+  const right = document.createElement('span');
+  right.className = pat.valid ? 'ok' : 'bad';
+  right.textContent = pat.valid ? 'ATAR pattern OK' : 'ATAR pattern fails';
+  right.title = pat.violations.join(' ');
+  urow.append(left, right);
+  ud.appendChild(urow);
+  if (!pat.valid) {
+    const v = document.createElement('p');
+    v.style.cssText = 'margin:.45rem 0 0;font-size:.76rem;color:var(--gated)';
+    v.textContent = pat.violations[0];
+    ud.appendChild(v);
+  }
+  f.appendChild(ud);
+
+  // progressive band question - only once a gate is actually in the results
+  const asks = [...new Set(results.flatMap(r => r.needsInput).filter(x => /band/i.test(x)))];
+  if (asks.length) {
+    const bd = document.createElement('div'); bd.className = 'pk bandask';
+    const bl = document.createElement('label'); bl.className='q'; bl.textContent = 'Expected maths band';
+    const why = document.createElement('p'); why.className='why';
+    why.textContent = 'Some courses on your list are gated on a mark, not a subject. This is the only thing in NSW that can turn you away.';
+    const target = state.mathsPathway === 'advanced_ext1_ext2' ? 'Mathematics Extension 1' : 'Mathematics Advanced';
+    const scale = state.mathsPathway === 'advanced_ext1_ext2' ? 'extension' : 'hsc';
+    const opts = scale === 'extension' ? [['E4',4],['E3',3],['E2',2]] : [['Band 6',6],['Band 5',5],['Band 4',4],['Band 3',3]];
+    const c = document.createElement('div'); c.className='chips';
+    opts.forEach(([lbl, v]) => c.appendChild(chip(lbl, state.bands[target]?.band === v, () => {
+      state.bands = { ...state.bands };
+      if (state.bands[target]?.band === v) delete state.bands[target];
+      else state.bands[target] = { band: v, scale };
+    })));
+    bd.append(bl, why, c); f.appendChild(bd);
+  }
+}
+
+/* ---------------- render: results ---------------- */
+function el(tag, cls, text) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text != null) e.textContent = text;
+  return e;
+}
+
+function courseRow(r) {
+  const row = el('div', 'row b-' + r.bandName);
+  row.appendChild(el('span', 'nm', r.courseName));
+  const right = el('span', 'uni');
+  right.append(el('span', 'tag t-' + r.bandName, r.bandName.replace('_', ' ').toLowerCase()));
+  right.append(document.createTextNode(' ' + r.university));
+  row.appendChild(right);
+  const reasons = [];
+  r.findings.forEach(f => reasons.push(f.why));
+  if (!r.complete) reasons.push('Assumed knowledge for this course is not fully captured.');
+  r.needsInput.filter(x => /band/i.test(x)).forEach(x => reasons.push(x + '.'));
+  if (reasons.length) {
+    const p = el('p', 'why');
+    p.textContent = reasons.join(' ');
+    row.appendChild(p);
+  }
+  return row;
+}
+
+function render() {
+  const p = profile();
+  const results = CATALOGUE.map(c => {
+    const r = readiness(p, c, { gates: GATES, bridging: c._bridging });
+    return { ...r, university: c.university, course: c };
+  });
+
+  renderPicker(results);
+
+  const main = document.getElementById('results');
+  main.replaceChildren();
+
+  const order = ['PREPARED','MINOR_GAP','BRIDGE_IT','HARD_GAP','GATED'];
+  const byBand = Object.fromEntries(order.map(b => [b, results.filter(r => r.bandName === b)]));
+
+  // summary
+  const sum = el('div', 'summary');
+  const labels = { PREPARED:'ready now', MINOR_GAP:'small gap', BRIDGE_IT:'bridging course', HARD_GAP:'hard gap', GATED:'blocked' };
+  const cls = { PREPARED:'s-prep', MINOR_GAP:'s-minor', BRIDGE_IT:'s-bridge', HARD_GAP:'s-hard', GATED:'s-gated' };
+  order.forEach(b => {
+    if (!byBand[b].length) return;
+    const s = el('div', 'stat ' + cls[b]);
+    s.appendChild(el('span', 'n', String(byBand[b].length)));
+    s.appendChild(el('span', 'l', labels[b]));
+    sum.appendChild(s);
+  });
+  const opener = el('p','lede');
+  opener.style.cssText = 'max-width:46rem;margin:0 0 1.1rem;font-size:.9rem';
+  opener.textContent = 'Most of what follows is open to you. That is the normal answer in New ' +
+    'South Wales — universities publish assumed knowledge rather than hard prerequisites, so ' +
+    'subjects rarely stop you being admitted. What matters is the short list that is not open, and why.';
+  main.appendChild(opener);
+  main.appendChild(sum);
+
+  // ---- what needs attention (lead with the exceptions) ----
+  const attention = order.slice(1).flatMap(b => byBand[b]);
+  const sec1 = el('section');
+  const h1 = el('div', 'sh');
+  h1.appendChild(el('h2', null, attention.length ? 'What needs attention' : 'Nothing needs attention'));
+  h1.appendChild(el('span', 'count', attention.length ? attention.length + ' of ' + results.length : results.length + ' courses, no gaps'));
+  sec1.appendChild(h1);
+
+  if (attention.length) {
+    const missing = {};
+    attention.forEach(r => r.findings.forEach(f => missing[f.subject] = (missing[f.subject] || 0) + 1));
+    const parts = Object.entries(missing).sort((a,b) => b[1]-a[1]).map(([s,n]) => `${s} (${n})`);
+    if (parts.length) {
+      const l = el('p', 'lede');
+      l.textContent = 'Every gap on your list comes down to: ' + parts.join(', ') + '.';
+      sec1.appendChild(l);
+    }
+    const rows = el('div', 'rows');
+    attention.slice(0, 40).forEach(r => rows.appendChild(courseRow(r)));
+    sec1.appendChild(rows);
+  } else {
+    sec1.appendChild(el('p', 'lede', 'Your subject set meets the published assumed knowledge for every course in the catalogue.'));
+  }
+  main.appendChild(sec1);
+
+  // ---- what a change would cost ----
+  const candidates = [
+    ...state.sciences.map(s => ({ kind:'sciences', id:s, label: subjects.sciences.find(x=>x.id===s).name })),
+    ...state.technology.map(t => ({ kind:'technology', id:t, label: subjects.technology.find(x=>x.id===t).name }))
+  ];
+  if (state.otherCount > 0) candidates.push({ kind:'other', id:null, label:'One other subject' });
+
+  if (candidates.length) {
+    const sec2 = el('section');
+    const h2 = el('div','sh');
+    h2.appendChild(el('h2', null, 'If you dropped one'));
+    sec2.appendChild(h2);
+    sec2.appendChild(el('p','lede','Each subject re-run against all ' + results.length + ' courses. This is the question Year 11 actually has to answer.'));
+    const wrap = el('div','drops');
+    candidates.forEach(c => {
+      const alt = { ...p };
+      if (c.kind === 'other') alt.other = p.other.slice(1);
+      else alt[c.kind] = p[c.kind].filter(x => x !== c.id);
+      const after = CATALOGUE.map(x => readiness(alt, x, { gates: GATES, bridging: x._bridging }));
+      let worse = 0;
+      after.forEach((a, i) => { if (a.band > results[i].band) worse++; });
+      const altPat = validateAtarPattern(alt);
+      const d = el('div','drop');
+      d.appendChild(el('b', null, c.label));
+      const delta = el('span','delta ' + (worse ? 'cost' : 'free'));
+      delta.textContent = worse ? worse + ' courses worse' : 'nothing changes';
+      d.appendChild(delta);
+      if (!altPat.valid) {
+        const w = el('span','delta cost');
+        w.textContent = '· ATAR pattern fails';
+        d.appendChild(w);
+      }
+      wrap.appendChild(d);
+    });
+    sec2.appendChild(wrap);
+    main.appendChild(sec2);
+  }
+
+  // ---- probably haven't heard of these ----
+  const unfamiliar = byBand.PREPARED.filter(r => !FAMILIAR.test(r.courseName)).slice(0, 12);
+  if (unfamiliar.length) {
+    const sec3 = el('section');
+    const h3 = el('div','sh');
+    h3.appendChild(el('h2', null, 'Open to you, and probably unfamiliar'));
+    h3.appendChild(el('span','count', unfamiliar.length + ' of ' + byBand.PREPARED.length + ' ready now'));
+    sec3.appendChild(h3);
+    sec3.appendChild(el('p','lede','You cannot search for a degree whose name you have never heard. Narrower degrees also mean smaller cohorts and fewer exits if you change your mind.'));
+    const rows = el('div','rows');
+    unfamiliar.forEach(r => rows.appendChild(courseRow(r)));
+    sec3.appendChild(rows);
+    main.appendChild(sec3);
+  }
+
+  // ---- everything else, folded ----
+  const rest = byBand.PREPARED.filter(r => FAMILIAR.test(r.courseName));
+  if (rest.length) {
+    const det = document.createElement('details'); det.className = 'fold';
+    const sm = document.createElement('summary');
+    sm.appendChild(document.createTextNode('Everything else you are ready for'));
+    sm.appendChild(el('span','hint', rest.length + ' courses'));
+    det.appendChild(sm);
+    const body = el('div','foldbody');
+    const unis = [...new Set(rest.map(r => r.university))].sort();
+    unis.forEach(u => {
+      const g = el('div','unigroup');
+      g.appendChild(el('h3', null, u));
+      const cl = el('div','clist');
+      rest.filter(r => r.university === u).forEach(r => cl.appendChild(el('span', null, r.courseName.replace(/^Bachelor of /,''))));
+      g.appendChild(cl); body.appendChild(g);
+    });
+    det.appendChild(body);
+    const sec4 = el('section'); sec4.appendChild(det); main.appendChild(sec4);
+  }
+
+  document.getElementById('stamp').textContent = CATALOGUE.length + ' courses · checked ' + CAPTURED_ON;
+  const inc = results.filter(r => !r.complete).length;
+  document.getElementById('foot').textContent =
+    'Prototype. Runs the same engine the test suite exercises, against ' + CATALOGUE.length +
+    ' course records captured on ' + CAPTURED_ON + '.' +
+    (inc ? ' ' + inc + ' record(s) are not fully captured and are shown as needing attention rather than assumed complete.' : '');
+}
+
+render();
+</script>

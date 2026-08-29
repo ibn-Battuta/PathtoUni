@@ -1,0 +1,56 @@
+{
+  "_comment": "NESA Stage 6 Board Developed courses that carry STEM readiness signal, plus the unit rules. Unit values are CONTEXT-DEPENDENT - see mathematics.unitRules. Source this from NESA via the pipeline; do not hand-edit once the pipeline runs.",
+  "capturedOn": "2026-08-27",
+  "mathematics": {
+    "pathway": ["standard1", "standard2", "advanced", "advanced_ext1", "advanced_ext1_ext2"],
+    "exclusive": true,
+    "unitRules": {
+      "_rule": "NESA pattern of study: 'For students entered in Mathematics Extension 2, both Mathematics Extension 1 and Mathematics Extension 2 are counted as 2-unit courses.' Footnote: Extension 1 is a 1-unit course when studied with Mathematics Advanced.",
+      "standard1": { "units": 2, "sits": ["Mathematics Standard 1"] },
+      "standard2": { "units": 2, "sits": ["Mathematics Standard 2"] },
+      "advanced": { "units": 2, "sits": ["Mathematics Advanced"] },
+      "advanced_ext1": { "units": 3, "sits": ["Mathematics Advanced", "Mathematics Extension 1"] },
+      "advanced_ext1_ext2": {
+        "units": 4,
+        "sits": ["Mathematics Extension 1", "Mathematics Extension 2"],
+        "_note": "Does NOT sit Mathematics Advanced. This removes any gate route that requires an Advanced band."
+      }
+    },
+    "yearRules": { "advanced_ext1_ext2": "year12only" }
+  },
+  "sciences": [
+    { "id": "physics", "name": "Physics", "units": 2 },
+    { "id": "chemistry", "name": "Chemistry", "units": 2 },
+    { "id": "biology", "name": "Biology", "units": 2 },
+    { "id": "earth_env", "name": "Earth and Environmental Science", "units": 2 },
+    { "id": "investigating_science", "name": "Investigating Science", "units": 2 }
+  ],
+  "technology": [
+    { "id": "engineering_studies", "name": "Engineering Studies", "units": 2 },
+    { "id": "software_engineering", "name": "Software Engineering", "units": 2, "_note": "Replaced Software Design and Development from 2024. First HSC exam 2025." },
+    { "id": "enterprise_computing", "name": "Enterprise Computing", "units": 2, "_note": "Replaced Information Processes and Technology." },
+    { "id": "design_technology", "name": "Design and Technology", "units": 2 }
+  ],
+  "english": {
+    "required": true,
+    "minUnits": 2,
+    "options": [
+      { "id": "english_standard", "name": "English Standard", "units": 2 },
+      { "id": "english_advanced", "name": "English Advanced", "units": 2 },
+      { "id": "english_ext1", "name": "English Extension 1", "units": 1, "requires": "english_advanced" },
+      { "id": "english_eald", "name": "English EAL/D", "units": 2 }
+    ]
+  },
+  "atarPattern": {
+    "_source": "UAC ATAR eligibility",
+    "minBoardDevelopedUnits": 10,
+    "minEnglishUnits": 2,
+    "minCoursesOfTwoOrMoreUnits": 3,
+    "minSubjectAreas": 4,
+    "countedUnits": { "english": 2, "remaining": 8 }
+  },
+  "retiredCourses": [
+    { "name": "Software Design and Development", "retiredFrom": 2024, "replacedBy": "Software Engineering" },
+    { "name": "Information Processes and Technology", "replacedBy": "Enterprise Computing" }
+  ]
+}

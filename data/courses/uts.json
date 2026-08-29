@@ -1,0 +1,196 @@
+{
+  "university": "University of Technology Sydney",
+  "capturedOn": "2026-08-27",
+  "institutionRule": {
+    "hasSubjectPrerequisites": false,
+    "quote": "There are no HSC subject prerequisites for any UTS course, with the exception of teacher education courses.:https",
+    "source": "https://uac.edu.au/institutions/university-of-technology-sydney/admission-criteria-and-entry-schemes",
+    "verification": "verified"
+  },
+  "courses": [
+    {
+      "id": "uts-computing-science",
+      "name": "Bachelor of Computing Science",
+      "field": "computing",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.uts.edu.au/courses/bachelor-of-computing-science",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.uts.edu.au/courses/bachelor-of-computing-science",
+      "recommendedStudies": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.uts.edu.au/courses/bachelor-of-computing-science"
+        },
+        {
+          "subject": "English Advanced",
+          "quote": "English Advanced",
+          "source": "https://www.uts.edu.au/courses/bachelor-of-computing-science"
+        }
+      ]
+    },
+    {
+      "id": "uts-information-technology",
+      "name": "Bachelor of Information Technology",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.uts.edu.au/courses/bachelor-of-information-technology",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.uts.edu.au/courses/bachelor-of-information-technology",
+      "recommendedStudies": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.uts.edu.au/courses/bachelor-of-information-technology"
+        },
+        {
+          "subject": "English Advanced",
+          "quote": "English Advanced",
+          "source": "https://www.uts.edu.au/courses/bachelor-of-information-technology"
+        }
+      ]
+    },
+    {
+      "id": "uts-nursing",
+      "name": "Bachelor of Nursing",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.uts.edu.au/courses/bachelor-of-nursing"
+    },
+    {
+      "id": "uts-forensic-science",
+      "name": "Bachelor of Forensic Science",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.uts.edu.au/courses/bachelor-of-forensic-science"
+    },
+    {
+      "id": "uts-engineering-honours-flexible",
+      "name": "Bachelor of Engineering (Honours) (Flexible)",
+      "field": "engineering",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.uts.edu.au/courses/bachelor-of-engineering-honours-flexible",
+          "tier": "A"
+        },
+        {
+          "subject": "English Advanced",
+          "quote": "English Advanced",
+          "source": "https://www.uts.edu.au/courses/bachelor-of-engineering-honours-flexible",
+          "tier": "A"
+        },
+        {
+          "subject": "English Standard",
+          "quote": "English Standard",
+          "source": "https://www.uts.edu.au/courses/bachelor-of-engineering-honours-flexible",
+          "tier": "A"
+        },
+        {
+          "subject": "Software Engineering",
+          "quote": "Software Engineering",
+          "source": "https://www.uts.edu.au/courses/bachelor-of-engineering-honours-flexible",
+          "tier": "A"
+        },
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.uts.edu.au/courses/bachelor-of-engineering-honours-flexible",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.uts.edu.au/courses/bachelor-of-engineering-honours-flexible",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.uts.edu.au/courses/bachelor-of-engineering-honours-flexible"
+    },
+    {
+      "id": "uts-engineering-honours-diploma-in-industry-practice-mechanical-mechatronic",
+      "name": "Bachelor of Engineering (Honours) Diploma in Industry Practice (Mechanical & Mechatronic)",
+      "field": "engineering",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.uts.edu.au/courses/bachelor-of-engineering-honours-diploma-in-professional-engineering-practice-mechanical-and-mechatronic",
+          "tier": "A"
+        },
+        {
+          "subject": "English Advanced",
+          "quote": "English Advanced",
+          "source": "https://www.uts.edu.au/courses/bachelor-of-engineering-honours-diploma-in-professional-engineering-practice-mechanical-and-mechatronic",
+          "tier": "A"
+        },
+        {
+          "subject": "English Standard",
+          "quote": "English Standard",
+          "source": "https://www.uts.edu.au/courses/bachelor-of-engineering-honours-diploma-in-professional-engineering-practice-mechanical-and-mechatronic",
+          "tier": "A"
+        },
+        {
+          "subject": "Software Engineering",
+          "quote": "Software Engineering",
+          "source": "https://www.uts.edu.au/courses/bachelor-of-engineering-honours-diploma-in-professional-engineering-practice-mechanical-and-mechatronic",
+          "tier": "A"
+        },
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.uts.edu.au/courses/bachelor-of-engineering-honours-diploma-in-professional-engineering-practice-mechanical-and-mechatronic",
+          "tier": "A"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.uts.edu.au/courses/bachelor-of-engineering-honours-diploma-in-professional-engineering-practice-mechanical-and-mechatronic",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.uts.edu.au/courses/bachelor-of-engineering-honours-diploma-in-professional-engineering-practice-mechanical-and-mechatronic"
+    }
+  ]
+}

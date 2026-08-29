@@ -1,0 +1,29 @@
+{
+  "_comment": "Non-ATAR admission routes. Three of six MVP universities lead with these, and they read Year 11 results. A tool modelling only prerequisites describes a minority of how NSW admission works.",
+  "capturedOn": "2026-08-27",
+  "schemes": [
+    {
+      "id": "mq-leaders-achievers", "university": "Macquarie", "name": "Leaders and Achievers Early Entry",
+      "uses": ["year11_academic", "extracurricular", "casual_work", "community_involvement"],
+      "quote": "Year 11 academic performance alongside your extracurricular activities, casual work experience and community involvement",
+      "coverage": "most Macquarie degrees", "appliedVia": "direct to university", "verification": "verified"
+    },
+    {
+      "id": "wsu-hsc-true-reward", "university": "Western Sydney", "name": "HSC True Reward",
+      "uses": ["hsc_subject_bands"],
+      "quote": "admission on ATAR release day based on specific HSC subject band outcomes rather than the ATAR itself",
+      "verification": "verified",
+      "_note": "IMPORTANT: subject choice -> bands -> admission, bypassing the ATAR. This is readiness-shaped, not scaling-shaped. It is the second reason the maths band input is core rather than optional."
+    },
+    {
+      "id": "wsu-srs", "university": "Western Sydney", "name": "Schools Recommendation Scheme",
+      "uses": ["year11_studies", "school_ratings"], "verification": "verified"
+    },
+    {
+      "id": "uow-early-admission", "university": "Wollongong", "name": "Early Admission",
+      "uses": ["year11_results", "skills_experience"],
+      "quote": "your unique skills and experiences, alongside your Year 11 results",
+      "verification": "verified"
+    }
+  ]
+}

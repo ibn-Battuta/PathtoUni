@@ -1,0 +1,92 @@
+{
+  "university": "University of Wollongong",
+  "capturedOn": "2026-08-27",
+  "institutionRule": {
+    "hasSubjectPrerequisites": false,
+    "quote": "Assumed knowledge is not a compulsory requirement for admission but if you haven't achieved a certain level of knowledge in the subject area you may find the course difficult.:https",
+    "source": "https://uac.edu.au/institutions/university-of-wollongong/admission-criteria-and-entry-schemes",
+    "verification": "verified"
+  },
+  "courses": [
+    {
+      "id": "uow-computer-science",
+      "name": "Bachelor of Computer Science",
+      "field": "computing",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.uow.edu.au/study/courses/bachelor-of-computer-science/",
+          "tier": "A"
+        },
+        {
+          "subject": "Mathematics Standard 2",
+          "quote": "Mathematics Standard 2",
+          "source": "https://www.uow.edu.au/study/courses/bachelor-of-computer-science/",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.uow.edu.au/study/courses/bachelor-of-computer-science/"
+    },
+    {
+      "id": "uow-information-technology",
+      "name": "Bachelor of Information Technology",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.uow.edu.au/study/courses/bachelor-of-information-technology/"
+    },
+    {
+      "id": "uow-mathematics",
+      "name": "Bachelor of Mathematics",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.uow.edu.au/study/courses/bachelor-of-mathematics/"
+    },
+    {
+      "id": "uow-nursing",
+      "name": "Bachelor of Nursing",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.uow.edu.au/study/courses/bachelor-of-nursing/"
+    },
+    {
+      "id": "uow-engineering-honours-mathematics",
+      "name": "Bachelor of Engineering (Honours) - Bachelor of Mathematics",
+      "field": "engineering",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.uow.edu.au/study/courses/bachelor-of-engineering-honours---bachelor-of-mathematics/",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.uow.edu.au/study/courses/bachelor-of-engineering-honours---bachelor-of-mathematics/"
+    }
+  ]
+}

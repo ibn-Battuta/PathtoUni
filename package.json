@@ -1,0 +1,18 @@
+{
+  "name": "pathtouni",
+  "version": "0.1.0",
+  "private": true,
+  "description": "NSW STEM readiness and discovery planner. Readiness prunes the catalogue; discovery reveals what's left.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "check": "node --test test/*.test.js",
+    "pipeline": "node pipeline/index.js",
+    "pipeline:usyd": "node pipeline/index.js usyd-table",
+    "pipeline:html": "node pipeline/index.js html",
+    "build:site": "node ui/build.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,965 @@
+<title>Open To You</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+  :root{
+    --paper:#EEF2F6; --surface:#FFFFFF; --surface-2:#E3EAF1; --sunk:#F6F9FB;
+    --ink:#111926; --ink-2:#3C4A5C; --ink-3:#68778A;
+    --rule:#CFD9E3; --rule-soft:#E1E8EF;
+    --accent:#2F5183; --accent-soft:#E2E9F4;
+    --prep:#1F6349;  --prep-soft:#DCEBE3;
+    --minor:#2F5183; --minor-soft:#E2E9F4;
+    --bridge:#9B6206; --bridge-soft:#F7EBD6;
+    --hard:#8A4114;  --hard-soft:#F6E4D7;
+    --gated:#9E2F27; --gated-soft:#F6DFDC;
+    --shadow:0 1px 2px rgba(17,25,38,.06), 0 10px 28px -18px rgba(17,25,38,.30);
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#0C1119; --surface:#141C27; --surface-2:#1C2634; --sunk:#101822;
+    --ink:#E7EDF4; --ink-2:#AEBBC9; --ink-3:#7A8899;
+    --rule:#293544; --rule-soft:#202A37;
+    --accent:#8DB0E4; --accent-soft:#19263A;
+    --prep:#63C39A;  --prep-soft:#102420;
+    --minor:#8DB0E4; --minor-soft:#19263A;
+    --bridge:#DFA34D; --bridge-soft:#2A2010;
+    --hard:#DE8F5E;  --hard-soft:#2B1A11;
+    --gated:#E27A70; --gated-soft:#2C1512;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -18px rgba(0,0,0,.8);
+  }}
+  :root[data-theme="dark"]{
+    --paper:#0C1119; --surface:#141C27; --surface-2:#1C2634; --sunk:#101822;
+    --ink:#E7EDF4; --ink-2:#AEBBC9; --ink-3:#7A8899;
+    --rule:#293544; --rule-soft:#202A37;
+    --accent:#8DB0E4; --accent-soft:#19263A;
+    --prep:#63C39A;  --prep-soft:#102420;
+    --minor:#8DB0E4; --minor-soft:#19263A;
+    --bridge:#DFA34D; --bridge-soft:#2A2010;
+    --hard:#DE8F5E;  --hard-soft:#2B1A11;
+    --gated:#E27A70; --gated-soft:#2C1512;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -18px rgba(0,0,0,.8);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Public Sans",ui-sans-serif,system-ui,-apple-system,sans-serif;
+    font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+
+  /* ---------- shell ---------- */
+  .shell{max-width:76rem; margin:0 auto; padding:0 1.25rem 5rem}
+  header.top{padding:2.25rem 0 1.25rem; border-bottom:1px solid var(--rule); margin-bottom:1.5rem}
+  .brandline{display:flex; align-items:baseline; gap:.85rem; flex-wrap:wrap}
+  h1{
+    font-family:"Newsreader",Georgia,serif; font-weight:500;
+    font-size:clamp(1.7rem,3.4vw,2.3rem); letter-spacing:-.015em;
+    margin:0; line-height:1.1;
+  }
+  .stamp{
+    font-family:"IBM Plex Mono",monospace; font-size:.68rem; font-weight:500;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3);
+  }
+  .lead{margin:.7rem 0 0; font-size:.95rem; color:var(--ink-2); max-width:46rem}
+  .trust{
+    list-style:none; margin:.9rem 0 0; padding:0; max-width:52rem;
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:.45rem 1.4rem;
+  }
+  .trust li{font-size:.81rem; color:var(--ink-3); line-height:1.45}
+  .trust b{color:var(--ink-2); font-weight:600}
+
+  .cols{display:grid; grid-template-columns:19rem 1fr; gap:1.5rem; align-items:start}
+  @media (max-width:56rem){ .cols{grid-template-columns:1fr} }
+
+  /* ---------- picker ---------- */
+  .picker{
+    position:sticky; top:1rem; background:var(--surface); border:1px solid var(--rule);
+    border-radius:4px; box-shadow:var(--shadow); overflow:hidden;
+  }
+  @media (max-width:56rem){ .picker{position:static} }
+  .pk{padding:.95rem 1.05rem; border-bottom:1px solid var(--rule-soft)}
+  .pk:last-child{border-bottom:none}
+  .pk > label.q{
+    display:block; font-family:"IBM Plex Mono",monospace; font-size:.65rem; font-weight:600;
+    letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3); margin-bottom:.55rem;
+  }
+  .chips{display:flex; flex-wrap:wrap; gap:.35rem}
+  .chip{
+    font:inherit; font-size:.81rem; line-height:1.2; cursor:pointer;
+    background:var(--sunk); color:var(--ink-2);
+    border:1px solid var(--rule); border-radius:3px; padding:.34rem .55rem;
+    transition:background .12s, border-color .12s, color .12s;
+  }
+  .chip:hover{border-color:var(--accent)}
+  .chip[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600}
+  :root[data-theme="dark"] .chip[aria-pressed="true"],
+  :root:not([data-theme="light"]) .chip[aria-pressed="true"]{color:#0C1119}
+  @media (prefers-color-scheme:light){ :root:not([data-theme="dark"]) .chip[aria-pressed="true"]{color:#fff} }
+  .chip:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+  .units{
+    display:flex; justify-content:space-between; align-items:center; gap:.5rem;
+    font-family:"IBM Plex Mono",monospace; font-size:.76rem;
+  }
+  .units b{font-variant-numeric:tabular-nums}
+  .units .bad{color:var(--gated)}
+  .units .ok{color:var(--prep)}
+  .stepper{display:flex; align-items:center; gap:.4rem}
+  .stepper button{
+    font:inherit; cursor:pointer; width:1.6rem; height:1.6rem; line-height:1;
+    border:1px solid var(--rule); background:var(--sunk); color:var(--ink); border-radius:3px;
+  }
+  .stepper button:hover{border-color:var(--accent)}
+  .stepper button:focus-visible{outline:2px solid var(--accent); outline-offset:1px}
+
+  .bandask{background:var(--bridge-soft); border-top:1px solid var(--rule-soft)}
+  .bandask .why{font-size:.78rem; color:var(--ink-2); margin:0 0 .5rem}
+
+  /* ---------- summary ---------- */
+  .summary{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(7.5rem,1fr)); gap:.6rem;
+    margin-bottom:1.25rem;
+  }
+  .stat{
+    background:var(--surface); border:1px solid var(--rule); border-radius:4px;
+    padding:.75rem .85rem; box-shadow:var(--shadow); border-top:3px solid var(--rule);
+  }
+  .stat.s-prep{border-top-color:var(--prep)}
+  .stat.s-minor{border-top-color:var(--minor)}
+  .stat.s-bridge{border-top-color:var(--bridge)}
+  .stat.s-hard{border-top-color:var(--hard)}
+  .stat.s-gated{border-top-color:var(--gated)}
+  .stat .n{
+    font-family:"IBM Plex Mono",monospace; font-size:1.6rem; font-weight:600;
+    font-variant-numeric:tabular-nums; line-height:1; display:block;
+  }
+  .stat.s-prep .n{color:var(--prep)} .stat.s-minor .n{color:var(--minor)}
+  .stat.s-bridge .n{color:var(--bridge)} .stat.s-hard .n{color:var(--hard)}
+  .stat.s-gated .n{color:var(--gated)}
+  .stat .l{font-size:.75rem; color:var(--ink-2); display:block; margin-top:.3rem}
+
+  /* ---------- sections ---------- */
+  section{margin-bottom:1.75rem}
+  .sh{display:flex; align-items:baseline; gap:.7rem; margin-bottom:.7rem; flex-wrap:wrap}
+  .sh h2{
+    font-family:"Public Sans",sans-serif; font-weight:700; font-size:1rem;
+    letter-spacing:-.005em; margin:0;
+  }
+  .sh .count{font-family:"IBM Plex Mono",monospace; font-size:.75rem; color:var(--ink-3)}
+  .lede{font-size:.86rem; color:var(--ink-2); margin:0 0 .75rem; max-width:44rem}
+
+  .rows{display:flex; flex-direction:column; gap:.4rem}
+  .row{
+    background:var(--surface); border:1px solid var(--rule); border-radius:4px;
+    border-left:3px solid var(--rule); padding:.6rem .8rem;
+    display:grid; grid-template-columns:1fr auto; gap:.3rem .8rem; align-items:baseline;
+  }
+  .row.b-PREPARED{border-left-color:var(--prep)}
+  .row.b-MINOR_GAP{border-left-color:var(--minor)}
+  .row.b-BRIDGE_IT{border-left-color:var(--bridge)}
+  .row.b-HARD_GAP{border-left-color:var(--hard)}
+  .row.b-GATED{border-left-color:var(--gated)}
+  .row .nm{font-size:.88rem; font-weight:600}
+  .row .uni{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--ink-3); white-space:nowrap}
+  .row .why{grid-column:1/-1; font-size:.81rem; color:var(--ink-2); margin:0}
+  .row .why em{color:var(--ink-3)}
+
+  .tag{
+    display:inline-block; font-family:"IBM Plex Mono",monospace; font-size:.63rem;
+    font-weight:600; padding:.12rem .38rem; border-radius:2px; white-space:nowrap;
+  }
+  .t-PREPARED{background:var(--prep-soft); color:var(--prep)}
+  .t-MINOR_GAP{background:var(--minor-soft); color:var(--minor)}
+  .t-BRIDGE_IT{background:var(--bridge-soft); color:var(--bridge)}
+  .t-HARD_GAP{background:var(--hard-soft); color:var(--hard)}
+  .t-GATED{background:var(--gated-soft); color:var(--gated)}
+  .t-info{background:var(--surface-2); color:var(--ink-3)}
+
+  details.fold{
+    background:var(--surface); border:1px solid var(--rule); border-radius:4px;
+    box-shadow:var(--shadow); overflow:hidden;
+  }
+  details.fold > summary{
+    cursor:pointer; padding:.7rem .9rem; font-size:.88rem; font-weight:600;
+    display:flex; justify-content:space-between; gap:1rem; align-items:center;
+  }
+  details.fold > summary:focus-visible{outline:2px solid var(--accent); outline-offset:-2px}
+  details.fold > summary::-webkit-details-marker{display:none}
+  details.fold > summary .hint{font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--ink-3); font-weight:400}
+  .foldbody{padding:0 .9rem .9rem; border-top:1px solid var(--rule-soft)}
+  .unigroup{margin-top:.8rem}
+  .unigroup h3{
+    font-family:"IBM Plex Mono",monospace; font-size:.66rem; font-weight:600;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin:0 0 .35rem;
+  }
+  .clist{display:flex; flex-wrap:wrap; gap:.3rem}
+  .clist span{
+    font-size:.78rem; background:var(--sunk); border:1px solid var(--rule-soft);
+    border-radius:3px; padding:.2rem .45rem; color:var(--ink-2);
+  }
+
+  /* ---------- drop impact ---------- */
+  .drops{display:flex; flex-wrap:wrap; gap:.4rem}
+  .drop{
+    background:var(--surface); border:1px solid var(--rule); border-radius:4px;
+    padding:.5rem .7rem; font-size:.81rem; display:flex; align-items:center; gap:.5rem;
+  }
+  .drop b{font-weight:600}
+  .drop .delta{font-family:"IBM Plex Mono",monospace; font-size:.72rem}
+  .drop .free{color:var(--prep)}
+  .drop .cost{color:var(--hard)}
+
+  footer.foot{
+    border-top:1px solid var(--rule); margin-top:2rem; padding-top:1rem;
+    font-size:.78rem; color:var(--ink-3);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="shell">
+  <header class="top">
+    <div class="brandline">
+      <h1>Open To You</h1>
+      <span class="stamp" id="stamp"></span>
+    </div>
+    <p class="lead">
+      Tell us what you are studying. We check it against every STEM degree at six NSW
+      universities and show you three things: which ones you are ready for, which ones have a
+      gap, and exactly what closing that gap would take.
+    </p>
+    <ul class="trust">
+      <li><b>Independent.</b> We are not UAC and not a university. Nobody pays to appear here.</li>
+      <li><b>Quoted, not summarised.</b> Every requirement is the university&rsquo;s own wording,
+        copied word for word, with the date we read it.</li>
+      <li><b>Private by design.</b> The calculation happens on your own device. Your subjects are
+        never sent anywhere, and there is no account.</li>
+      <li><b>Not the last word.</b> Rules change. Check UAC before you submit preferences.</li>
+    </ul>
+  </header>
+
+  <div class="cols">
+    <form class="picker" id="picker" aria-label="Your subjects"></form>
+    <main id="results" aria-live="polite"></main>
+  </div>
+
+  <footer class="foot" id="foot"></footer>
+</div>
+
+<script type="module">
+
+const subjects = {
+  "_comment": "NESA Stage 6 Board Developed courses that carry STEM readiness signal, plus the unit rules. Unit values are CONTEXT-DEPENDENT - see mathematics.unitRules. Source this from NESA via the pipeline; do not hand-edit once the pipeline runs.",
+  "capturedOn": "2026-08-27",
+  "mathematics": {
+    "pathway": ["standard1", "standard2", "advanced", "advanced_ext1", "advanced_ext1_ext2"],
+    "exclusive": true,
+    "unitRules": {
+      "_rule": "NESA pattern of study: 'For students entered in Mathematics Extension 2, both Mathematics Extension 1 and Mathematics Extension 2 are counted as 2-unit courses.' Footnote: Extension 1 is a 1-unit course when studied with Mathematics Advanced.",
+      "standard1": { "units": 2, "sits": ["Mathematics Standard 1"] },
+      "standard2": { "units": 2, "sits": ["Mathematics Standard 2"] },
+      "advanced": { "units": 2, "sits": ["Mathematics Advanced"] },
+      "advanced_ext1": { "units": 3, "sits": ["Mathematics Advanced", "Mathematics Extension 1"] },
+      "advanced_ext1_ext2": {
+        "units": 4,
+        "sits": ["Mathematics Extension 1", "Mathematics Extension 2"],
+        "_note": "Does NOT sit Mathematics Advanced. This removes any gate route that requires an Advanced band."
+      }
+    },
+    "yearRules": { "advanced_ext1_ext2": "year12only" }
+  },
+  "sciences": [
+    { "id": "physics", "name": "Physics", "units": 2 },
+    { "id": "chemistry", "name": "Chemistry", "units": 2 },
+    { "id": "biology", "name": "Biology", "units": 2 },
+    { "id": "earth_env", "name": "Earth and Environmental Science", "units": 2 },
+    { "id": "investigating_science", "name": "Investigating Science", "units": 2 }
+  ],
+  "technology": [
+    { "id": "engineering_studies", "name": "Engineering Studies", "units": 2 },
+    { "id": "software_engineering", "name": "Software Engineering", "units": 2, "_note": "Replaced Software Design and Development from 2024. First HSC exam 2025." },
+    { "id": "enterprise_computing", "name": "Enterprise Computing", "units": 2, "_note": "Replaced Information Processes and Technology." },
+    { "id": "design_technology", "name": "Design and Technology", "units": 2 }
+  ],
+  "english": {
+    "required": true,
+    "minUnits": 2,
+    "options": [
+      { "id": "english_standard", "name": "English Standard", "units": 2 },
+      { "id": "english_advanced", "name": "English Advanced", "units": 2 },
+      { "id": "english_ext1", "name": "English Extension 1", "units": 1, "requires": "english_advanced" },
+      { "id": "english_eald", "name": "English EAL/D", "units": 2 }
+    ]
+  },
+  "atarPattern": {
+    "_source": "UAC ATAR eligibility",
+    "minBoardDevelopedUnits": 10,
+    "minEnglishUnits": 2,
+    "minCoursesOfTwoOrMoreUnits": 3,
+    "minSubjectAreas": 4,
+    "countedUnits": { "english": 2, "remaining": 8 }
+  },
+  "retiredCourses": [
+    { "name": "Software Design and Development", "retiredFrom": 2024, "replacedBy": "Software Engineering" },
+    { "name": "Information Processes and Technology", "replacedBy": "Enterprise Computing" }
+  ]
+}
+;
+// NESA pattern-of-study and unit arithmetic.
+// Unit values are CONTEXT-DEPENDENT. Do not hardcode a fixed unit count per subject.
+
+
+const MATHS_LEVEL = {
+  standard1: 1, standard2: 2, advanced: 3, advanced_ext1: 4, advanced_ext1_ext2: 5
+};
+
+/**
+ * English is a hierarchy too. A course that assumes "English Standard" is satisfied by
+ * English Advanced - holding a HIGHER course in the same subject is never a gap.
+ * EAL/D is an alternative 2-unit English stream, not a lower one.
+ */
+const ENGLISH_SUBJECT_LEVEL = {
+  'English Standard': 1, 'English EAL/D': 1, 'English Advanced': 2, 'English Extension 1': 3
+};
+
+function englishLevel(profile) {
+  const held = (profile.english ?? []).map(id => ({
+    english_standard: 1, english_eald: 1, english_advanced: 2, english_ext1: 3
+  }[id] ?? 0));
+  return held.length ? Math.max(...held) : 0;
+}
+
+// Maps an assumed-knowledge subject string to the maths level it demands.
+const MATHS_SUBJECT_LEVEL = {
+  'Mathematics Standard 1': 1, 'Mathematics Standard 2': 2, 'Mathematics Standard': 2,
+  'Mathematics Advanced': 3, 'Mathematics Extension 1': 4, 'Mathematics Extension 2': 5
+};
+
+/** Subjects the student actually SITS. Critical: an Extension 2 student does not sit Mathematics Advanced. */
+function subjectsHeld(profile) {
+  const held = new Set();
+  const m = subjects.mathematics.unitRules[profile.mathsPathway];
+  if (!m) throw new Error(`Unknown maths pathway: ${profile.mathsPathway}`);
+  m.sits.forEach(s => held.add(s));
+  (profile.english ?? []).forEach(id => {
+    const o = subjects.english.options.find(x => x.id === id);
+    if (o) held.add(o.name);
+  });
+  (profile.sciences ?? []).forEach(id => {
+    const s = subjects.sciences.find(x => x.id === id);
+    if (s) held.add(s.name);
+  });
+  (profile.technology ?? []).forEach(id => {
+    const t = subjects.technology.find(x => x.id === id);
+    if (t) held.add(t.name);
+  });
+  (profile.other ?? []).forEach(o => held.add(o.name));
+  return held;
+}
+
+function mathsLevel(profile) {
+  return MATHS_LEVEL[profile.mathsPathway] ?? 0;
+}
+
+/** Total Board Developed units, applying the Extension 2 recount. */
+function unitCount(profile) {
+  let units = subjects.mathematics.unitRules[profile.mathsPathway].units;
+  (profile.english ?? []).forEach(id => {
+    units += subjects.english.options.find(x => x.id === id)?.units ?? 0;
+  });
+  (profile.sciences ?? []).forEach(id => {
+    units += subjects.sciences.find(x => x.id === id)?.units ?? 0;
+  });
+  (profile.technology ?? []).forEach(id => {
+    units += subjects.technology.find(x => x.id === id)?.units ?? 0;
+  });
+  (profile.other ?? []).forEach(o => { units += o.units ?? 2; });
+  return units;
+}
+
+/**
+ * Course-level breakdown, used for pattern validation.
+ * `area` is the NESA SUBJECT AREA, not a faculty grouping. UAC: "Within an HSC subject area
+ * (eg mathematics) there may be a number of courses (eg Mathematics Standard 2, Mathematics
+ * Advanced, Mathematics Extension 1, Mathematics Extension 2)." So all maths courses collapse
+ * to one area and all English courses to one, but Physics and Chemistry are SEPARATE areas.
+ */
+function courseList(profile) {
+  const out = [];
+  const m = subjects.mathematics.unitRules[profile.mathsPathway];
+  if (profile.mathsPathway === 'advanced_ext1_ext2') {
+    out.push({ name: 'Mathematics Extension 1', units: 2, area: 'mathematics' });
+    out.push({ name: 'Mathematics Extension 2', units: 2, area: 'mathematics' });
+  } else if (profile.mathsPathway === 'advanced_ext1') {
+    out.push({ name: 'Mathematics Advanced', units: 2, area: 'mathematics' });
+    out.push({ name: 'Mathematics Extension 1', units: 1, area: 'mathematics' });
+  } else {
+    out.push({ name: m.sits[0], units: m.units, area: 'mathematics' });
+  }
+  (profile.english ?? []).forEach(id => {
+    const o = subjects.english.options.find(x => x.id === id);
+    if (o) out.push({ name: o.name, units: o.units, area: 'english' });
+  });
+  (profile.sciences ?? []).forEach(id => {
+    const s = subjects.sciences.find(x => x.id === id);
+    if (s) out.push({ name: s.name, units: s.units, area: s.id });
+  });
+  (profile.technology ?? []).forEach(id => {
+    const t = subjects.technology.find(x => x.id === id);
+    if (t) out.push({ name: t.name, units: t.units, area: t.id });
+  });
+  (profile.other ?? []).forEach(o => out.push({ name: o.name, units: o.units ?? 2, area: o.area ?? o.name.toLowerCase() }));
+  return out;
+}
+
+/** UAC ATAR eligibility. Returns { valid, units, violations[] }. */
+function validateAtarPattern(profile) {
+  const p = subjects.atarPattern;
+  const courses = courseList(profile);
+  const units = courses.reduce((a, c) => a + c.units, 0);
+  const englishUnits = courses.filter(c => c.area === 'english').reduce((a, c) => a + c.units, 0);
+  const twoUnitCourses = courses.filter(c => c.units >= 2).length;
+  const areas = new Set(courses.map(c => c.area)).size;
+  const violations = [];
+  if (units < p.minBoardDevelopedUnits)
+    violations.push(`Needs at least ${p.minBoardDevelopedUnits} units of Board Developed courses; has ${units}.`);
+  if (englishUnits < p.minEnglishUnits)
+    violations.push(`Needs at least ${p.minEnglishUnits} units of English; has ${englishUnits}.`);
+  if (twoUnitCourses < p.minCoursesOfTwoOrMoreUnits)
+    violations.push(`Needs at least ${p.minCoursesOfTwoOrMoreUnits} courses of 2 units or more; has ${twoUnitCourses}.`);
+  if (areas < p.minSubjectAreas)
+    violations.push(`Needs at least ${p.minSubjectAreas} subject areas; has ${areas}.`);
+  return { valid: violations.length === 0, units, englishUnits, twoUnitCourses, areas, violations };
+}
+
+/** ATAR counts best 2 units English + best 8 from the rest. Anything beyond 10 is a discard buffer. */
+function discardBuffer(profile) {
+  const units = unitCount(profile);
+  const counted = subjects.atarPattern.countedUnits.english + subjects.atarPattern.countedUnits.remaining;
+  return { totalUnits: units, countedUnits: counted, discardableUnits: Math.max(0, units - counted) };
+}
+
+// The readiness engine. Deterministic. NO model call in this path, ever.
+// readiness(profile, course, ctx) -> { band, gateStatus, findings[], hurdles[], needsInput[], sources[] }
+
+
+const BAND = { PREPARED: 0, MINOR_GAP: 1, BRIDGE_IT: 2, HARD_GAP: 3, GATED: 4 };
+const BAND_NAME = ['PREPARED', 'MINOR_GAP', 'BRIDGE_IT', 'HARD_GAP', 'GATED'];
+
+// Evidence tier of the SEVERITY CLAIM, not of the published fact.
+//   A = published rule (the gate itself)
+//   B = research-backed (ACDS/ACER: maths background predicts first-year pass rates independently of ATAR)
+//   C = judgement (physics -> engineering, chemistry -> health)
+// RULE: a Tier C claim may never produce HARD_GAP on its own. Judgement advises; only evidence or a rule alarms.
+const MAX_BAND_FOR_TIER = { A: BAND.GATED, B: BAND.HARD_GAP, C: BAND.BRIDGE_IT };
+
+function severityTier(subject) {
+  return MATHS_SUBJECT_LEVEL[subject] !== undefined ? 'B' : 'C';
+}
+
+/**
+ * Evaluate a hard prerequisite gate.
+ * A route is UNAVAILABLE if the student does not sit that subject - which is how taking
+ * Extension 2 removes the "Mathematics Advanced Band 4" route entirely.
+ */
+function evaluateGate(profile, gate) {
+  const held = subjectsHeld(profile);
+  const bands = profile.bands ?? {};
+  const routes = gate.routes.map(r => {
+    if (!held.has(r.subject)) return { ...r, status: 'unavailable', why: `Does not sit ${r.subject}.` };
+    const b = bands[r.subject];
+    if (b === undefined || b === null || b.band === undefined)
+      return { ...r, status: 'unknown', why: `Sits ${r.subject}, but no expected band recorded.` };
+    return b.band >= r.minBand
+      ? { ...r, status: 'satisfied', why: `${r.subject} band ${b.band} meets the minimum of ${r.minBand}.` }
+      : { ...r, status: 'failed', why: `${r.subject} band ${b.band} is below the minimum of ${r.minBand}.` };
+  });
+  let status = 'fail';
+  if (routes.some(r => r.status === 'satisfied')) status = 'pass';
+  else if (routes.some(r => r.status === 'unknown')) status = 'unconfirmed';
+  return { status, routes, quote: gate.quote, source: gate.source };
+}
+
+function mathsFinding(profile, subject) {
+  const required = MATHS_SUBJECT_LEVEL[subject];
+  const have = mathsLevel(profile);
+  const gap = required - have;
+  if (gap <= 0) return null;
+  return {
+    subject, tier: 'B', gap,
+    band: gap === 1 ? BAND.MINOR_GAP : BAND.HARD_GAP,
+    why: gap === 1
+      ? `One level below the assumed ${subject}. The university's own first-year revision material generally covers this.`
+      : `${gap} levels below the assumed ${subject}. A short bridging course does not replace two years of study.`
+  };
+}
+
+function englishFinding(profile, subject) {
+  const required = ENGLISH_SUBJECT_LEVEL[subject];
+  const have = englishLevel(profile);
+  if (have >= required) return null;          // a higher English is never a gap
+  return {
+    subject, tier: 'C',
+    band: BAND.MINOR_GAP,
+    why: `Assumes ${subject}; the English course held sits below it.`
+  };
+}
+
+function holdsAssumed(profile, held, ak) {
+  if (ak.subject === 'any two units of Science')
+    return (profile.sciences ?? []).length >= 2;
+  return held.has(ak.subject);
+}
+
+function subjectFinding(profile, subject, ctx) {
+  const bridging = ctx?.bridging;
+  const canBridge = bridging?.subjects?.some(s => subject.toLowerCase().includes(s.toLowerCase()));
+  const cost = canBridge && bridging.costAud ? ` (~${bridging.costAud}, ${bridging.timing})` : '';
+  return {
+    subject, tier: 'C',
+    band: BAND.BRIDGE_IT,
+    why: canBridge
+      ? `Assumed but not held. A bridging course is offered${cost}.`
+      : `Assumed but not held. No bridging course listed for this subject - expect a harder first year.`
+  };
+}
+
+function readiness(profile, course, ctx = {}) {
+  const held = subjectsHeld(profile);
+  const findings = [];
+  const satisfiedBy = [];   // non-obvious passes, recorded so a reasoned pass is never silence
+  const needsInput = [];
+  const sources = [];
+  let gateStatus = 'none';
+  let gateDetail = null;
+
+  for (const gateId of course.hardRules ?? []) {
+    const gate = ctx.gates?.[gateId];
+    if (!gate) { needsInput.push(`Gate definition missing: ${gateId}`); continue; }
+    const res = evaluateGate(profile, gate);
+    gateDetail = res;
+    if (gate.source) sources.push(gate.source);
+    if (res.status === 'fail') { gateStatus = 'fail'; break; }
+    if (res.status === 'unconfirmed') {
+      gateStatus = 'unconfirmed';
+      needsInput.push('Expected mathematics band');
+    } else if (gateStatus === 'none') gateStatus = 'pass';
+  }
+
+  for (const ak of course.assumedKnowledge ?? []) {
+    if (ak.source) sources.push(ak.source);
+
+    // A student on a HIGHER maths pathway does not sit the assumed course at all, so there is
+    // no band to compare. Extension 2 students never sit Mathematics Advanced. Treat the higher
+    // pathway as satisfying the assumption - the same rule as "a higher course in the same
+    // subject is never a gap" - but record WHY, so it is a reasoned pass and not silence.
+    const assumedMaths = MATHS_SUBJECT_LEVEL[ak.subject];
+    if (assumedMaths !== undefined && !held.has(ak.subject) && mathsLevel(profile) > assumedMaths) {
+      satisfiedBy.push({
+        subject: ak.subject,
+        via: 'higher maths pathway',
+        why: ak.minBand != null
+          ? `Assumes ${ak.subject} at Band ${ak.minBand}. This student sits a higher maths course instead, so no ${ak.subject} band exists to compare.`
+          : `Assumes ${ak.subject}. This student sits a higher maths course.`
+      });
+      continue;
+    }
+
+    if (holdsAssumed(profile, held, ak)) {
+      if (ak.minBand != null && held.has(ak.subject)) {
+        const b = (profile.bands ?? {})[ak.subject];
+        if (b === undefined || b === null || b.band === undefined) {
+          needsInput.push(`Expected ${ak.subject} band (minimum ${ak.minBand})`);
+        } else if (b.band < ak.minBand) {
+          const tier = severityTier(ak.subject);
+          const raw = b.band <= ak.minBand - 2 ? BAND.HARD_GAP : BAND.MINOR_GAP;
+          findings.push({
+            subject: ak.subject,
+            tier,
+            // The tier cap applies here exactly as it does to a missing subject. A band
+            // shortfall is still a severity CLAIM, and a Tier C claim may never alarm alone.
+            band: Math.min(raw, MAX_BAND_FOR_TIER[tier]),
+            quote: ak.quote,
+            why: `${ak.subject} band ${b.band} is below the assumed minimum of Band ${ak.minBand}.`
+          });
+        }
+      }
+      continue;
+    }
+    const f = MATHS_SUBJECT_LEVEL[ak.subject] !== undefined
+      ? mathsFinding(profile, ak.subject)
+      : ENGLISH_SUBJECT_LEVEL[ak.subject] !== undefined
+        ? englishFinding(profile, ak.subject)
+        : subjectFinding(profile, ak.subject, ctx);
+    if (!f) continue;
+    const cap = MAX_BAND_FOR_TIER[severityTier(ak.subject)];
+    f.band = Math.min(f.band, cap);
+    f.quote = ak.quote;
+    findings.push(f);
+  }
+
+  let band = findings.reduce((a, f) => Math.max(a, f.band), BAND.PREPARED);
+  if (gateStatus === 'fail') band = BAND.GATED;
+
+  // Fail safe on incomplete data. A record whose assumed knowledge was not fully
+  // extracted must never read as PREPARED: "we found no requirements" and "there are
+  // no requirements" are different claims, and only one of them is reassuring.
+  const complete = (course.verification ?? 'unverified') === 'verified';
+  if (!complete) {
+    needsInput.push('Assumed knowledge for this course is not fully captured');
+    if (course._completeness) needsInput.push(...course._completeness);
+  }
+
+  return {
+    courseId: course.id,
+    courseName: course.name,
+    band, bandName: BAND_NAME[band],
+    complete,
+    gateStatus, gate: gateDetail,
+    findings,
+    satisfiedBy,
+    hurdles: course.extraHurdles ?? [],   // never folded into the band
+    needsInput,
+    verification: course.verification ?? 'unverified',
+    sources: [...new Set(sources)]
+  };
+}
+
+/** View B: what a subject change costs. Run the engine twice and diff. */
+function subjectChangeImpact(profileBefore, profileAfter, courses, ctx) {
+  return courses.map(c => {
+    const before = readiness(profileBefore, c, ctx);
+    const after = readiness(profileAfter, c, ctx);
+    return {
+      courseId: c.id, courseName: c.name,
+      before: before.bandName, after: after.bandName,
+      changed: before.band !== after.band,
+      worse: after.band > before.band
+    };
+  }).filter(r => r.changed);
+}
+
+/** View C: rank across the catalogue. Ranks WITHIN bands, never blends band with anything else. */
+function shortlist(profile, courses, ctx) {
+  return courses
+    .map(c => readiness(profile, c, ctx))
+    .sort((a, b) => a.band - b.band || a.courseName.localeCompare(b.courseName));
+}
+
+const CATALOGUE = [{"id":"mq-engineering-honours","name":"Bachelor of Engineering (Honours)","university":"Macquarie University","field":"engineering","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-engineering-honours","tier":"A"}],"recommendedStudies":[{"subject":"Mathematics Extension 2","quote":"Mathematics Extension 2","source":"https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-engineering-honours"},{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-engineering-honours"},{"subject":"Physics","quote":"Physics","source":"https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-engineering-honours"}],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-engineering-honours"},{"id":"mq-science","name":"Bachelor of Science","university":"Macquarie University","field":"science","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-science","tier":"A"},{"subject":"Physics","quote":"Physics","source":"https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-science","tier":"A"}],"recommendedStudies":[{"subject":"Mathematics Extension 2","quote":"Mathematics Extension 2","source":"https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-science"},{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-science"},{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-science"},{"subject":"Physics","quote":"Physics","source":"https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-science"}],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-science"},{"id":"mq-information-technology","name":"Bachelor of Information Technology","university":"Macquarie University","field":"science","hardRules":[],"assumedKnowledge":[],"recommendedStudies":[{"subject":"Mathematics Extension 2","quote":"Mathematics Extension 2","source":"https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-information-technology"},{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-information-technology"}],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-information-technology"},{"id":"mq-cyber-security","name":"Bachelor of Cyber Security","university":"Macquarie University","field":"science","hardRules":[],"assumedKnowledge":[],"recommendedStudies":[{"subject":"Mathematics Extension 2","quote":"Mathematics Extension 2","source":"https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-cyber-security"},{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-cyber-security"}],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-cyber-security"},{"id":"mq-medical-sciences","name":"Bachelor of Medical Sciences","university":"Macquarie University","field":"health","hardRules":[],"assumedKnowledge":[],"recommendedStudies":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-medical-sciences"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-medical-sciences"}],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-medical-sciences"},{"id":"unsw-engineering-honours","name":"Bachelor of Engineering (Honours)","university":"UNSW","field":"engineering","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1, Physics","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours","tier":"A"},{"subject":"Physics","quote":"Mathematics Extension 1, Physics","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"high","verification":"verified","capturedOn":"2026-08-27","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-medical-science","name":"Bachelor of Medical Science","university":"UNSW","field":"health","hardRules":[],"assumedKnowledge":[{"subject":"Chemistry","quote":"Chemistry, Mathematics Advanced","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-medical-science","tier":"A"},{"subject":"Mathematics Advanced","quote":"Chemistry, Mathematics Advanced","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-medical-science","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"high","verification":"verified","capturedOn":"2026-08-27","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-renewable-energy-engineering","name":"Bachelor of Engineering (Honours) (Renewable Energy)","university":"UNSW","field":"engineering","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-renewable-energy","tier":"A"},{"subject":"Physics","quote":"Physics","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-renewable-energy","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-renewable-energy","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-engineering-honours-nuclear-engineering","name":"Bachelor of Engineering (Honours) (Nuclear Engineering)","university":"UNSW","field":"engineering","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-nuclear-engineering","tier":"A"},{"subject":"Physics","quote":"Physics","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-nuclear-engineering","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-nuclear-engineering","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-nuclear-engineering","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-engineering-honours-robotics-and-mechatronics","name":"Bachelor of Engineering (Honours) (Robotics and Mechatronics)","university":"UNSW","field":"engineering","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-robotics-mechatronics","tier":"A"},{"subject":"Physics","quote":"Physics","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-robotics-mechatronics","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-robotics-mechatronics","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-advanced-computer-science-honours","name":"Bachelor of Advanced Computer Science (Honours)","university":"UNSW","field":"computing","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-computer-science-honours","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-computer-science-honours","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-engineering-honours-engineering-science","name":"Bachelor of Engineering (Honours) / Bachelor of Engineering Science","university":"UNSW","field":"engineering","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-engineering-science","tier":"A"},{"subject":"Physics","quote":"Physics","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-engineering-science","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-engineering-science","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-exercise-science-m-physiotherapy-and-exercise-physiology","name":"Bachelor of Exercise Science / Master of Physiotherapy and Exercise Physiology","university":"UNSW","field":"health","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-exercise-science-master-of-physiotherapy-and-exercise-physiology","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-exercise-science-master-of-physiotherapy-and-exercise-physiology","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-exercise-science-master-of-physiotherapy-and-exercise-physiology","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-applied-exercise-science-m-clinical-exercise-physiology","name":"Bachelor of Applied Exercise Science / Master of Clinical Exercise Physiology","university":"UNSW","field":"health","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-applied-exercise-science-master-of-clinical-exercise-physiology","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-applied-exercise-science-master-of-clinical-exercise-physiology","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-applied-exercise-science-master-of-clinical-exercise-physiology","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-advanced-science-honours-computer-science","name":"Bachelor of Advanced Science (Honours)/Computer Science","university":"UNSW","field":"computing","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours-computer-science","tier":"A"},{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours-computer-science","tier":"A"},{"subject":"Physics","quote":"Physics","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours-computer-science","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours-computer-science","tier":"A"},{"subject":"Biology","quote":"Biology","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours-computer-science","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours-computer-science","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-engineering-honours-materials-science-engineering-engineering-science","name":"Bachelor of Engineering (Honours) (Materials Science & Engineering) / Engineering Science","university":"UNSW","field":"engineering","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-materials-science-and-engineering-honours-engineering-science","tier":"A"},{"subject":"Physics","quote":"Physics","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-materials-science-and-engineering-honours-engineering-science","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-materials-science-and-engineering-honours-engineering-science","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-materials-science-and-engineering-honours-engineering-science","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-engineering-honours-commerce","name":"Bachelor of Engineering (Honours) / Commerce","university":"UNSW","field":"engineering","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-commerce","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-commerce","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-science-advanced-mathematics-honours-science-computer-science","name":"Bachelor of Science (Advanced Mathematics)(Honours)/Science (Computer Science)","university":"UNSW","field":"computing","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-mathematics-honours-computer-science","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-mathematics-honours-computer-science","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-science-advanced-mathematics-honours","name":"Bachelor of Science (Advanced Mathematics) (Honours)","university":"UNSW","field":"science","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-science-advanced-mathematics-honours","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-science-advanced-mathematics-honours","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-medical-studies-d-medicine","name":"Bachelor of Medical Studies / Doctor of Medicine","university":"UNSW","field":"health","hardRules":[],"assumedKnowledge":[{"subject":"English Standard","quote":"English Standard","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-medical-studies-doctor-of-medicine","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-medical-studies-doctor-of-medicine","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-medicinal-chemistry-honours","name":"Bachelor of Medicinal Chemistry (Honours)","university":"UNSW","field":"health","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-medicinal-chemistry-honours","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-medicinal-chemistry-honours","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-medicinal-chemistry-honours","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-science-honours","name":"Bachelor of Science (Honours)","university":"UNSW","field":"science","hardRules":[],"assumedKnowledge":[{"subject":"English Standard","quote":"English","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-science-honours","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-science-honours","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-engineering-honours-civil-surveying","name":"Bachelor of Engineering (Honours) (Civil) / Surveying","university":"UNSW","field":"engineering","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-civil-surveying","tier":"A"},{"subject":"Physics","quote":"Physics","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-civil-surveying","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-civil-surveying","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-engineering-honours-science","name":"Bachelor of Engineering (Honours) / Science","university":"UNSW","field":"engineering","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-science","tier":"A"},{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-science","tier":"A"},{"subject":"Physics","quote":"Physics","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-science","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-science","tier":"A"},{"subject":"Biology","quote":"Biology","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-science","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-science","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-advanced-science-honours-engineering-honours","name":"Bachelor of Advanced Science (Honours)/Engineering (Honours)","university":"UNSW","field":"engineering","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours-engineering-honours","tier":"A"},{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours-engineering-honours","tier":"A"},{"subject":"Physics","quote":"Physics","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours-engineering-honours","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours-engineering-honours","tier":"A"},{"subject":"Biology","quote":"Biology","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours-engineering-honours","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours-engineering-honours","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-engineering-honours-materials-science-engineering-commerce","name":"Bachelor of Engineering (Honours) (Materials Science & Engineering) / Commerce","university":"UNSW","field":"engineering","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-and-materials-science-honours-commerce","tier":"A"},{"subject":"Physics","quote":"Physics","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-and-materials-science-honours-commerce","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-and-materials-science-honours-commerce","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-information-systems-co-op-honours","name":"Bachelor of Information Systems (Co-op) (Honours)","university":"UNSW","field":"science","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics advanced","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-information-systems-co-op-honours","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-information-systems-co-op-honours","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-computational-design-honours","name":"Bachelor of Computational Design (Honours)","university":"UNSW","field":"computing","hardRules":[],"assumedKnowledge":[],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-computational-design-honours","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-advanced-science-honours","name":"Bachelor of Advanced Science (Honours)","university":"UNSW","field":"science","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours","tier":"A"},{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours","tier":"A"},{"subject":"Physics","quote":"Physics","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours","tier":"A"},{"subject":"Biology","quote":"Biology","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-science-honours","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-engineering-civil-engineering-with-architecture-honours","name":"Bachelor of Engineering (Civil Engineering with Architecture) (Honours)","university":"UNSW","field":"engineering","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-civil-architecture","tier":"A"},{"subject":"Physics","quote":"Physics","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-civil-architecture","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-civil-architecture","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-psychological-science-honours","name":"Bachelor of Psychological Science (Honours)","university":"UNSW","field":"health","hardRules":[],"assumedKnowledge":[],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-psychological-science-honours","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-science-advanced-mathematics-honours-commerce","name":"Bachelor of Science (Advanced Mathematics) (Honours) / Commerce","university":"UNSW","field":"science","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-science-advanced-mathematics-honours-commerce","tier":"A"},{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-science-advanced-mathematics-honours-commerce","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-science-advanced-mathematics-honours-commerce","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-engineering-honours-m-engineering-electrical-engineering","name":"Bachelor of Engineering (Honours) / Master of Engineering (Electrical Engineering)","university":"UNSW","field":"engineering","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-master-of-electrical-engineering","tier":"A"},{"subject":"Physics","quote":"Physics","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-master-of-electrical-engineering","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-master-of-electrical-engineering","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-master-of-electrical-engineering","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-engineering-honours-materials-science-engineering-m-biomedical-engineering","name":"Bachelor of Engineering (Honours) (Materials Science & Engineering) / Master of Biomedical Engineering","university":"UNSW","field":"engineering","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-and-materials-science-honours-master-of-biomedical-engineering","tier":"A"},{"subject":"Physics","quote":"Physics","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-and-materials-science-honours-master-of-biomedical-engineering","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-and-materials-science-honours-master-of-biomedical-engineering","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-and-materials-science-honours-master-of-biomedical-engineering","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-psychological-science","name":"Bachelor of Psychological Science","university":"UNSW","field":"health","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-psychological-science","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-psychological-science","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"unsw-engineering-honours-materials-science-engineering","name":"Bachelor of Engineering (Honours) (Materials Science & Engineering)","university":"UNSW","field":"engineering","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-material-science","tier":"A"},{"subject":"Physics","quote":"Physics","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-material-science","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-material-science","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-28","source":"https://www.unsw.edu.au/study/undergraduate/bachelor-of-engineering-honours-material-science","_bridging":{"subjects":["Physics","Chemistry","Mathematics"],"costAud":380,"timing":"3-4 weeks, pre-session","source":"https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge","verification":"verified"}},{"id":"usyd-engineering-honours","name":"Bachelor of Engineering (Honours)","university":"University of Sydney","field":"engineering","hardRules":["usyd-maths-gate"],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1, Physics","tier":"A"},{"subject":"Physics","quote":"Mathematics Extension 1, Physics","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"high","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/study/help/advice/prerequisites-and-assumed-knowledge-explained.html","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-advanced-computing","name":"Bachelor of Advanced Computing","university":"University of Sydney","field":"computing","hardRules":["usyd-maths-gate"],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"high","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/study/help/advice/prerequisites-and-assumed-knowledge-explained.html","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-chemical-engineering","name":"Bachelor of Engineering (Honours) (Chemical)","university":"University of Sydney","field":"engineering","hardRules":["usyd-maths-gate"],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1, Chemistry","tier":"A"},{"subject":"Chemistry","quote":"Mathematics Extension 1, Chemistry","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"medium","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/study/help/advice/prerequisites-and-assumed-knowledge-explained.html","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-biomedical-engineering","name":"Bachelor of Engineering (Honours) (Biomedical)","university":"University of Sydney","field":"engineering","hardRules":["usyd-maths-gate"],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[{"subject":"Physics","quote":"Physics","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"},{"subject":"Biology","quote":"Biology","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"}],"extraHurdles":[],"nameRecognition":"medium","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/study/help/advice/prerequisites-and-assumed-knowledge-explained.html","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-medical-science","name":"Bachelor of Science (Medical Science)","university":"University of Sydney","field":"health","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Biology","quote":"Biology","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"high","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/study/help/advice/prerequisites-and-assumed-knowledge-explained.html","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-pharmacy","name":"Bachelor of Pharmacy (Honours) / Master of Pharmacy Practice","university":"University of Sydney","field":"health","hardRules":["usyd-maths-gate"],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Biology","quote":"Biology","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[{"subject":"Physics","quote":"Physics","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"}],"extraHurdles":[],"nameRecognition":"high","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/study/help/advice/prerequisites-and-assumed-knowledge-explained.html","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-commerce-and-science","name":"Bachelor of Commerce and Bachelor of Science","university":"University of Sydney","field":"science","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Standard","quote":"Mathematics Standard","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-advanced-computing-and-commerce","name":"Bachelor of Advanced Computing and Bachelor of Commerce","university":"University of Sydney","field":"computing","hardRules":["usyd-maths-gate"],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-advanced-computing-and-science","name":"Bachelor of Advanced Computing and Bachelor of Science","university":"University of Sydney","field":"computing","hardRules":["usyd-maths-gate"],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-advanced-computing-and-science-health","name":"Bachelor of Advanced Computing and Bachelor of Science (Health)","university":"University of Sydney","field":"computing","hardRules":["usyd-maths-gate"],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Biology","quote":"Biology","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-advanced-computing-and-science-medical-science","name":"Bachelor of Advanced Computing and Bachelor of Science (Medical Science)","university":"University of Sydney","field":"computing","hardRules":["usyd-maths-gate"],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Biology","quote":"Biology","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-engineering-honours-aeronautical-engineering","name":"Bachelor of Engineering Honours (Aeronautical Engineering)","university":"University of Sydney","field":"engineering","hardRules":["usyd-maths-gate"],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[{"subject":"Physics","quote":"Physics","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"}],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-engineering-honours-civil-engineering","name":"Bachelor of Engineering Honours (Civil Engineering)","university":"University of Sydney","field":"engineering","hardRules":["usyd-maths-gate"],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[{"subject":"Physics","quote":"Physics","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"}],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-engineering-honours-civil-engineering-and-design-in-architecture","name":"Bachelor of Engineering Honours (Civil Engineering) and Bachelor of Design in Architecture","university":"University of Sydney","field":"engineering","hardRules":["usyd-maths-gate"],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"English Advanced","quote":"English Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[{"subject":"Physics","quote":"Physics","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"}],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-engineering-honours-dalyell-scholars","name":"Bachelor of Engineering Honours (Dalyell Scholars)","university":"University of Sydney","field":"engineering","hardRules":["usyd-maths-gate"],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-engineering-honours-electrical-engineering","name":"Bachelor of Engineering Honours (Electrical Engineering)","university":"University of Sydney","field":"engineering","hardRules":["usyd-maths-gate"],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Physics","quote":"Physics","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-engineering-honours-environmental-engineering","name":"Bachelor of Engineering Honours (Environmental Engineering)","university":"University of Sydney","field":"engineering","hardRules":["usyd-maths-gate"],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-engineering-honours-flexible-first-year","name":"Bachelor of Engineering Honours (Flexible First Year)","university":"University of Sydney","field":"engineering","hardRules":["usyd-maths-gate"],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-engineering-honours-mechanical-engineering","name":"Bachelor of Engineering Honours (Mechanical Engineering)","university":"University of Sydney","field":"engineering","hardRules":["usyd-maths-gate"],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[{"subject":"Physics","quote":"Physics","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"}],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-engineering-honours-mechatronic-engineering","name":"Bachelor of Engineering Honours (Mechatronic Engineering)","university":"University of Sydney","field":"engineering","hardRules":["usyd-maths-gate"],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[{"subject":"Physics","quote":"Physics","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"}],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-engineering-honours-software-engineering","name":"Bachelor of Engineering Honours (Software Engineering)","university":"University of Sydney","field":"engineering","hardRules":["usyd-maths-gate"],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[{"subject":"Physics","quote":"Physics","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"}],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-engineering-honours-and-arts","name":"Bachelor of Engineering Honours and Bachelor of Arts","university":"University of Sydney","field":"engineering","hardRules":["usyd-maths-gate"],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-engineering-honours-and-commerce","name":"Bachelor of Engineering Honours and Bachelor of Commerce","university":"University of Sydney","field":"engineering","hardRules":["usyd-maths-gate"],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-engineering-honours-and-project-management","name":"Bachelor of Engineering Honours and Bachelor of Project Management","university":"University of Sydney","field":"engineering","hardRules":["usyd-maths-gate"],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-engineering-honours-and-science","name":"Bachelor of Engineering Honours and Bachelor of Science","university":"University of Sydney","field":"engineering","hardRules":["usyd-maths-gate"],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-engineering-honours-biomedical-engineering-and-science-health","name":"Bachelor of Engineering Honours (Biomedical Engineering) and Bachelor of Science (Health)","university":"University of Sydney","field":"engineering","hardRules":["usyd-maths-gate"],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Biology","quote":"Biology","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[{"subject":"Physics","quote":"Physics","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"}],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-engineering-honours-biomedical-engineering-and-science-medical-science","name":"Bachelor of Engineering Honours (Biomedical Engineering) and Bachelor of Science (Medical Science)","university":"University of Sydney","field":"engineering","hardRules":["usyd-maths-gate"],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Biology","quote":"Biology","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[{"subject":"Physics","quote":"Physics","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"}],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-engineering-honours-with-space","name":"Bachelor of Engineering Honours with Space","university":"University of Sydney","field":"engineering","hardRules":["usyd-maths-gate"],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[{"subject":"Physics","quote":"Physics","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"}],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-project-management","name":"Bachelor of Project Management","university":"University of Sydney","field":"engineering","hardRules":[],"assumedKnowledge":[],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-engineering-honours-and-laws","name":"Bachelor of Engineering Honours and Bachelor of Laws","university":"University of Sydney","field":"engineering","hardRules":["usyd-maths-gate"],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"English Advanced","quote":"English Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-science-and-laws","name":"Bachelor of Science and Bachelor of Laws","university":"University of Sydney","field":"science","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-applied-science-diagnostic-radiography","name":"Bachelor of Applied Science (Diagnostic Radiography)","university":"University of Sydney","field":"health","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Physics","quote":"Physics","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[{"subject":"Chemistry","quote":"Chemistry","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"},{"subject":"Biology","quote":"Biology","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"}],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-applied-science-exercise-and-sport-science","name":"Bachelor of Applied Science (Exercise and Sport Science)","university":"University of Sydney","field":"health","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-applied-science-exercise-physiology","name":"Bachelor of Applied Science (Exercise Physiology)","university":"University of Sydney","field":"health","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-applied-science-occupational-therapy","name":"Bachelor of Applied Science (Occupational Therapy)","university":"University of Sydney","field":"health","hardRules":[],"assumedKnowledge":[],"recommendedStudies":[{"subject":"Biology","quote":"Biology","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"}],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-applied-science-physiotherapy","name":"Bachelor of Applied Science (Physiotherapy)","university":"University of Sydney","field":"health","hardRules":[],"assumedKnowledge":[{"subject":"Physics","quote":"Physics","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"}],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-applied-science-speech-pathology","name":"Bachelor of Applied Science (Speech Pathology)","university":"University of Sydney","field":"health","hardRules":[],"assumedKnowledge":[],"recommendedStudies":[{"subject":"English Advanced","quote":"English Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"}],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-biomedicine-and-health","name":"Bachelor of Biomedicine and Health","university":"University of Sydney","field":"health","hardRules":[],"assumedKnowledge":[],"recommendedStudies":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"},{"subject":"Biology","quote":"Biology","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"}],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-oral-health","name":"Bachelor of Oral Health","university":"University of Sydney","field":"health","hardRules":[],"assumedKnowledge":[],"recommendedStudies":[{"subject":"Chemistry","quote":"Chemistry","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"},{"subject":"Biology","quote":"Biology","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"}],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-pharmacy-and-management-honours-and-m-pharmacy-practice","name":"Bachelor of Pharmacy and Management (Honours) and Master of Pharmacy Practice","university":"University of Sydney","field":"health","hardRules":["usyd-maths-gate"],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Biology","quote":"Biology","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[{"subject":"Physics","quote":"Physics","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"}],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-arts-and-m-nursing","name":"Bachelor of Arts and Master of Nursing","university":"University of Sydney","field":"health","hardRules":[],"assumedKnowledge":[],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-science-health-and-m-nursing","name":"Bachelor of Science (Health) and Master of Nursing","university":"University of Sydney","field":"health","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-science-and-m-nursing","name":"Bachelor of Science and Master of Nursing","university":"University of Sydney","field":"health","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-science-and-d-dental-medicine-no-intake-from-01-january-2027","name":"Bachelor of Science and Doctor of Dental Medicine [No intake from 01 January 2027]","university":"University of Sydney","field":"health","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-science-and-d-medicine","name":"Bachelor of Science and Doctor of Medicine","university":"University of Sydney","field":"health","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-science-and-m-nutrition-and-dietetics","name":"Bachelor of Science and Master of Nutrition and Dietetics","university":"University of Sydney","field":"health","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Biology","quote":"Biology","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-agricultural-science","name":"Bachelor of Agricultural Science","university":"University of Sydney","field":"science","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Standard","quote":"Mathematics Standard","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"English Standard","quote":"English Standard","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-agricultural-science-honours","name":"Bachelor of Agricultural Science Honours","university":"University of Sydney","field":"science","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Standard","quote":"Mathematics Standard","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"English Standard","quote":"English Standard","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-animal-and-veterinary-bioscience","name":"Bachelor of Animal and Veterinary Bioscience","university":"University of Sydney","field":"health","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Standard","quote":"Mathematics Standard","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Biology","quote":"Biology","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-liberal-arts-and-science","name":"Bachelor of Liberal Arts and Science","university":"University of Sydney","field":"science","hardRules":[],"assumedKnowledge":[],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-liberal-arts-and-science-advanced","name":"Bachelor of Liberal Arts and Science (Advanced)","university":"University of Sydney","field":"science","hardRules":[],"assumedKnowledge":[],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-mathematical-sciences","name":"Bachelor of Mathematical Sciences","university":"University of Sydney","field":"science","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-psychology","name":"Bachelor of Psychology","university":"University of Sydney","field":"health","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-psychology-honours","name":"Bachelor of Psychology Honours","university":"University of Sydney","field":"health","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-science","name":"Bachelor of Science","university":"University of Sydney","field":"science","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-science-advanced","name":"Bachelor of Science (Advanced)","university":"University of Sydney","field":"science","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-science-health","name":"Bachelor of Science (Health)","university":"University of Sydney","field":"health","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Biology","quote":"Biology","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-science-and-advanced-studies","name":"Bachelor of Science and Bachelor of Advanced Studies","university":"University of Sydney","field":"science","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-science-and-advanced-studies-advanced","name":"Bachelor of Science and Bachelor of Advanced Studies (Advanced)","university":"University of Sydney","field":"science","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-science-and-advanced-studies-dalyell-scholars","name":"Bachelor of Science and Bachelor of Advanced Studies (Dalyell Scholars)","university":"University of Sydney","field":"science","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-science-and-advanced-studies-health","name":"Bachelor of Science and Bachelor of Advanced Studies (Health)","university":"University of Sydney","field":"health","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Biology","quote":"Biology","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-science-and-advanced-studies-medical-science","name":"Bachelor of Science and Bachelor of Advanced Studies (Medical Science)","university":"University of Sydney","field":"health","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Biology","quote":"Biology","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-science-and-arts","name":"Bachelor of Science and Bachelor of Arts","university":"University of Sydney","field":"science","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-science-and-m-mathematical-sciences","name":"Bachelor of Science and Master of Mathematical Sciences","university":"University of Sydney","field":"science","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Extension 2","quote":"Mathematics Extension 2","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-veterinary-biology-and-d-veterinary-medicine","name":"Bachelor of Veterinary Biology and Doctor of Veterinary Medicine","university":"University of Sydney","field":"health","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Biology","quote":"Biology","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[{"subject":"Physics","quote":"Physics","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"}],"extraHurdles":[{"type":"situational_judgement"}],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-wildlife-conservation-taronga","name":"Bachelor of Wildlife Conservation (Taronga)","university":"University of Sydney","field":"science","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Standard","quote":"Mathematics Standard","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"},{"subject":"Biology","quote":"Biology","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-science-extended","name":"Bachelor of Science (Extended)","university":"University of Sydney","field":"science","hardRules":[],"assumedKnowledge":[],"recommendedStudies":[],"extraHurdles":[{"type":"portfolio"},{"type":"interview"},{"type":"personal_statement"}],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"usyd-science-extended-health","name":"Bachelor of Science (Extended) (Health)","university":"University of Sydney","field":"health","hardRules":[],"assumedKnowledge":[],"recommendedStudies":[],"extraHurdles":[{"type":"portfolio"},{"type":"interview"},{"type":"personal_statement"}],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf","_bridging":{"route":"Introduction to Calculus MOOC + post-MOOC examination, completed before intake","source":"https://www.sydney.edu.au/study/applying/how-to-apply/undergraduate/mathematics-prerequisite.html","verification":"verified"}},{"id":"uts-computing-science","name":"Bachelor of Computing Science","university":"University of Technology Sydney","field":"computing","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.uts.edu.au/courses/bachelor-of-computing-science","tier":"A"}],"recommendedStudies":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.uts.edu.au/courses/bachelor-of-computing-science"},{"subject":"English Advanced","quote":"English Advanced","source":"https://www.uts.edu.au/courses/bachelor-of-computing-science"}],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.uts.edu.au/courses/bachelor-of-computing-science"},{"id":"uts-information-technology","name":"Bachelor of Information Technology","university":"University of Technology Sydney","field":"science","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.uts.edu.au/courses/bachelor-of-information-technology","tier":"A"}],"recommendedStudies":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.uts.edu.au/courses/bachelor-of-information-technology"},{"subject":"English Advanced","quote":"English Advanced","source":"https://www.uts.edu.au/courses/bachelor-of-information-technology"}],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.uts.edu.au/courses/bachelor-of-information-technology"},{"id":"uts-nursing","name":"Bachelor of Nursing","university":"University of Technology Sydney","field":"health","hardRules":[],"assumedKnowledge":[],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.uts.edu.au/courses/bachelor-of-nursing"},{"id":"uts-forensic-science","name":"Bachelor of Forensic Science","university":"University of Technology Sydney","field":"science","hardRules":[],"assumedKnowledge":[],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.uts.edu.au/courses/bachelor-of-forensic-science"},{"id":"uts-engineering-honours-flexible","name":"Bachelor of Engineering (Honours) (Flexible)","university":"University of Technology Sydney","field":"engineering","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.uts.edu.au/courses/bachelor-of-engineering-honours-flexible","tier":"A"},{"subject":"English Advanced","quote":"English Advanced","source":"https://www.uts.edu.au/courses/bachelor-of-engineering-honours-flexible","tier":"A"},{"subject":"English Standard","quote":"English Standard","source":"https://www.uts.edu.au/courses/bachelor-of-engineering-honours-flexible","tier":"A"},{"subject":"Software Engineering","quote":"Software Engineering","source":"https://www.uts.edu.au/courses/bachelor-of-engineering-honours-flexible","tier":"A"},{"subject":"Physics","quote":"Physics","source":"https://www.uts.edu.au/courses/bachelor-of-engineering-honours-flexible","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.uts.edu.au/courses/bachelor-of-engineering-honours-flexible","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.uts.edu.au/courses/bachelor-of-engineering-honours-flexible"},{"id":"uts-engineering-honours-diploma-in-industry-practice-mechanical-mechatronic","name":"Bachelor of Engineering (Honours) Diploma in Industry Practice (Mechanical & Mechatronic)","university":"University of Technology Sydney","field":"engineering","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.uts.edu.au/courses/bachelor-of-engineering-honours-diploma-in-professional-engineering-practice-mechanical-and-mechatronic","tier":"A"},{"subject":"English Advanced","quote":"English Advanced","source":"https://www.uts.edu.au/courses/bachelor-of-engineering-honours-diploma-in-professional-engineering-practice-mechanical-and-mechatronic","tier":"A"},{"subject":"English Standard","quote":"English Standard","source":"https://www.uts.edu.au/courses/bachelor-of-engineering-honours-diploma-in-professional-engineering-practice-mechanical-and-mechatronic","tier":"A"},{"subject":"Software Engineering","quote":"Software Engineering","source":"https://www.uts.edu.au/courses/bachelor-of-engineering-honours-diploma-in-professional-engineering-practice-mechanical-and-mechatronic","tier":"A"},{"subject":"Physics","quote":"Physics","source":"https://www.uts.edu.au/courses/bachelor-of-engineering-honours-diploma-in-professional-engineering-practice-mechanical-and-mechatronic","tier":"A"},{"subject":"Chemistry","quote":"Chemistry","source":"https://www.uts.edu.au/courses/bachelor-of-engineering-honours-diploma-in-professional-engineering-practice-mechanical-and-mechatronic","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.uts.edu.au/courses/bachelor-of-engineering-honours-diploma-in-professional-engineering-practice-mechanical-and-mechatronic"},{"id":"wsu-engineering-honours","name":"Bachelor of Engineering (Honours)","university":"Western Sydney University","field":"engineering","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics (not General Mathematics)","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours","tier":"A","minBand":5},{"subject":"English Standard","quote":"two subjects of English","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours","tier":"A"},{"subject":"any two units of Science","quote":"Two subjects of Science","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours","tier":"A"}],"recommendedStudies":[{"subject":"Mathematics Extension 2","quote":"Mathematics Extension 2","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours"},{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours"},{"subject":"Physics","quote":"Physics","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours"}],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours"},{"id":"wsu-science","name":"Bachelor of Science","university":"Western Sydney University","field":"science","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"two unit mathematics","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-science","tier":"A"},{"subject":"English Standard","quote":"two unit English","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-science","tier":"A"},{"subject":"any two units of Science","quote":"two unit science (any science)","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-science","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-science"},{"id":"wsu-medical-science","name":"Bachelor of Medical Science","university":"Western Sydney University","field":"health","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"two subject mathematics","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-medical-science","tier":"A"},{"subject":"English Standard","quote":"two unit English","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-medical-science","tier":"A"},{"subject":"any two units of Science","quote":"two unit science (any science)","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-medical-science","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-medical-science"},{"id":"wsu-computer-science","name":"Bachelor of Computer Science","university":"Western Sydney University","field":"computing","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"HSC Mathematics","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-computer-science","tier":"A"},{"subject":"English Standard","quote":"any two units of HSC English","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-computer-science","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-computer-science"},{"id":"wsu-nursing","name":"Bachelor of Nursing","university":"Western Sydney University","field":"health","hardRules":[],"assumedKnowledge":[],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-nursing"},{"id":"wsu-physiotherapy","name":"Bachelor of Physiotherapy","university":"Western Sydney University","field":"health","hardRules":[],"assumedKnowledge":[{"subject":"English Standard","quote":"any 2 subjects of English","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-physiotherapy","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-physiotherapy"},{"id":"wsu-advanced-science","name":"Bachelor of Advanced Science","university":"Western Sydney University","field":"science","hardRules":[],"assumedKnowledge":[],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-advanced-science"},{"id":"wsu-applied-data-science","name":"Bachelor of Applied Data Science","university":"Western Sydney University","field":"science","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics equivalent to 2 Unit HSC","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-applied-data-science","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-applied-data-science"},{"id":"wsu-advanced-medical-science","name":"Bachelor of Advanced Medical Science","university":"Western Sydney University","field":"health","hardRules":[],"assumedKnowledge":[],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-medical-science-advanced"},{"id":"wsu-cyber-security-and-behaviour","name":"Bachelor of Cyber Security and Behaviour","university":"Western Sydney University","field":"computing","hardRules":[],"assumedKnowledge":[],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-cyber-security-and-behaviour"},{"id":"wsu-clinical-exercise-physiology","name":"Bachelor of Clinical Exercise Physiology","university":"Western Sydney University","field":"health","hardRules":[],"assumedKnowledge":[{"subject":"English Standard","quote":"English","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-clinical-exercise-physiology","tier":"A"}],"recommendedStudies":[{"subject":"Biology","quote":"Biology","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-clinical-exercise-physiology"}],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-clinical-exercise-physiology"},{"id":"wsu-data-science","name":"Bachelor of Data Science","university":"Western Sydney University","field":"science","hardRules":[],"assumedKnowledge":[],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-data-science"},{"id":"wsu-engineering-honours-materials-engineering","name":"Bachelor of Engineering (Honours) (Materials Engineering)","university":"Western Sydney University","field":"engineering","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics (not General Mathematics)","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-materials","tier":"A","minBand":5},{"subject":"English Standard","quote":"two subjects of English","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-materials","tier":"A"},{"subject":"any two units of Science","quote":"Two subjects of Science","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-materials","tier":"A"}],"recommendedStudies":[{"subject":"Mathematics Extension 2","quote":"Mathematics Extension 2","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-materials"},{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-materials"},{"subject":"Physics","quote":"Physics","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-materials"}],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-materials"},{"id":"wsu-engineering-honours-advanced-manufacturing-engineering","name":"Bachelor of Engineering (Honours) (Advanced Manufacturing Engineering)","university":"Western Sydney University","field":"engineering","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics (not General Mathematics)","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-advanced-manufacturing","tier":"A","minBand":5},{"subject":"English Standard","quote":"two subjects of English","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-advanced-manufacturing","tier":"A"},{"subject":"any two units of Science","quote":"Two subjects of Science","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-advanced-manufacturing","tier":"A"}],"recommendedStudies":[{"subject":"Mathematics Extension 2","quote":"Mathematics Extension 2","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-advanced-manufacturing"},{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-advanced-manufacturing"},{"subject":"Physics","quote":"Physics","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-advanced-manufacturing"}],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-advanced-manufacturing"},{"id":"wsu-engineering-honours-construction-engineering","name":"Bachelor of Engineering (Honours) (Construction Engineering)","university":"Western Sydney University","field":"engineering","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics (not General Mathematics)","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-construction","tier":"A","minBand":5},{"subject":"English Standard","quote":"two subjects of English","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-construction","tier":"A"},{"subject":"any two units of Science","quote":"Two subjects of Science","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-construction","tier":"A"}],"recommendedStudies":[{"subject":"Mathematics Extension 2","quote":"Mathematics Extension 2","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-construction"},{"subject":"Mathematics Extension 1","quote":"Mathematics Extension 1","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-construction"},{"subject":"Physics","quote":"Physics","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-construction"}],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-construction"},{"id":"uow-computer-science","name":"Bachelor of Computer Science","university":"University of Wollongong","field":"computing","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.uow.edu.au/study/courses/bachelor-of-computer-science/","tier":"A"},{"subject":"Mathematics Standard 2","quote":"Mathematics Standard 2","source":"https://www.uow.edu.au/study/courses/bachelor-of-computer-science/","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.uow.edu.au/study/courses/bachelor-of-computer-science/"},{"id":"uow-information-technology","name":"Bachelor of Information Technology","university":"University of Wollongong","field":"science","hardRules":[],"assumedKnowledge":[],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.uow.edu.au/study/courses/bachelor-of-information-technology/"},{"id":"uow-mathematics","name":"Bachelor of Mathematics","university":"University of Wollongong","field":"science","hardRules":[],"assumedKnowledge":[],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.uow.edu.au/study/courses/bachelor-of-mathematics/"},{"id":"uow-nursing","name":"Bachelor of Nursing","university":"University of Wollongong","field":"health","hardRules":[],"assumedKnowledge":[],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.uow.edu.au/study/courses/bachelor-of-nursing/"},{"id":"uow-engineering-honours-mathematics","name":"Bachelor of Engineering (Honours) - Bachelor of Mathematics","university":"University of Wollongong","field":"engineering","hardRules":[],"assumedKnowledge":[{"subject":"Mathematics Advanced","quote":"Mathematics Advanced","source":"https://www.uow.edu.au/study/courses/bachelor-of-engineering-honours---bachelor-of-mathematics/","tier":"A"}],"recommendedStudies":[],"extraHurdles":[],"nameRecognition":"low","verification":"verified","capturedOn":"2026-08-27","source":"https://www.uow.edu.au/study/courses/bachelor-of-engineering-honours---bachelor-of-mathematics/"}];
+const GATES = {"usyd-maths-gate":{"id":"usyd-maths-gate","quote":"Mathematics Advanced (Band 4) or Mathematics Extension 1 or 2 (Band E3)","source":"https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/university-calendar/assumed-knowledge.pdf","routes":[{"subject":"Mathematics Advanced","minBand":4,"bandScale":"hsc"},{"subject":"Mathematics Extension 1","minBand":3,"bandScale":"extension"},{"subject":"Mathematics Extension 2","minBand":3,"bandScale":"extension"}]}};
+const CAPTURED_ON = "2026-08-28";
+
+
+/* ---------------- state ---------------- */
+const state = {
+  year: 12,
+  mathsPathway: 'advanced_ext1_ext2',
+  english: ['english_advanced'],
+  sciences: ['physics', 'chemistry'],
+  technology: ['engineering_studies'],
+  otherCount: 1,
+  bands: {}
+};
+
+const MATHS = [
+  ['standard1','Standard 1'], ['standard2','Standard 2'], ['advanced','Advanced'],
+  ['advanced_ext1','Advanced + Ext 1'], ['advanced_ext1_ext2','Ext 1 + Ext 2']
+];
+const ENGLISH = [
+  ['english_standard','Standard'], ['english_advanced','Advanced'], ['english_eald','EAL/D']
+];
+
+const profile = () => ({
+  year: state.year,
+  intakeYear: 2028,
+  mathsPathway: state.mathsPathway,
+  english: state.english,
+  sciences: state.sciences,
+  technology: state.technology,
+  other: Array.from({length: state.otherCount}, (_, i) => ({ name: `Other subject ${i+1}`, units: 2, area: `other${i}` })),
+  bands: state.bands
+});
+
+const FAMILIAR = /engineering \(honours\)$|^bachelor of science$|^bachelor of engineering|computer science|information technology|medical science|advanced computing|^bachelor of nursing|psychology|commerce/i;
+
+/* ---------------- render: picker ---------------- */
+function chip(label, on, onClick, key) {
+  const b = document.createElement('button');
+  b.type = 'button'; b.className = 'chip'; b.textContent = label;
+  b.setAttribute('aria-pressed', on ? 'true' : 'false');
+  if (key) b.dataset.k = key;
+  b.addEventListener('click', () => { onClick(); render(); });
+  return b;
+}
+
+function group(title, nodes) {
+  const d = document.createElement('div'); d.className = 'pk';
+  const l = document.createElement('label'); l.className = 'q'; l.textContent = title;
+  const c = document.createElement('div'); c.className = 'chips';
+  nodes.forEach(n => c.appendChild(n));
+  d.appendChild(l); d.appendChild(c); return d;
+}
+
+function toggle(arr, v) {
+  const i = arr.indexOf(v);
+  if (i < 0) arr.push(v); else arr.splice(i, 1);
+}
+
+function renderPicker(results) {
+  const f = document.getElementById('picker');
+  f.replaceChildren();
+
+  f.appendChild(group('Year', [11, 12].map(y =>
+    chip('Year ' + y, state.year === y, () => {
+      state.year = y;
+      if (y === 11 && state.mathsPathway === 'advanced_ext1_ext2') state.mathsPathway = 'advanced_ext1';
+    }))));
+
+  f.appendChild(group('Which mathematics?', MATHS.map(([k, l]) => {
+    const locked = k === 'advanced_ext1_ext2' && state.year === 11;
+    const c = chip(l + (locked ? ' · Yr 12' : ''), state.mathsPathway === k, () => {
+      if (!locked) state.mathsPathway = k;
+    });
+    if (locked) { c.style.opacity = '.45'; c.title = 'Extension 2 is a Year 12 course'; }
+    return c;
+  })));
+
+  f.appendChild(group('English', ENGLISH.map(([k, l]) =>
+    chip(l, state.english.includes(k), () => { state.english = [k]; }))));
+
+  f.appendChild(group('Sciences', subjects.sciences.map(s =>
+    chip(s.name.replace(' Science',''), state.sciences.includes(s.id), () => toggle(state.sciences, s.id)))));
+
+  f.appendChild(group('Technology', subjects.technology.map(t =>
+    chip(t.name.replace('Engineering Studies','Eng Studies'), state.technology.includes(t.id), () => toggle(state.technology, t.id)))));
+
+  // other subjects stepper
+  const od = document.createElement('div'); od.className = 'pk';
+  const ol = document.createElement('label'); ol.className = 'q'; ol.textContent = 'Anything else (2 units each)';
+  const orow = document.createElement('div'); orow.className = 'units';
+  const st = document.createElement('div'); st.className = 'stepper';
+  const minus = document.createElement('button'); minus.type='button'; minus.textContent='−';
+  minus.setAttribute('aria-label','One fewer other subject');
+  minus.addEventListener('click', () => { state.otherCount = Math.max(0, state.otherCount - 1); render(); });
+  const plus = document.createElement('button'); plus.type='button'; plus.textContent='+';
+  plus.setAttribute('aria-label','One more other subject');
+  plus.addEventListener('click', () => { state.otherCount = Math.min(4, state.otherCount + 1); render(); });
+  const n = document.createElement('b'); n.textContent = String(state.otherCount);
+  st.append(minus, n, plus);
+  const note = document.createElement('span'); note.className='mono'; note.style.color='var(--ink-3)';
+  note.style.fontSize='.72rem'; note.textContent='no STEM effect';
+  orow.append(note, st);
+  od.append(ol, orow); f.appendChild(od);
+
+  // units + pattern
+  const pat = validateAtarPattern(profile());
+  const ud = document.createElement('div'); ud.className = 'pk';
+  const urow = document.createElement('div'); urow.className = 'units';
+  const left = document.createElement('span');
+  left.innerHTML = `Units <b>${pat.units}</b> · subject areas <b>${pat.areas}</b>`;
+  const right = document.createElement('span');
+  right.className = pat.valid ? 'ok' : 'bad';
+  right.textContent = pat.valid ? 'ATAR pattern OK' : 'ATAR pattern fails';
+  right.title = pat.violations.join(' ');
+  urow.append(left, right);
+  ud.appendChild(urow);
+  if (!pat.valid) {
+    const v = document.createElement('p');
+    v.style.cssText = 'margin:.45rem 0 0;font-size:.76rem;color:var(--gated)';
+    v.textContent = pat.violations[0];
+    ud.appendChild(v);
+  }
+  f.appendChild(ud);
+
+  // progressive band question - only once a gate is actually in the results
+  const asks = [...new Set(results.flatMap(r => r.needsInput).filter(x => /band/i.test(x)))];
+  if (asks.length) {
+    const bd = document.createElement('div'); bd.className = 'pk bandask';
+    const bl = document.createElement('label'); bl.className='q'; bl.textContent = 'Expected maths band';
+    const why = document.createElement('p'); why.className='why';
+    why.textContent = 'Some courses on your list are gated on a mark, not a subject. This is the only thing in NSW that can turn you away.';
+    const target = state.mathsPathway === 'advanced_ext1_ext2' ? 'Mathematics Extension 1' : 'Mathematics Advanced';
+    const scale = state.mathsPathway === 'advanced_ext1_ext2' ? 'extension' : 'hsc';
+    const opts = scale === 'extension' ? [['E4',4],['E3',3],['E2',2]] : [['Band 6',6],['Band 5',5],['Band 4',4],['Band 3',3]];
+    const c = document.createElement('div'); c.className='chips';
+    opts.forEach(([lbl, v]) => c.appendChild(chip(lbl, state.bands[target]?.band === v, () => {
+      state.bands = { ...state.bands };
+      if (state.bands[target]?.band === v) delete state.bands[target];
+      else state.bands[target] = { band: v, scale };
+    })));
+    bd.append(bl, why, c); f.appendChild(bd);
+  }
+}
+
+/* ---------------- render: results ---------------- */
+function el(tag, cls, text) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text != null) e.textContent = text;
+  return e;
+}
+
+function courseRow(r) {
+  const row = el('div', 'row b-' + r.bandName);
+  row.appendChild(el('span', 'nm', r.courseName));
+  const right = el('span', 'uni');
+  right.append(el('span', 'tag t-' + r.bandName, r.bandName.replace('_', ' ').toLowerCase()));
+  right.append(document.createTextNode(' ' + r.university));
+  row.appendChild(right);
+  const reasons = [];
+  r.findings.forEach(f => reasons.push(f.why));
+  if (!r.complete) reasons.push('Assumed knowledge for this course is not fully captured.');
+  r.needsInput.filter(x => /band/i.test(x)).forEach(x => reasons.push(x + '.'));
+  if (reasons.length) {
+    const p = el('p', 'why');
+    p.textContent = reasons.join(' ');
+    row.appendChild(p);
+  }
+  return row;
+}
+
+function render() {
+  const p = profile();
+  const results = CATALOGUE.map(c => {
+    const r = readiness(p, c, { gates: GATES, bridging: c._bridging });
+    return { ...r, university: c.university, course: c };
+  });
+
+  renderPicker(results);
+
+  const main = document.getElementById('results');
+  main.replaceChildren();
+
+  const order = ['PREPARED','MINOR_GAP','BRIDGE_IT','HARD_GAP','GATED'];
+  const byBand = Object.fromEntries(order.map(b => [b, results.filter(r => r.bandName === b)]));
+
+  // summary
+  const sum = el('div', 'summary');
+  const labels = { PREPARED:'ready now', MINOR_GAP:'small gap', BRIDGE_IT:'bridging course', HARD_GAP:'hard gap', GATED:'blocked' };
+  const cls = { PREPARED:'s-prep', MINOR_GAP:'s-minor', BRIDGE_IT:'s-bridge', HARD_GAP:'s-hard', GATED:'s-gated' };
+  order.forEach(b => {
+    if (!byBand[b].length) return;
+    const s = el('div', 'stat ' + cls[b]);
+    s.appendChild(el('span', 'n', String(byBand[b].length)));
+    s.appendChild(el('span', 'l', labels[b]));
+    sum.appendChild(s);
+  });
+  const opener = el('p','lede');
+  opener.style.cssText = 'max-width:46rem;margin:0 0 1.1rem;font-size:.9rem';
+  opener.textContent = 'Most of what follows is open to you. That is the normal answer in New ' +
+    'South Wales — universities publish assumed knowledge rather than hard prerequisites, so ' +
+    'subjects rarely stop you being admitted. What matters is the short list that is not open, and why.';
+  main.appendChild(opener);
+  main.appendChild(sum);
+
+  // ---- what needs attention (lead with the exceptions) ----
+  const attention = order.slice(1).flatMap(b => byBand[b]);
+  const sec1 = el('section');
+  const h1 = el('div', 'sh');
+  h1.appendChild(el('h2', null, attention.length ? 'What needs attention' : 'Nothing needs attention'));
+  h1.appendChild(el('span', 'count', attention.length ? attention.length + ' of ' + results.length : results.length + ' courses, no gaps'));
+  sec1.appendChild(h1);
+
+  if (attention.length) {
+    const missing = {};
+    attention.forEach(r => r.findings.forEach(f => missing[f.subject] = (missing[f.subject] || 0) + 1));
+    const parts = Object.entries(missing).sort((a,b) => b[1]-a[1]).map(([s,n]) => `${s} (${n})`);
+    if (parts.length) {
+      const l = el('p', 'lede');
+      l.textContent = 'Every gap on your list comes down to: ' + parts.join(', ') + '.';
+      sec1.appendChild(l);
+    }
+    const rows = el('div', 'rows');
+    attention.slice(0, 40).forEach(r => rows.appendChild(courseRow(r)));
+    sec1.appendChild(rows);
+  } else {
+    sec1.appendChild(el('p', 'lede', 'Your subject set meets the published assumed knowledge for every course in the catalogue.'));
+  }
+  main.appendChild(sec1);
+
+  // ---- what a change would cost ----
+  const candidates = [
+    ...state.sciences.map(s => ({ kind:'sciences', id:s, label: subjects.sciences.find(x=>x.id===s).name })),
+    ...state.technology.map(t => ({ kind:'technology', id:t, label: subjects.technology.find(x=>x.id===t).name }))
+  ];
+  if (state.otherCount > 0) candidates.push({ kind:'other', id:null, label:'One other subject' });
+
+  if (candidates.length) {
+    const sec2 = el('section');
+    const h2 = el('div','sh');
+    h2.appendChild(el('h2', null, 'If you dropped one'));
+    sec2.appendChild(h2);
+    sec2.appendChild(el('p','lede','Each subject re-run against all ' + results.length + ' courses. This is the question Year 11 actually has to answer.'));
+    const wrap = el('div','drops');
+    candidates.forEach(c => {
+      const alt = { ...p };
+      if (c.kind === 'other') alt.other = p.other.slice(1);
+      else alt[c.kind] = p[c.kind].filter(x => x !== c.id);
+      const after = CATALOGUE.map(x => readiness(alt, x, { gates: GATES, bridging: x._bridging }));
+      let worse = 0;
+      after.forEach((a, i) => { if (a.band > results[i].band) worse++; });
+      const altPat = validateAtarPattern(alt);
+      const d = el('div','drop');
+      d.appendChild(el('b', null, c.label));
+      const delta = el('span','delta ' + (worse ? 'cost' : 'free'));
+      delta.textContent = worse ? worse + ' courses worse' : 'nothing changes';
+      d.appendChild(delta);
+      if (!altPat.valid) {
+        const w = el('span','delta cost');
+        w.textContent = '· ATAR pattern fails';
+        d.appendChild(w);
+      }
+      wrap.appendChild(d);
+    });
+    sec2.appendChild(wrap);
+    main.appendChild(sec2);
+  }
+
+  // ---- probably haven't heard of these ----
+  const unfamiliar = byBand.PREPARED.filter(r => !FAMILIAR.test(r.courseName)).slice(0, 12);
+  if (unfamiliar.length) {
+    const sec3 = el('section');
+    const h3 = el('div','sh');
+    h3.appendChild(el('h2', null, 'Open to you, and probably unfamiliar'));
+    h3.appendChild(el('span','count', unfamiliar.length + ' of ' + byBand.PREPARED.length + ' ready now'));
+    sec3.appendChild(h3);
+    sec3.appendChild(el('p','lede','You cannot search for a degree whose name you have never heard. Narrower degrees also mean smaller cohorts and fewer exits if you change your mind.'));
+    const rows = el('div','rows');
+    unfamiliar.forEach(r => rows.appendChild(courseRow(r)));
+    sec3.appendChild(rows);
+    main.appendChild(sec3);
+  }
+
+  // ---- everything else, folded ----
+  const rest = byBand.PREPARED.filter(r => FAMILIAR.test(r.courseName));
+  if (rest.length) {
+    const det = document.createElement('details'); det.className = 'fold';
+    const sm = document.createElement('summary');
+    sm.appendChild(document.createTextNode('Everything else you are ready for'));
+    sm.appendChild(el('span','hint', rest.length + ' courses'));
+    det.appendChild(sm);
+    const body = el('div','foldbody');
+    const unis = [...new Set(rest.map(r => r.university))].sort();
+    unis.forEach(u => {
+      const g = el('div','unigroup');
+      g.appendChild(el('h3', null, u));
+      const cl = el('div','clist');
+      rest.filter(r => r.university === u).forEach(r => cl.appendChild(el('span', null, r.courseName.replace(/^Bachelor of /,''))));
+      g.appendChild(cl); body.appendChild(g);
+    });
+    det.appendChild(body);
+    const sec4 = el('section'); sec4.appendChild(det); main.appendChild(sec4);
+  }
+
+  document.getElementById('stamp').textContent = CATALOGUE.length + ' courses · checked ' + CAPTURED_ON;
+  const inc = results.filter(r => !r.complete).length;
+  document.getElementById('foot').textContent =
+    'Prototype. Runs the same engine the test suite exercises, against ' + CATALOGUE.length +
+    ' course records captured on ' + CAPTURED_ON + '.' +
+    (inc ? ' ' + inc + ' record(s) are not fully captured and are shown as needing attention rather than assumed complete.' : '');
+}
+
+render();
+</script>

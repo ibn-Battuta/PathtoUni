@@ -1,0 +1,419 @@
+{
+  "university": "Western Sydney University",
+  "capturedOn": "2026-08-27",
+  "institutionRule": {
+    "hasSubjectPrerequisites": false,
+    "quote": "If you do not have the assumed knowledge indicated in a course description, you are still eligible to apply for that course.:https",
+    "source": "https://uac.edu.au/institutions/western-sydney-university/admission-criteria-and-entry-schemes",
+    "verification": "verified"
+  },
+  "courses": [
+    {
+      "id": "wsu-engineering-honours",
+      "name": "Bachelor of Engineering (Honours)",
+      "field": "engineering",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics (not General Mathematics)",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours",
+          "tier": "A",
+          "minBand": 5
+        },
+        {
+          "subject": "English Standard",
+          "quote": "two subjects of English",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours",
+          "tier": "A"
+        },
+        {
+          "subject": "any two units of Science",
+          "quote": "Two subjects of Science",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours",
+      "recommendedStudies": [
+        {
+          "subject": "Mathematics Extension 2",
+          "quote": "Mathematics Extension 2",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours"
+        },
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours"
+        },
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours"
+        }
+      ]
+    },
+    {
+      "id": "wsu-science",
+      "name": "Bachelor of Science",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "two unit mathematics",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-science",
+          "tier": "A"
+        },
+        {
+          "subject": "English Standard",
+          "quote": "two unit English",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-science",
+          "tier": "A"
+        },
+        {
+          "subject": "any two units of Science",
+          "quote": "two unit science (any science)",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-science",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-science"
+    },
+    {
+      "id": "wsu-medical-science",
+      "name": "Bachelor of Medical Science",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "two subject mathematics",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-medical-science",
+          "tier": "A"
+        },
+        {
+          "subject": "English Standard",
+          "quote": "two unit English",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-medical-science",
+          "tier": "A"
+        },
+        {
+          "subject": "any two units of Science",
+          "quote": "two unit science (any science)",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-medical-science",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-medical-science"
+    },
+    {
+      "id": "wsu-computer-science",
+      "name": "Bachelor of Computer Science",
+      "field": "computing",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "HSC Mathematics",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-computer-science",
+          "tier": "A"
+        },
+        {
+          "subject": "English Standard",
+          "quote": "any two units of HSC English",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-computer-science",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-computer-science"
+    },
+    {
+      "id": "wsu-nursing",
+      "name": "Bachelor of Nursing",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-nursing"
+    },
+    {
+      "id": "wsu-physiotherapy",
+      "name": "Bachelor of Physiotherapy",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "English Standard",
+          "quote": "any 2 subjects of English",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-physiotherapy",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-physiotherapy"
+    },
+    {
+      "id": "wsu-advanced-science",
+      "name": "Bachelor of Advanced Science",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-advanced-science"
+    },
+    {
+      "id": "wsu-applied-data-science",
+      "name": "Bachelor of Applied Data Science",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics equivalent to 2 Unit HSC",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-applied-data-science",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-applied-data-science"
+    },
+    {
+      "id": "wsu-advanced-medical-science",
+      "name": "Bachelor of Advanced Medical Science",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-medical-science-advanced"
+    },
+    {
+      "id": "wsu-cyber-security-and-behaviour",
+      "name": "Bachelor of Cyber Security and Behaviour",
+      "field": "computing",
+      "hardRules": [],
+      "assumedKnowledge": [],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-cyber-security-and-behaviour"
+    },
+    {
+      "id": "wsu-clinical-exercise-physiology",
+      "name": "Bachelor of Clinical Exercise Physiology",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "English Standard",
+          "quote": "English",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-clinical-exercise-physiology",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-clinical-exercise-physiology",
+      "recommendedStudies": [
+        {
+          "subject": "Biology",
+          "quote": "Biology",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-clinical-exercise-physiology"
+        }
+      ]
+    },
+    {
+      "id": "wsu-data-science",
+      "name": "Bachelor of Data Science",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-data-science"
+    },
+    {
+      "id": "wsu-engineering-honours-materials-engineering",
+      "name": "Bachelor of Engineering (Honours) (Materials Engineering)",
+      "field": "engineering",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics (not General Mathematics)",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-materials",
+          "tier": "A",
+          "minBand": 5
+        },
+        {
+          "subject": "English Standard",
+          "quote": "two subjects of English",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-materials",
+          "tier": "A"
+        },
+        {
+          "subject": "any two units of Science",
+          "quote": "Two subjects of Science",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-materials",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-materials",
+      "recommendedStudies": [
+        {
+          "subject": "Mathematics Extension 2",
+          "quote": "Mathematics Extension 2",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-materials"
+        },
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-materials"
+        },
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-materials"
+        }
+      ]
+    },
+    {
+      "id": "wsu-engineering-honours-advanced-manufacturing-engineering",
+      "name": "Bachelor of Engineering (Honours) (Advanced Manufacturing Engineering)",
+      "field": "engineering",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics (not General Mathematics)",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-advanced-manufacturing",
+          "tier": "A",
+          "minBand": 5
+        },
+        {
+          "subject": "English Standard",
+          "quote": "two subjects of English",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-advanced-manufacturing",
+          "tier": "A"
+        },
+        {
+          "subject": "any two units of Science",
+          "quote": "Two subjects of Science",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-advanced-manufacturing",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-advanced-manufacturing",
+      "recommendedStudies": [
+        {
+          "subject": "Mathematics Extension 2",
+          "quote": "Mathematics Extension 2",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-advanced-manufacturing"
+        },
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-advanced-manufacturing"
+        },
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-advanced-manufacturing"
+        }
+      ]
+    },
+    {
+      "id": "wsu-engineering-honours-construction-engineering",
+      "name": "Bachelor of Engineering (Honours) (Construction Engineering)",
+      "field": "engineering",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics (not General Mathematics)",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-construction",
+          "tier": "A",
+          "minBand": 5
+        },
+        {
+          "subject": "English Standard",
+          "quote": "two subjects of English",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-construction",
+          "tier": "A"
+        },
+        {
+          "subject": "any two units of Science",
+          "quote": "Two subjects of Science",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-construction",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-construction",
+      "recommendedStudies": [
+        {
+          "subject": "Mathematics Extension 2",
+          "quote": "Mathematics Extension 2",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-construction"
+        },
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-construction"
+        },
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-engineering-honours-construction"
+        }
+      ]
+    }
+  ]
+}

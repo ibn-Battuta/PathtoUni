@@ -1,0 +1,170 @@
+{
+  "university": "Macquarie University",
+  "capturedOn": "2026-08-27",
+  "institutionRule": {
+    "hasSubjectPrerequisites": false,
+    "quote": "Assumed knowledge is specified in the degree descriptions. While it's not a requirement for acceptance into a degree, you may find the degree difficult if you haven't completed the specified HSC subjects.:https",
+    "source": "https://uac.edu.au/institutions/macquarie-university/admission-criteria-and-entry-schemes",
+    "verification": "verified"
+  },
+  "courses": [
+    {
+      "id": "mq-engineering-honours",
+      "name": "Bachelor of Engineering (Honours)",
+      "field": "engineering",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-engineering-honours",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-engineering-honours",
+      "recommendedStudies": [
+        {
+          "subject": "Mathematics Extension 2",
+          "quote": "Mathematics Extension 2",
+          "source": "https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-engineering-honours"
+        },
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-engineering-honours"
+        },
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-engineering-honours"
+        }
+      ]
+    },
+    {
+      "id": "mq-science",
+      "name": "Bachelor of Science",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-science",
+          "tier": "A"
+        },
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-science",
+          "tier": "A"
+        }
+      ],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-science",
+      "recommendedStudies": [
+        {
+          "subject": "Mathematics Extension 2",
+          "quote": "Mathematics Extension 2",
+          "source": "https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-science"
+        },
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-science"
+        },
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-science"
+        },
+        {
+          "subject": "Physics",
+          "quote": "Physics",
+          "source": "https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-science"
+        }
+      ]
+    },
+    {
+      "id": "mq-information-technology",
+      "name": "Bachelor of Information Technology",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-information-technology",
+      "recommendedStudies": [
+        {
+          "subject": "Mathematics Extension 2",
+          "quote": "Mathematics Extension 2",
+          "source": "https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-information-technology"
+        },
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-information-technology"
+        }
+      ],
+      "_correctedBy": "whole-catalogue second check 2026-08-28 — page states \"Assumed knowledge None.\"; the stored subjects were Recommended studies read from the following section"
+    },
+    {
+      "id": "mq-cyber-security",
+      "name": "Bachelor of Cyber Security",
+      "field": "science",
+      "hardRules": [],
+      "assumedKnowledge": [],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-cyber-security",
+      "recommendedStudies": [
+        {
+          "subject": "Mathematics Extension 2",
+          "quote": "Mathematics Extension 2",
+          "source": "https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-cyber-security"
+        },
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-cyber-security"
+        }
+      ],
+      "_correctedBy": "whole-catalogue second check 2026-08-28 — page states \"Assumed knowledge None.\"; the stored subjects were Recommended studies read from the following section"
+    },
+    {
+      "id": "mq-medical-sciences",
+      "name": "Bachelor of Medical Sciences",
+      "field": "health",
+      "hardRules": [],
+      "assumedKnowledge": [],
+      "extraHurdles": [],
+      "nameRecognition": "low",
+      "verification": "verified",
+      "capturedOn": "2026-08-27",
+      "source": "https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-medical-sciences",
+      "recommendedStudies": [
+        {
+          "subject": "Mathematics Advanced",
+          "quote": "Mathematics Advanced",
+          "source": "https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-medical-sciences"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Chemistry",
+          "source": "https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-medical-sciences"
+        }
+      ],
+      "_correctedBy": "whole-catalogue second check 2026-08-28 — page states \"Assumed knowledge None.\"; the stored subjects were Recommended studies read from the following section"
+    }
+  ]
+}
