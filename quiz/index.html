@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What do I enjoy? A ten-question interest quiz — Open To You</title>
+<meta name="description" content="Ten this-or-that picks that sort NSW STEM degrees by what you enjoy. Sorts, never hides. Nothing is sent to a server.">
+<meta name="theme-color" data-oty content="#0C1119">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0C1119">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#EEF2F6">
+<meta property="og:title" content="What do I enjoy? A ten-question interest quiz — Open To You">
+<meta property="og:description" content="Ten this-or-that picks that sort NSW STEM degrees by what you enjoy. Sorts, never hides. Nothing is sent to a server.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="/quiz/">
+<meta name="twitter:card" content="summary">
+<script>try{var t=localStorage.getItem('oty-theme');if(t==='light'||t==='system')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="stylesheet" href="../site.css">
+</head>
+<body data-page="quiz" data-base="../">
+<div class="shell">
+  <header class="top">
+    <div class="brandline">
+      <div class="brand"><a href="../"><h1>Open To You</h1></a></div>
+      <nav class="topnav" aria-label="Site">
+        <a href="../#picker">Subjects</a>
+        <a href="../quiz/">Quiz</a>
+        <a href="../industries/">Industries</a>
+        <a href="../results/">Results</a>
+        <a href="../guides/assumed-knowledge/">Assumed knowledge</a>
+        <a href="../about/">About</a>
+        <div class="theme" role="group" aria-label="Colour theme">
+        <button type="button" data-theme-set="dark">Dark</button>
+        <button type="button" data-theme-set="light">Light</button>
+        <button type="button" data-theme-set="system">Match my system</button>
+      </div>
+      </nav>
+    </div>
+  </header>
+  <main id="quiz" class="quiz">
+    <h1>What do I enjoy?</h1>
+    <p class="lede">Ten quick picks. Choose the one that sounds more fun — there is no right answer, and you can skip any.</p>
+    <p class="hint">This sorts degrees by interest. It never hides a degree and it never changes whether you are ready for one. Your answers stay on this page; only your top three areas go in the address, after the #, which is never sent to a server.</p>
+    <ol class="quiz-static"><li>Build a robot that can walk <em>or</em> Work out why some people get sick and others do not</li><li>Write code for an app millions of people use <em>or</em> Design a bridge that survives an earthquake</li><li>Find a pattern hidden in a huge pile of numbers <em>or</em> Grow a crop that survives a drought</li><li>Design a rocket or a satellite <em>or</em> Invent a better battery</li><li>Stop hackers breaking into a hospital’s computers <em>or</em> Help someone walk again after an injury</li><li>Understand why people make the choices they do <em>or</em> Work out how the circuits in your phone work</li><li>Make a material stronger than steel and lighter than plastic <em>or</em> Teach a computer to recognise voices</li><li>Protect an endangered animal <em>or</em> Run a wind or solar farm</li><li>Design aircraft and drones <em>or</em> Study cells and DNA in a lab</li><li>Solve a tricky maths puzzle <em>or</em> Take a machine apart and make it work better</li></ol>
+    <noscript><p class="hint">The picks need JavaScript. Every degree is still listed on the results page.</p></noscript>
+  </main>
+  <footer class="foot" id="foot">
+    <p>Not UAC and not a university. Rules as at 2026-08-28. Confirm every preference on UAC and the university handbook before you apply.</p>
+  </footer>
+</div>
+<script src="../app.js" defer></script>
+<script>
+(function(){
+  function apply(t){
+    if(t!=='light'&&t!=='system') t='dark';
+    try{
+      if(t==='light'||t==='system') document.documentElement.setAttribute('data-theme',t);
+      else document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('oty-theme', t);
+    }catch(e){}
+    document.querySelectorAll('[data-theme-set]').forEach(function(b){
+      b.setAttribute('aria-pressed', b.getAttribute('data-theme-set')===t ? 'true' : 'false');
+    });
+  }
+  var t='dark';
+  try{ t=localStorage.getItem('oty-theme')||'dark'; }catch(e){}
+  document.querySelectorAll('[data-theme-set]').forEach(function(b){
+    b.addEventListener('click', function(){ apply(b.getAttribute('data-theme-set')); });
+  });
+  apply(t);
+})();
+</script>
+</body>
+</html>

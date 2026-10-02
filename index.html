@@ -5,11 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Open To You — NSW STEM subject planner</title>
 <meta name="description" content="Enter HSC subjects and see which NSW STEM degrees you are prepared for, what any gap costs, and which ones you had never heard of.">
+<meta name="theme-color" data-oty content="#0C1119">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0C1119">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#EEF2F6">
 <meta property="og:title" content="Open To You — NSW STEM subject planner">
 <meta property="og:description" content="Enter HSC subjects and see which NSW STEM degrees you are prepared for, what any gap costs, and which ones you had never heard of.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://ibn-Battuta.github.io/PathtoUni/">
+<meta property="og:url" content="/">
 <meta name="twitter:card" content="summary">
+<script>try{var t=localStorage.getItem('oty-theme');if(t==='light'||t==='system')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <link rel="stylesheet" href="site.css">
 </head>
 <body data-page="home" data-base="">
@@ -18,27 +22,78 @@
     <div class="brandline">
       <div class="brand"><a href=""><h1>Open To You</h1></a></div>
       <nav class="topnav" aria-label="Site">
-        <a href="">Subjects</a>
+        <a href="#picker">Subjects</a>
+        <a href="quiz/">Quiz</a>
+        <a href="industries/">Industries</a>
         <a href="results/">Results</a>
         <a href="guides/assumed-knowledge/">Assumed knowledge</a>
         <a href="about/">About</a>
+        <div class="theme" role="group" aria-label="Colour theme">
+        <button type="button" data-theme-set="dark">Dark</button>
+        <button type="button" data-theme-set="light">Light</button>
+        <button type="button" data-theme-set="system">Match my system</button>
+      </div>
       </nav>
     </div>
   </header>
   
-    <p class="lead">Tell us what you are studying. We check it against every STEM degree at six NSW universities and show you which ones you are ready for, which have a gap, and what closing that gap would take.</p>
-    <ul class="trust">
-      <li><b>Independent.</b> We are not UAC and not a university. Nobody pays to appear here.</li>
-      <li><b>Quoted, not summarised.</b> Every requirement is the university’s own wording, with the date we read it.</li>
-      <li><b>Private by design.</b> The calculation happens on your device. Your subjects stay in the address hash — they are never sent to a server, and there is no account.</li>
-      <li><b>Not the last word.</b> Rules change. Check UAC before you submit preferences.</li>
-    </ul>
-    <form class="picker" id="picker" aria-label="Your subjects" data-mode="steps" style="margin-top:1.25rem"></form>
+    <section class="doors" aria-label="Ways in">
+      <h2 class="doors-h">Three ways in. Use one, or put them together.</h2>
+      <div class="door-grid">
+        <a class="door" href="#picker" data-door="subjects">
+          <span class="door-n">1</span>
+          <span class="door-t">Start with my subjects</span>
+          <span class="door-d">Pick your HSC subjects. See which degrees you are ready for, and what a gap would cost.</span>
+        </a>
+        <a class="door" href="quiz/" data-door="quiz">
+          <span class="door-n">2</span>
+          <span class="door-t">What do I enjoy?</span>
+          <span class="door-d">Ten quick this-or-that picks. They sort degrees by interest. They never hide one.</span>
+        </a>
+        <a class="door" href="industries/" data-door="industries">
+          <span class="door-n">3</span>
+          <span class="door-t">Where is the world investing?</span>
+          <span class="door-d">9 areas named in official plans by Australia, the US, the EU, the UK, China and India — quoted word for word.</span>
+        </a>
+      </div>
+      <p class="doors-now" id="doors-now" hidden></p>
+    </section>
+    <div class="home-intro" id="subjects-intro">
+      <p class="lead">Tell us what you are studying. We check it against every STEM degree at six NSW universities and show you which ones you are ready for, which have a gap, and what closing that gap would take.</p>
+      <ul class="trust">
+        <li><b>Independent.</b> We are not UAC and not a university. Nobody pays to appear here.</li>
+        <li><b>Quoted, not summarised.</b> Every requirement is the university’s own wording, with the date we read it.</li>
+        <li><b>Private by design.</b> The calculation happens on your device. Your subjects stay in the address hash — they are never sent to a server, and there is no account.</li>
+        <li><b>Not the last word.</b> Rules change. Check UAC before you submit preferences.</li>
+      </ul>
+    </div>
+    <form class="picker" id="picker" aria-label="Your subjects" data-mode="steps"></form>
   
   <footer class="foot" id="foot">
     <p>Not UAC and not a university. Rules as at 2026-08-28. Confirm every preference on UAC and the university handbook before you apply.</p>
   </footer>
 </div>
 <script src="app.js" defer></script>
+<script>
+(function(){
+  function apply(t){
+    if(t!=='light'&&t!=='system') t='dark';
+    try{
+      if(t==='light'||t==='system') document.documentElement.setAttribute('data-theme',t);
+      else document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('oty-theme', t);
+    }catch(e){}
+    document.querySelectorAll('[data-theme-set]').forEach(function(b){
+      b.setAttribute('aria-pressed', b.getAttribute('data-theme-set')===t ? 'true' : 'false');
+    });
+  }
+  var t='dark';
+  try{ t=localStorage.getItem('oty-theme')||'dark'; }catch(e){}
+  document.querySelectorAll('[data-theme-set]').forEach(function(b){
+    b.addEventListener('click', function(){ apply(b.getAttribute('data-theme-set')); });
+  });
+  apply(t);
+})();
+</script>
 </body>
 </html>

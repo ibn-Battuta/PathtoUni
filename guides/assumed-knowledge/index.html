@@ -5,11 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Assumed knowledge is not a prerequisite — Open To You</title>
 <meta name="description" content="Assumed knowledge is not a prerequisite. Independent NSW STEM subject guidance — not UAC, not a university.">
+<meta name="theme-color" data-oty content="#0C1119">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0C1119">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#EEF2F6">
 <meta property="og:title" content="Assumed knowledge is not a prerequisite — Open To You">
 <meta property="og:description" content="Assumed knowledge is not a prerequisite. Independent NSW STEM subject guidance — not UAC, not a university.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://ibn-Battuta.github.io/PathtoUni/guides/assumed-knowledge/">
+<meta property="og:url" content="/guides/assumed-knowledge/">
 <meta name="twitter:card" content="summary">
+<script>try{var t=localStorage.getItem('oty-theme');if(t==='light'||t==='system')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <link rel="stylesheet" href="../../site.css">
 </head>
 <body data-page="guide" data-base="../../">
@@ -18,10 +22,17 @@
     <div class="brandline">
       <div class="brand"><a href="../../"><h1>Open To You</h1></a></div>
       <nav class="topnav" aria-label="Site">
-        <a href="../../">Subjects</a>
+        <a href="../../#picker">Subjects</a>
+        <a href="../../quiz/">Quiz</a>
+        <a href="../../industries/">Industries</a>
         <a href="../../results/">Results</a>
         <a href="../../guides/assumed-knowledge/">Assumed knowledge</a>
         <a href="../../about/">About</a>
+        <div class="theme" role="group" aria-label="Colour theme">
+        <button type="button" data-theme-set="dark">Dark</button>
+        <button type="button" data-theme-set="light">Light</button>
+        <button type="button" data-theme-set="system">Match my system</button>
+      </div>
       </nav>
     </div>
   </header>
@@ -37,5 +48,26 @@
   </footer>
 </div>
 
+<script>
+(function(){
+  function apply(t){
+    if(t!=='light'&&t!=='system') t='dark';
+    try{
+      if(t==='light'||t==='system') document.documentElement.setAttribute('data-theme',t);
+      else document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('oty-theme', t);
+    }catch(e){}
+    document.querySelectorAll('[data-theme-set]').forEach(function(b){
+      b.setAttribute('aria-pressed', b.getAttribute('data-theme-set')===t ? 'true' : 'false');
+    });
+  }
+  var t='dark';
+  try{ t=localStorage.getItem('oty-theme')||'dark'; }catch(e){}
+  document.querySelectorAll('[data-theme-set]').forEach(function(b){
+    b.addEventListener('click', function(){ apply(b.getAttribute('data-theme-set')); });
+  });
+  apply(t);
+})();
+</script>
 </body>
 </html>

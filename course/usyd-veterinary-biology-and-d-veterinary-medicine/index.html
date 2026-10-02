@@ -5,11 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bachelor of Veterinary Biology and Doctor of Veterinary Medicine, Sydney — Open To You</title>
 <meta name="description" content="Bachelor of Veterinary Biology and Doctor of Veterinary Medicine at Sydney assumes Mathematics Advanced, Chemistry and Biology. No subject prerequisites. Checked 27 August 2026.">
+<meta name="theme-color" data-oty content="#0C1119">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0C1119">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#EEF2F6">
 <meta property="og:title" content="Bachelor of Veterinary Biology and Doctor of Veterinary Medicine, Sydney — Open To You">
 <meta property="og:description" content="Bachelor of Veterinary Biology and Doctor of Veterinary Medicine at Sydney assumes Mathematics Advanced, Chemistry and Biology. No subject prerequisites. Checked 27 August 2026.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://ibn-Battuta.github.io/PathtoUni/course/usyd-veterinary-biology-and-d-veterinary-medicine/">
+<meta property="og:url" content="/course/usyd-veterinary-biology-and-d-veterinary-medicine/">
 <meta name="twitter:card" content="summary">
+<script>try{var t=localStorage.getItem('oty-theme');if(t==='light'||t==='system')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <link rel="stylesheet" href="../../site.css">
 </head>
 <body data-page="course" data-base="../../">
@@ -18,10 +22,17 @@
     <div class="brandline">
       <div class="brand"><a href="../../"><h1>Open To You</h1></a></div>
       <nav class="topnav" aria-label="Site">
-        <a href="../../">Subjects</a>
+        <a href="../../#picker">Subjects</a>
+        <a href="../../quiz/">Quiz</a>
+        <a href="../../industries/">Industries</a>
         <a href="../../results/">Results</a>
         <a href="../../guides/assumed-knowledge/">Assumed knowledge</a>
         <a href="../../about/">About</a>
+        <div class="theme" role="group" aria-label="Colour theme">
+        <button type="button" data-theme-set="dark">Dark</button>
+        <button type="button" data-theme-set="light">Light</button>
+        <button type="button" data-theme-set="system">Match my system</button>
+      </div>
       </nav>
     </div>
   </header>
@@ -50,7 +61,7 @@
       <p class="item-quote">“Physics”</p>
       <p class="item-meta"><a href="https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf" rel="noopener">Source</a> · captured 2026-08-27</p>
     </div></section><section class="hurdle"><h3>Extra requirements</h3>
-      <p class="lede">These are flags, not readiness bands. They do not change whether the subject background is enough.</p><ul><li>situational_judgement</li></ul></section><script>
+      <p class="lede">These are flags, not readiness bands. They do not change whether the subject background is enough.</p><ul><li>a situational judgement test<p class="item-quote">“situational judgement test”</p></li></ul></section><script>
     (function () {
       var a = document.getElementById('prepared');
       if (a && location.hash) a.href = '../../results/' + location.hash;
@@ -61,5 +72,26 @@
   </footer>
 </div>
 
+<script>
+(function(){
+  function apply(t){
+    if(t!=='light'&&t!=='system') t='dark';
+    try{
+      if(t==='light'||t==='system') document.documentElement.setAttribute('data-theme',t);
+      else document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('oty-theme', t);
+    }catch(e){}
+    document.querySelectorAll('[data-theme-set]').forEach(function(b){
+      b.setAttribute('aria-pressed', b.getAttribute('data-theme-set')===t ? 'true' : 'false');
+    });
+  }
+  var t='dark';
+  try{ t=localStorage.getItem('oty-theme')||'dark'; }catch(e){}
+  document.querySelectorAll('[data-theme-set]').forEach(function(b){
+    b.addEventListener('click', function(){ apply(b.getAttribute('data-theme-set')); });
+  });
+  apply(t);
+})();
+</script>
 </body>
 </html>
