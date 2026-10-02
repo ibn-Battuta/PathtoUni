@@ -242,6 +242,56 @@ export function plausibleCourseName(name) {
   return /bachelor|diploma|master|doctor/i.test(name);
 }
 
+// Who can start this course at all — the axis errors 16 and 18 were both on. A page can
+// list no assumed knowledge and still describe a course no school leaver can enter: an
+// honours year after a degree, or an add-on taken beside one. Each pattern must be found
+// verbatim in the capture or it is not recorded.
+export const ENTRY_POINT_PATTERNS = [
+  {
+    kind: 'after_degree',
+    re: /Students must hold a Bachelor degree in ([^.]+?) with[^.]*\./,
+    who: m => `students who already hold a Bachelor degree in ${m[1].trim()}`
+  },
+  {
+    kind: 'add_on',
+    re: /This program is not a stand-alone degree[^.]*\./,
+    who: () => 'students already taking another bachelor degree at the same university'
+  }
+];
+
+export function notEntryPointFrom(body, capture, url) {
+  if (!body) return null;
+  for (const p of ENTRY_POINT_PATTERNS) {
+    const m = body.match(p.re);
+    if (!m) continue;
+    const quote = findVerbatim(capture, m[0]);
+    if (!quote) return null;
+    return { kind: p.kind, who: p.who(m), quote, source: url, tier: 'A' };
+  }
+  return null;
+}
+
+// Extra entry steps on top of the ATAR. A flag, never a band.
+export const HURDLE_PATTERNS = [
+  {
+    type: 'interview',
+    label: 'a separate application with a questionnaire and interview',
+    re: /[^.]*\bquestionnaire and (?:sit for an )?interview\b[^.]*\./
+  }
+];
+
+export function hurdlesFrom(body, capture, url) {
+  const out = [];
+  if (!body) return out;
+  for (const h of HURDLE_PATTERNS) {
+    const m = body.match(h.re);
+    if (!m) continue;
+    const quote = findVerbatim(capture, m[0].trim());
+    if (quote) out.push({ type: h.type, label: h.label, quote, source: url });
+  }
+  return out;
+}
+
 export function extractCoursePage({ html, text, url, source, capturedOn }) {
   const body = text || htmlToText(html);
   const capture = `${html}\n${body}`;
@@ -289,8 +339,8 @@ export function extractCoursePage({ html, text, url, source, capturedOn }) {
     hardRules: [],
     assumedKnowledge: assumed,
     recommendedStudies: recommended,
-    extraHurdles: [],
-    nameRecognition: 'low',
+    extraHurdles: hurdlesFrom(body, capture, url),
+    nameRecognition: null,
     verification: dropped.length === 0 ? 'verified' : 'unverified',
     source: url,
     capturedOn,
@@ -298,6 +348,9 @@ export function extractCoursePage({ html, text, url, source, capturedOn }) {
     dropped,
     url
   };
+
+  const notEntryPoint = notEntryPointFrom(body, capture, url);
+  if (notEntryPoint) rec.notEntryPoint = notEntryPoint;
 
   const audit = auditCourse(rec, capture);
   if (dropped.length === 0 && !audit.complete) {

@@ -170,8 +170,23 @@ Folded `<details>`, grouped by university. Present, browsable, quiet.
 
 ### 5.8 Print
 
-`@media print`: subject strip, counts, attention list, and a footer carrying every source URL
-and the capture date. One page of A4. No navigation, no folded sections expanded.
+`@media print`: subject strip, counts, the gap **causes**, the restricted list, the drop
+analysis, and a compact source line carrying the distinct university domains and the capture
+date. No navigation, no folded sections expanded, no per-row quotes or reasoning.
+
+**Amended 2026-08-29 — page count.** This section originally said *"One page of A4."* It was
+written before the page had ever been printed. Rendering it found six pages, and rendering it
+across five real subject profiles found the count scales with the number of gaps: 1 page at
+3 gaps, 4 pages at 98. One page is only reachable in general by truncating the list or
+shrinking the type to where a careers adviser cannot read it, and neither is worth having.
+
+The rule is now: **at most two pages, and the causes always print in full.** Above
+`PRINT_ROW_CAP` (24) gap rows the sheet prints the cause line, a per-university count, and a
+sentence saying the full list with every quote is on the site — because at 98 gaps the
+individual course names all say the same two things, and the cause line is the payload. Below
+the cap every row prints. `test/print.test.js` holds the two-page bound across profiles; it is
+a rendered-PDF check, not an assertion about CSS, because the first version of this rule passed
+review as CSS and failed as paper.
 
 ---
 

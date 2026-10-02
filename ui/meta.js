@@ -28,6 +28,18 @@ export function courseDescription(c) {
   const prereq = (c.hardRules || []).length
     ? 'A published mathematics mark is required for entry.'
     : 'No subject prerequisites.';
+  // The description is the search-result snippet, which is where a student who has never
+  // seen this site meets the course. For a restricted course, "no subject prerequisites"
+  // on its own is the single most misleading true sentence available, so the restriction
+  // goes first.
+  if (c.notEntryPoint) {
+    return `${c.name} at ${uni} is not entered straight from school: it is for ${c.notEntryPoint.who}. `
+      + `Checked ${prettyDate(c.capturedOn)}.`;
+  }
+  if (c.restrictedTo) {
+    return `${c.name} at ${uni} is open only to ${c.restrictedTo.who}. ${assumed.charAt(0).toUpperCase() + assumed.slice(1)} `
+      + `${prereq} Checked ${prettyDate(c.capturedOn)}.`;
+  }
   return `${c.name} at ${uni} ${assumed} ${prereq} Checked ${prettyDate(c.capturedOn)}.`;
 }
 

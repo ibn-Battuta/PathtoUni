@@ -1,0 +1,19 @@
+{
+  "courseId": "usyd-advanced-computing",
+  "firstYear": "First year covers the core of computing: programming (Introduction to Programming, then Object-Oriented Programming), computer systems, operating systems and networks, professional practice, foundations of data science, Mathematics 1A and discrete maths for computing. Several units have Advanced versions. You then major in computer science, cybersecurity, software development or computational data science, and can add a second major or minor from another area such as commerce, science or music.",
+  "notThis": "Not the same as a Bachelor of Science with a computing major. This degree is run by the Engineering faculty as a professional computing degree: you can finish after three years with a Bachelor of Computing, or stay a fourth year for advanced professional and research work.",
+  "neighbours": [
+    "unsw-advanced-computer-science-honours",
+    "unsw-advanced-science-honours-computer-science",
+    "unsw-science-advanced-mathematics-honours-science-computer-science"
+  ],
+  "sources": [
+    "https://www.sydney.edu.au/content/handbooks/engineering/advanced-computing.html",
+    "https://www.sydney.edu.au/handbooks/engineering/advanced-computing/unit-of-study-table.html"
+  ],
+  "researchedOn": "2026-09-25",
+  "draftedBy": "Claude (Opus 5.5), 2026-09-25",
+  "reviewed": true,
+  "reviewedBy": "Ajay Walia",
+  "reviewedOn": "2026-09-25"
+}

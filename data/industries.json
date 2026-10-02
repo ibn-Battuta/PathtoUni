@@ -1,0 +1,317 @@
+{
+  "_comment": "Future-industries door. Each industry is listed only where an official government source names it, quoted verbatim. The quotes were string-matched (code, not a reader) against the live page or PDF text on checkedOn. Which degrees lead into each industry is computed from ui/topics.js and labelled as our judgement on the page.",
+  "capturedOn": "2026-10-02",
+  "stalenessDays": 365,
+  "economies": [
+    { "id": "au", "label": "Australia" },
+    { "id": "us", "label": "United States" },
+    { "id": "eu", "label": "European Union" },
+    { "id": "uk", "label": "United Kingdom" },
+    { "id": "cn", "label": "China" },
+    { "id": "in", "label": "India" }
+  ],
+  "sources": [
+    {
+      "id": "au-nrf-priority",
+      "economy": "au",
+      "publisher": "National Reconstruction Fund Corporation (Australian Government)",
+      "title": "Our priority areas",
+      "url": "https://www.nrf.gov.au/what-we-do/our-priority-areas",
+      "kind": "html",
+      "lead": "The NRFC will invest in projects to support manufacturing across 8 priority areas.",
+      "quotes": {
+        "resources": "Value-add in resources",
+        "medical": "Medical science",
+        "renewables": "Renewables and low emission technologies"
+      },
+      "checkedOn": "2026-10-02",
+      "verification": "verified"
+    },
+    {
+      "id": "au-nrf-enabling",
+      "economy": "au",
+      "publisher": "National Reconstruction Fund Corporation (Australian Government)",
+      "title": "Enabling capabilities",
+      "url": "https://www.nrf.gov.au/what-we-do/our-priority-areas/enabling-capabilities",
+      "kind": "html",
+      "lead": "The National Reconstruction Fund Corporation may invest in manufacturing technologies and products that support the advancement of Australia’s industrial capability.",
+      "quotes": {
+        "manufacturing": "advanced manufacturing technologies or materials technologies",
+        "semiconductors": "semiconductors",
+        "ai": "artificial intelligence technologies",
+        "quantum": "quantum technologies",
+        "autonomous": "autonomous systems",
+        "robotics": "robotics technologies",
+        "biotech": "biotechnologies",
+        "space": "space objects or products for use in, or in connection with, space objects"
+      },
+      "checkedOn": "2026-10-02",
+      "verification": "verified"
+    },
+    {
+      "id": "us-rd-fy27",
+      "economy": "us",
+      "publisher": "The White House (Office of Management and Budget and Office of Science and Technology Policy)",
+      "title": "Fiscal Year 2027 Administration Research and Development Budget Priorities",
+      "url": "https://www.whitehouse.gov/wp-content/uploads/2025/09/FY27-OMB-OSTP-RD-Priorites-Memo-FINALSIGNED.pdf",
+      "kind": "pdf",
+      "quotes": {
+        "ai": "Federal investment in fundamental research into novel AI paradigms and computing architectures will support continued American leadership in this field.",
+        "applied": "nuclear fission and fusion for energy production; quantum information science; advanced space analytics, remote sensing, and navigation; and embodied AI (autonomous robotics, drones, self-driving cars, and advanced sensors)",
+        "semiconductors": "Federal investments in semiconductor and microelectronics R&D are critical to enabling the development and deployment of AI and quantum applications",
+        "biotech": "Strengthen and Safeguard American Health and Biotechnology",
+        "space": "R&D investments in space contribute to both civilian and defense mission needs",
+        "minerals": "To unleash American critical minerals, agencies should invest in R&D for the identification, characterization, and assessment of domestic mineral resources",
+        "manufacturing": "Agency R&D investments should advance innovation that fuels the resurgence of domestic manufacturing."
+      },
+      "checkedOn": "2026-10-02",
+      "verification": "verified"
+    },
+    {
+      "id": "eu-step",
+      "economy": "eu",
+      "publisher": "European Commission",
+      "title": "STEP scope — Strategic Technologies for Europe Platform",
+      "url": "https://strategic-technologies.europa.eu/about/step-scope_en",
+      "kind": "html",
+      "quotes": {
+        "digital": "This sector encompasses a wide array of technologies such as advanced semiconductors, artificial intelligence, robotics and quantum technologies.",
+        "clean": "STEP accelerates the development and manufacturing of clean energy technologies, energy storage innovations, and decarbonisation solutions in the EU.",
+        "biotech": "Biotechnologies are key for making critical sectors like healthcare, farming, and the bioeconomy more modern",
+        "manufacturing": "Advanced materials, manufacturing and recycling technologies"
+      },
+      "checkedOn": "2026-10-02",
+      "verification": "verified"
+    },
+    {
+      "id": "uk-digital",
+      "economy": "uk",
+      "publisher": "UK Government (Modern Industrial Strategy)",
+      "title": "Digital and Technologies Sector Plan",
+      "url": "https://assets.publishing.service.gov.uk/media/6892104df15b237bf6610996/industrial_strategy_digital_and_technologies_sector_plan_accessible.pdf",
+      "kind": "pdf",
+      "quotes": {
+        "frontier": "Investing in priority frontier technologies – ACT, AI, cyber security, engineering biology, quantum and semiconductors – through the government’s record Spending Review settlement for R&D."
+      },
+      "checkedOn": "2026-10-02",
+      "verification": "verified"
+    },
+    {
+      "id": "uk-clean",
+      "economy": "uk",
+      "publisher": "UK Government (Modern Industrial Strategy)",
+      "title": "Clean Energy Industries Sector Plan",
+      "url": "https://www.gov.uk/government/publications/clean-energy-industries-sector-plan",
+      "kind": "html",
+      "quotes": {
+        "clean": "doubling investment levels across our frontier clean energy industries to over £30 billion per year"
+      },
+      "checkedOn": "2026-10-02",
+      "verification": "verified"
+    },
+    {
+      "id": "uk-advmfg",
+      "economy": "uk",
+      "publisher": "UK Government (Modern Industrial Strategy)",
+      "title": "Advanced Manufacturing Sector Plan",
+      "url": "https://www.gov.uk/government/publications/advanced-manufacturing-sector-plan",
+      "kind": "html",
+      "quotes": {
+        "industries": "6 advanced manufacturing industries of the future (advanced materials, aerospace, agri-tech, automotive, batteries and space)"
+      },
+      "checkedOn": "2026-10-02",
+      "verification": "verified"
+    },
+    {
+      "id": "cn-15fyp",
+      "economy": "cn",
+      "publisher": "The State Council of the People's Republic of China (english.gov.cn)",
+      "title": "CPC's recommendations for new five-year plan prioritize building modernized industrial system, reinforcing real economy",
+      "url": "https://english.www.gov.cn/news/202510/24/content_WS68fb1080c6d00ca5f9a06fed.html",
+      "kind": "html",
+      "quotes": {
+        "future": "accelerate the development of strategic and emerging industry clusters, including new energy, new materials, aerospace, and low-altitude economy, and to foster future industries, such as quantum technology, biomanufacturing, hydrogen energy and fusion energy, brain-computer interfaces, embodied intelligence, and sixth-generation mobile communications"
+      },
+      "checkedOn": "2026-10-02",
+      "verification": "verified"
+    },
+    {
+      "id": "cn-aiplus",
+      "economy": "cn",
+      "publisher": "The State Council of the People's Republic of China (english.gov.cn)",
+      "title": "China issues guideline to accelerate 'AI Plus' integration across key sectors",
+      "url": "https://english.www.gov.cn/policies/latestreleases/202508/27/content_WS68ae7976c6d0868f4e8f51a0.html",
+      "kind": "html",
+      "quotes": {
+        "ai": "promoting the extensive and in-depth integration of AI across various fields"
+      },
+      "checkedOn": "2026-10-02",
+      "verification": "verified"
+    },
+    {
+      "id": "in-nqm",
+      "economy": "in",
+      "publisher": "Department of Science and Technology (Government of India)",
+      "title": "Cabinet approves National Quantum Mission",
+      "url": "https://dst.gov.in/cabinet-approves-national-quantum-mission-scale-scientific-industrial-rd-quantum-technologies",
+      "kind": "html",
+      "quotes": {
+        "quantum": "approved the National Quantum Mission (NQM) at a total cost of Rs.6003.65 crore from 2023-24 to 2030-31"
+      },
+      "checkedOn": "2026-10-02",
+      "verification": "verified"
+    },
+    {
+      "id": "in-ai",
+      "economy": "in",
+      "publisher": "IndiaAI (Government of India)",
+      "title": "Cabinet approves India AI mission at an outlay of Rs 10,372 crore",
+      "url": "https://indiaai.gov.in/news/cabinet-approves-india-ai-mission-at-an-outlay-of-rs-10-372-crore",
+      "kind": "html",
+      "quotes": {
+        "ai": "the cabinet approved the India AI mission with a budget outlay of Rs 10,372 crore for five years"
+      },
+      "checkedOn": "2026-10-02",
+      "verification": "verified"
+    },
+    {
+      "id": "in-ism",
+      "economy": "in",
+      "publisher": "India Semiconductor Mission (Government of India)",
+      "title": "About ISM",
+      "url": "https://ism.gov.in/about-ism",
+      "kind": "html",
+      "quotes": {
+        "semiconductors": "The India Semiconductor Mission (ISM) aims to build a strong semiconductor and display ecosystem"
+      },
+      "checkedOn": "2026-10-02",
+      "verification": "verified"
+    },
+    {
+      "id": "in-ncmm",
+      "economy": "in",
+      "publisher": "Prime Minister's Office (Government of India)",
+      "title": "Cabinet approves National Critical Mineral Mission",
+      "url": "https://www.pmindia.gov.in/en/news_updates/cabinet-approves-national-critical-mineral-mission-to-build-a-resilient-value-chain-for-critical-mineral-resources-vital-to-green-technologies-with-an-outlay-of-rs-34300-crore-over-seven-years/",
+      "kind": "html",
+      "quotes": {
+        "minerals": "has approved the launch of the National Critical Mineral Mission (NCMM) with an expenditure of Rs.16,300 crore"
+      },
+      "checkedOn": "2026-10-02",
+      "verification": "verified"
+    },
+    {
+      "id": "in-gh2",
+      "economy": "in",
+      "publisher": "Prime Minister's Office (Government of India)",
+      "title": "Cabinet approves National Green Hydrogen Mission",
+      "url": "https://www.pmindia.gov.in/en/news_updates/cabinet-approves-national-green-hydrogen-mission/",
+      "kind": "html",
+      "quotes": {
+        "hydrogen": "has approved National Green Hydrogen Mission. The initial outlay for the Mission will be Rs.19,744 crore"
+      },
+      "checkedOn": "2026-10-02",
+      "verification": "verified"
+    }
+  ],
+  "industries": [
+    {
+      "id": "ai",
+      "name": "Artificial intelligence (AI) and computing",
+      "terms": ["artificial intelligence", "\\bAI\\b"],
+      "topics": ["ai", "data"],
+      "broadFields": ["science", "engineering"],
+      "evidence": [
+        ["au-nrf-enabling", "ai"], ["us-rd-fy27", "ai"], ["eu-step", "digital"],
+        ["uk-digital", "frontier"], ["cn-aiplus", "ai"], ["in-ai", "ai"]
+      ]
+    },
+    {
+      "id": "quantum",
+      "name": "Quantum technology",
+      "terms": ["quantum"],
+      "topics": ["data", "electronics", "ai"],
+      "broadFields": ["science", "engineering"],
+      "evidence": [
+        ["au-nrf-enabling", "quantum"], ["us-rd-fy27", "applied"], ["eu-step", "digital"],
+        ["uk-digital", "frontier"], ["cn-15fyp", "future"], ["in-nqm", "quantum"]
+      ]
+    },
+    {
+      "id": "chips",
+      "name": "Computer chips (semiconductors)",
+      "terms": ["semiconductor"],
+      "topics": ["electronics", "materials"],
+      "broadFields": ["engineering", "science"],
+      "evidence": [
+        ["au-nrf-enabling", "semiconductors"], ["us-rd-fy27", "semiconductors"], ["eu-step", "digital"],
+        ["uk-digital", "frontier"], ["in-ism", "semiconductors"]
+      ]
+    },
+    {
+      "id": "energy",
+      "name": "New energy (renewables, storage, hydrogen, nuclear)",
+      "terms": ["energy", "renewable", "hydrogen", "fusion", "low emission"],
+      "topics": ["energy"],
+      "broadFields": ["engineering", "science"],
+      "evidence": [
+        ["au-nrf-priority", "renewables"], ["us-rd-fy27", "applied"], ["eu-step", "clean"],
+        ["uk-clean", "clean"], ["cn-15fyp", "future"], ["in-gh2", "hydrogen"]
+      ]
+    },
+    {
+      "id": "space",
+      "name": "Space and aerospace",
+      "terms": ["space", "aerospace"],
+      "topics": ["space"],
+      "broadFields": ["engineering", "science"],
+      "evidence": [
+        ["au-nrf-enabling", "space"], ["us-rd-fy27", "space"],
+        ["uk-advmfg", "industries"], ["cn-15fyp", "future"]
+      ]
+    },
+    {
+      "id": "robotics",
+      "name": "Robotics and autonomous machines",
+      "terms": ["robot", "autonomous", "embodied"],
+      "topics": ["robotics", "ai"],
+      "broadFields": ["engineering"],
+      "evidence": [
+        ["au-nrf-enabling", "robotics"], ["us-rd-fy27", "applied"],
+        ["eu-step", "digital"], ["cn-15fyp", "future"]
+      ]
+    },
+    {
+      "id": "biotech",
+      "name": "Biotechnology and medical science",
+      "terms": ["bio", "medical", "health"],
+      "topics": ["bio", "health"],
+      "broadFields": ["science"],
+      "evidence": [
+        ["au-nrf-priority", "medical"], ["us-rd-fy27", "biotech"], ["eu-step", "biotech"],
+        ["uk-digital", "frontier"], ["cn-15fyp", "future"]
+      ]
+    },
+    {
+      "id": "minerals",
+      "name": "Critical minerals and resources",
+      "terms": ["mineral", "resources"],
+      "topics": ["materials", "nature"],
+      "broadFields": ["engineering", "science"],
+      "evidence": [
+        ["au-nrf-priority", "resources"], ["us-rd-fy27", "minerals"], ["in-ncmm", "minerals"]
+      ]
+    },
+    {
+      "id": "manufacturing",
+      "name": "Advanced manufacturing and new materials",
+      "terms": ["manufactur", "materials"],
+      "topics": ["materials", "robotics"],
+      "broadFields": ["engineering"],
+      "evidence": [
+        ["au-nrf-enabling", "manufacturing"], ["us-rd-fy27", "manufacturing"], ["eu-step", "manufacturing"],
+        ["uk-advmfg", "industries"], ["cn-15fyp", "future"]
+      ]
+    }
+  ]
+}

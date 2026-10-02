@@ -64,6 +64,16 @@ function englishFinding(profile, subject) {
   };
 }
 
+function earlyEntryFor(course, ctx) {
+  const file = ctx.earlyEntry;
+  const schemes = file?.schemes ?? (Array.isArray(file) ? file : []);
+  const uni = String(course.university || '').toLowerCase();
+  return schemes.filter(s =>
+    s && s.verification === 'verified' && s.quote
+    && uni.includes(String(s.university || '').toLowerCase())
+  );
+}
+
 function holdsAssumed(profile, held, ak) {
   if (ak.subject === 'any two units of Science')
     return (profile.sciences ?? []).length >= 2;
@@ -178,10 +188,29 @@ export function readiness(profile, course, ctx = {}) {
     findings,
     satisfiedBy,
     hurdles: course.extraHurdles ?? [],   // never folded into the band
+
+    // Who may apply at all. Deliberately NOT folded into the band: readiness answers
+    // "would this course suit the subjects you chose", and eligibility to apply is a
+    // separate question with a separate answer. Folding it in would either hide the
+    // course from the students it exists for, or quietly downgrade it for everyone
+    // else. It is carried out so the page must say it.
+    restrictedTo: course.restrictedTo ?? null,
+    // Whether a school leaver can start this course at all (error 18). An honours year
+    // after a degree, or an add-on beside one, is not something a Year 12 student is
+    // "ready for" whatever their subjects. Carried out, never read by the band.
+    notEntryPoint: course.notEntryPoint ?? null,
+    // Institution-level early-entry schemes. Same shape as restrictedTo: carried so
+    // the page must say them; never read by band arithmetic. No likelihood, no score.
+    earlyEntry: earlyEntryFor(course, ctx),
     needsInput,
     verification: course.verification ?? 'unverified',
     sources: [...new Set(sources)]
   };
+}
+
+/** False for a course nobody starts from school. Views that list courses use this. */
+export function isEntryPoint(course) {
+  return !course?.notEntryPoint;
 }
 
 /** View B: what a subject change costs. Run the engine twice and diff. */
@@ -201,6 +230,7 @@ export function subjectChangeImpact(profileBefore, profileAfter, courses, ctx) {
 /** View C: rank across the catalogue. Ranks WITHIN bands, never blends band with anything else. */
 export function shortlist(profile, courses, ctx) {
   return courses
+    .filter(isEntryPoint)
     .map(c => readiness(profile, c, ctx))
     .sort((a, b) => a.band - b.band || a.courseName.localeCompare(b.courseName));
 }

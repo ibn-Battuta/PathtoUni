@@ -1,0 +1,18 @@
+{
+  "courseId": "unsw-information-systems-co-op-honours",
+  "firstYear": "A four-year degree in UNSW's Business School. First year is seven introductory information-systems courses and one second-level course, covering how businesses use technology, programming and databases. Years two and three include three industry placements (about 18 months in total), year four is a supervised research thesis, and the co-op scholarship pays a yearly allowance for all four years.",
+  "notThis": "Not computer science. The focus is how organisations use technology, such as enterprise systems and digital transformation, rather than building software from the ground up. It is also a separate application: as well as UAC, you apply to the UNSW Co-op Program itself, with a questionnaire and interview and a deadline around the end of September in Year 12. Check the current date with UNSW.",
+  "neighbours": [
+    "wsu-computer-science",
+    "uow-computer-science",
+    "uts-computing-science"
+  ],
+  "sources": [
+    "https://www.unsw.edu.au/study/undergraduate/bachelor-of-information-systems-co-op-honours"
+  ],
+  "researchedOn": "2026-09-25",
+  "draftedBy": "Claude (Opus 5.5), 2026-09-25",
+  "reviewed": true,
+  "reviewedBy": "Ajay Walia",
+  "reviewedOn": "2026-09-25"
+}

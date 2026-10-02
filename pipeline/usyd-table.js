@@ -52,7 +52,7 @@ export function isStemRow(row) {
 
 export function fieldOf(name, faculty = '') {
   const n = name.toLowerCase();
-  if (/\bcomput|\binformation technology|\bcyber/.test(n)) return 'computing';
+  if (/\bcomput|\binformation technology|\binformation systems|\bcyber/.test(n)) return 'computing';
   if (/\bengineer/.test(n)) return 'engineering';
   if (/\b(pharm|medic|nurs|health|physio|psycholog|radiograph|oral|veterinary|dietetic|dental|biomedicine|occupational therapy|speech)/.test(n))
     return 'health';
@@ -109,17 +109,76 @@ export function parseSubjects(text) {
   return { subjects, choices };
 }
 
-function hurdlesFrom(special) {
+/**
+ * Human labels for the extra-admission steps. A bare enum reaching the page reads as
+ * machine spill, and the standing rule is that labels follow the facts, not the enum.
+ */
+export const HURDLE_LABEL = {
+  portfolio: 'a portfolio of written work',
+  audition: 'an audition',
+  interview: 'a structured interview',
+  ucat: 'the UCAT',
+  personal_statement: 'a personal statement of intent',
+  situational_judgement: 'a situational judgement test'
+};
+
+const HURDLE_PATTERNS = [
+  ['portfolio', /\bportfolio\b/, 'a portfolio of written work or support material'],
+  ['audition', /\baudition\b/, 'audition'],
+  ['interview', /\binterview\b/, 'a structured interview'],
+  ['ucat', /\bucat\b/, 'UCAT'],
+  ['personal_statement', /personal statement/, 'personal statement of intent for studying the course'],
+  ['situational_judgement', /situational judgement/, 'situational judgement test']
+];
+
+function hurdlesFrom(special, captureText, sourceUrl) {
   if (!special) return [];
   const out = [];
   const s = special.toLowerCase();
-  if (/\bportfolio\b/.test(s)) out.push({ type: 'portfolio' });
-  if (/\baudition\b/.test(s)) out.push({ type: 'audition' });
-  if (/\binterview\b/.test(s)) out.push({ type: 'interview' });
-  if (/\bucat\b/.test(s)) out.push({ type: 'ucat' });
-  if (/personal statement/.test(s)) out.push({ type: 'personal_statement' });
-  if (/situational judgement/.test(s)) out.push({ type: 'situational_judgement' });
+  for (const [type, re, proposed] of HURDLE_PATTERNS) {
+    if (!re.test(s)) continue;
+    // A hurdle is a claim about the course like any other, so it carries a quote the
+    // reader can check. Without one it is an assertion the page cannot defend, and it
+    // is not stored.
+    const quote = captureText ? findVerbatim(captureText, proposed) : null;
+    if (!quote) continue;
+    out.push({ type, label: HURDLE_LABEL[type], quote, source: sourceUrl });
+  }
   return out;
+}
+
+/**
+ * Who may apply at all. This is a different axis from readiness: a student can hold every
+ * assumed subject and still be unable to apply. The first version of this parser read the
+ * special-entry cell for portfolios and interviews and dropped the sentence that decided
+ * eligibility, so the course showed as fully open to everyone. Omission again failed toward
+ * the reassuring answer.
+ *
+ * The sentence is one visual line inside a table cell, but the PDF's text layer interleaves
+ * the course-name column into the middle of it, so no single literal substring spans it.
+ * Each half is stored and checked separately; the displayed sentence is exactly the halves
+ * joined, never a paraphrase.
+ */
+const RESTRICTION_PATTERNS = [
+  {
+    test: /only open to aboriginal and\s*\n?.*torres strait islander|only open to aboriginal/i,
+    who: 'Aboriginal and Torres Strait Islander students',
+    parts: [
+      'Admission to this course is only open to Aboriginal and',
+      'Torres Strait Islander students'
+    ]
+  }
+];
+
+export function restrictionFrom(special, captureText, sourceUrl) {
+  if (!special || !captureText) return null;
+  for (const r of RESTRICTION_PATTERNS) {
+    if (!r.test.test(special)) continue;
+    const parts = r.parts.map(x => findVerbatim(captureText, x));
+    if (parts.some(x => !x)) return null;
+    return { who: r.who, quoteParts: parts, quote: parts.join(' '), source: sourceUrl, tier: 'A' };
+  }
+  return null;
 }
 
 function hasMathsGatePhrase(prereq) {
@@ -175,7 +234,8 @@ export function rowToCourse(row, captureText, source) {
     }
   }
 
-  const extras = hurdlesFrom(row.special);
+  const extras = hurdlesFrom(row.special, captureText, source.url);
+  const restrictedTo = restrictionFrom(row.special, captureText, source.url);
   const verification = dropped.length === 0 ? 'verified' : 'unverified';
 
   return {
@@ -188,7 +248,8 @@ export function rowToCourse(row, captureText, source) {
     recommendedStudies: recommended,
     assumedChoices: choices,
     extraHurdles: extras,
-    nameRecognition: 'low',
+    ...(restrictedTo ? { restrictedTo } : {}),
+    nameRecognition: null,
     verification,
     source: source.url,
     capturedOn: source.capturedOn,

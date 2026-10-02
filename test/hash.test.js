@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { encodeState, decodeState, isCompleteSelection } from '../ui/hash.js';
+import { encodeState, decodeState, isCompleteSelection, encodeCompare, decodeSetB } from '../ui/hash.js';
 
 test('hash round-trip matches the documented results URL shape', () => {
   const state = {
@@ -32,6 +32,23 @@ test('hash round-trip matches the documented results URL shape', () => {
   assert.equal(isCompleteSelection(back), true);
 });
 
+test('a field filter round-trips on the hash and an old link without f still means all areas', () => {
+  const state = {
+    year: 12, mathsPathway: 'advanced', english: ['english_advanced'],
+    sciences: ['physics'], technology: [], otherCount: 0, bands: {},
+    filterField: 'engineering', filterUni: 'UNSW'
+  };
+  const hash = encodeState(state);
+  assert.match(hash, /f=eng/);
+  assert.match(hash, /u=unsw/);
+  const back = decodeState(hash);
+  assert.equal(back.filterField, 'engineering');
+  assert.equal(back.filterUni, 'UNSW');
+  const old = decodeState('y=12&m=adv&e=adv');
+  assert.equal(old.filterField, null);
+  assert.equal(old.filterUni, null);
+});
+
 test('Year 11 cannot carry Extension 2 through the hash', () => {
   const s = decodeState('y=11&m=ext12&e=adv');
   assert.equal(s.year, 11);
@@ -43,4 +60,35 @@ test('an empty hash is an incomplete selection, not a silent default profile', (
   assert.equal(isCompleteSelection(s), false);
   assert.equal(s.year, null);
   assert.equal(s.mathsPathway, null);
+});
+
+test('an old single-set hash still resolves to a normal result when b* keys are absent', () => {
+  const hash = encodeState({
+    year: 12, mathsPathway: 'advanced', english: ['english_advanced'],
+    sciences: ['biology'], technology: [], otherCount: 2, bands: {}
+  });
+  assert.equal(decodeSetB(hash), null);
+  const a = decodeState(hash);
+  assert.equal(a.mathsPathway, 'advanced');
+  assert.deepEqual(a.sciences, ['biology']);
+});
+
+test('compare hash keeps set A keys and prefixes set B', () => {
+  const a = {
+    year: 12, mathsPathway: 'advanced_ext1_ext2', english: ['english_advanced'],
+    sciences: ['physics', 'chemistry'], technology: [], otherCount: 1, bands: {}
+  };
+  const b = {
+    year: 12, mathsPathway: 'advanced', english: ['english_advanced'],
+    sciences: ['biology'], technology: [], otherCount: 2, bands: {}
+  };
+  const hash = encodeCompare(a, b);
+  assert.match(hash, /y=12/);
+  assert.match(hash, /m=ext12/);
+  assert.match(hash, /bm=adv/);
+  const backA = decodeState(hash);
+  const backB = decodeSetB(hash);
+  assert.equal(backA.mathsPathway, 'advanced_ext1_ext2');
+  assert.equal(backB.mathsPathway, 'advanced');
+  assert.deepEqual(backB.sciences, ['biology']);
 });

@@ -4,7 +4,7 @@ How this project evolved, and — more usefully — **what it got wrong and how 
 
 The mechanical changes are the least interesting part of this history. The reversals are the
 point: this is a product about not telling families things that aren't true, and it has been
-wrong five times in its first day. Each one is recorded below with what caused it and what
+wrong eighteen times so far — three times by opening a door that was shut. Each one is recorded below with what caused it and what
 now prevents it.
 
 Three running sections carry the real value:
@@ -20,6 +20,341 @@ not worth writing — say what became true that was not true before. If a commit
 earlier decision, update the decision log rather than leaving both entries to contradict each
 other, and add a line to **Errors caught** if something was actually wrong rather than merely
 superseded.
+
+---
+
+## Phase 25 — Three ways in: subjects, a quiz, and where the world is investing
+
+Ajay asked (26 Sep) for the home page to offer several doors, usable alone or together: the
+subjects view, a quiz about what the student enjoys, and courses tied to future industries,
+judged by where major economies are putting money — not only Australia.
+
+**Became true**
+- The home page opens with three doors: **Start with my subjects**, **What do I enjoy?**
+  and **Where is the world investing?** The picker is unchanged below them.
+- **`/quiz/`** — ten this-or-that picks. `scoreQuiz` counts picks per topic and keeps the
+  top three. The answers stay on the page; only the three topic ids go in the hash (`i=`).
+  The page lists degrees whose names match, plus broad degrees in a fold.
+- **`/industries/`** — nine areas (AI, quantum, chips, new energy, space, robotics,
+  biotech, critical minerals, advanced manufacturing). Each lists which of Australia, the
+  US, the EU, the UK, China and India name it, with the government's own words, a link and
+  the date checked, then the degrees that can lead there. The page is complete without
+  JavaScript. "Sort my results by this" puts the industry in the hash (`x=`).
+- **35 quotes from 14 official sources**, each matched word for word by code against the
+  live page or the PDF's text on 2 Oct (`docs/review/industries.md`). The build refuses
+  `data/industries.json` if an industry cites a quote that does not name it, or if any
+  source is not verified (`pipeline/industries.js`).
+- **Results sort, never filter.** With interests or an industry in the hash, a new
+  *Closest to what you told us* section leads, every list puts matches first, and each
+  matching row says why (*Matches: Space and flight*). Same courses, same counts, same bands.
+  The three doors carry the hash between them, so they combine.
+- **Topics come from the degree's own name** (`ui/topics.js`), with plain rules anyone can
+  read. A degree whose name names no area — Bachelor of Science, Engineering (Honours) — is
+  *broad*: never scored, never sunk, listed apart with "check the handbook offers a major in
+  this area". Project Management is neither: it matches nothing and stays in every list.
+- `test/doors.test.js`, nine tests. Dropping `topics` from the build payload and making the
+  sort drop zero-score courses each turned the suite red; both were restored.
+- Opened in a browser at desktop and phone width, dark and light: no horizontal scroll, no
+  console error, **no third-party request** on any of the new pages.
+
+**Judgement, labelled as such** — which degree leads to which industry is ours, from the
+degree name. The page says so beside every list. The quiz questions are questions, not
+claims. Neither has been reviewed by a person yet; see the review sheet.
+
+**Not true yet**
+- Japan and South Korea are not covered. "Not found in what we read" is shown, never "not
+  investing".
+- No industry description prose: names only, until someone reviews a description.
+- Course pages do not yet show their topics.
+
+---
+
+## Phase 24 — Error 18 fixed; a model's check is not a review
+
+A second-pass review by Grok (26 Sep) confirmed error 18 and found four catalogue problems
+the discovery batch had inherited. Checked against the files before acting: four held, two
+did not (see below).
+
+**Became true**
+- **`notEntryPoint`**, a quoted flag for a course no school leaver can start. The HTML
+  extractor finds it (an honours year after a degree; an add-on degree) and keeps it only when
+  the sentence is found verbatim in the capture. Across all 68 saved course pages it matches
+  exactly the two courses in error 18 — nothing else.
+- Those two are held out of every result list, count and comparison: the results page says
+  *Showing 13 of 128*. Their course pages say *"Not a course you start straight from school"*
+  above the subjects, with the university's sentence, drop the *Am I prepared for this?* link,
+  and the search snippet leads with it. The build refuses a description for either.
+- **UNSW Information Systems (Co-op)** is `computing`, not `science` (`fieldOf` now reads
+  "information systems"), and carries its separate Co-op application as a quoted hurdle, so a
+  student who never opens the description still sees it on the result row.
+- **Neighbours need a shared subject.** With nothing in common, every candidate tied and the
+  alphabet chose — Agricultural Science beside Data Science. Now those courses have no
+  neighbours rather than wrong ones. Neighbours are still not rendered.
+- `docs/review/discovery.md` gains four rules: check sentences against the page, not a
+  summary; later-year topics must be on the current unit table; whole-degree `firstYear` only
+  when no first-year list exists; and **`reviewedBy` is a person**. Grok's check of the three
+  rewrites is recorded in the review sheet, and they stay `reviewed: false` until Ajay reads
+  them. The page tells readers a person reviewed each description; a model's check would make
+  that untrue.
+- `test/entry-point.test.js`, ten tests. The build-copy and extractor checks were each
+  confirmed by breaking the code they guard. Opened in a browser: both course pages, the
+  results page (Computing tile, Co-op row with its hurdle), no third-party request, no console
+  error.
+
+**Checked and not acted on**
+- *"The unfamiliar cut is meaningless because 122 of 130 are `low`."* The field is stale in the
+  data, but the build maps `low` to `null` and the cut has used `offerCount` since Phase 19
+  (46 of 130). Not a defect in what ships.
+- *"UOW Mathematics and WSU Data Science really assume 2-unit maths."* No source was given. Not
+  entered until it is captured from the page.
+- Project Management stays `engineering`: that is the faculty and the tile a student browsing
+  engineering would look under. With neighbours now needing a shared subject, the tag no longer
+  produces wrong neighbours. A `business` field is a scope decision, not made here.
+
+---
+
+## Phase 23 — First discovery drafts, waiting for review
+
+The discovery slot from Phase 19 had been built and left empty. This fills the first batch —
+not all 46 at once, because review is the bottleneck and unreviewed prose ships nowhere.
+
+**Became true**
+- Eight entries in `data/discovery/` for computing, maths and data degrees: UNSW Advanced
+  Computer Science, UNSW Information Systems (Co-op), Sydney Advanced Computing, Sydney
+  Mathematical Sciences, Sydney Project Management, UTS Computing Science, Western Sydney Data
+  Science, Wollongong Mathematics. Each lists the university pages it was drawn from.
+- All eight are `reviewed: false`. The build ships **0**, and the drafted text appears nowhere
+  in `dist/` (checked with grep). Flipping one to `reviewed: true` in a scratch build made it
+  appear under *"What this is like — written by this site, not the university"*, then it was
+  flipped back.
+- `docs/review/discovery-batch-1.md` is the review sheet: each entry, its sources, what could
+  not be confirmed, and a checkbox.
+
+**Not true yet**
+- Nothing is reviewed, so nothing is public.
+- Two courses were not drafted because they are not entry points for a school leaver
+  (error 18).
+- Computed neighbours are poor where a course has no assumed knowledge: everything in the field
+  ties and the alphabet decides. Neighbours are not rendered yet; fix before they are.
+
+**Review, same day** — Ajay checked every claim against the live pages.
+- **Five reviewed and shipping:** UNSW Advanced Computer Science, UNSW Information Systems
+  (Co-op), Sydney Advanced Computing, Sydney Mathematical Sciences, Western Sydney Data Science.
+  The build now ships 5, and only those five course pages carry the block.
+- **Three revised, waiting for a second look.** Each was wrong in the same quiet way: a
+  sentence that sounded like the source but was not on it.
+  - Sydney Project Management listed later units from 2021–22 wording (risk, statistics,
+    organisational behaviour). The live table has none of those as units, and Project Finance
+    is an elective, not core. Rewritten from the live unit table.
+  - UTS Computing Science said the university describes its focus as algorithms, AI and systems
+    design. The course page does not say that. Softened to what the subject list shows.
+  - Wollongong Mathematics said you can "start undecided". The cited pages do not say that.
+    Removed; the content list now uses the page's own words.
+- The lesson for the next batch: a draft is checked phrase by phrase against the page it
+  cites, not against a summary of the page. Two of the three misses came from summaries.
+
+---
+
+## Phase 22 — Results are classified, not dumped
+
+A realistic profile still returns most of the catalogue as PREPARED. Listing 100 courses is
+not a decision aid. The page now asks **which area** you want to look at.
+
+**Became true**
+- Engineering, Computing, Science and Health are view filters with counts. University chips
+  sit under them. Neither is a band and neither deletes a course from the catalogue.
+- Until an area is chosen, ready-now courses are not listed as a wall of names — only the
+  gaps (what needs attention) and the four area tiles. Pick Engineering and that list appears.
+- The filter lives in the hash (`f=eng`, `u=unsw`) so a careers adviser can send *just
+  engineering at UNSW*. An old link without those keys still means every area.
+
+**Housekeeping** — `ui/prototype.html` is regenerated by `npm run build:site` and had not been
+committed since Phase 15. It now carries the Phase 18 early-entry field and the Phase 19
+discovery slot, matching `engine/readiness.js`. No behaviour changed; the committed engine and
+site already had both.
+
+---
+
+## Phase 21 — The landing page was a skinny column on a wide screen
+
+After the site went live, the first family-facing complaint was not a wrong rule. It was that
+the page was hard to read: 15px type, a 76rem shell, and the subject picker as a single stack
+of short chip rows with empty space down the right.
+
+**Became true**
+- The shell is `min(110rem, 96vw)` so results and course pages use most of a desktop screen.
+- Body type is 20px. Chips, course names, quotes and labels were lifted with it. Print still
+  uses point sizes so a careers sheet is not blown out.
+- The landing picker is a two-column grid of question cards (three columns above 90rem). Each
+  choice is a full-width button in its cell, not a pill on the left of an empty card.
+- Intro copy and the four trust points sit side by side on the home page.
+
+This is the same class of miss as errors 12–16: it was visible in thirty seconds of using the
+page, and no unit test would have caught it.
+
+---
+
+## Phase 20 — Compare two subject sets, lead with what does not change
+
+The fourth piece of `docs/MANIFEST-V2.md`. Year 11 confirmation is *these two or those two*.
+
+**Became true**
+- Set B lives under prefixed hash keys (`by`, `bm`, `be`…). An old single-set link still
+  decodes as a normal result.
+- The compare view leads with **"N of M courses are the same either way"** in the largest
+  type on the page, then what each set is more prepared for, with reasons and quotes.
+  There is no winner and no score.
+- A set that fails the ATAR pattern is not comparable on courses; that is said first.
+- Restricted and incomplete records are excluded from both sides.
+
+---
+
+## Phase 19 — Discovery: familiarity is computed, prose does not ship unreviewed
+
+The third piece of `docs/MANIFEST-V2.md`. Error 17: `nameRecognition: 'low'` was a
+placeholder meaning unassessed, then read as a finding about Bachelor of Science.
+
+**Became true**
+- Extractors write `nameRecognition: null`. Familiarity is how many of the six universities
+  offer that family of name. The unfamiliar cut is the names that appear at **one** of six
+  (46 of 130), and the lede says that — not a claim about cohort size.
+- `data/discovery/` is the reviewed-prose slot. `reviewed: false` is excluded from `dist/`.
+  A requirement-claim regex and an unknown neighbour id fail the build; both were verified
+  by adding a bad entry in tests.
+- Neighbours are computed from the catalogue (same field, overlapping assumed knowledge,
+  different university). Review path: `docs/review/discovery.md`.
+
+**Not drafted** — 46 uncommon names. Review is the bottleneck; no bulk prose.
+
+---
+
+## Phase 18 — Early entry, stated not scored
+
+The second piece of `docs/MANIFEST-V2.md`. Three universities may admit before the ATAR;
+none of those schemes is a readiness band.
+
+**Became true**
+- Results carry a section *"Three of these universities may admit you before the ATAR"* —
+  quote, what it reads in English, capture date, source. No score, no likelihood, no colour.
+- Western Sydney HSC True Reward is `kind: subject_bands` and says we have not captured the
+  per-course band table. Macquarie Leaders and Achievers and UOW Early Admission are
+  `kind: holistic`.
+- `wsu-srs` was `verified` with an empty quote (rule 1). It is now `unverified` and is not
+  displayed.
+- `stalenessDays: 180` degrades the wording to *"as at &lt;date&gt; — confirm the current
+  round with the university"* once that age is passed.
+- The engine carries `earlyEntry` the same way as `restrictedTo`: out to the page, never into
+  the band. A test asserts five profiles' bands do not move.
+
+**Not true** — we still do not have True Reward's band table, so we cannot say which courses
+it would actually admit. Capturing that table is now listed as the next source in
+`docs/PIPELINE.md`.
+
+---
+
+## Phase 17 — Dark by default
+
+The first piece of `docs/MANIFEST-V2.md`. Dark is the design; light is still available.
+
+**Became true**
+- Bare `:root` is the dark palette. A first-time reader with OS light, no storage, and no
+  JavaScript lands on dark.
+- A three-state control — Dark · Light · Match my system — sits in the top navigation on
+  every page. Choice is stored as `oty-theme` in `localStorage` and is not in the shareable
+  hash. Absent or blocked storage resolves to dark without throwing.
+- An inline script in `<head>`, before the stylesheet, applies a stored light/system choice
+  so the page does not flash.
+- Print forces every token, not just `background` and `color`, to ink on white.
+- `/about` now says the theme choice is the only thing kept in the browser.
+
+**Measured** — body contrast ≥ 15:1 in both themes; every band tag ≥ 4.5:1 in both. `--bridge`
+in light was 4.30:1 and was darkened; `--hard` in dark was shifted toward red-orange and the
+hard-gap tag also carries an outline so the two oranges stay distinct by shape.
+
+---
+
+## Phase 16 — Manifest v2 · planned, not built
+
+`docs/MANIFEST-V2.md` — four pieces of work specified for the next build, in order. Nothing
+in this phase is implemented yet; the entry exists so the reasoning is on the record before
+the code, rather than reconstructed after it.
+
+**1. Dark by default, light still available.** The site has full light/dark support and
+**no way to choose** — `data-theme` is honoured by the CSS and set by nothing, so a reader
+follows their operating system and cannot disagree. Dark becomes the base palette on bare
+`:root`; light is `[data-theme="light"]`; the OS is consulted only under an explicit *Match
+my system*. A three-state control in the top navigation, persisted in `localStorage`, applied
+by an inline script in `<head>` so the page does not repaint in front of the reader.
+
+The cost is written down rather than waved past: readers who set their OS to light often do
+so for a reason — astigmatism makes light-on-dark harder, not easier — and making dark
+unconditional overrides that until they find the control. The mitigation is that the control
+is findable, not that the cost is small.
+
+Two things fall out and are specified with it: the print path must be forced light on every
+token, not just `background` and `color`, or the careers sheet prints dark; and `/about`
+gains a sentence about the one thing now kept in the browser, because a page describing
+storage it does not mention is how error 12 happened.
+
+**2. Early entry.** `data/early-entry.json` has been captured since Phase 2 and never
+surfaced. Four schemes across three universities, and they are **two different kinds of
+thing**: Western Sydney's HSC True Reward reads *subject bands* — the only NSW admission route
+this tool's own inputs feed — while the other three read Year 11 results, extracurricular
+activity, casual work and community involvement, which this tool has never asked about and
+must never pretend to score. No scheme produces a likelihood, a score or a band. The manifest
+also records that we hold the True Reward scheme but **not** its per-course band table, so the
+honest version says what it reads and stops there.
+
+Two defects in the existing data found while specifying it: `wsu-srs` carries
+`verification: "verified"` with an **empty quote**, which violates rule 1 outright, and the
+file has no freshness rule — early entry has deadlines attached, so a stale claim there is
+worse than a stale prerequisite.
+
+**3. Discovery.** The half specified in Phase 3 and never built. The governing risk is
+narrow and severe: a model drafting a course description will write *"students need a strong
+mathematics background"*, which is a requirement claim sitting next to a quoted university
+rule saying the opposite, in the one direction this product exists to prevent. So drafted
+prose is rejected at build time by a regular expression, neighbours are computed from the
+catalogue rather than written by a model, and `reviewed: false` does not ship — otherwise
+"human-reviewed" is a claim the product does not meet.
+
+Specifying its scope turned up **error 17**, below.
+
+**4. Compare two subject sets.** `subjectChangeImpact` already exists; this is a second view
+and a hash format. It leads with the count that is **unchanged** — in NSW most swaps change
+nothing, and a comparison UI that leads with differences manufactures a decision that is not
+there, which is decision 1 inverted. Two directions, never a winner. Existing single-set links
+must keep resolving, since careers advisers paste them.
+
+---
+
+## Phase 15 — What the printer showed
+
+Grok's deploy report marked three checks as written but not personally verified: keyboard,
+themes, print. Keyboard passed (44 controls, zero without a focus ring). Themes passed (all
+four light/dark states resolve, 15.7:1 and 16.1:1). **Print failed at six pages against a
+spec that said one**, and fixing it turned up two defects the tests had no reason to look
+for, and then a third that had nothing to do with printing at all.
+
+**Print** — rows collapse to name and band, per-row quotes and reasoning come off, the
+teaching paragraph and the unfamiliar-courses section come off, and the sources move to one
+compact line carrying the distinct university domains and the capture date. `@page` margin
+9mm. `test/print.test.js` renders real PDFs across five subject profiles and counts real
+pages; removing the row cap makes it fail at four pages, which is how it was checked.
+
+**`situational_judgement` printed on a card.** A raw database value reached the page as a
+visible tag on the Veterinary Biology row. Extra hurdles now carry a written label, a
+verbatim quote and a source — and none is stored without a quote, which they had never had.
+
+**Two courses were listed as open when they are not.** See error 16. This is the one that
+matters.
+
+**Spec amended, deliberately.** `docs/UI-BUILD.md` §5.8 said *"One page of A4."* Rendered
+across five real profiles, the sheet runs 1 page at 3 gaps and 4 at 98 — one page is only
+reachable by truncating or by shrinking type past readability. The rule is now at most two
+pages with the causes always in full: above 24 gap rows the sheet prints the cause line, a
+per-university count, and where the rest is. At 98 gaps the individual names all say the
+same two things anyway.
 
 ---
 
@@ -434,7 +769,7 @@ prerequisite explorer.
 | 4 | All STEM including health | Standing (Phase 2) |
 | 5 | Five bands; hurdles are a flag, never a band | Standing (Phase 2) |
 | 6 | Evidence tiers A/B/C; Tier C alone can never produce HARD_GAP | Standing (Phase 2) — **nearly broken** Phase 8 by a new code path that bypassed the cap; held after a fix |
-| 7 | Front door is subjects; interest sorts but never hides | Standing (Phase 3) |
+| 7 | Front door is subjects; interest sorts but never hides | **Revised** Phase 25 — three doors (subjects, quiz, industries) by Ajay's call; *interest sorts but never hides* stands and is now enforced by a test |
 | 8 | Year 11/12 only — no reverse (goal → subjects) engine yet | Standing (Phase 3) |
 | 9 | Public site: paraphrase, deep-link, rate-limit, store nothing about students | Standing — **strengthened** Phase 10: a static client-side site makes "stores nothing" structural rather than promised |
 | 10 | Three traffic lights (Open / Gap / Blocked) | **Reversed** Phase 1 — one colour would have been 95% of output |
@@ -445,6 +780,15 @@ prerequisite explorer.
 | 16 | Planner + pre-rendered course pages; dense view default, stepped on mobile | Standing (Phase 10) |
 | 17 | Selection and results are separate pages; state in the URL **hash**, never the query string | Standing (Phase 11) |
 | 15 | "If a test fails, the code is wrong, not the test" | Standing, **refined** Phase 6 — protects verified *facts*; a test pinning a transient data state may be rewritten to assert the invariant |
+| 18 | Eligibility to apply is an axis of its own — never folded into the band | Standing (Phase 15) — established by `restrictedTo`; early entry takes the same shape |
+| 19 | Dark is the design; light is a choice the reader can make and keep | Standing (Phase 16) — the cost to readers who set their OS to light is recorded, not waived |
+| 20 | Early entry is stated and quoted, never scored | Standing (Phase 16) — three of four schemes read things this tool never asks about |
+| 21 | Discovery prose may not contain a requirement claim, enforced in code | Standing (Phase 16) |
+| 22 | Comparison leads with what is unchanged, and never names a winner | Standing (Phase 16) — decision 1 applied to a second view |
+| 23 | A placeholder value is `null`, never a plausible-looking default | Standing (Phase 16) — after error 17 |
+| 24 | A course no school leaver can start is not a result for anyone; its page says so first | Standing (Phase 24) — after error 18 |
+| 25 | `reviewedBy` names the person who read it; a model's check is recorded but is not a review | Standing (Phase 24) |
+| 26 | An industry is listed for a country only where that government's own document names it, quoted and code-matched | Standing (Phase 25) |
 
 ---
 
@@ -554,6 +898,104 @@ a remedy that did not exist. See Phase 12.
 seconds of looking at the page. Tests check what you thought to assert. A browser shows what a
 person actually gets.
 
+### 15. The print spec was approved as CSS and failed as paper
+`@media print` was written, reviewed and reported done. Rendered, it was six pages — the
+screen layout printed every gap as a full card with its quote, its reasoning and its own
+source line. Two more defects were sitting in the same output: a duplicated list of full
+URLs in the footer, and a raw enum on a card.
+**Prevents repeat** — `test/print.test.js` renders a PDF and counts pages. It skips loudly
+where no browser exists rather than passing quietly, because a print check that never runs is
+worse than none.
+
+### 16. Two courses were shown as open to students they are not open to
+Sydney's Bachelor of Science (Extended) and Bachelor of Science (Extended) (Health) state, in
+the special-entry column of the same table every other rule comes from: *"Admission to this
+course is only open to Aboriginal and Torres Strait Islander students."* The parser read that
+cell for portfolios, interviews and personal statements — patterns it had — and dropped the
+sentence that decided eligibility, which it did not. Both courses carry no assumed knowledge,
+so they scored `PREPARED` and appeared for every student as bare links under **"Everything
+else you are ready for"**.
+
+Then `ui/build.js` copies courses field by field into the page bundle, so even after the data
+carried `restrictedTo`, the field vanished on the way to the browser without an error.
+
+**This is error 5 wearing different clothes.** Omission again failed toward the reassuring
+answer — but where WSU's omission hid a requirement, this one opened a door that is closed.
+The entire premise of the product is not telling a sixteen-year-old something untrue about
+where they can go, and it was doing exactly that on two courses, silently, from the first
+build.
+
+**Two things made it invisible.** Nothing in the pipeline asks *who may apply* — every guard
+built so far checks subject rules, so a constraint on a different axis passed through every
+one of them. And the failure was legible only on screen: it looked like an ordinary course
+name in a list.
+
+**And it was wrong twice over.** The results page was fixed first; the pre-rendered course
+pages are a separate renderer and were still wrong. Those are the site's indexed surface —
+`/course/usyd-science-extended/` read *"No assumed knowledge listed on the captured page"* and
+stopped, and its meta description, the snippet a student meets in a search result before
+they have seen anything else on this site, said *"lists no assumed knowledge. No subject
+prerequisites."* Fixing one surface and calling the defect closed is its own error.
+
+**Prevents repeat** — `restrictedTo` is parsed with quotes checked in code, carried through
+the engine, held out of both the gap list and the ready list into its own section, and
+labelled `subjects fit` rather than `ready now` because the band only ever knew about
+subjects. The course page states who can apply above anything about subjects, and the search
+snippet leads with it. `test/restriction.test.js` checks all of it — including that the build
+does not drop the field on its way to the page, and that no course page prints a raw enum —
+and each assertion was checked by breaking the thing it guards.
+
+### 17. A placeholder was being read as a finding
+`pipeline/usyd-table.js:252` and `pipeline/html-course.js:293` both stamp
+`nameRecognition: 'low'` on every course they extract. It is a default meaning *nobody has
+assessed this*. Eight courses were ever assessed by hand, so the catalogue reads **122 low, 2
+medium, 6 high** — and the results page filters on exactly that field:
+
+```js
+const unfamiliar = prepared.filter(r => r.course.nameRecognition === 'low');
+```
+
+under the heading **"Open to you, and probably unfamiliar"**, with the line *"Narrower degrees
+mean smaller cohorts and fewer exits if you change your mind."* The site has been making that
+claim about Bachelor of Science.
+
+**Caught by** checking what the number actually was before writing a manifest section that
+depended on it. The section assumed the field discriminated; it does not.
+
+**Direction** — over-warning and mis-describing, so nearer error 11 than error 16. Nothing is
+shown as open that is shut. But a claim about cohort size and exit options is a claim a family
+can act on, and it rests on a value nobody set.
+
+**Prevents repeat** — the absent value becomes `null`, which is never displayed as anything;
+familiarity is derived from something measurable (how many of the six universities offer a
+degree of that name) rather than guessed per course; and a test asserts the unfamiliar cut is
+a minority of the catalogue rather than 94% of it. Specified in `docs/MANIFEST-V2.md` §3.4.
+
+
+### 18. Two courses a school leaver cannot enter were listed as ready
+
+Found while researching the first discovery batch. **UNSW Bachelor of Computational Design
+(Honours)** (program 4523) is a one-year, 48-unit honours year for students who already hold
+the Bachelor of Computational Design. **Western Sydney Bachelor of Applied Data Science** is,
+in the university's own words, *"not a stand-alone degree, but is designed to be undertaken as
+an add on degree in combination with any Bachelor degree offered at Western Sydney
+University."* Both have no or little assumed knowledge, so both scored as open to nearly
+everyone.
+
+**Direction** — the same direction as error 16: a door shown open that a Year 12 student
+cannot walk through. It is on the *who may apply* axis again, which the pipeline still does
+not ask about except for the one restriction pattern error 16 taught it.
+
+**Caught by** reading what the degree actually contains, for a description, rather than only
+its subject rules.
+
+**Prevents repeat** — `notEntryPoint` is extracted in code from the capture, quoted, carried
+through the engine and the build, held out of every result list, and stated first on the
+course page and in its search snippet (Phase 24). A test asserts only these two courses carry
+it, so a pattern that starts catching ordinary degrees fails loudly instead of hiding them.
+The pipeline still asks *who may apply* only through patterns it has been taught; the next
+one will again be found by reading a page, not by a guard.
+
 ---
 
 # Open questions
@@ -565,6 +1007,10 @@ person actually gets.
   through non-ATAR routes that read Year 11 results, and Western Sydney's HSC True Reward admits
   on **subject bands rather than the ATAR** — subject choice feeding admission directly. That is
   readiness-shaped, not scaling-shaped. See `data/early-entry.json`.
+- **`nameRecognition` needs a real basis, not just a non-guessing one.** Deriving it from how
+  many universities offer a degree of that name is defensible and computable, but it measures
+  name commonality, not whether a sixteen-year-old has heard of it. Those are close and not the
+  same, and nobody has checked how close.
 - **No independent review yet.** One careers adviser reading the engineering set would catch the
   class of error that quote-matching and completeness checks both miss: a rule read correctly and
   understood wrongly.

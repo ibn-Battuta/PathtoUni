@@ -18,6 +18,14 @@ Nothing hardcoded, nothing hallucinated. The model reads; deterministic code ans
    always human-reviewed before publish. Never rewritten by a readiness refresh.
 6. **Serve deterministically.** The app reads the committed JSON. No model call in the request path.
 
+## Next source — Western Sydney HSC True Reward band table
+
+HSC True Reward admits on published HSC subject-band outcomes, not the ATAR. We hold the
+scheme quote; we do **not** yet hold the per-course table of which bands for which degree.
+Until that table is captured as a structured artefact and quote-verified, the site must not
+compute eligibility. Capture it the same way as any other source: render, extract with
+forced quotation, completeness-audit, never invent a closing date.
+
 ## Start here
 
 The University of Sydney publishes prerequisites, assumed knowledge and recommended studies for its

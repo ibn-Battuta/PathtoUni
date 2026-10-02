@@ -1,0 +1,19 @@
+{
+  "courseId": "unsw-advanced-computer-science-honours",
+  "firstYear": "A four-year honours degree. First year is programming, computer systems and software engineering (COMP1511, COMP1521, COMP1531), with data structures and algorithms (COMP2521) already in the third term, alongside UNSW's higher-level maths (Higher Mathematics 1A and 1B) and discrete maths. Later you choose a major in Computer Science, Security Engineering or Artificial Intelligence, and the final year is a three-part research thesis.",
+  "notThis": "Not a different field from UNSW's Bachelor of Computer Science. It is the same subject taken deeper: higher maths in first year, an extension course in algorithms and programming, and a research thesis built into year four.",
+  "neighbours": [
+    "usyd-advanced-computing",
+    "usyd-advanced-computing-and-commerce",
+    "usyd-advanced-computing-and-science"
+  ],
+  "sources": [
+    "https://www.unsw.edu.au/study/undergraduate/bachelor-of-advanced-computer-science-honours",
+    "https://www.unsw.edu.au/content/dam/pdfs/engineering/general/course-progression/2026-progression-plans/term-1/3779/3779%20-%20Bachelor%20Advanced%20Computer%20Science%20(Honours)%20-%20Computer%20Science%20-%20COMPCH%20-%20T1%202026%20Start.pdf"
+  ],
+  "researchedOn": "2026-09-25",
+  "draftedBy": "Claude (Opus 5.5), 2026-09-25",
+  "reviewed": true,
+  "reviewedBy": "Ajay Walia",
+  "reviewedOn": "2026-09-25"
+}

@@ -575,7 +575,7 @@
     {
       "id": "unsw-information-systems-co-op-honours",
       "name": "Bachelor of Information Systems (Co-op) (Honours)",
-      "field": "science",
+      "field": "computing",
       "hardRules": [],
       "assumedKnowledge": [
         {
@@ -585,7 +585,14 @@
           "tier": "A"
         }
       ],
-      "extraHurdles": [],
+      "extraHurdles": [
+        {
+          "type": "interview",
+          "label": "a separate application with a questionnaire and interview",
+          "quote": "In addition to meeting the required ATAR (or equivalent), you’ll need to respond to a questionnaire and sit for an interview with UNSW Co-op Program.",
+          "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-information-systems-co-op-honours"
+        }
+      ],
       "nameRecognition": "low",
       "verification": "verified",
       "capturedOn": "2026-08-28",
@@ -601,7 +608,14 @@
       "nameRecognition": "low",
       "verification": "verified",
       "capturedOn": "2026-08-28",
-      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-computational-design-honours"
+      "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-computational-design-honours",
+      "notEntryPoint": {
+        "kind": "after_degree",
+        "who": "students who already hold a Bachelor degree in Computational Design",
+        "quote": "Students must hold a Bachelor degree in Computational Design with the equivalent of a UNSW Credit average.",
+        "source": "https://www.unsw.edu.au/study/undergraduate/bachelor-of-computational-design-honours",
+        "tier": "A"
+      }
     },
     {
       "id": "unsw-advanced-science-honours",

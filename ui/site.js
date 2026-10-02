@@ -1,4 +1,8 @@
 /*__HASH__*/
+/*__EARLY__*/
+/*__COMPARE__*/
+/*__CLASSIFY__*/
+/*__TOPICS__*/
 /*__ENGINE__*/
 
 const PAGE = document.body.dataset.page;
@@ -32,6 +36,7 @@ const BAND_CLASS = {
 };
 
 let state = decodeState(location.hash);
+let stateB = decodeSetB(location.hash);
 let step = 0;
 const STEPS = ['year', 'maths', 'english', 'sciences', 'technology', 'other'];
 
@@ -52,7 +57,7 @@ function profileFrom(s) {
 }
 
 function writeHash() {
-  const next = encodeState(state);
+  const next = stateB && isCompleteSelection(stateB) ? encodeCompare(state, stateB) : encodeState(state);
   const want = next ? '#' + next : '';
   if (location.hash !== want) history.replaceState(null, '', (location.pathname + location.search) + want);
 }
@@ -100,8 +105,10 @@ function toggle(arr, v) {
 }
 
 function runCatalogue(p) {
-  return CATALOGUE.map(c => {
-    const r = readiness(p, c, { gates: GATES, bridging: c._bridging });
+  // A course no school leaver can start is not a result for anyone (error 18). Held out
+  // here, once, so the lists, the counts and the comparison all agree.
+  return CATALOGUE.filter(c => !c.notEntryPoint).map(c => {
+    const r = readiness(p, c, { gates: GATES, bridging: c._bridging, earlyEntry: EARLY_ENTRY });
     return { ...r, university: c.university, course: c };
   });
 }
@@ -154,13 +161,14 @@ function renderPicker(root, opts = {}) {
     return box;
   }
 
-  root.appendChild(stepBox('year', 'Year', box => {
+  const grid = el('div', 'picker-grid');
+  grid.appendChild(stepBox('year', 'Year', box => {
     const c = el('div', 'chips');
     [11, 12].forEach(y => c.appendChild(chip('Year ' + y, state.year === y, () => { state.year = y; })));
     box.appendChild(c);
   }));
 
-  root.appendChild(stepBox('maths', 'Which mathematics?', box => {
+  grid.appendChild(stepBox('maths', 'Which mathematics?', box => {
     const c = el('div', 'chips');
     MATHS.forEach(([k, l]) => {
       const locked = k === 'advanced_ext1_ext2' && state.year === 11;
@@ -175,13 +183,13 @@ function renderPicker(root, opts = {}) {
     }
   }));
 
-  root.appendChild(stepBox('english', 'English', box => {
+  grid.appendChild(stepBox('english', 'English', box => {
     const c = el('div', 'chips');
     ENGLISH.forEach(([k, l]) => c.appendChild(chip(l, state.english[0] === k, () => { state.english = [k]; })));
     box.appendChild(c);
   }));
 
-  root.appendChild(stepBox('sciences', 'Sciences', box => {
+  grid.appendChild(stepBox('sciences', 'Sciences', box => {
     const c = el('div', 'chips');
     subjects.sciences.forEach(s => {
       const label = s.name === 'Earth and Environmental Science' ? 'Earth & env.'
@@ -191,7 +199,7 @@ function renderPicker(root, opts = {}) {
     box.appendChild(c);
   }));
 
-  root.appendChild(stepBox('technology', 'Technology', box => {
+  grid.appendChild(stepBox('technology', 'Technology', box => {
     const c = el('div', 'chips');
     subjects.technology.forEach(t => {
       const label = t.name === 'Engineering Studies' ? 'Eng. Studies'
@@ -203,7 +211,7 @@ function renderPicker(root, opts = {}) {
     box.appendChild(c);
   }));
 
-  const other = stepBox('other', 'Anything else', box => {
+  grid.appendChild(stepBox('other', 'Anything else', box => {
     box.appendChild(el('p', 'hint', 'No effect on STEM readiness — only counted for your ATAR pattern.'));
     const row = el('div', 'units');
     const st = el('div', 'stepper');
@@ -219,18 +227,19 @@ function renderPicker(root, opts = {}) {
     st.append(minus, n, plus);
     row.append(el('span', 'mono', 'other 2-unit subjects'), st);
     box.appendChild(row);
-    if (showCta) {
-      const cta = el('div', 'cta-wrap');
-      const go = el('button', 'btn', "See what's open to you");
-      go.type = 'button';
-      go.disabled = !isCompleteSelection(state);
-      go.addEventListener('click', () => { writeHash(); location.href = resultsHref(); });
-      cta.appendChild(go);
-      box.appendChild(cta);
-    }
-  });
-  root.appendChild(other);
+  }));
+  root.appendChild(grid);
   root.appendChild(unitsPanel());
+
+  if (showCta) {
+    const cta = el('div', 'cta-wrap picker-foot');
+    const go = el('button', 'btn', "See what's open to you");
+    go.type = 'button';
+    go.disabled = !isCompleteSelection(state);
+    go.addEventListener('click', () => { writeHash(); location.href = resultsHref(); });
+    cta.appendChild(go);
+    root.appendChild(cta);
+  }
 
   if (stepped) {
     const nav = el('div', 'step-nav');
@@ -253,19 +262,17 @@ function renderPicker(root, opts = {}) {
     if (step === STEPS.length - 1) next.disabled = !isCompleteSelection(state);
     nav.append(back, next);
     root.appendChild(nav);
-  } else if (showCta) {
-    const cta = el('div', 'cta-wrap');
-    const go = el('button', 'btn', "See what's open to you");
-    go.type = 'button';
-    go.disabled = !isCompleteSelection(state);
-    go.addEventListener('click', () => { writeHash(); location.href = resultsHref(); });
-    cta.appendChild(go);
-    root.appendChild(cta);
   }
 }
 
 function captureDate(course) {
   return course.capturedOn || CAPTURED_ON;
+}
+
+/** Display-side whitespace collapse. The stored quote keeps the capture's exact
+ * characters so it can be checked against the source; only the rendering is tidied. */
+function collapse(s) {
+  return String(s).replace(/\s+/g, ' ').trim();
 }
 
 function courseCard(r, opts = {}) {
@@ -282,9 +289,30 @@ function courseCard(r, opts = {}) {
   hd.append(nm, right);
   row.appendChild(hd);
 
+  // Why this row sits where it does when results are sorted by interest. A sort that
+  // cannot explain itself reads as a recommendation.
+  const sortBy = sortingNow();
+  if (sortBy.active) {
+    const m = matchedTopics(r.course, sortBy.interests, sortBy.industryTopics);
+    if (m.length) row.appendChild(el('span', 'tag t-match', 'Matches: ' + m.map(topicLabel).join(', ')));
+  }
+
+  // Who may apply at all. A student can hold every assumed subject and still not be able
+  // to apply, so this is stated before anything about readiness — and stated in the row,
+  // not only on the course page, because the row is what most people read.
+  if (r.restrictedTo) {
+    row.appendChild(el('p', 'restrict',
+      'Only open to ' + r.restrictedTo.who + '. Your subjects do not decide this.'));
+    if (r.restrictedTo.quote) row.appendChild(el('p', 'quote', '\u201c' + collapse(r.restrictedTo.quote) + '\u201d'));
+  }
+
+  // Labels follow the facts, not the enum: `situational_judgement` is a database value,
+  // not something to show a sixteen-year-old.
   (r.hurdles || []).forEach(h => {
-    const t = typeof h === 'string' ? h : (h.type || h.name || 'extra requirement');
-    row.appendChild(el('span', 'tag t-flag', t));
+    const t = typeof h === 'string'
+      ? h.replace(/_/g, ' ')
+      : (h.label || String(h.type || h.name || 'extra requirement').replace(/_/g, ' '));
+    row.appendChild(el('span', 'tag t-flag', 'Also asks for ' + t));
   });
 
   if (!r.complete) {
@@ -308,6 +336,11 @@ function courseCard(r, opts = {}) {
  * the facts rather than the enum.
  */
 function bandLabel(r) {
+  // "ready now" beside a course the reader cannot apply to is the card contradicting
+  // itself — the same defect as promising a bridging course that does not exist. The
+  // band is a statement about subjects, so where eligibility is decided elsewhere the
+  // label says only what the band actually knows.
+  if (r.restrictedTo) return r.bandName === 'PREPARED' ? 'subjects fit' : BAND_LABEL[r.bandName];
   if (r.bandName !== 'BRIDGE_IT') return BAND_LABEL[r.bandName];
   const subs = r.course?._bridging?.subjects || [];
   const gaps = (r.findings || []).map(f => f.subject);
@@ -365,10 +398,154 @@ function subjectChips() {
   return labels;
 }
 
+function sortingNow() {
+  const interests = state.interests || [];
+  const industry = INDUSTRIES.industries.find(x => x.id === state.industry) || null;
+  const industryTopics = industry ? industry.topics : [];
+  return { interests, industry, industryTopics, active: Boolean(interests.length || industry) };
+}
+
+function sortingSentence(sb) {
+  const bits = [];
+  if (sb.interests.length) bits.push('what you enjoy (' + sb.interests.map(topicLabel).join(', ') + ')');
+  if (sb.industry) bits.push('the industry you picked (' + sb.industry.name + ')');
+  return bits.join(' and ');
+}
+
+function clearSorting() {
+  state.interests = [];
+  state.industry = null;
+  afterChange();
+}
+
+function pageHref(slug) {
+  const h = encodeState(state);
+  return BASE + slug + (h ? '#' + h : '');
+}
+
 function renderHome() {
+  // The doors carry whatever the student has already told us, so the three ways in
+  // combine instead of starting over.
+  document.querySelectorAll('[data-door="quiz"]').forEach(a => { a.href = pageHref('quiz/'); });
+  document.querySelectorAll('[data-door="industries"]').forEach(a => { a.href = pageHref('industries/'); });
+  const now = document.getElementById('doors-now');
+  if (now) {
+    const sb = sortingNow();
+    now.hidden = !sb.active;
+    now.replaceChildren();
+    if (sb.active) {
+      now.append('Your results will be sorted by ' + sortingSentence(sb) + '. Add your subjects below. ');
+      const c = el('button', 'btn ghost', 'Clear');
+      c.type = 'button';
+      c.addEventListener('click', clearSorting);
+      now.appendChild(c);
+    }
+  }
   const picker = document.getElementById('picker');
   picker.dataset.mode = 'steps';
   renderPicker(picker, { showCta: true, stepped: true });
+}
+
+let quizAnswers = Array(QUIZ.length).fill(null);
+
+function degreeList(list) {
+  const ul = el('ul', 'deglist');
+  list.forEach(c => {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.href = courseHref(c.id);
+    a.textContent = c.name;
+    li.appendChild(a);
+    li.appendChild(el('span', 'uni-s', ' ' + c.university));
+    if (c.restrictedTo) li.appendChild(el('span', 'tag t-restrict', 'open to some students only'));
+    ul.appendChild(li);
+  });
+  return ul;
+}
+
+function renderQuiz() {
+  const main = document.getElementById('quiz');
+  if (!main) return;
+  main.querySelectorAll('.quiz-static').forEach(n => n.remove());
+  let box = document.getElementById('quiz-live');
+  if (!box) { box = el('div', 'quiz-live'); box.id = 'quiz-live'; main.appendChild(box); }
+  box.replaceChildren();
+
+  const answered = quizAnswers.filter(a => a !== null).length;
+  box.appendChild(el('p', 'quiz-progress', answered + ' of ' + QUIZ.length + ' answered'));
+  const list = el('ol', 'quiz-list');
+  QUIZ.forEach((pair, i) => {
+    const li = el('li', 'quiz-q');
+    const row = el('div', 'quiz-pair');
+    pair.forEach((opt, k) => {
+      const b = el('button', 'quiz-opt', opt.text);
+      b.type = 'button';
+      b.setAttribute('aria-pressed', quizAnswers[i] === k ? 'true' : 'false');
+      b.addEventListener('click', () => {
+        quizAnswers[i] = quizAnswers[i] === k ? null : k;
+        renderQuiz();
+      });
+      row.appendChild(b);
+      if (k === 0) row.appendChild(el('span', 'quiz-or', 'or'));
+    });
+    li.appendChild(row);
+    list.appendChild(li);
+  });
+  box.appendChild(list);
+
+  const top = scoreQuiz(quizAnswers);
+  const res = el('section', 'quiz-result');
+  if (answered < 3 || !top.length) {
+    res.appendChild(el('p', 'hint', 'Answer at least three to see your top areas.'));
+    box.appendChild(res);
+    return;
+  }
+  res.appendChild(el('h2', null, 'Your top areas'));
+  const chips = el('div', 'chips');
+  top.forEach(t => chips.appendChild(el('span', 'chip on', topicLabel(t))));
+  res.appendChild(chips);
+  res.appendChild(el('p', 'hint', 'Worked out from your picks with a simple count. It is a starting point for looking, not a verdict on you.'));
+
+  const use = el('button', 'btn', isCompleteSelection(state) ? 'Sort my results by these' : 'Use these, then add my subjects');
+  use.type = 'button';
+  use.addEventListener('click', () => {
+    state.interests = top;
+    location.href = isCompleteSelection(state) ? resultsHref() : homeHref() + '';
+  });
+  res.appendChild(use);
+
+  const { specific, broad } = coursesForTopics(top, CATALOGUE);
+  const ranked = sortByInterest(specific.map(c => ({ course: c })), top, []).map(x => x.course);
+  res.appendChild(el('h3', null, 'Degrees whose names match these areas (' + ranked.length + ')'));
+  res.appendChild(el('p', 'hint', 'Our judgement, from each degree’s name. Add your subjects to see which ones you are ready for.'));
+  res.appendChild(degreeList(ranked));
+  if (broad.length) {
+    const det = document.createElement('details');
+    det.className = 'fold';
+    const sm = document.createElement('summary');
+    sm.append('Broad degrees that keep these open ');
+    sm.appendChild(el('span', 'hint', broad.length + ' courses'));
+    det.appendChild(sm);
+    det.appendChild(el('p', 'hint', 'You choose a major later in these. Check the handbook offers one in your area.'));
+    det.appendChild(degreeList(broad));
+    res.appendChild(det);
+  }
+  box.appendChild(res);
+}
+
+function renderIndustries() {
+  // The page is complete without JavaScript. This only carries the student's subjects
+  // and interests into the "sort my results" links.
+  document.querySelectorAll('a[data-industry]').forEach(a => {
+    const next = { ...state, industry: a.dataset.industry };
+    const h = encodeState(next);
+    a.href = BASE + (isCompleteSelection(state) ? 'results/' : '') + (h ? '#' + h : '');
+    if (!isCompleteSelection(state)) a.textContent = 'Use this, then add my subjects';
+  });
+  document.querySelectorAll('.industries a[href^="../course/"]').forEach(a => {
+    const h = encodeState(state);
+    a.href = a.getAttribute('href').split('#')[0] + (h ? '#' + h : '');
+  });
 }
 
 function renderResults() {
@@ -385,12 +562,28 @@ function renderResults() {
     return;
   }
 
+  if (stateB && isCompleteSelection(stateB)) {
+    renderCompare(main);
+    return;
+  }
+
   const p = profileFrom(state);
   const results = runCatalogue(p);
   const order = ['PREPARED', 'MINOR_GAP', 'BRIDGE_IT', 'HARD_GAP', 'GATED'];
-  const attention = results.filter(r => r.bandName !== 'PREPARED' || !r.complete);
-  const prepared = results.filter(r => r.bandName === 'PREPARED' && r.complete);
-  const byBand = Object.fromEntries(order.map(b => [b, results.filter(r => r.bandName === b)]));
+  // A course a student cannot apply to is not something they are "ready for", whatever
+  // their subjects say, so it is held out of both the gap list and the ready list and
+  // counted on its own. Left in the ready list it appeared as a bare link under
+  // "Everything else you are ready for", which is a door that is not actually open.
+  const focused = applyClassifier(results, { field: state.filterField, university: state.filterUni });
+  const restrictedAll = results.filter(r => r.restrictedTo);
+  const restricted = applyClassifier(restrictedAll, { field: state.filterField, university: state.filterUni });
+  // Interest and industry only reorder. Every list below keeps every course it had.
+  const sb = sortingNow();
+  const open = sortByInterest(focused.filter(r => !r.restrictedTo), sb.interests, sb.industryTopics);
+  const attention = open.filter(r => r.bandName !== 'PREPARED' || !r.complete);
+  const prepared = open.filter(r => r.bandName === 'PREPARED' && r.complete);
+  const byBand = Object.fromEntries(order.map(b => [b, open.filter(r => r.bandName === b)]));
+  const scoped = Boolean(state.filterField || state.filterUni);
 
   main.replaceChildren();
 
@@ -456,6 +649,23 @@ function renderResults() {
   main.appendChild(el('p', 'honest',
     'Most of what follows is open to you. That is the normal answer in New South Wales — universities publish assumed knowledge rather than hard prerequisites, so subjects rarely stop you being admitted. What matters is the short list that is not open, and why.'));
 
+  // Print-only: rows drop their individual source lines to fit one page, so collect the
+  // distinct sources once. An artefact a family takes away must stay checkable.
+  const printSrc = el('div', 'printsources');
+  {
+    const unis = new Map();
+    results.forEach(r => {
+      (r.course?.assumedKnowledge || []).forEach(ak => {
+        if (ak.source) unis.set(r.university, ak.source);
+      });
+      if (r.gate?.source) unis.set(r.university, r.gate.source);
+    });
+    const bits = [...unis.entries()].map(([u, src]) => u + ' — ' + src.replace(/^https?:\/\//, '').split('/')[0]);
+    printSrc.textContent = 'Rules read ' + (CAPTURED_ON || '') + ' from: ' + bits.join(' \u00b7 ') +
+      '. Full quote and link for every course on this site\u2019s course pages.';
+  }
+  main.appendChild(printSrc);
+
   const sum = el('div', 'summary');
   order.forEach(b => {
     const n = byBand[b].length;
@@ -465,9 +675,44 @@ function renderResults() {
     s.appendChild(el('span', 'l', BAND_LABEL[b]));
     sum.appendChild(s);
   });
+  if (restricted.length) {
+    const s = el('div', 'stat b-restrict');
+    s.appendChild(el('span', 'n', String(restricted.length)));
+    s.appendChild(el('span', 'l', 'Open to some students only'));
+    sum.appendChild(s);
+  }
   main.appendChild(sum);
+  main.appendChild(renderClassifier(results, focused));
 
-  const sec1 = el('section');
+  if (sb.active) {
+    const secI = el('section'); secI.dataset.sec = 'interests';
+    const hI = el('div', 'sh');
+    hI.appendChild(el('h2', null, 'Closest to what you told us'));
+    secI.appendChild(hI);
+    const lead = el('p', 'lede');
+    lead.append('Sorted by ' + sortingSentence(sb) + '. This changes the order only — every course is still on this page, and no band has changed. ');
+    const change = el('a', null, 'Change');
+    change.href = pageHref(sb.industry && !sb.interests.length ? 'industries/' : 'quiz/');
+    lead.appendChild(change);
+    lead.append(' · ');
+    const clr = el('a', null, 'Clear');
+    clr.href = '#';
+    clr.addEventListener('click', e => { e.preventDefault(); clearSorting(); });
+    lead.appendChild(clr);
+    secI.appendChild(lead);
+    const close = open.filter(r => interestScore(r.course, sb.interests, sb.industryTopics) > 0);
+    if (close.length) {
+      const rows = el('div', 'rows');
+      close.slice(0, 12).forEach(r => rows.appendChild(courseCard(r, { sources: true })));
+      secI.appendChild(rows);
+      if (close.length > 12) secI.appendChild(el('p', 'hint', (close.length - 12) + ' more match. They are first in each list below.'));
+    } else {
+      secI.appendChild(el('p', 'lede', 'No degree name in this view matches. Broad degrees such as Science or Engineering can still lead there — you choose a major later.'));
+    }
+    main.appendChild(secI);
+  }
+
+  const sec1 = el('section'); sec1.dataset.sec = 'attention';
   const h1 = el('div', 'sh');
   h1.appendChild(el('h2', null, attention.length ? 'What needs attention' : 'Nothing needs attention'));
   h1.appendChild(el('span', 'count', attention.length ? attention.length + ' of ' + results.length : results.length + ' courses, no gaps'));
@@ -483,11 +728,75 @@ function renderResults() {
     }
     const rows = el('div', 'rows');
     attention.forEach(r => rows.appendChild(courseCard(r, { sources: true })));
+
+    // On paper the causes are the payload and the instances are the evidence for them.
+    // A profile with 98 gaps printed four pages of course names that all said the same
+    // two things; the printed sheet caps the list and says where the rest is, rather
+    // than shrinking the type until a careers adviser cannot read it.
+    const PRINT_ROW_CAP = 24;
+    rows.dataset.many = attention.length > PRINT_ROW_CAP ? '1' : '0';
+    if (attention.length > PRINT_ROW_CAP) {
+      const byUni = {};
+      attention.forEach(r => { byUni[r.university] = (byUni[r.university] || 0) + 1; });
+      const more = el('p', 'printmore');
+      more.textContent = attention.length + ' courses have a gap: '
+        + Object.entries(byUni).sort((a, b) => b[1] - a[1]).map(([u, n]) => u + ' ' + n).join(', ')
+        + '. Every one of them, with the quote it rests on, is on the site at this page\u2019s link.';
+      sec1.appendChild(more);
+    }
     sec1.appendChild(rows);
   } else {
     sec1.appendChild(el('p', 'lede', 'Your subject set meets the published assumed knowledge for every fully captured course in the catalogue.'));
   }
   main.appendChild(sec1);
+
+  if (restricted.length) {
+    const secR = el('section'); secR.dataset.sec = 'restricted';
+    const hR = el('div', 'sh');
+    hR.appendChild(el('h2', null, 'Open to some students only'));
+    hR.appendChild(el('span', 'count', restricted.length + ' of ' + results.length));
+    secR.appendChild(hR);
+    secR.appendChild(el('p', 'lede',
+      'These are real courses and they are fully open to the students they are for. They are listed apart because whether you can apply is decided by something other than your subjects.'));
+    const rowsR = el('div', 'rows');
+    restricted.forEach(r => rowsR.appendChild(courseCard(r, { sources: true })));
+    secR.appendChild(rowsR);
+    main.appendChild(secR);
+  }
+
+  const schemes = displayableSchemes(EARLY_ENTRY);
+  if (schemes.length) {
+    const secE = el('section');
+    secE.id = 'early-entry';
+    secE.dataset.sec = 'early';
+    const hE = el('div', 'sh');
+    hE.appendChild(el('h2', null, 'Three of these universities may admit you before the ATAR'));
+    secE.appendChild(hE);
+    secE.appendChild(el('p', 'lede',
+      'These are institution-level schemes, not per-course criteria we have captured. None of them is a score, a likelihood, or a readiness band.'));
+    schemes.forEach(s => {
+      const card = el('article', 'early');
+      card.appendChild(el('h3', null, s.university + ' — ' + s.name));
+      const reads = usesEnglish(s.uses);
+      card.appendChild(el('p', 'why', 'Reads: ' + reads.join(', ') + '.'));
+      card.appendChild(el('p', 'quote', '\u201c' + s.quote + '\u201d'));
+      if (s.kind === 'subject_bands') card.appendChild(el('p', 'why', TRUE_REWARD_CAVEAT));
+      const stale = staleNote(s, EARLY_ENTRY);
+      const meta = el('p', 'src');
+      const date = s.capturedOn || EARLY_ENTRY.capturedOn;
+      meta.append('Captured ' + date + '. ');
+      if (stale) meta.append(stale + '. ');
+      if (s.source) {
+        const a = document.createElement('a');
+        a.href = s.source; a.target = '_blank'; a.rel = 'noopener';
+        a.textContent = 'Source';
+        meta.appendChild(a);
+      }
+      card.appendChild(meta);
+      secE.appendChild(card);
+    });
+    main.appendChild(secE);
+  }
 
   const candidates = [
     ...state.sciences.map(s => ({ kind: 'sciences', id: s, label: subjects.sciences.find(x => x.id === s).name })),
@@ -495,7 +804,7 @@ function renderResults() {
   ];
   if (state.otherCount > 0) candidates.push({ kind: 'other', id: null, label: 'One other subject' });
   if (candidates.length) {
-    const sec2 = el('section');
+    const sec2 = el('section'); sec2.dataset.sec = 'drops';
     const h2 = el('div', 'sh');
     h2.appendChild(el('h2', null, 'If you dropped one'));
     sec2.appendChild(h2);
@@ -529,25 +838,33 @@ function renderResults() {
     main.appendChild(sec2);
   }
 
-  const hasRecognition = CATALOGUE.some(c => c.nameRecognition);
-  if (hasRecognition) {
-    const unfamiliar = prepared.filter(r => r.course.nameRecognition === 'low');
+  if (scoped) {
+    const unfamiliar = prepared.filter(r => r.course.offerCount === 1);
     if (unfamiliar.length) {
-      const sec3 = el('section');
+      const sec3 = el('section'); sec3.dataset.sec = 'unfamiliar';
       const h3 = el('div', 'sh');
       h3.appendChild(el('h2', null, 'Open to you, and probably unfamiliar'));
       h3.appendChild(el('span', 'count', unfamiliar.length + ' of ' + prepared.length + ' ready now'));
       sec3.appendChild(h3);
-      sec3.appendChild(el('p', 'lede', 'Narrower degrees mean smaller cohorts and fewer exits if you change your mind. You cannot search for a degree whose name you have never heard.'));
+      sec3.appendChild(el('p', 'lede',
+        'These names appear at one of the six universities in this planner. That count is computed from the catalogue — not a claim about class size or how hard it is to change your mind.'));
       const rows = el('div', 'rows');
       unfamiliar.slice(0, 24).forEach(r => rows.appendChild(courseCard(r)));
       sec3.appendChild(rows);
       main.appendChild(sec3);
     }
-    const rest = prepared.filter(r => r.course.nameRecognition !== 'low');
-    if (rest.length) foldPrepared(main, rest, 'Everything else you are ready for');
+    const rest = prepared.filter(r => r.course.offerCount !== 1);
+    if (rest.length) foldPrepared(main, rest, 'Everything else you are ready for in this view');
   } else if (prepared.length) {
-    foldPrepared(main, prepared, 'Everything else you are ready for');
+    const secP = el('section');
+    secP.dataset.sec = 'browse';
+    const hP = el('div', 'sh');
+    hP.appendChild(el('h2', null, 'Ready now — pick an area to browse'));
+    hP.appendChild(el('span', 'count', prepared.length + ' courses'));
+    secP.appendChild(hP);
+    secP.appendChild(el('p', 'lede',
+      'Most STEM degrees in NSW are open on your subjects. Listing them all at once is wallpaper. Choose Engineering, Computing, Science or Health above to see the list — nothing is removed from the catalogue.'));
+    main.appendChild(secP);
   }
 
   const foot = document.getElementById('foot');
@@ -568,6 +885,98 @@ function renderResults() {
     ul.appendChild(li);
   });
   if (srcs.size) foot.appendChild(ul);
+}
+
+function renderClassifier(allResults, focused) {
+  const wrap = el('section');
+  wrap.dataset.sec = 'classify';
+  wrap.className = 'classify';
+  const h = el('div', 'sh');
+  h.appendChild(el('h2', null, 'Look at one area'));
+  wrap.appendChild(h);
+  wrap.appendChild(el('p', 'lede',
+    'This is a view filter, not a verdict. Courses you are not looking at are still in the catalogue.'));
+  if (state.filterField || state.filterUni) {
+    const bits = [];
+    const fl = FIELDS.find(x => x.id === state.filterField);
+    if (fl) bits.push(fl.label);
+    const ulab = UNI_FILTER.find(x => x.id === state.filterUni);
+    if (ulab) bits.push(ulab.label);
+    wrap.appendChild(el('p', 'lede',
+      'Showing ' + focused.length + ' of ' + allResults.length + ' courses — ' + bits.join(' at ') + '.'));
+  }
+  const areas = el('div', 'classify-grid');
+  const fc = fieldCounts(allResults.filter(r => !r.restrictedTo));
+  FIELDS.forEach(f => {
+    const on = state.filterField === f.id;
+    const b = chip(f.label + ' (' + (fc[f.id] || 0) + ')', on, () => {
+      state.filterField = on ? null : f.id;
+    });
+    b.classList.add('classify-chip');
+    areas.appendChild(b);
+  });
+  wrap.appendChild(areas);
+  const unis = el('div', 'chips classify-unis');
+  const uc = uniCounts(applyClassifier(allResults.filter(r => !r.restrictedTo), { field: state.filterField }));
+  UNI_FILTER.forEach(u => {
+    const on = state.filterUni === u.id;
+    const n = uc[u.id] || 0;
+    unis.appendChild(chip(u.label + ' (' + n + ')', on, () => {
+      state.filterUni = on ? null : u.id;
+    }));
+  });
+  wrap.appendChild(unis);
+  return wrap;
+}
+
+function setLead(main, text) {
+  const p = el('p', 'compare-lead');
+  p.textContent = text;
+  main.appendChild(p);
+}
+
+function diffCard(pair, which) {
+  const r = which === 'a' ? pair.a : pair.b;
+  const row = courseCard(r, { sources: true });
+  return row;
+}
+
+function renderCompare(main) {
+  main.replaceChildren();
+  const patA = validateAtarPattern(profileFrom(state));
+  const patB = validateAtarPattern(profileFrom(stateB));
+  if (!patA.valid || !patB.valid) {
+    setLead(main, 'These two sets are not comparable on courses until both meet the ATAR pattern.');
+    if (!patA.valid) main.appendChild(el('p', 'lede', 'Set A: ' + patA.violations[0]));
+    if (!patB.valid) main.appendChild(el('p', 'lede', 'Set B: ' + patB.violations[0]));
+    return;
+  }
+  const left = runCatalogue(profileFrom(state));
+  const right = runCatalogue(profileFrom(stateB));
+  const cmp = compareResults(left, right);
+  setLead(main, cmp.same.length + ' of ' + cmp.total + ' courses are the same either way.');
+  const nDiff = cmp.aOpens.length + cmp.bOpens.length;
+  if (!nDiff) {
+    main.appendChild(el('p', 'lede', 'No difference list — the two sets open the same courses.'));
+    return;
+  }
+  main.appendChild(el('p', 'lede', 'Here is what the other ' + nDiff + ' are. There is no better set and no score.'));
+  if (cmp.aOpens.length) {
+    const sec = el('section');
+    sec.appendChild(el('h2', null, 'Set A is more prepared for'));
+    const rows = el('div', 'rows');
+    cmp.aOpens.forEach(p => rows.appendChild(diffCard(p, 'b')));
+    sec.appendChild(rows);
+    main.appendChild(sec);
+  }
+  if (cmp.bOpens.length) {
+    const sec = el('section');
+    sec.appendChild(el('h2', null, 'Set B is more prepared for'));
+    const rows = el('div', 'rows');
+    cmp.bOpens.forEach(p => rows.appendChild(diffCard(p, 'a')));
+    sec.appendChild(rows);
+    main.appendChild(sec);
+  }
 }
 
 function foldPrepared(main, list, title) {
@@ -601,10 +1010,13 @@ function foldPrepared(main, list, title) {
 function render() {
   if (PAGE === 'home') renderHome();
   else if (PAGE === 'results') renderResults();
+  else if (PAGE === 'quiz') renderQuiz();
+  else if (PAGE === 'industries') renderIndustries();
 }
 
 window.addEventListener('hashchange', () => {
   state = decodeState(location.hash);
+  stateB = decodeSetB(location.hash);
   render();
 });
 

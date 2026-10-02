@@ -204,7 +204,7 @@ export function toCatalogueCourse(ex) {
       return row;
     }),
     extraHurdles: ex.extraHurdles ?? [],
-    nameRecognition: ex.nameRecognition ?? 'low',
+    nameRecognition: ex.nameRecognition ?? null,
     verification: ex.verification,
     capturedOn: ex.capturedOn,
     source: ex.source

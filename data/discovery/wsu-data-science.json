@@ -1,0 +1,15 @@
+{
+  "courseId": "wsu-data-science",
+  "firstYear": "A three-year degree. The first semester is Scientific Literacy, Thinking About Data, Discrete Mathematics and Programming Fundamentals. Later study covers designing experiments, building statistical models, visualisation, machine learning and handling large data sets. You add either a major (Health Informatics or Technology Entrepreneurship), two minors, or one minor plus electives. The minors include Artificial Intelligence, Cybersecurity, Mathematics and Statistics.",
+  "notThis": "Not the same as Western Sydney's Bachelor of Applied Data Science, which is a one-year add-on taken with another degree. This is the standalone three-year degree.",
+  "neighbours": [],
+  "sources": [
+    "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-data-science",
+    "https://handbook.westernsydney.edu.au/2024-2025/programs/bachelor-data-science/bachelor-data-science.pdf"
+  ],
+  "researchedOn": "2026-09-25",
+  "draftedBy": "Claude (Opus 5.5), 2026-09-25",
+  "reviewed": true,
+  "reviewedBy": "Ajay Walia",
+  "reviewedOn": "2026-09-25"
+}

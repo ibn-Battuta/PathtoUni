@@ -50,3 +50,85 @@ first disagreement, not in the sample size.
 Anything marked **wrong** goes into `CHANGELOG.md` as a numbered error with cause and prevention,
 same as the fourteen already there. Anything in **E3** that names a lever we do not model is a
 scope decision, not a bug — record it under *Open questions* and decide it deliberately.
+
+---
+
+# Revision — scoped, layered, four-way
+
+The first draft would have manufactured the error it was built to catch. Three changes:
+
+## 1. Part A is scoped, not global
+
+"No prerequisites except Sydney's" is false as a statement about NSW — ACU and others carry real
+course prerequisites, and Macquarie's own wording is *"degrees don't have entry prerequisites,
+however some degrees have subject prerequisites."* Every Part A claim now reads **"among the
+courses we model at X"**, names the surviving course list, and carries the year.
+
+## 2. Every claim declares which layer it lives in
+
+The two errors already caught were the same collapse: **recommended → assumed → required**. A key
+sits at the top of the pack and every claim is tagged with its row:
+
+| Layer | Blocks the offer? | First year assumes it? | Can bridging stand in? |
+|---|---|---|---|
+| Course prerequisite | Yes | Yes | Sometimes — Sydney publishes a maths route; UNSW has no such mechanism |
+| Assumed knowledge | No | Yes | A short course, explicitly not two years of HSC |
+| Recommended studies | No | No | Irrelevant to admission |
+| Unit-level gate | No, not for the degree | Yes, for that unit | Sometimes a first-year unit instead |
+
+A claim filed in the wrong row is the finding, even when the quote is right. The fourth row is
+there because Biomedical Engineering's Biology probably lives at unit level, which we do not model.
+
+## 3. Four marks, not two
+
+**Correct · Wrong · True but misleading · Don't know / outside my schools.**
+
+"True but misleading" is the mark we actually want. *"UNSW lists Extension 1 as assumed knowledge,
+so a student can drop it and still get in"* is true and is bad advice at a selective school, where
+dropping it costs scaling, adjustment points and first-year survival at once. An adviser who can
+only tick Wrong will either over-correct or let it through. "Don't know" exists so silence is not
+read as assent.
+
+Every Part B item also carries **"What would you say instead, in the meeting?"** — that sentence
+is worth more than the tick above it.
+
+## Also changed
+
+- **Order is by blast radius**: known errors → A → B (the product) → C (vocabulary) → D (specific
+  rules, including both repairs) → E. Cut D if time runs short. Never cut B or E3.
+- **B1 carries UAC's own non-equalisation wording** so the bridging claim cannot be read as
+  "take the $380 course and you're fine".
+- **The two repairs are explicitly flagged for regression** — is the fix now the sentence you'd
+  say? Regression on a known error is the cheapest possible failure.
+- **E3 is widened and unleading**, with a tick-list that only opens if the reviewer stalls.
+- Every quote is date-stamped. No third-party ATAR explainers are cited anywhere — collapsing
+  assumed knowledge into prerequisites is their business model and it is the exact error being hunted.
+
+## Severity rule — decide before the reply arrives
+
+| Mark | Action |
+|---|---|
+| Wrong on A1–A3 | Stop. Do not ship the affected family-facing sentence. Changelog entry with cause and prevention. |
+| Wrong on a Part B conclusion | Same — that sentence *is* the product. |
+| Wrong on a Part D specific rule | Changelog. Fix it, then grep for the same collapse elsewhere. |
+| True but misleading | Not automatically a bug. Decide whether the sentence needs a qualifier. |
+| E3 names a lever we don't model | Open question and a scope decision. Not error fifteen. |
+
+**"The quote was correct" is not a defence.** That defence has already failed twice.
+
+## Preflight before sending
+
+- Re-check the $380 figure and the bridging window (UNSW Physics runs once a year, pre-Term 1).
+  A stale price is an easy "wrong" that teaches nothing.
+- Print it yourself. If a claim's quote and source are not on the same page as the claim, the
+  adviser will not use them.
+- Send `COVER-NOTE.md` with it. The ask is one sentence and it should stay one sentence.
+
+## One open disagreement, deliberately left in
+
+The reviewer's draft asserted *"Sydney's bridging courses do not satisfy the prerequisite; they
+address assumed knowledge only."* We think that is wrong: Sydney publishes the *Introduction to
+Calculus* MOOC plus examination as a genuine prerequisite-satisfying route, which is a different
+mechanism from UNSW's assumed-knowledge bridging. Rather than pick a side we made it **claim A3**
+and flagged it as the one we are least confident of. If the adviser marks it wrong, we learn
+something either way.

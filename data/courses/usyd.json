@@ -1717,7 +1717,10 @@
       ],
       "extraHurdles": [
         {
-          "type": "situational_judgement"
+          "type": "situational_judgement",
+          "label": "a situational judgement test",
+          "quote": "situational judgement test",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
         }
       ],
       "nameRecognition": "low",
@@ -1773,19 +1776,38 @@
       "assumedKnowledge": [],
       "extraHurdles": [
         {
-          "type": "portfolio"
+          "type": "portfolio",
+          "label": "a portfolio of written work",
+          "quote": "a portfolio of written work or support material",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
         },
         {
-          "type": "interview"
+          "type": "interview",
+          "label": "a structured interview",
+          "quote": "a structured interview",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
         },
         {
-          "type": "personal_statement"
+          "type": "personal_statement",
+          "label": "a personal statement of intent",
+          "quote": "personal statement of intent for\n                                                                                                          studying the course",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
         }
       ],
       "nameRecognition": "low",
       "verification": "verified",
       "capturedOn": "2026-08-27",
-      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "restrictedTo": {
+        "who": "Aboriginal and Torres Strait Islander students",
+        "quoteParts": [
+          "Admission to this course is only open to Aboriginal and",
+          "Torres Strait Islander students"
+        ],
+        "quote": "Admission to this course is only open to Aboriginal and Torres Strait Islander students",
+        "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+        "tier": "A"
+      }
     },
     {
       "id": "usyd-science-extended-health",
@@ -1795,19 +1817,38 @@
       "assumedKnowledge": [],
       "extraHurdles": [
         {
-          "type": "portfolio"
+          "type": "portfolio",
+          "label": "a portfolio of written work",
+          "quote": "a portfolio of written work or support material",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
         },
         {
-          "type": "interview"
+          "type": "interview",
+          "label": "a structured interview",
+          "quote": "a structured interview",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
         },
         {
-          "type": "personal_statement"
+          "type": "personal_statement",
+          "label": "a personal statement of intent",
+          "quote": "personal statement of intent for\n                                                                                                          studying the course",
+          "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
         }
       ],
       "nameRecognition": "low",
       "verification": "verified",
       "capturedOn": "2026-08-27",
-      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf"
+      "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+      "restrictedTo": {
+        "who": "Aboriginal and Torres Strait Islander students",
+        "quoteParts": [
+          "Admission to this course is only open to Aboriginal and",
+          "Torres Strait Islander students"
+        ],
+        "quote": "Admission to this course is only open to Aboriginal and Torres Strait Islander students",
+        "source": "https://www.sydney.edu.au/content/dam/corporate/documents/about-us/governance-and-structure/academic-board/ab-standards---guidelines-/course-prerquisite-assumed-knowledge-recommended-studies-table.pdf",
+        "tier": "A"
+      }
     }
   ]
 }

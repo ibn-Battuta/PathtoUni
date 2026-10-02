@@ -68,6 +68,28 @@ export const SUBJECT_TO_BAND_KEY = {
   'Mathematics Extension 2': 'ext2'
 };
 
+export const FIELD_TO_HASH = {
+  engineering: 'eng',
+  computing: 'comp',
+  science: 'sci',
+  health: 'health'
+};
+export const HASH_TO_FIELD = {
+  eng: 'engineering',
+  comp: 'computing',
+  sci: 'science',
+  health: 'health'
+};
+export const UNI_TO_HASH = {
+  UNSW: 'unsw',
+  'University of Sydney': 'usyd',
+  'University of Technology Sydney': 'uts',
+  'Macquarie University': 'mq',
+  'Western Sydney University': 'wsu',
+  'University of Wollongong': 'uow'
+};
+export const HASH_TO_UNI = Object.fromEntries(Object.entries(UNI_TO_HASH).map(([k, v]) => [v, k]));
+
 export function emptyState() {
   return {
     year: null,
@@ -76,9 +98,18 @@ export function emptyState() {
     sciences: [],
     technology: [],
     otherCount: 0,
-    bands: {}
+    bands: {},
+    filterField: null,
+    filterUni: null,
+    interests: [],
+    industry: null
   };
 }
+
+// Interests and the chosen industry sort results; they never change a band. Both are
+// short ids, validated against a fixed list, so nothing a reader types reaches the page.
+const INTEREST_IDS = ['ai', 'data', 'cyber', 'electronics', 'robotics', 'space', 'energy', 'materials', 'build', 'bio', 'health', 'mind', 'nature'];
+const INDUSTRY_IDS = ['ai', 'quantum', 'chips', 'energy', 'space', 'robotics', 'biotech', 'minerals', 'manufacturing'];
 
 export function isCompleteSelection(state) {
   return Boolean(state?.year && state?.mathsPathway && state.english?.length);
@@ -104,6 +135,13 @@ export function encodeState(state) {
     bands.push(`${key}:${token}`);
   }
   if (bands.length) p.set('b', bands.join(','));
+  const f = FIELD_TO_HASH[state.filterField];
+  if (f) p.set('f', f);
+  const u = UNI_TO_HASH[state.filterUni];
+  if (u) p.set('u', u);
+  const i = (state.interests ?? []).filter(x => INTEREST_IDS.includes(x)).slice(0, 3);
+  if (i.length) p.set('i', i.join(','));
+  if (INDUSTRY_IDS.includes(state.industry)) p.set('x', state.industry);
   return p.toString();
 }
 
@@ -138,5 +176,38 @@ export function decodeState(hash) {
         state.bands[subj] = { band: Number(token), scale: 'hsc' };
     }
   }
+  const f = p.get('f');
+  if (f && HASH_TO_FIELD[f]) state.filterField = HASH_TO_FIELD[f];
+  const u = p.get('u');
+  if (u && HASH_TO_UNI[u]) state.filterUni = HASH_TO_UNI[u];
+  const i = p.get('i');
+  if (i) state.interests = [...new Set(i.split(',').map(x => x.trim()).filter(x => INTEREST_IDS.includes(x)))].slice(0, 3);
+  const x = p.get('x');
+  if (x && INDUSTRY_IDS.includes(x)) state.industry = x;
   return state;
+}
+
+const B_PREFIX = { y: 'by', m: 'bm', e: 'be', s: 'bs', t: 'bt', o: 'bo', b: 'bb' };
+
+export function encodeCompare(a, b) {
+  const p = new URLSearchParams(encodeState(a));
+  if (!isCompleteSelection(b)) return p.toString();
+  const right = new URLSearchParams(encodeState(b));
+  for (const [k, v] of right.entries()) {
+    const pk = B_PREFIX[k];
+    if (pk) p.set(pk, v);
+  }
+  return p.toString();
+}
+
+export function decodeSetB(hash) {
+  const raw = String(hash ?? '').replace(/^#/, '').trim();
+  if (!raw) return null;
+  const p = new URLSearchParams(raw);
+  if (![...Object.values(B_PREFIX)].some(k => p.has(k))) return null;
+  const fake = new URLSearchParams();
+  for (const [k, pk] of Object.entries(B_PREFIX)) {
+    if (p.has(pk)) fake.set(k, p.get(pk));
+  }
+  return decodeState(fake.toString());
 }

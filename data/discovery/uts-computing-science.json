@@ -1,0 +1,18 @@
+{
+  "courseId": "uts-computing-science",
+  "firstYear": "A three-year degree. The core subjects include Programming 1 and 2, Discrete Mathematics, Mathematics 1, Web Systems, networks, databases and communication for IT professionals, building towards data structures and algorithms, theory of computing science, advanced algorithms and a final capstone project. It can also be taken through the UTS IDeA cadetship, where you work in industry while you study.",
+  "notThis": "The listed core leans towards theory: discrete maths, theory of computing science and advanced algorithms, alongside programming, networks and databases. A separate four-year honours version exists for students who want research.",
+  "neighbours": [
+    "unsw-advanced-science-honours-computer-science",
+    "wsu-computer-science",
+    "uow-computer-science"
+  ],
+  "sources": [
+    "https://www.uts.edu.au/courses/bachelor-of-computing-science"
+  ],
+  "researchedOn": "2026-09-25",
+  "draftedBy": "Claude (Opus 5.5), 2026-09-25",
+  "reviewed": false,
+  "reviewedBy": null,
+  "reviewedOn": null
+}

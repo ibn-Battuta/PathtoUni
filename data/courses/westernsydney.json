@@ -204,7 +204,14 @@
       "nameRecognition": "low",
       "verification": "verified",
       "capturedOn": "2026-08-27",
-      "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-applied-data-science"
+      "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-applied-data-science",
+      "notEntryPoint": {
+        "kind": "add_on",
+        "who": "students already taking another bachelor degree at the same university",
+        "quote": "This program is not a stand-alone degree, but is designed to be undertaken as an add on degree in combination with any Bachelor degree offered at Western Sydney University.",
+        "source": "https://www.westernsydney.edu.au/future/study/courses/undergraduate/bachelor-of-applied-data-science",
+        "tier": "A"
+      }
     },
     {
       "id": "wsu-advanced-medical-science",

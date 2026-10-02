@@ -23,3 +23,18 @@ family makes a real decision on it.
    the parsed record does not carry, the record is `incomplete`. The engine treats incomplete
    as unknown, never as "no requirements" — omission fails toward PREPARED, which is the
    reassuring direction and therefore the dangerous one.
+
+8. **Eligibility to apply is a separate axis from readiness.** Every guard in rules 1–7 checks
+   *subject rules*. A constraint of a different kind — who may apply at all — passes through all
+   of them untouched, which is how two courses open only to Aboriginal and Torres Strait Islander
+   students came to be listed for every student under "Everything else you are ready for".
+   A restriction is parsed with its quote checked in code, carried through the engine as
+   `restrictedTo`, and stated on the page. It is never folded into the band: folding it in
+   would either hide the course from the students it exists for, or quietly downgrade it for
+   everyone else. Where a restriction exists the band label says what the band actually knows
+   — `subjects fit`, not `ready now`.
+
+9. **The build's field whitelist is an omission risk.** `ui/build.js` copies courses field by
+   field into the page bundle. A field the engine reads and the build forgets disappears with
+   no error and no failing test, and the page then shows the reassuring version. Any new field
+   the engine reads gets a test that it survives the build.

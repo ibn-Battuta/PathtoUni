@@ -1,0 +1,20 @@
+{
+  "courseId": "usyd-mathematical-sciences",
+  "firstYear": "First year is mostly mathematics and data: Mathematics 1A and 1B, discrete maths, foundations of data science and data computing, plus a unit on research and communication in the mathematical sciences. Most of these have Advanced versions. You then choose a major from Mathematics, Statistics, Financial Mathematics and Statistics, Data Science, Mathematical Modelling and Computation, or Discrete Mathematics and Algorithms, and add a minor or second major.",
+  "notThis": "Not a general science degree. In a Bachelor of Science, maths is one choice among many sciences; here every major is mathematical, and the university describes the degree as a foundation for Honours. It takes three years.",
+  "neighbours": [
+    "unsw-advanced-science-honours",
+    "unsw-science-advanced-mathematics-honours",
+    "unsw-science-advanced-mathematics-honours-commerce"
+  ],
+  "sources": [
+    "https://www.sydney.edu.au/handbooks/science/coursework/mathematical-sciences/overview.html",
+    "https://www.sydney.edu.au/handbooks/science/coursework/mathematical-sciences/course-resolutions.html",
+    "https://www.sydney.edu.au/handbooks/science/coursework/mathematical-sciences/unit-of-study-table.html"
+  ],
+  "researchedOn": "2026-09-25",
+  "draftedBy": "Claude (Opus 5.5), 2026-09-25",
+  "reviewed": true,
+  "reviewedBy": "Ajay Walia",
+  "reviewedOn": "2026-09-25"
+}
