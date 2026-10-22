@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /results
 Disallow: /results/
-Sitemap: /sitemap.xml
+Sitemap: https://ibn-battuta.github.io/PathtoUni/sitemap.xml
