@@ -26,3 +26,15 @@ test('every course meta description is unique and names assumed knowledge from t
   assert.match(courseDescription(unswEng), /assumes Mathematics Extension 1 and Physics/);
   assert.match(courseDescription(unswEng), /No subject prerequisites/);
 });
+
+// Error 21: a local build wrote <loc>/</loc> and og:url "/", and that build was the one
+// prepared for deploy. Whatever machine builds the site, the addresses must be absolute.
+test('the built sitemap, robots.txt and og:url use the full site address', { skip: !fs.existsSync(path.join(ROOT, 'dist/sitemap.xml')) && 'run npm run build:site first' }, () => {
+  const sitemap = fs.readFileSync(path.join(ROOT, 'dist/sitemap.xml'), 'utf8');
+  const locs = [...sitemap.matchAll(/<loc>([^<]*)<\/loc>/g)].map(m => m[1]);
+  assert.ok(locs.length > 130);
+  for (const l of locs) assert.match(l, /^https:\/\/[^/]+\.github\.io\/PathtoUni\//, l);
+  assert.match(fs.readFileSync(path.join(ROOT, 'dist/robots.txt'), 'utf8'), /Sitemap: https:\/\//);
+  const home = fs.readFileSync(path.join(ROOT, 'dist/index.html'), 'utf8');
+  assert.match(home, /<meta property="og:url" content="https:\/\/[^"]+\/PathtoUni\/">/);
+});

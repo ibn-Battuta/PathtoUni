@@ -1,11 +1,12 @@
 {
   "courseId": "usyd-project-management",
-  "firstYear": "First year is six project-management units: an introduction to project management, project initiation and scope, project communication, time, cost and resources, systems thinking, and facilitation and stakeholder engagement. Later core units cover project acceptance, project analytics, critical thinking, executing projects, conflict management, reframing projects, innovation and the legal side of projects, with electives such as project finance, agile project management and scheduling. The degree takes three years.",
+  "firstYear": "The first-level core is six project-management units: an introduction to project management, project initiation and scope, project communication, time, cost and resources, systems thinking, and facilitation and stakeholder engagement. Later core units cover project acceptance, project analytics, critical thinking, executing projects, conflict management, reframing projects, innovation and the legal side of projects, with electives such as project finance, agile project management and scheduling. You also take a major, such as Construction or Built Environment. The degree takes three years.",
   "notThis": "Not an engineering degree, even though the Engineering faculty runs it. The core the university lists is about leading projects and people, not engineering maths or physics. Students who want both can take it combined with the Bachelor of Engineering Honours.",
   "neighbours": [],
   "sources": [
     "https://www.sydney.edu.au/content/handbooks/engineering/project-management.html",
-    "https://www.sydney.edu.au/handbooks/engineering/project-management/project-management-table.html"
+    "https://www.sydney.edu.au/handbooks/engineering/project-management/project-management-table.html",
+    "https://www.sydney.edu.au/courses/courses/uc/bachelor-of-project-management.html"
   ],
   "researchedOn": "2026-09-25",
   "draftedBy": "Claude (Opus 5.5), 2026-09-25",

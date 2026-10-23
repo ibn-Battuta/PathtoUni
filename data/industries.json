@@ -1,14 +1,16 @@
 {
-  "_comment": "Future-industries door. Each industry is listed only where an official government source names it, quoted verbatim. The quotes were string-matched (code, not a reader) against the live page or PDF text on checkedOn. Which degrees lead into each industry is computed from ui/topics.js and labelled as our judgement on the page.",
+  "_comment": "Future-industries door. Each industry is listed only where an official government source names it, quoted verbatim. The quotes were string-matched (code, not a reader) against the live page or PDF text on each source's checkedOn; the Japan PDF was matched ignoring spaces, because its text layer splits words. Which degrees lead into each industry is computed from ui/topics.js and labelled as our judgement on the page.",
   "capturedOn": "2026-10-02",
   "stalenessDays": 365,
   "economies": [
-    { "id": "au", "label": "Australia" },
-    { "id": "us", "label": "United States" },
-    { "id": "eu", "label": "European Union" },
-    { "id": "uk", "label": "United Kingdom" },
-    { "id": "cn", "label": "China" },
-    { "id": "in", "label": "India" }
+    { "id": "au", "label": "Australia", "short": "Australia", "long": "Australia" },
+    { "id": "us", "label": "United States", "short": "the US", "long": "the United States" },
+    { "id": "eu", "label": "European Union", "short": "the EU", "long": "the European Union" },
+    { "id": "uk", "label": "United Kingdom", "short": "the UK", "long": "the United Kingdom" },
+    { "id": "cn", "label": "China", "short": "China", "long": "China" },
+    { "id": "in", "label": "India", "short": "India", "long": "India" },
+    { "id": "jp", "label": "Japan", "short": "Japan", "long": "Japan" },
+    { "id": "kr", "label": "South Korea", "short": "South Korea", "long": "South Korea" }
   ],
   "sources": [
     {
@@ -212,6 +214,45 @@
       },
       "checkedOn": "2026-10-02",
       "verification": "verified"
+    },
+    {
+      "id": "jp-growth",
+      "economy": "jp",
+      "publisher": "Cabinet Secretariat (Government of Japan)",
+      "title": "Japan’s Growth Strategy (July 21, 2026, provisional translation)",
+      "url": "https://www.cas.go.jp/jp/seisaku/nipponseichosenryaku/pdf/jgs2026en.pdf",
+      "kind": "pdf",
+      "quotes": {
+        "ai": "AI and the high-performance semiconductors that enable its advanced, high-speed, and energy-efficient computing are directly linked to industrial competitiveness and national security and thus determine Japan’s national strength.",
+        "quantum": "Quantum technologies operate on principles distinct from existing technologies and have the potential to spark the next industrial revolution as the foundation for next-generation industries",
+        "robotics": "By leveraging the abundant data from the manufacturing sector and the technological infrastructure of industrial robots, we will advance the development of robots, key components, and AI models.",
+        "space": "As the use of space advances in areas such as communications, observation, positioning, and national security, with a global market projected to reach approximately 150 trillion yen by the 2030s, rocket launch capabilities are indispensable for space utilization.",
+        "materials": "The materials industry is a foundational sector that can contribute to other strategic fields by supplying competitive materials and materials compatible with the Green Transformation (GX).",
+        "minerals": "securing alternative sources of critical minerals, strengthening the production supply chain for components",
+        "medical": "The fields of drug discovery and advanced medical care are directly linked to public health and underpin economic activity.",
+        "fusion": "Fusion energy is highly anticipated as a next-generation clean energy source."
+      },
+      "checkedOn": "2026-10-23",
+      "verification": "verified"
+    },
+    {
+      "id": "kr-msit-2027",
+      "economy": "kr",
+      "publisher": "Ministry of Science and ICT (Republic of Korea)",
+      "title": "MSIT Takes a Great Leap Forward to Make Korea a Globally Irreplaceable Nation through AI and Advanced Technologies (2027 budget)",
+      "url": "https://www.msit.go.kr/eng/bbs/view.do?sCode=eng&mPid=2&mId=4&bbsSeqNo=42&nttSeqNo=1302",
+      "kind": "html",
+      "quotes": {
+        "ai": "MSIT’s core investment areas include 1) accelerating AI transformation, 2) securing Next AI and advanced technologies",
+        "semiconductors": "Expanding investment in the development of core technologies to secure an early lead in the global next-generation semiconductor market",
+        "quantum": "Accelerating the development of a full-stack quantum computer led by Korean companies",
+        "frontier": "Securing core technologies in quantum, advanced biotechnology, and space as next-generation frontier technologies beyond the semiconductor and AI era",
+        "energy": "Secure technologies for SMRs (Small Modular Reactors), nuclear fusion, and renewable energy at an early stage to address surging power demand driven by AI and achieve carbon neutrality.",
+        "materials": "Securing and advancing source nano and materials technologies to address global supply chain issues and lay the foundation for future industries.",
+        "moonshot": "undertakes mission-oriented R&D projects in 12 areas, including humanoids, materials, and new drugs."
+      },
+      "checkedOn": "2026-10-23",
+      "verification": "verified"
     }
   ],
   "industries": [
@@ -223,7 +264,8 @@
       "broadFields": ["science", "engineering"],
       "evidence": [
         ["au-nrf-enabling", "ai"], ["us-rd-fy27", "ai"], ["eu-step", "digital"],
-        ["uk-digital", "frontier"], ["cn-aiplus", "ai"], ["in-ai", "ai"]
+        ["uk-digital", "frontier"], ["cn-aiplus", "ai"], ["in-ai", "ai"],
+        ["jp-growth", "ai"], ["kr-msit-2027", "ai"]
       ]
     },
     {
@@ -234,7 +276,8 @@
       "broadFields": ["science", "engineering"],
       "evidence": [
         ["au-nrf-enabling", "quantum"], ["us-rd-fy27", "applied"], ["eu-step", "digital"],
-        ["uk-digital", "frontier"], ["cn-15fyp", "future"], ["in-nqm", "quantum"]
+        ["uk-digital", "frontier"], ["cn-15fyp", "future"], ["in-nqm", "quantum"],
+        ["jp-growth", "quantum"], ["kr-msit-2027", "quantum"]
       ]
     },
     {
@@ -245,7 +288,8 @@
       "broadFields": ["engineering", "science"],
       "evidence": [
         ["au-nrf-enabling", "semiconductors"], ["us-rd-fy27", "semiconductors"], ["eu-step", "digital"],
-        ["uk-digital", "frontier"], ["in-ism", "semiconductors"]
+        ["uk-digital", "frontier"], ["in-ism", "semiconductors"], ["jp-growth", "ai"],
+        ["kr-msit-2027", "semiconductors"]
       ]
     },
     {
@@ -256,7 +300,8 @@
       "broadFields": ["engineering", "science"],
       "evidence": [
         ["au-nrf-priority", "renewables"], ["us-rd-fy27", "applied"], ["eu-step", "clean"],
-        ["uk-clean", "clean"], ["cn-15fyp", "future"], ["in-gh2", "hydrogen"]
+        ["uk-clean", "clean"], ["cn-15fyp", "future"], ["in-gh2", "hydrogen"],
+        ["jp-growth", "fusion"], ["kr-msit-2027", "energy"]
       ]
     },
     {
@@ -266,19 +311,19 @@
       "topics": ["space"],
       "broadFields": ["engineering", "science"],
       "evidence": [
-        ["au-nrf-enabling", "space"], ["us-rd-fy27", "space"],
-        ["uk-advmfg", "industries"], ["cn-15fyp", "future"]
+        ["au-nrf-enabling", "space"], ["us-rd-fy27", "space"], ["uk-advmfg", "industries"],
+        ["cn-15fyp", "future"], ["jp-growth", "space"], ["kr-msit-2027", "frontier"]
       ]
     },
     {
       "id": "robotics",
       "name": "Robotics and autonomous machines",
-      "terms": ["robot", "autonomous", "embodied"],
+      "terms": ["robot", "autonomous", "embodied", "humanoid"],
       "topics": ["robotics", "ai"],
       "broadFields": ["engineering"],
       "evidence": [
-        ["au-nrf-enabling", "robotics"], ["us-rd-fy27", "applied"],
-        ["eu-step", "digital"], ["cn-15fyp", "future"]
+        ["au-nrf-enabling", "robotics"], ["us-rd-fy27", "applied"], ["eu-step", "digital"],
+        ["cn-15fyp", "future"], ["jp-growth", "robotics"], ["kr-msit-2027", "moonshot"]
       ]
     },
     {
@@ -289,17 +334,19 @@
       "broadFields": ["science"],
       "evidence": [
         ["au-nrf-priority", "medical"], ["us-rd-fy27", "biotech"], ["eu-step", "biotech"],
-        ["uk-digital", "frontier"], ["cn-15fyp", "future"]
+        ["uk-digital", "frontier"], ["cn-15fyp", "future"], ["jp-growth", "medical"],
+        ["kr-msit-2027", "frontier"]
       ]
     },
     {
       "id": "minerals",
-      "name": "Critical minerals and resources",
+      "name": "Minerals for batteries and electronics (critical minerals)",
       "terms": ["mineral", "resources"],
       "topics": ["materials", "nature"],
       "broadFields": ["engineering", "science"],
       "evidence": [
-        ["au-nrf-priority", "resources"], ["us-rd-fy27", "minerals"], ["in-ncmm", "minerals"]
+        ["au-nrf-priority", "resources"], ["us-rd-fy27", "minerals"], ["in-ncmm", "minerals"],
+        ["jp-growth", "minerals"]
       ]
     },
     {
@@ -310,7 +357,8 @@
       "broadFields": ["engineering"],
       "evidence": [
         ["au-nrf-enabling", "manufacturing"], ["us-rd-fy27", "manufacturing"], ["eu-step", "manufacturing"],
-        ["uk-advmfg", "industries"], ["cn-15fyp", "future"]
+        ["uk-advmfg", "industries"], ["cn-15fyp", "future"], ["jp-growth", "materials"],
+        ["kr-msit-2027", "materials"]
       ]
     }
   ]

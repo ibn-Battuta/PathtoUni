@@ -44,6 +44,9 @@ export function isBroad(course) {
 }
 
 // Ten this-or-that picks. Questions, not claims: nothing here is stated as fact.
+// Every topic is offered at least twice. A topic offered once can never outrank one
+// picked twice, so before 23 Oct 2026 a student who loved building could not get it
+// as their top area (error 20).
 export const QUIZ = [
   [{ text: 'Build a robot that can walk', topics: ['robotics'] },
    { text: 'Work out why some people get sick and others do not', topics: ['health', 'bio'] }],
@@ -54,16 +57,16 @@ export const QUIZ = [
   [{ text: 'Design a rocket or a satellite', topics: ['space'] },
    { text: 'Invent a better battery', topics: ['energy', 'materials'] }],
   [{ text: 'Stop hackers breaking into a hospital’s computers', topics: ['cyber'] },
-   { text: 'Help someone walk again after an injury', topics: ['health'] }],
+   { text: 'Help someone who feels anxious feel better', topics: ['mind', 'health'] }],
   [{ text: 'Understand why people make the choices they do', topics: ['mind'] },
    { text: 'Work out how the circuits in your phone work', topics: ['electronics'] }],
   [{ text: 'Make a material stronger than steel and lighter than plastic', topics: ['materials'] },
    { text: 'Teach a computer to recognise voices', topics: ['ai'] }],
   [{ text: 'Protect an endangered animal', topics: ['nature'] },
-   { text: 'Run a wind or solar farm', topics: ['energy'] }],
+   { text: 'Design a city that runs on wind and solar power', topics: ['energy', 'build'] }],
   [{ text: 'Design aircraft and drones', topics: ['space', 'robotics'] },
    { text: 'Study cells and DNA in a lab', topics: ['bio'] }],
-  [{ text: 'Solve a tricky maths puzzle', topics: ['data'] },
+  [{ text: 'Crack a secret code', topics: ['cyber', 'data'] },
    { text: 'Take a machine apart and make it work better', topics: ['robotics', 'electronics'] }]
 ];
 

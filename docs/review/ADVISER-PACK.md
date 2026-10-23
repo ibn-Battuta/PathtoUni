@@ -1,6 +1,6 @@
 # Adviser review pack
 
-Live pack: https://claude.ai/code/artifact/9bc6d994-97a7-4da7-99b2-e99ec4a92082
+Live pack: https://claude.ai/artifact/LEgqAZbNAcnB7C7gqjDHcM (updated 23 Oct 2026 — adds D6, who may apply)
 Source: kept with the session that produced it; regenerate from this spec if it needs rebuilding.
 
 ## What it is for
@@ -48,7 +48,7 @@ first disagreement, not in the sample size.
 ## What to do with the response
 
 Anything marked **wrong** goes into `CHANGELOG.md` as a numbered error with cause and prevention,
-same as the fourteen already there. Anything in **E3** that names a lever we do not model is a
+same as the twenty already there. Anything in **E3** that names a lever we do not model is a
 scope decision, not a bug — record it under *Open questions* and decide it deliberately.
 
 ---
@@ -132,3 +132,13 @@ Calculus* MOOC plus examination as a genuine prerequisite-satisfying route, whic
 mechanism from UNSW's assumed-knowledge bridging. Rather than pick a side we made it **claim A3**
 and flagged it as the one we are least confident of. If the adviser marks it wrong, we learn
 something either way.
+
+---
+
+# Update — 23 Oct 2026
+
+Errors 16 and 18 were on an axis the pack did not test: **who may apply at all**, not which
+subjects. Added a second warning note ("A second shape — who is allowed to apply") and item
+**D6**, the two computing/data degrees no school leaver can start, with the Western Sydney
+quote. Twenty items now (15 claims + 5 open questions). The readiness claims themselves are
+unchanged: the course data has not been re-captured since 28 Aug 2026.

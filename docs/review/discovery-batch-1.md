@@ -1,6 +1,6 @@
 # Discovery review — batch 1 (drafted 25 Sep 2026)
 
-Eight course descriptions for computing, maths and data degrees. Five are reviewed by Ajay Walia (25 Sep 2026) and ship on the next build. Three were revised; Grok checked the rewrites on 26 Sep and found them accurate, but they wait for Ajay to read them — a model's check is not a review (rule 7 in `discovery.md`).
+Eight course descriptions for computing, maths and data degrees. Five are reviewed by Ajay Walia (25 Sep 2026) and ship on the next build. Three were revised; Grok checked the rewrites on 26 Sep and found them accurate. Claude re-checked them by code against the live pages on 23 Oct and found three things Grok's check had passed — two unsourced honours claims and a missing major (error 19) — now fixed. They still wait for Ajay to read them — a model's check is not a review (rule 7 in `discovery.md`). **About two minutes each:** read the entry, and if it is right, set the three `reviewed` fields.
 
 **How to review each one** (see `discovery.md` for the full rule):
 
@@ -96,6 +96,7 @@ Sources:
 - https://www.sydney.edu.au/handbooks/engineering/project-management/project-management-table.html
 
 - Grok check 26 Sep 2026: accurate.
+- **Claude check 23 Oct 2026 (code, against the live pages):** every unit named is on the current table. Two things were missing and are now fixed: the handbook (amended Feb 2026) requires **a major** — Construction, Built Environment, or one from the shared pool — so the entry now says so, and "First year is six units" became "the first-level core is six units", since a major unit can sit in first year too. "Three years" is confirmed on the course page, now added as a source.
 - [ ] Reviewed by Ajay
 ## 6. Bachelor of Computing Science — University of Technology Sydney
 `uts-computing-science`
@@ -114,6 +115,7 @@ Sources:
 - https://www.uts.edu.au/courses/bachelor-of-computing-science
 
 - Grok check 26 Sep 2026: accurate.
+- **Claude check 23 Oct 2026:** all 14 subjects and facts found on the page by code. One gap (error 19): "a separate four-year honours version exists" is true but was **not on the cited page**. Confirmed on UTS's honours course page (4 years, research focus) and added it as a source. Text unchanged.
 - [ ] Reviewed by Ajay
 ## 7. Bachelor of Data Science — Western Sydney University
 `wsu-data-science`
@@ -149,6 +151,7 @@ Sources:
 - https://www.uow.edu.au/study/courses/bachelor-of-mathematics-advanced/
 
 - Grok check 26 Sep 2026: accurate.
+- **Claude check 23 Oct 2026:** the content list, both majors, second major/minor/electives and both three-year durations are on the pages. **"each has an optional honours year" is on neither cited page** (error 19) — removed.
 - [ ] Reviewed by Ajay
 
 ---

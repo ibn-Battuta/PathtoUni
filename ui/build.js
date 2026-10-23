@@ -9,8 +9,8 @@ import { courseDescription, courseTitleText, prettyDate } from './meta.js';
 import { schemesForUniversity } from './early-entry.js';
 import { attachOfferCount, uncommonIds } from '../pipeline/familiarity.js';
 import { validateDiscovery } from '../pipeline/discovery.js';
-import { validateIndustries, evidenceByEconomy } from '../pipeline/industries.js';
-import { TOPIC_IDS, TOPICS, QUIZ, coursesForIndustry } from './topics.js';
+import { validateIndustries, evidenceByEconomy, economyList, checkedRange } from '../pipeline/industries.js';
+import { TOPIC_IDS, TOPICS, QUIZ, coursesForIndustry, courseTopics, isBroad, topicLabel } from './topics.js';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = path.join(ROOT, 'dist');
@@ -133,7 +133,10 @@ function siteOrigin() {
     const [owner, name] = repo.split('/');
     return `https://${owner}.github.io/${name}`;
   }
-  return '';
+  // A local build used to fall back to '' — relative sitemap <loc>s and og:url "/". The
+  // 2 Oct deploy branch was built locally that way and would have shipped both (error 21).
+  // Default to the real address; a fork sets SITE_ORIGIN.
+  return 'https://ibn-battuta.github.io/PathtoUni';
 }
 
 function absUrl(pagePath) {
@@ -273,7 +276,7 @@ function writeSite() {
         <a class="door" href="industries/" data-door="industries">
           <span class="door-n">3</span>
           <span class="door-t">Where is the world investing?</span>
-          <span class="door-d">${industriesFile.industries.length} areas named in official plans by Australia, the US, the EU, the UK, China and India — quoted word for word.</span>
+          <span class="door-d">${industriesFile.industries.length} areas named in official plans by ${economyList(industriesFile)} — quoted word for word.</span>
         </a>
       </div>
       <p class="doors-now" id="doors-now" hidden></p>
@@ -348,6 +351,31 @@ function writeRobotsAndSitemap() {
 function sourceLink(url, date) {
   if (!url) return date ? `<span class="item-meta">Captured ${esc(date)}</span>` : '';
   return `<p class="item-meta"><a href="${esc(url)}" rel="noopener">Source</a>${date ? ' · captured ' + esc(date) : ''}</p>`;
+}
+
+// Interest areas on the course page. The same rules the quiz and the industries page use
+// (ui/topics.js), so a course never shows one area here and sorts under another there.
+// Labelled as our judgement: the tag comes from the degree's name, not the university.
+function topicsSection(c) {
+  if (c.notEntryPoint) return '';
+  const ids = courseTopics(c);
+  const inds = industriesFile.industries.filter(ind => coursesForIndustry(ind, [c]).specific.length);
+  let inner;
+  if (ids.length) {
+    inner = `<p class="chips">${ids.map(t => `<span class="chip">${esc(topicLabel(t))}</span>`).join(' ')}</p>`;
+  } else if (isBroad(c)) {
+    inner = `<p>A broad degree: you choose a major later, so we do not tag it with one area. It can lead to many of them — check the handbook for the majors on offer.</p>`;
+  } else {
+    inner = `<p>The name does not point to one of our interest areas. That says nothing about the degree, and it is still in every results list.</p>`;
+  }
+  const indBlock = inds.length
+    ? `<p>Future industries it can lead to: ${inds.map(i => `<a href="../../industries/#ind-${esc(i.id)}">${esc(i.name)}</a>`).join(' · ')}</p>`
+    : '';
+  return `<section class="topics"><h3>Interest areas</h3>
+    <p class="lede">Our judgement, from the degree’s name — not the university’s. It sorts results; it never hides a degree.</p>
+    ${inner}
+    ${indBlock}
+  </section>`;
 }
 
 function writeCoursePage(c) {
@@ -451,6 +479,8 @@ function writeCoursePage(c) {
     </section>`;
   }
 
+  body += topicsSection(c);
+
   body += `<script>
     (function () {
       var a = document.getElementById('prepared');
@@ -491,6 +521,11 @@ function writeQuizPage() {
   }));
 }
 
+function checkedRangeText() {
+  const { from, to } = checkedRange(industriesFile);
+  return from === to ? prettyDate(from) : `between ${prettyDate(from)} and ${prettyDate(to)}`;
+}
+
 function writeIndustriesPage() {
   const dir = path.join(DIST, 'industries');
   fs.mkdirSync(dir, { recursive: true });
@@ -526,7 +561,7 @@ function writeIndustriesPage() {
   }).join('');
   const body = `<main id="industries" class="industries">
     <h1>Where is the world investing?</h1>
-    <p class="lede">These areas are named in official plans by Australia, the United States, the European Union, the United Kingdom, China and India. Every quote below is the government’s own words, with a link and the date we checked it.</p>
+    <p class="lede">These areas are named in official plans by ${economyList(industriesFile, 'long')}. Every quote below is the government’s own words, with a link and the date we checked it.</p>
     <ul class="trust">
       <li><b>A signal, not a promise.</b> Government money shows where jobs may grow. It does not guarantee a job, and plans change after elections.</li>
       <li><b>Missing is not “no”.</b> If a country is not listed for an area, we did not find it in the documents we read. It may still be investing.</li>
@@ -534,11 +569,11 @@ function writeIndustriesPage() {
     </ul>
     <p class="chips jump">${jump}</p>
     ${sections}
-    <p class="hint">Sources checked ${esc(industriesFile.capturedOn)}. Each quote was matched word for word against the page or PDF by code. ${reportLine().replace(/<\/?p[^>]*>/g, '')}</p>
+    <p class="hint">Sources checked ${esc(checkedRangeText())}. Each quote was matched word for word against the page or PDF text by code (for one PDF whose text splits words, ignoring spaces). ${reportLine().replace(/<\/?p[^>]*>/g, '')}</p>
   </main>`;
   fs.writeFileSync(path.join(dir, 'index.html'), shell({
     title: 'Where is the world investing? Future industries and the degrees that lead there — Open To You',
-    description: `${industriesFile.industries.length} areas that Australia, the US, the EU, the UK, China and India name in official plans — quoted word for word — and the NSW STEM degrees that can lead into each.`,
+    description: `${industriesFile.industries.length} areas that ${economyList(industriesFile)} name in official plans — quoted word for word — and the NSW STEM degrees that can lead into each.`,
     rel: '../',
     page: 'industries',
     path: '/industries/',

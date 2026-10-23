@@ -4,7 +4,7 @@ How this project evolved, and — more usefully — **what it got wrong and how 
 
 The mechanical changes are the least interesting part of this history. The reversals are the
 point: this is a product about not telling families things that aren't true, and it has been
-wrong eighteen times so far — three times by opening a door that was shut. Each one is recorded below with what caused it and what
+wrong twenty-one times so far — three times by opening a door that was shut. Each one is recorded below with what caused it and what
 now prevents it.
 
 Three running sections carry the real value:
@@ -20,6 +20,48 @@ not worth writing — say what became true that was not true before. If a commit
 earlier decision, update the decision log rather than leaving both entries to contradict each
 other, and add a line to **Errors caught** if something was actually wrong rather than merely
 superseded.
+
+---
+
+## Phase 26 — Japan and South Korea, topics on course pages, and the reviews done
+
+Ajay asked (23 Oct) for everything left except the deploy: the two review sheets, the adviser
+pack, Japan and South Korea, and topics on course pages.
+
+**Became true**
+- **Japan and South Korea are in the industries door.** Japan from the Cabinet Secretariat's
+  *Japan's Growth Strategy* (21 Jul 2026, 17 strategic fields) — it names all nine of our
+  areas. South Korea from MSIT's 2027 budget release (16 Sep 2026) — eight of nine, not
+  critical minerals. 15 quotes, all matched by code in the desktop browser on 23 Oct
+  (`docs/review/industries.md`). Japan's PDF splits words in its text layer, so that one
+  source was matched with all spaces removed; the page says so.
+- **The page can no longer name a different list of countries from the data.** The country
+  lists on the home door, the industries page and its search snippet were typed by hand; they
+  are now built from `data/industries.json` (`economyList`). The validator refuses an economy
+  without its short and long names, and a source whose economy is not in the list. The
+  "sources checked" line shows the real date range instead of one date.
+- **Course pages show their interest areas** and link to the future industries they can lead
+  to — the same `ui/topics.js` rules as the quiz and the industries page, labelled as our
+  judgement. Broad degrees say "you choose a major later"; a name that matches no area says
+  plainly that this is not a verdict on the degree. Courses no school leaver can start get no tags.
+- **The quiz offers every topic at least twice** (error 20). Three options rewritten.
+- **"Critical minerals and resources" renamed** "Minerals for batteries and electronics
+  (critical minerals)", the same pattern as "Computer chips (semiconductors)".
+- **The three revised discovery entries were re-checked by code** against the live pages and
+  three fixes made (error 19). They still wait for Ajay's read (decision 25).
+- **Adviser pack updated** with a second warning ("who is allowed to apply") and item D6,
+  after errors 16 and 18. Twenty items. The cover note now carries the link.
+- Fonts were already self-hosted (`ui/fonts/`, Phase 14); confirmed no font CDN on any page.
+- **The site address is always in the build** (error 21). A local build now defaults to
+  `https://ibn-battuta.github.io/PathtoUni`; the deploy branches were rebuilt from this commit.
+- Tests: 139 pass, 1 skipped. The new quiz test fails on the old quiz (`cyber offered 1
+  time(s)`). Opened in a browser at desktop and phone width, dark and light: no horizontal
+  scroll, no console error, **no third-party request**.
+
+**Not true yet**
+- Scaling and adjustment factors — still a scope decision for Ajay, not a task (Open
+  questions).
+- Neighbours are still not on the page.
 
 ---
 
@@ -789,6 +831,8 @@ prerequisite explorer.
 | 24 | A course no school leaver can start is not a result for anyone; its page says so first | Standing (Phase 24) — after error 18 |
 | 25 | `reviewedBy` names the person who read it; a model's check is recorded but is not a review | Standing (Phase 24) |
 | 26 | An industry is listed for a country only where that government's own document names it, quoted and code-matched | Standing (Phase 25) |
+| 27 | Page text that lists data (countries, counts) is built from the data, never typed beside it | Standing (Phase 26) |
+| 28 | Every quiz topic is offered at least twice, so any topic can come out on top | Standing (Phase 26) — after error 20 |
 
 ---
 
@@ -995,6 +1039,58 @@ course page and in its search snippet (Phase 24). A test asserts only these two 
 it, so a pattern that starts catching ordinary degrees fails loudly instead of hiding them.
 The pipeline still asks *who may apply* only through patterns it has been taught; the next
 one will again be found by reading a page, not by a guard.
+
+### 19. Two facts in reviewed-by-a-model descriptions were not on the cited pages
+
+The three revised discovery entries were checked by Grok on 26 Sep and marked accurate. A
+code check against the live pages on 23 Oct found: UOW Mathematics said each degree "has an
+optional honours year" — on neither cited page; UTS Computing Science said "a separate
+four-year honours version exists" — true, but only on a page it did not cite; and Sydney
+Project Management left out that the handbook (amended Feb 2026) requires a major.
+
+**Direction** — a statement with no source behind it, in prose a family reads as fact. Low
+stakes compared with a rule, which is why prose has the lighter trust regime; but "a model
+read it and said accurate" let it through twice.
+
+**Caught by** checking each fact as a string on the page, rather than reading the page and
+the entry side by side.
+
+**Prevents repeat** — the review sheet now records the code check separately from the human
+read, and `reviewed` still needs a person. The honours claim was removed; the UTS honours page
+was added as a source; the major was added.
+
+### 20. The quiz could never put building, cyber security or psychology on top
+
+`scoreQuiz` ranks topics by how many times they were picked. Building, cyber security and
+"how people think" were each offered in one question; robots and biology in three. So a
+student who chose building every time it appeared had one pick for it — and any topic picked
+twice outranked it. The tie-break by ratio only helps when counts are equal.
+
+**Direction** — interest sorts, never hides, so no door was closed. But the quiz would quietly
+steer a student who loves building towards something else, which is what the tool exists not
+to do.
+
+**Caught by** counting how often each topic is offered during the review Ajay asked for.
+
+**Prevents repeat** — three options rewritten so every topic is offered at least twice, and
+`test/doors.test.js` checks both the count and that, for every topic, choosing it whenever it
+appears puts it first. The test fails on the old quiz.
+
+
+### 21. The branch prepared for deploy had no site address in it
+
+The 2 Oct deploy branch was built on the laptop, not by GitHub Actions. `siteOrigin()` falls
+back to an empty string when neither `SITE_ORIGIN` nor `GITHUB_REPOSITORY` is set, so the
+sitemap listed `<loc>/</loc>` for every page and every `og:url` was `/`. The live site was
+fine — Actions sets both — but publishing the prepared branch would have replaced a good
+sitemap with a useless one and broken the link preview an adviser sees when the link is
+shared. Nobody had published it yet.
+
+**Caught by** comparing the prepared branch's sitemap with the live one while rebuilding it.
+
+**Prevents repeat** — the fallback is now the real address, and `test/site-meta.test.js`
+checks every `<loc>`, the robots.txt sitemap line and the home page `og:url` are absolute.
+
 
 ---
 

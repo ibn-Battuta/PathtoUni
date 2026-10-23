@@ -13,17 +13,18 @@ first, but it's public and free and no one pays to be in it.
 Every rule in it is copied word for word from a university's own page, and software checks the
 quotes are real. That part is handled.
 
-**What I can't check is whether we've understood any of them correctly.** We've already got two
-wrong. Both times the quote was perfect — we'd just read Sydney's *recommended studies* column as
-*assumed knowledge*, and read straight past a Macquarie page that says "Assumed knowledge: None"
-and invented a requirement the university explicitly disclaims.
+**What I can't check is whether we've understood any of them correctly.** We've already got
+several wrong with a perfect quote. We read Sydney's *recommended studies* column as *assumed
+knowledge*; we read straight past a Macquarie page that says "Assumed knowledge: None" and
+invented a requirement the university explicitly disclaims; and we listed two courses as open
+to everyone when one sentence on the page said who could actually apply.
 
 So the ask is narrow:
 
 > **Please mark any sentence you wouldn't say to a family in a Year 11 confirmation meeting, and
 > tell me what you'd say instead.**
 
-Nineteen items, about twenty minutes. There's a "true but misleading" option as well as
+Twenty items, about twenty minutes. There's a "true but misleading" option as well as
 "wrong" — that's the one I most expect to need. One disagreement is worth more to me than
 eighteen ticks.
 
@@ -31,7 +32,11 @@ Nothing is sent anywhere; the page has no server, your answers stay in your brow
 a button that builds a plain-text summary you can paste back into an email. It prints, if you'd
 rather mark it up on paper.
 
-[LINK]
+https://claude.ai/artifact/LEgqAZbNAcnB7C7gqjDHcM
+
+(The pack is private until you share it: open it, use **Share**, and choose "anyone with the
+link" before sending. The tool itself is at https://ibn-battuta.github.io/PathtoUni/ once the
+latest version is published.)
 
 Thanks —
 [you]

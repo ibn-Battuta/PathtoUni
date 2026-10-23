@@ -535,6 +535,9 @@ footer.foot ul{padding-left:1.1rem}
 .doors-now[hidden]{display:none}
 
 .chip.on{background:var(--accent-soft); color:var(--ink); border-color:var(--accent); cursor:default}
+/* Course-page interest tags are labels, not buttons. */
+.topics .chip{cursor:default}
+.topics .chip:hover{border-color:var(--rule)}
 span.chip{display:inline-block}
 .t-match{background:var(--accent-soft); color:var(--accent); margin:.3rem .3rem 0 0}
 .t-restrict{background:var(--restrict-soft); color:var(--restrict)}

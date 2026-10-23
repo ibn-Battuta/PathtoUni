@@ -3,7 +3,7 @@
 // say more than the quotes do: an industry may only list a source whose quote actually
 // names that industry.
 
-const ECONOMIES = new Set(['au', 'us', 'eu', 'uk', 'cn', 'in']);
+const ECONOMIES = new Set(['au', 'us', 'eu', 'uk', 'cn', 'in', 'jp', 'kr']);
 
 export function termMatches(quote, term) {
   // Terms written with \b are case-sensitive word matches ("AI"); others are plain,
@@ -19,11 +19,15 @@ export function validateIndustries(data, topicIds = []) {
     if (sources.has(s.id)) errors.push(`duplicate source ${s.id}`);
     sources.set(s.id, s);
     if (!ECONOMIES.has(s.economy)) errors.push(`${s.id}: unknown economy ${s.economy}`);
+    if (!(data.economies ?? []).some(e => e.id === s.economy)) errors.push(`${s.id}: economy ${s.economy} is not in the economies list`);
     if (!/^https:\/\//.test(s.url ?? '')) errors.push(`${s.id}: url must be https`);
     if (!s.publisher || !s.title) errors.push(`${s.id}: publisher and title are required`);
     if (!/^\d{4}-\d{2}-\d{2}$/.test(s.checkedOn ?? '')) errors.push(`${s.id}: checkedOn date missing`);
     if (s.verification !== 'verified') errors.push(`${s.id}: not verified — an unverified quote is treated as absent`);
     if (!s.quotes || !Object.keys(s.quotes).length) errors.push(`${s.id}: no quotes`);
+  }
+  for (const e of data?.economies ?? []) {
+    if (!e.short || !e.long) errors.push(`${e.id}: short and long names are required (the page text is built from them)`);
   }
   for (const ind of data?.industries ?? []) {
     if (!ind.terms?.length) errors.push(`${ind.id}: no terms to check evidence against`);
@@ -49,4 +53,21 @@ export function evidenceByEconomy(data, industry) {
       .map(([sid, qid]) => ({ source: sources.get(sid), quote: sources.get(sid)?.quotes?.[qid] }))
       .filter(x => x.source?.economy === e.id && x.quote)
   })).filter(x => x.items.length);
+}
+
+/**
+ * The economies as one phrase for page text: "Australia, the US, … and South Korea".
+ * Built from the file so the page can never name a different list from the data —
+ * it did, by hand, until 23 Oct 2026.
+ */
+export function economyList(data, form = 'short') {
+  const names = (data?.economies ?? []).map(e => e[form] ?? e.label);
+  if (names.length < 2) return names.join('');
+  return names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1];
+}
+
+/** Earliest and latest checkedOn across the sources, for "checked between" lines. */
+export function checkedRange(data) {
+  const dates = (data?.sources ?? []).map(s => s.checkedOn).filter(Boolean).sort();
+  return { from: dates[0], to: dates[dates.length - 1] };
 }

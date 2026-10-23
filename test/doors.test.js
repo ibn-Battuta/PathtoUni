@@ -14,7 +14,7 @@ import {
   TOPICS, TOPIC_IDS, QUIZ, courseTopics, isBroad, scoreQuiz, sortByInterest,
   interestScore, coursesForIndustry, coursesForTopics, matchedTopics
 } from '../ui/topics.js';
-import { validateIndustries, evidenceByEconomy, termMatches } from '../pipeline/industries.js';
+import { validateIndustries, evidenceByEconomy, termMatches, economyList } from '../pipeline/industries.js';
 import { YEAR12_EXT2 } from './fixtures.js';
 
 const { courses, gates } = loadCatalogue();
@@ -68,6 +68,17 @@ test('the quiz is deterministic, needs answers, and every topic can be reached',
   for (const t of TOPIC_IDS) assert.ok(offered.has(t), t + ' cannot be reached from the quiz');
 });
 
+test('error 20: every topic is offered at least twice, so any topic can come out on top', () => {
+  const count = {};
+  QUIZ.flat().forEach(o => o.topics.forEach(t => { count[t] = (count[t] || 0) + 1; }));
+  for (const t of TOPIC_IDS) assert.ok(count[t] >= 2, `${t} offered ${count[t] || 0} time(s)`);
+  // And it actually can: for each topic, picking it whenever offered puts it first.
+  for (const t of TOPIC_IDS) {
+    const answers = QUIZ.map(pair => pair.findIndex(o => o.topics.includes(t))).map(i => i < 0 ? null : i);
+    assert.equal(scoreQuiz(answers)[0], t, t + ' cannot come out on top');
+  }
+});
+
 test('error 18 courses are never offered by the interest or industry lists', () => {
   for (const ind of industries.industries) {
     const { specific, broad } = coursesForIndustry(ind, courses);
@@ -80,8 +91,23 @@ test('error 18 courses are never offered by the interest or industry lists', () 
 test('the industries file validates, and each industry names at least two economies', () => {
   assert.deepEqual(validateIndustries(industries, TOPIC_IDS), []);
   for (const ind of industries.industries) assert.ok(evidenceByEconomy(industries, ind).length >= 2, ind.id);
-  // The page text names these six by hand; if the list changes, the text must too.
-  assert.deepEqual(industries.economies.map(e => e.id), ['au', 'us', 'eu', 'uk', 'cn', 'in']);
+  assert.deepEqual(industries.economies.map(e => e.id), ['au', 'us', 'eu', 'uk', 'cn', 'in', 'jp', 'kr']);
+  // Every economy in the list is actually cited somewhere, or the page names a country
+  // it has no quote for.
+  for (const e of industries.economies) {
+    assert.ok(industries.industries.some(ind => evidenceByEconomy(industries, ind).some(b => b.economy.id === e.id)), e.id + ' is listed but cited nowhere');
+  }
+});
+
+test('the page text is built from the economies list, not typed by hand', () => {
+  assert.equal(economyList(industries), 'Australia, the US, the EU, the UK, China, India, Japan and South Korea');
+  assert.equal(economyList(industries, 'long'), 'Australia, the United States, the European Union, the United Kingdom, China, India, Japan and South Korea');
+  const noShort = structuredClone(industries);
+  delete noShort.economies[6].short;
+  assert.ok(validateIndustries(noShort, TOPIC_IDS).some(e => /jp: short and long names/.test(e)));
+  const orphan = structuredClone(industries);
+  orphan.economies = orphan.economies.filter(e => e.id !== 'kr');
+  assert.ok(validateIndustries(orphan, TOPIC_IDS).some(e => /kr-msit-2027: economy kr is not in the economies list/.test(e)));
 });
 
 test('an industry citing a quote that does not name it is refused', () => {
@@ -107,4 +133,18 @@ test('the build carries industries and topics into the page, and writes both new
   }
   assert.ok(!/third-party|googleapis|cdn\./.test(ind.replace(/https:\/\/[^"]+gov[^"]*|https:\/\/[^"]+europa\.eu[^"]*|https:\/\/[^"]+\.in\/[^"]*/g, '')), 'no third-party asset on the page');
   assert.ok(fs.existsSync(path.join('dist', 'quiz', 'index.html')));
+  for (const e of industries.economies) assert.ok(ind.includes(e.long), e.long + ' missing from the industries page text');
+});
+
+test('course pages show their interest areas, from the same rules as the quiz', { skip: !fs.existsSync('dist/app.js') && 'run npm run build:site first' }, () => {
+  const page = id => fs.readFileSync(path.join('dist', 'course', id, 'index.html'), 'utf8');
+  const mech = page('usyd-engineering-honours-mechatronic-engineering');
+  assert.match(mech, /<h3>Interest areas<\/h3>/);
+  assert.match(mech, /Robots and machines/);
+  assert.match(mech, /industries\/#ind-robotics/, 'a robotics degree should link to the robotics industry');
+  assert.match(mech, /Our judgement, from the degree’s name/);
+  assert.match(page('usyd-science'), /A broad degree: you choose a major later/);
+  assert.match(page('usyd-project-management'), /does not point to one of our interest areas/);
+  // A course nobody can start straight from school is in no list, so it gets no tags.
+  assert.doesNotMatch(page('wsu-applied-data-science'), /Interest areas/);
 });
