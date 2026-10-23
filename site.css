@@ -576,3 +576,24 @@ span.chip{display:inline-block}
 .ind a.btn, .quiz-result .btn{display:inline-block; text-decoration:none}
 .ind details.fold > :not(summary){padding:0 .9rem}
 @media print{ .doors, .quiz-live, .industries .jump{display:none!important} }
+
+/* Try it before you choose */
+.try-it .jump{margin:1rem 0 1.4rem}
+.try-it .jump .chip{text-decoration:none; font-size:.95rem}
+.kind{margin:2rem 0; padding-top:1rem; border-top:1px solid var(--rule)}
+.opp-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 24rem), 1fr)); gap:1rem}
+.opp{background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:1rem 1.1rem; box-shadow:var(--shadow); min-width:0}
+.opp h3{margin:0 0 .2rem; font-size:1.1rem}
+.opp-by{margin:0 0 .6rem; color:var(--ink-3); font-size:.9rem}
+.opp dl{display:grid; grid-template-columns:auto 1fr; gap:.25rem .8rem; margin:0 0 .7rem; font-size:.95rem}
+.opp dt{color:var(--ink-3); font-weight:600}
+.opp dd{margin:0; color:var(--ink-2); overflow-wrap:anywhere}
+.opp .chips .chip{cursor:default; font-size:.85rem; padding:.3rem .55rem}
+.opp .chips .chip:hover{border-color:var(--rule)}
+.opp details.fold{margin-top:.7rem; box-shadow:none}
+.opp details.fold > :not(summary){padding:0 .9rem}
+.opp .quote{margin:.4rem 0 0; border-left:2px solid var(--rule); padding-left:.65rem; font-style:italic; color:var(--ink-2)}
+.opp .src{font-size:.85rem; color:var(--ink-3); margin:.5rem 0 .7rem}
+.try-line{margin:.6rem 0}
+@media (max-width:40rem){ .opp dl{grid-template-columns:1fr; gap:0} .opp dt{margin-top:.45rem} }
+@media print{ .try-it .jump{display:none!important} }
