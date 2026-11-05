@@ -781,3 +781,12 @@ dialog.ask::backdrop{background:rgba(0,0,0,.6)}
 .dates .filters .chip[data-filter][aria-pressed="false"]{background:transparent; color:var(--ink-3); text-decoration:line-through}
 .dates .ev{border-left:4px solid var(--sec, var(--rule))}
 .dates .ev .ev-org{color:var(--sec, var(--ink-3))}
+
+/* Key dates filters as tiles: colour, name, and a one-line explainer; the whole tile toggles. */
+.dates p.filters-label{margin:1.6rem 0 .45rem; font-size:.9rem; color:var(--ink-3)}
+.dates .filters{display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 10.5rem), 1fr)); gap:.6rem; margin:0 0 1.4rem}
+.dates .filters .filter-card{display:flex; flex-direction:column; align-items:flex-start; gap:.2rem; text-align:left; padding:.6rem .8rem; min-height:4.6rem; border-radius:8px; border-width:2px}
+.dates .filters .filter-card b{font-weight:700; font-size:.98rem}
+.dates .filters .filter-card span{font-size:.82rem; line-height:1.35; font-weight:400; opacity:.9}
+.dates .filters .chip[data-filter][aria-pressed="false"]{text-decoration:none}
+.dates .filters .chip[data-filter][aria-pressed="false"] b{text-decoration:line-through}
