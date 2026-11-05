@@ -25,13 +25,13 @@ export function evaluateGate(profile, gate) {
   const held = subjectsHeld(profile);
   const bands = profile.bands ?? {};
   const routes = gate.routes.map(r => {
-    if (!held.has(r.subject)) return { ...r, status: 'unavailable', why: `Does not sit ${r.subject}.` };
+    if (!held.has(r.subject)) return { ...r, status: 'unavailable', why: `You’re not taking ${r.subject}.` };
     const b = bands[r.subject];
     if (b === undefined || b === null || b.band === undefined)
-      return { ...r, status: 'unknown', why: `Sits ${r.subject}, but no expected band recorded.` };
+      return { ...r, status: 'unknown', why: `You’re taking ${r.subject}, but you haven’t added an expected band yet.` };
     return b.band >= r.minBand
-      ? { ...r, status: 'satisfied', why: `${r.subject} band ${b.band} meets the minimum of ${r.minBand}.` }
-      : { ...r, status: 'failed', why: `${r.subject} band ${b.band} is below the minimum of ${r.minBand}.` };
+      ? { ...r, status: 'satisfied', why: `Your expected ${r.subject} band (${b.band}) meets the minimum (Band ${r.minBand}).` }
+      : { ...r, status: 'failed', why: `Your expected ${r.subject} band (${b.band}) is below the minimum (Band ${r.minBand}).` };
   });
   let status = 'fail';
   if (routes.some(r => r.status === 'satisfied')) status = 'pass';
@@ -48,8 +48,8 @@ function mathsFinding(profile, subject) {
     subject, tier: 'B', gap,
     band: gap === 1 ? BAND.MINOR_GAP : BAND.HARD_GAP,
     why: gap === 1
-      ? `One level below the assumed ${subject}. The university's own first-year revision material generally covers this.`
-      : `${gap} levels below the assumed ${subject}. A short bridging course does not replace two years of study.`
+      ? `You’re one level below the ${subject} this course assumes. The university’s first-year revision material usually covers this.`
+      : `You’re ${gap} levels below the ${subject} this course assumes. A short bridging course can’t make up for two years of study.`
   };
 }
 
@@ -60,7 +60,7 @@ function englishFinding(profile, subject) {
   return {
     subject, tier: 'C',
     band: BAND.MINOR_GAP,
-    why: `Assumes ${subject}; the English course held sits below it.`
+    why: `This course assumes ${subject}, and your English course is a level below it.`
   };
 }
 
@@ -88,8 +88,8 @@ function subjectFinding(profile, subject, ctx) {
     subject, tier: 'C',
     band: BAND.BRIDGE_IT,
     why: canBridge
-      ? `Assumed but not held. A bridging course is offered${cost}.`
-      : `Assumed but not held. No bridging course listed for this subject - expect a harder first year.`
+      ? `This course assumes ${subject}, which you’re not taking. The university runs a bridging course for it${cost}.`
+      : `This course assumes ${subject}, which you’re not taking. There’s no bridging course for it, so expect first year to be harder.`
   };
 }
 
@@ -128,8 +128,8 @@ export function readiness(profile, course, ctx = {}) {
         subject: ak.subject,
         via: 'higher maths pathway',
         why: ak.minBand != null
-          ? `Assumes ${ak.subject} at Band ${ak.minBand}. This student sits a higher maths course instead, so no ${ak.subject} band exists to compare.`
-          : `Assumes ${ak.subject}. This student sits a higher maths course.`
+          ? `This course assumes ${ak.subject} at Band ${ak.minBand}. You’re taking a higher maths course instead, which covers it.`
+          : `This course assumes ${ak.subject}. You’re taking a higher maths course, which covers it.`
       });
       continue;
     }
@@ -149,7 +149,7 @@ export function readiness(profile, course, ctx = {}) {
             // shortfall is still a severity CLAIM, and a Tier C claim may never alarm alone.
             band: Math.min(raw, MAX_BAND_FOR_TIER[tier]),
             quote: ak.quote,
-            why: `${ak.subject} band ${b.band} is below the assumed minimum of Band ${ak.minBand}.`
+            why: `Your expected ${ak.subject} band (${b.band}) is below the assumed minimum of Band ${ak.minBand}.`
           });
         }
       }

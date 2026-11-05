@@ -1,3 +1,6 @@
+// The site's name, in one place.
+export const SITE_NAME = 'Path to Uni';
+
 export const UNI_SHORT = {
   UNSW: 'UNSW',
   'University of Sydney': 'Sydney',
@@ -26,7 +29,7 @@ export function courseDescription(c) {
   const ak = (c.assumedKnowledge || []).map(a => a.subject);
   const assumed = ak.length ? `assumes ${joinList(ak)}.` : 'lists no assumed knowledge.';
   const prereq = (c.hardRules || []).length
-    ? 'A published mathematics mark is required for entry.'
+    ? 'You need a certain maths mark to get in.'
     : 'No subject prerequisites.';
   // The description is the search-result snippet, which is where a student who has never
   // seen this site meets the course. For a restricted course, "no subject prerequisites"
@@ -45,5 +48,5 @@ export function courseDescription(c) {
 
 export function courseTitleText(c) {
   const uni = UNI_SHORT[c.university] || c.university;
-  return `${c.name}, ${uni} — Open To You`;
+  return `${c.name}, ${uni} — ${SITE_NAME}`;
 }

@@ -24,7 +24,7 @@ So the ask is narrow:
 > **Please mark any sentence you wouldn't say to a family in a Year 11 confirmation meeting, and
 > tell me what you'd say instead.**
 
-Twenty items, about twenty minutes. There's a "true but misleading" option as well as
+Twenty-one items, about twenty minutes. There's a "true but misleading" option as well as
 "wrong" — that's the one I most expect to need. One disagreement is worth more to me than
 eighteen ticks.
 

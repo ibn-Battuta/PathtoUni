@@ -115,13 +115,13 @@ export function validateAtarPattern(profile) {
   const areas = new Set(courses.map(c => c.area)).size;
   const violations = [];
   if (units < p.minBoardDevelopedUnits)
-    violations.push(`Needs at least ${p.minBoardDevelopedUnits} units of Board Developed courses; has ${units}.`);
+    violations.push(`For an ATAR you need at least ${p.minBoardDevelopedUnits} units of Board Developed courses (the standard HSC courses). You have ${units}.`);
   if (englishUnits < p.minEnglishUnits)
-    violations.push(`Needs at least ${p.minEnglishUnits} units of English; has ${englishUnits}.`);
+    violations.push(`For an ATAR you need at least ${p.minEnglishUnits} units of English. You have ${englishUnits}.`);
   if (twoUnitCourses < p.minCoursesOfTwoOrMoreUnits)
-    violations.push(`Needs at least ${p.minCoursesOfTwoOrMoreUnits} courses of 2 units or more; has ${twoUnitCourses}.`);
+    violations.push(`For an ATAR you need at least ${p.minCoursesOfTwoOrMoreUnits} courses of 2 units or more. You have ${twoUnitCourses}.`);
   if (areas < p.minSubjectAreas)
-    violations.push(`Needs at least ${p.minSubjectAreas} subject areas; has ${areas}.`);
+    violations.push(`For an ATAR you need subjects from at least ${p.minSubjectAreas} subject areas. You have ${areas}.`);
   return { valid: violations.length === 0, units, englishUnits, twoUnitCourses, areas, violations };
 }
 

@@ -103,7 +103,7 @@ test('the build keeps the flag, and the course page says it above the subjects',
     assert.ok(/"notEntryPoint"\s*:/.test(bundle.slice(i, i + 2500)), id + ': flag dropped by the build');
     const html = fs.readFileSync(path.join('dist', 'course', id, 'index.html'), 'utf8');
     assert.ok(html.includes('Not a course you start straight from school'), id + ': page silent');
-    assert.ok(!html.includes('Am I prepared for this?'), id + ': links to results it is not in');
+    assert.ok(!html.includes('Check my subjects against this course'), id + ': links to results it is not in');
     assert.ok(html.indexOf('Who can start this') < html.indexOf('Assumed knowledge</h3>'), id + ': below the subjects');
   }
 });

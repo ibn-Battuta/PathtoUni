@@ -4,7 +4,7 @@ How this project evolved, and — more usefully — **what it got wrong and how 
 
 The mechanical changes are the least interesting part of this history. The reversals are the
 point: this is a product about not telling families things that aren't true, and it has been
-wrong twenty-one times so far — three times by opening a door that was shut. Each one is recorded below with what caused it and what
+wrong twenty-six times so far — four times by opening a door that was shut. Each one is recorded below with what caused it and what
 now prevents it.
 
 Three running sections carry the real value:
@@ -20,6 +20,324 @@ not worth writing — say what became true that was not true before. If a commit
 earlier decision, update the decision log rather than leaving both entries to contradict each
 other, and add a line to **Errors caught** if something was actually wrong rather than merely
 superseded.
+
+---
+
+## Phase 30 — Ask: an AI assistant that may only use the site's own facts (built, switched off)
+
+Ajay asked (5 Nov) for an assistant in the app that answers questions from the app's data and
+says where to look, focused only on the app's purpose. Offered a no-AI search, he chose a real
+AI with strict limits, using his OpenAI account. This **revises decision 3** (see the log).
+
+**Became true**
+- **`assistant/`** — the answer path, all pure code: the site's data is turned into 227 facts
+  (courses, entry rules, early offers, key dates, programs, paid pathways, guides — reviewed and
+  verified records only); a question is matched against them first (keyword search); the AI is
+  shown only the ~8 best matches, numbered, and told to use nothing else.
+- **What the reader gets is checked, not trusted.** An answer is kept only if it cites at least
+  one of the numbered facts and predicts no ATAR, offer or chance of getting in; otherwise the
+  reader gets the matching pages. Questions with an email, phone number or street address are
+  refused in the browser and on the server. If the site has nothing on a question, the AI is
+  not asked at all.
+- **`worker/`** — the server (a Cloudflare Worker): answers only the site's own address, only
+  with the consent box ticked, 20 questions per visitor per 10 minutes, no question ever
+  logged, OpenAI asked not to store (`store: false`). OpenAI by default (`gpt-6.1-terra`,
+  checked on OpenAI's pricing page 5 Nov), Anthropic by one setting. The key is a Cloudflare
+  secret — never in a file, the site or a chat. `npm run assistant:build` bundles it into one
+  file with the facts inside.
+- **`ui/ask.js` and the Ask panel** — appear only when `data/assistant.json` has an endpoint.
+  Until then the built site carries no trace of it. With one, nothing is sent until the reader
+  ticks the box and presses Send; the About page gains a section saying exactly what is sent
+  where.
+- **Cost measured:** about 1,550 tokens in per question → about US$0.003 per question on
+  gpt-6.1-terra (US$3.30 per 1,000).
+- **Checked:** 10 unit tests with a fake AI (the rules, the server, the panel); end to end in
+  a browser with a local server and a fake AI: 0 requests on load or while typing, Send
+  disabled until consent, 1 request on Send, the answer links the right Key dates entry,
+  personal details refused with "Nothing was sent". `scripts/assistant-eval.js` (20 real
+  questions incl. off-topic, prediction and "ignore your rules") is for the live server; a dry
+  run against a deliberately bad fake AI failed it 12 of 20, as it should.
+- Setup steps for Ajay: `docs/ASSISTANT.md`.
+- **Fits Cloudflare's free plan.** The free plan allows 10 ms of computing per request; the search
+  first took 15–55 ms because it re-counted every fact's words for each question. The word
+  counts are now built once, into the server file (`buildIndex`): about 1–3 ms per question. A
+  test holds it under 10 ms and checks the results are identical. AGENTS.md updated to match
+  decision 33.
+
+**Not true yet**
+- Not switched on: needs Ajay's Cloudflare account, the OpenAI key as a secret, and a monthly
+  spending limit at OpenAI. Then the live check must pass 20 of 20 before the endpoint is
+  published.
+- OpenAI's terms for services used by under-18s are not yet checked.
+- The facts are baked in at build time: after a data change the worker must be rebuilt and
+  redeployed, or Ask answers from older facts.
+
+---
+
+## Phase 29 — Key dates: early offers, open days and holiday programs, for 2027 and 2028
+
+Ajay asked (5 Nov) for all the data to be verified and for a page with the schedule of every
+early offer, with a choice of starting year 2027 or 2028; then for Year 11 sections — open days,
+holiday programs (he named SciX@UNSW, UOW Summer Master Classes, START QUT, Future Doctors
+Australia) and internships. Record: `docs/review/schedule-2026-11-05.md`.
+
+**Became true**
+- **`/dates/` — Key dates.** One timeline per starting year, switched by two buttons ("Starting
+  uni in 2027 — in Year 12 in 2026" / "Starting uni in 2028 — in Year 11 in 2026"). 41 dated
+  events in five kinds: early offers, UAC and the ATAR, holiday programs, open days, work
+  experience and competitions. "Coming up" lists the next three dates you can still act on;
+  passed dates fade, computed in the browser from today's date. Nav: **Dates**. The results
+  page's early-entry section links to it.
+- **Every early offer at the six universities**, checked: UNSW Gateway (two rounds and firm
+  offers), Macquarie Leaders and Achievers (two rounds), Western Sydney HSC True Reward (four
+  rounds), Wollongong Early Admission, Sydney's Gadigal Program, and UAC's Schools
+  Recommendation Scheme (Macquarie, Western Sydney, UTS) — plus what is *not* there: UTS has
+  retired its Early Entry Program from 2027, and we found no Sydney early offer open to every
+  Year 12 student. Equity schemes are tagged "For some students only".
+- **2028 never gets a guessed date.** No university had published its 2027 rounds. The 2028 view
+  shows each 2026 date as **"Last year's date"**, placed "around <month> 2027", with the 2026 day
+  underneath — never a 2027 day. A test fails if a 2026 written date reappears with 2027 on it.
+- **Year 11 sections**: "What to do in Year 11" (six points, each linked to the dates that back
+  it), the summer programs Ajay named, and "Any time — work experience and internships" from the
+  Try it list. Future Doctors Australia is tagged "Private company, paid"; START QUT
+  "Interstate".
+- **Every date is quoted and was matched by code in the desktop browser on 5 Nov** — 92 quotes
+  from 24 pages, all matched. The build refuses `data/schedule.json` if an event has no quote, a
+  non-https source, a written date that disagrees with its ISO date **or its weekday**, a 2028
+  event pretending to be last year's, or a quote that stops in the middle of a price
+  (`pipeline/schedule.js`).
+
+**Re-verified, all data the site quotes about dates and programs** (course rules were fully
+re-checked on 24 Oct and are not repeated here): 4 early-entry quotes, 32 Try it quotes, all
+by code in the browser.
+- Western Sydney's SRS sentence was reworded at UAC ("current **domestic and international**
+  Year 12 students"); quote and test updated.
+- Wollongong moved its Early Admission offers from 1 to **17 September** 2026; UAC still says 1
+  September. The page uses Wollongong's date and says UAC differs.
+- UNSW's two pages give Gateway Round 1 opening as Monday 27 or Tuesday 28 April 2026; both are
+  quoted and the page says they differ. UNSW's own close date (Mon 9 Nov) is used.
+- NYSF's program page moved (`/program-year12/`) and no longer says applications open mid-year;
+  that claim is gone. Error 25 below (Informatics Olympiad price).
+- **A text-only page reader served stale copies** of Macquarie's and QUT's pages (2024–25 dates,
+  "now open"). The desktop browser showed the current ones. Only the browser check counts.
+
+**Not true yet**
+- **The printed results sheet is three pages, not two**, for the "ext2, physics and chemistry"
+  profile. `test/print.test.js` renders a real PDF; it skips where no browser is installed —
+  which is the Mac, so it has not run since it last passed. It ran in the cloud copy today and
+  failed **without** this phase's changes. Not fixed here.
+- 2027 rounds for 2028 entry: re-check from April 2027 and replace "Last year's date" entries
+  as each university publishes.
+- Tests: 177 pass, 1 skipped (the print check — no browser on the Mac).
+- **Ajay's internship list checked** (19 options, drafted 23 Oct). Each one opened on its own
+  page in the desktop browser; 26 new quotes, all matched by code.
+  - **On Try it now:** PECAN+ Capture the Flag (free cyber security competition, Years 10–12;
+    2026 NSW event was 22–23 Aug at Wollongong, full) and the GitHub Student Developer Pack
+    (high school students aged 13+, free). PECAN+ is also on Key dates.
+  - **New on Key dates (2028 view): "After Year 12 — paid work, apprenticeships and
+    cadetships"**, in two groups. *Alongside university:* HCLTech TechBee at Macquarie (paid
+    part-time, 1st–2nd year IT/Software Engineering/Computer Science), ASD Cadetship (after one
+    semester of a STEM degree, credit average), APS Data and Digital Cadet (after one year),
+    Azure for Students (18+ at university). *Instead of full-time university:* ASD
+    Apprenticeship (work 3–4 days, Certificate IV, $65,286 + super; 2028 applications open early
+    2027), HCLTech TechBee after high school (12 months' training, full-time), the IT
+    Traineeship with Microsoft through MEGT. Each says whether it fits around a degree
+    (`fitsUni`, required by the validator).
+  - **The list was wrong about:** Azure for Students "start now" — it is 18+ and for full-time
+    university or college students. The Microsoft traineeship's own page had moved (MEGT).
+  - **Not listed, and why:** Australian Training Company ICT traineeships (page gone); Amazon
+    (no apprenticeship open in Australia; one Sydney data-centre trainee job needs a driver's
+    licence and a car); Accenture traineeship (job boards only, nothing on Accenture's own
+    site); Australian Government Apprenticeship Program (page refused access); Microsoft
+    university internships (nothing current); ASD's Year 11–12 work experience program ("has
+    concluded"); **TechFest Australia** — its own page says company registration is "in
+    progress", ABN and address "to be confirmed", venue and fee unannounced, stock photos. Not
+    listed until it is established.
+- **Home page stays the front door, now with "Coming up"** (6 Nov). Ajay asked which page should
+  be home; kept the three-ways-in page (the job only this site does) and added a one-line
+  tagline and a Coming up strip: the next three dates anyone can still act on, from Key dates,
+  each tagged Year 12 now / Year 11 now, "some students only" for equity schemes, and
+  "closes" for application rounds. Built with the dates ahead on the build day; a small script
+  re-picks with the reader's own date, so a passed date never shows even without a rebuild.
+- **Plainer words and picture clues** (6 Nov). Ajay: the wording "looks AI … very machine
+  generated", pointing at straia.io's short, plain sentences and icon cards. The home page was
+  rewritten as someone would say it out loud: the heading now says what the site does ("See
+  which uni courses your HSC subjects lead to"); the three ways in are named for what the reader
+  wants ("Check my subjects", "Help me find what I enjoy", "Explore jobs of the future"), each
+  with one sentence on what happens next; the trust notes became four short promises
+  (Independent, Straight from the source, Private, Check before you apply); the common
+  questions answer in the first word ("No. …"). 17 small line icons drawn in-house
+  (`ui/icons.js`, no outside requests) mark each way in, each promise, each audience card and
+  each kind of date. Key dates' six kinds now sit in an even 3 × 2 grid (2 across on a phone).
+  The industry door lists its example fields from the data, cut to their short names. Checked
+  in the browser in both themes, wide and phone; fixed one phone overflow (a long "Year 12 now
+  · some students only" tag now wraps). No facts changed. Tests: 178 pass, 1 skipped.
+- **New name, and every page in plain words** (6 Nov). Ajay: "rewrite all website content now
+  and rename Open To You with something self explanatory". He chose **Path to Uni** from four
+  options (it matches the project and the web address). The name now lives in one place
+  (`SITE_NAME` in `ui/meta.js`) and every page title, the header, the About page and the Ask
+  assistant read it from there.
+  The site's own wording was rewritten page by page, the way you would say it to a student:
+  - **Menu:** My subjects · Interest quiz · Future jobs · Try it out · Key dates · My results ·
+    Subject guides · About; "Match my system" is now "Match my device".
+  - **Results:** the five groups are now *ready*, *a little to catch up*, *bridging course*,
+    *a lot to catch up* and *entry rule not met* (were ready now / small gap / bridging course /
+    hard gap / blocked). Every reason is in second person ("This course assumes Physics, which
+    you're not taking…"); headings ask the question the section answers ("What if you dropped a
+    subject?", "Courses you may not have heard of"); dates read "27 Aug 2026", not 2026-08-27;
+    "ATAR pattern fails" is now "Not enough for an ATAR yet", with the rule spelt out.
+  - **Picker** steps are questions ("Which year are you in?", "Any sciences?").
+  - **Course pages, quiz, Future jobs, Try it out, Key dates, the three guides and About:**
+    shorter sentences, no in-house terms (catalogue, captured, readiness band, view filter, hash
+    fragment, load-bearing). Guides now link to each other.
+  - **Not changed:** any quote, date, price or rule, and the data files' own text (date
+    descriptions, Year 11 tips), which already read plainly. Four tests updated to the new
+    wording, none loosened.
+  Found on the way: the early-offer heading said "Three of these universities" in fixed text;
+  it is now counted from the data (decision 27). And the bridging cost lost its dollar sign —
+  see error 26.
+- **Icons drawn the size of the screen** (6 Nov). Ajay's Chrome showed the new pages with its
+  saved copy of the old stylesheet, so the calendar icon, which had no size of its own, filled
+  the page. Each icon now carries a small size in the drawing itself (20 × 20), and the
+  stylesheet and scripts are linked with a fingerprint of their contents (`site.css?v=…`), so a
+  browser fetches the new file whenever it changes instead of mixing old and new. Checked with
+  the stylesheet switched off: the icon stays 20 px.
+- **A Home link, a shorter home page, and Check my subjects on its own page** (6 Nov). Ajay:
+  "there should be a Home button, also home page seems to have too much info, check my subjects
+  should be another page like others". The menu now starts with **Home** and underlines the page
+  you are on. The subject picker moved to `/subjects/`, like the quiz and Future jobs; the home
+  page is now the heading, the three ways in, Dates coming up and the four promises — about two
+  screens instead of seven. Who it is for, the common questions and the sources moved to About,
+  which the home page links to. Old links that carried subjects on the home address
+  (`/#y=11&…`) now forward to `/subjects/` with the subjects kept. Tests: 180 pass, 1 skipped.
+- **Six colours to choose from in dark** (6 Nov). Ajay asked for colour options in the dark
+  theme, from the palette he shared on 5 Nov (six cards: blue, gold, amber, purple, red, green).
+  Six small dots now sit beside the theme buttons: Green (Forest, still the default), Blue, Gold,
+  Amber, Purple and Red. Each one changes the links, buttons and glow, and tints the background
+  to match. The colours that carry meaning on results (ready, a little to catch up, bridging
+  course and so on) and on Key dates never change. The choice is saved on the reader's device
+  (`oty-accent`), like the theme; the About page's privacy note now says so. The dots are hidden
+  in light, and a choice never touches the light theme (the light colours are set after it).
+  A new test measures every choice: body text at least 15:1, links and quiet text at least
+  4.5:1 on every background, band colours unchanged. Tests: 181 pass, 1 skipped.
+- **Publishing: the source branch leaves out `.github/workflows`** (6 Nov). The 6 Nov publish
+  put the site live (gh-pages) but GitHub refused the source branch: it now contained
+  `.github/workflows/deploy.yml`, and Ajay's push key may not change workflow files. The site is
+  published from gh-pages, so the workflow is not used; earlier source pushes had left it out,
+  and this session's had not. The source branch is now built from `master` minus `.github`, as
+  one commit on top of what GitHub already has. `Deploy PathtoUni.command` now says "Path to Uni".
+- **Key dates: "How to read these dates"** — the four reading notes are now four tap-to-open
+  questions in one row (Ajay: "does this not belong to FAQ?"), so the dates start much higher.
+- **About: "Who built this"** — a short intro of Ajay Walia (25+ years in technology, began as
+  an educator; built this while helping his own child choose HSC subjects), stating the site is
+  personal and independent of his employer, UAC and the universities; links to CuriousBit and
+  LinkedIn. Drawn from his own CuriousBit About page. With Ajay's own photo (chosen over the
+  AI-styled CuriousBit portrait), cropped to 480×480, 20 KB, self-hosted in `ui/img/`, location
+  and camera data stripped.
+- **Key dates filters became tiles with a one-line explainer** (Ajay, 5 Nov) — e.g. "Offers made
+  before the ATAR, often on Year 11 results." All six sit in one row across the full width on a
+  wide screen; the whole tile toggles; switched off shows an outline with the name struck
+  through. Hints live in `data/schedule.json` (validator: one line, ≤ 70 characters).
+- **Forest dark theme and coloured kinds of date** (Ajay's reference palette, 5 Nov). Dark is
+  now green-black with a neon green accent (replacing blue/cyan); bands keep distinct hues
+  (Minor gap moved to lavender so it never looks like Prepared). On Key dates each kind of date
+  has its own colour — Early offers blue, UAC gold, Holiday programs amber, Open days purple,
+  Work experience red, Paid pathways green — on its filter button and as a stripe on each card,
+  in both themes. A test checks every colour is distinct and readable (all ≥ 5.9:1 on buttons).
+- **Key dates uses the full width.** On wide screens (72rem and up) the timeline sits on the
+  left and a summary panel on the right — Coming up, What to do in Year 11, and a new Jump to
+  a month list — stays in view while you scroll. On phones it stacks, summary first.
+- **iCloud stopped breaking builds.** Ajay's Desktop is synced to iCloud, which re-created files
+  as "name 2" while the build was clearing `dist/`, and once blocked the build entirely. The
+  site is now built into `dist.nosync` (macOS never syncs a `.nosync` folder) with `dist` as a
+  link to it, and the build empties `dist/` instead of deleting it. Nothing else changes.
+- **Home page: who it is for, common questions, where the facts come from** (ideas from
+  straia.io). Below the picker, so the tool stays first. Three cards (Students, Parents, Careers
+  advisers) with a "start here" each; eight common questions as plain `<details>` (open without
+  JavaScript) — ATAR and offers, prerequisites, assumed knowledge, Year 11, sources, privacy,
+  coverage, "is this official"; a text-only sources strip (UAC, NESA, the six universities — no
+  logos, "not endorsed by them"). Every count, name and date is computed from the data
+  (decision 27). `test/home.test.js`.
+- **Warm light theme** (Ajay, 5 Nov: "too light — make it like straia.io"). Cream ground
+  (#FBF3EC), warm near-black ink, burgundy accent (#873E3A), peach for unpressed choices, rounder
+  8px controls. Measured: body 16.4:1, every band tag at least 5.4:1. Dark (neon) unchanged.
+- **Neon colours** (Ajay, 5 Nov). The dark theme — what every first-time visitor sees — is now
+  near-black with glowing cyan, green, yellow, orange, pink and violet; the brand title glows
+  pink, chosen buttons glow cyan, month headings on Key dates are pink. Each result band keeps
+  its own hue. Measured: body text 18.4:1, every band tag at least 5.4:1 on its ground (the
+  test floors are 15:1 and 4.5:1). Light and print are unchanged; glow is off in both.
+- **`Preview PathtoUni.command`** — double-click to serve `dist/` at http://localhost:8000 on the
+  Mac and open the Key dates page, so the built site can be looked at before it is published.
+
+---
+
+## Phase 28 — Everything re-checked against the live sources
+
+Ajay asked (23–24 Oct) for every fact on the site to be re-checked and updated. Record:
+`docs/review/recheck-2026-10-24.md`.
+
+**Unchanged at the source** — all 130 course rules (Sydney's table is byte-identical; 62 other
+pages section-by-section identical), every institution rule, Sydney's maths gate and MOOC route,
+UNSW bridging, 15 of 16 industry sources, all 12 Try-it programs, all 5 shipped descriptions.
+
+**Changed at the source, now updated**
+- Early entry: Macquarie and Wollongong pages moved; Western Sydney HSC True Reward now makes
+  conditional offers on **Year 11** results too (caveat rewritten); UAC's SRS page moved and now
+  gives Western Sydney a verbatim sentence, so that scheme shows for the first time.
+- India's quantum-mission source moved from dst.gov.in (now an empty page) to pmindia.gov.in.
+- Western Sydney Data Science description now cites the 2027 handbook.
+
+**Wrong on the site all along, now fixed** — errors 22, 23, 24 below. Wollongong Mathematics
+and Engineering (Hons)/Mathematics now carry their prerequisite (`uow-maths-std2`); the guide
+page and `docs/RULES-NSW.md` no longer say only Sydney has entry rules; the course-page heading
+is "Entry rule (prerequisite)" rather than "Hard mark rule". `test/recheck-2026-10.test.js`.
+
+- Data hygiene: four UAC institution quotes had ":https" stuck to the end, and two used straight
+  apostrophes where the page uses curly ones. Not shown on the site; fixed.
+- Tests: 148 pass, 1 skipped.
+
+**Needs a person** — "the equivalent of Mathematics Standard 2" is read as including Mathematics
+Advanced at Band 2 and either Extension at any band. That reading is ours; it is on the adviser
+pack.
+
+---
+
+## Phase 27 — Try it before you choose
+
+Ajay asked (23 Oct) for a section on internships for high school students, starting from a
+list he had drafted with ChatGPT that morning. Checked against the providers' own pages, the
+list did not hold up as written: about 10 of ~50 rows were real programs a school student can
+do, about 20 were guesses (a company home page and "verify"), about 17 were after school or at
+university, and one fact was wrong (Mount Stromlo runs in term time, not the holidays).
+
+**Became true**
+- **`/try-it/` — "Try it before you choose".** 12 programs in seven kinds: work experience,
+  one-day events, live-in programs, university subjects while at school, competitions, free
+  online learning, and paid school-based traineeships. Each card says who, when, cost, where,
+  how to apply and what is true right now, in plain words, with the provider's own quotes and
+  the date checked behind a fold.
+- **Named honestly.** Not "internships": real internships for under-18s are rare in Australia,
+  and the page says so first. It also says that a lab with no program of its own is reached
+  through school work experience, which keeps it safe and insured.
+- **31 quotes from 13 pages, all matched by code** (`docs/review/opportunities.md`). The build
+  refuses `data/opportunities.json` if an entry has no quote, quotes a page it does not cite,
+  is unverified, names an unknown topic, or lists a year outside 7–12
+  (`pipeline/opportunities.js`).
+- **Joined to the rest of the site through the same interest areas.** Course pages say "Try it
+  while you are at school" with the matching programs; each industry lists them; the nav has
+  **Try it**. Entries that fit everyone (school work experience, traineeships, NYSF) are not
+  attached to individual courses, because beside a course they would say nothing about it.
+- **Out of date says so.** An entry checked more than a year before the build shows "checked
+  over a year ago — may be out of date".
+- The personal list and a cleaned tracker (with a 2027 plan) stay in `Internship/`, which is
+  not committed.
+- Tests: 144 pass, 1 skipped. Breaking a quote's source made the build stop with the reason.
+  Opened in a browser at desktop and phone width: no horizontal scroll, no console error, no
+  third-party request.
+
+**Not true yet**
+- No person has reviewed the plain-English summaries or the interest-area tags.
+- Only NSW, Canberra and online programs; nothing yet for students outside Sydney beyond NYSF.
 
 ---
 
@@ -807,7 +1125,7 @@ prerequisite explorer.
 |---|---|---|
 | 1 | Product answers "what does this cost me", not "can I get in" | Standing (Phase 1) |
 | 2 | Called **readiness**, never prerequisites | Standing (Phase 1) |
-| 3 | LLM in the refresh pipeline, never in the answer path | Standing (Phase 2) |
+| 3 | LLM in the refresh pipeline, never in the answer path | **Revised (Phase 30)** — still never in the readiness engine or the results; an opt-in Ask assistant may use an LLM to word answers from the site's own facts, see 33 |
 | 4 | All STEM including health | Standing (Phase 2) |
 | 5 | Five bands; hurdles are a flag, never a band | Standing (Phase 2) |
 | 6 | Evidence tiers A/B/C; Tier C alone can never produce HARD_GAP | Standing (Phase 2) — **nearly broken** Phase 8 by a new code path that bypassed the cap; held after a fix |
@@ -833,6 +1151,12 @@ prerequisite explorer.
 | 26 | An industry is listed for a country only where that government's own document names it, quoted and code-matched | Standing (Phase 25) |
 | 27 | Page text that lists data (countries, counts) is built from the data, never typed beside it | Standing (Phase 26) |
 | 28 | Every quiz topic is offered at least twice, so any topic can come out on top | Standing (Phase 26) — after error 20 |
+| 29 | An opportunity is listed only where the provider's own page says school students can take part, quoted and code-matched; anything else is routed through school work experience | Standing (Phase 27) |
+| 30 | A re-check re-reads the capture with the extractor and compares subjects with the catalogue, not only quotes with the page | Standing (Phase 28) — after errors 22–24 |
+| 31 | A year with no published round shows last year's date, labelled and placed by month — never a guessed day | Standing (Phase 29) |
+| 32 | Quotes are matched in the desktop browser; a text-only page reader can serve a stale copy and is not a check | Standing (Phase 29) |
+| 33 | The Ask assistant may only word what the site already holds: it sees only matched facts, every kept answer cites one, predictions are discarded, nothing is sent without consent or stored, and it is off until the live check passes | Standing (Phase 30) |
+| 34 | The site is called **Path to Uni**, and the name is set in one place (`SITE_NAME`, `ui/meta.js`). Was "Open To You" | Standing (Phase 29, 6 Nov 2026) |
 
 ---
 
@@ -1092,7 +1416,85 @@ shared. Nobody had published it yet.
 checks every `<loc>`, the robots.txt sitemap line and the home page `og:url` are absolute.
 
 
+### 22. Two Wollongong degrees have a prerequisite the site did not show
+
+Wollongong's Bachelor of Mathematics and its Engineering (Honours)/Mathematics double degree say,
+under **Prerequisites**: *"Students must have studied the equivalent of NSW HSC Mathematics
+Standard 2 (minimum Band 2) to be admitted into this degree."* The site recorded no rule for
+either, and its guide said only Sydney has hard subject rules. Error 1 itself ("Wollongong the
+same") was built on UAC's institution page, which talks about assumed knowledge and is silent on
+course prerequisites.
+
+**Direction** — a door shown open that is shut for a student without 2-unit maths, or with
+Standard 2 below Band 2. The fourth time the site has erred that way.
+
+**Caught by** re-running the extractor over the saved August capture during the full re-check.
+A reviewer had raised it in September ("UOW Mathematics really assumes 2-unit maths") without a
+source, and it was rightly not entered then; the capture had the source all along.
+
+**Prevents repeat** — the gate is encoded with the university's sentence; the guide, rules doc
+and course-page heading now say two universities have entry rules; decision 30.
+
+### 23. "Advanced or Standard 2" was stored as Advanced and Standard 2
+
+Wollongong Computer Science assumes *"Mathematics Advanced or Mathematics Standard 2"*. The record
+held two assumed-knowledge rows, and the engine treats every row as required, so a Standard 2
+student was shown a gap the university says they do not have.
+
+**Caught by** listing every course with more than one maths assumption during the re-check. The
+five UNSW records with Advanced + Extension 1 are genuine (each needs Extension 1 for one half of
+the degree) and were left alone.
+
+**Prevents repeat** — one row, the lower subject, with the whole "or" sentence as its quote; a test
+asserts a Standard 2 student is ready.
+
+### 24. Hand-edited records drifted from what the page says
+
+Wollongong Nursing, Mathematics and Information Technology showed no assumed knowledge at all,
+and no Wollongong course showed its recommended studies, though each page lists them. Macquarie
+Engineering (Honours) and Science assume Mathematics Advanced **at Band 4**; the band was dropped.
+UTS and Wollongong "any two units of English" lines were missing (harmless to the result, wrong as
+a record).
+
+**Direction** — mostly toward silence: a page that says "assumes" shown as assuming nothing.
+
+**Caught by** the same extractor re-run, compared field by field with the catalogue.
+
+**Prevents repeat** — decision 30. The completeness guard (Phase 7) only runs when a record is
+extracted; records edited by hand afterwards were never compared with the capture again.
+
+
 ---
+
+### 25. A quote that matched because it stopped short
+
+The Australian Informatics Olympiad entry said it costs **$25**. The quote behind it was
+"COST AUD $25." — and the page says "COST AUD $25.90 per student". The quote is a prefix of the
+real text, so the word-for-word check passed while the price shown was wrong.
+
+**Direction** — a fact understated, not a door closed. Small, but it is the exact failure the
+quote check exists to prevent.
+
+**Caught by** the 5 Nov re-check, which printed what follows each matched quote on the page.
+
+**Prevents repeat** — both validators (`pipeline/opportunities.js`, `pipeline/schedule.js`)
+refuse a quote that ends on a money amount and a full stop. The fuller lesson for any re-check:
+look at the characters after a match, not only whether it matched.
+
+### 26. Every bridging cost on the results page had lost its dollar sign
+
+The engine writes a bridging course's cost as `~$${cost}`. The build pastes the engine into the
+page with JavaScript's `String.replace`, which reads `$$` in the pasted text as an escaped `$` —
+so the page said "(~380, 3-4 weeks, pre-session)" for every UNSW bridging course.
+
+**Direction** — a fact made unclear, not wrong in number. The same cost also appeared, correctly,
+in a second line on the same card, which is why nobody noticed.
+
+**Caught by** reading the results text line by line during the plain-English rewrite (6 Nov).
+
+**Prevents repeat** — every paste in the build now passes a function, which `replace` never
+reads for `$` patterns (`ui/build.js`). The second, duplicate cost line was removed, so the
+cost is said once.
 
 # Open questions
 

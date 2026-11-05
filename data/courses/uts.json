@@ -3,9 +3,10 @@
   "capturedOn": "2026-08-27",
   "institutionRule": {
     "hasSubjectPrerequisites": false,
-    "quote": "There are no HSC subject prerequisites for any UTS course, with the exception of teacher education courses.:https",
+    "quote": "There are no HSC subject prerequisites for any UTS course, with the exception of teacher education courses.",
     "source": "https://uac.edu.au/institutions/university-of-technology-sydney/admission-criteria-and-entry-schemes",
-    "verification": "verified"
+    "verification": "verified",
+    "checkedOn": "2026-10-24"
   },
   "courses": [
     {
@@ -17,6 +18,12 @@
         {
           "subject": "Mathematics Advanced",
           "quote": "Mathematics Advanced",
+          "source": "https://www.uts.edu.au/courses/bachelor-of-computing-science",
+          "tier": "A"
+        },
+        {
+          "subject": "English Standard",
+          "quote": "any two units of English",
           "source": "https://www.uts.edu.au/courses/bachelor-of-computing-science",
           "tier": "A"
         }
@@ -48,6 +55,12 @@
         {
           "subject": "Mathematics Advanced",
           "quote": "Mathematics Advanced",
+          "source": "https://www.uts.edu.au/courses/bachelor-of-information-technology",
+          "tier": "A"
+        },
+        {
+          "subject": "English Standard",
+          "quote": "any two units of English",
           "source": "https://www.uts.edu.au/courses/bachelor-of-information-technology",
           "tier": "A"
         }

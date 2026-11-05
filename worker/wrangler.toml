@@ -1,0 +1,14 @@
+# Cloudflare Worker for the Ask assistant. See docs/ASSISTANT.md.
+# The AI key is NOT here. Set it once with:  npx wrangler secret put OPENAI_API_KEY
+name = "pathtouni-ask"
+main = "dist/worker.js"
+compatibility_date = "2026-10-01"
+
+[vars]
+PROVIDER = "openai"
+MODEL = "gpt-6.1-terra"
+ALLOWED_ORIGINS = "https://ibn-battuta.github.io,http://localhost:8000"
+
+# No request logs are kept: questions are not stored anywhere.
+[observability]
+enabled = false

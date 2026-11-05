@@ -1,4 +1,4 @@
-# NSW admission rules — verified 27 August 2026
+# NSW admission rules — verified 27 August 2026, re-checked 24 October 2026
 
 Re-verify before encoding anything. Selection ranks and assumed knowledge both move.
 
@@ -11,7 +11,7 @@ Re-verify before encoding anything. Selection ranks and assumed knowledge both m
 | Sydney | Engineering (Hons), Advanced Computing, Pharmacy | "Mathematics Advanced (Band 4) or Mathematics Extension 1 or 2 (Band E3)" |
 | Macquarie | None | "it's not a requirement for acceptance into a degree" |
 | Western Sydney | None | "you are still eligible to apply for that course" |
-| Wollongong | None | "Assumed knowledge is not a compulsory requirement for admission" |
+| Wollongong | Mathematics; Engineering (Hons)/Mathematics | "Students must have studied the equivalent of NSW HSC Mathematics Standard 2 (minimum Band 2) to be admitted into this degree." (course pages, under Prerequisites). UAC's institution page says only: "Assumed knowledge is not a compulsory requirement for admission" — true of assumed knowledge, silent on prerequisites. Found 24 Oct 2026 (error 22). |
 
 Sydney dropped maths prerequisites for Commerce, Science, Medicine, Psychology, Veterinary Science
 and Economics from the 2025 intake — an access and equity decision, explicitly not a claim that

@@ -9,7 +9,8 @@ export const USES_ENGLISH = {
   year11_studies: 'Year 11 studies',
   school_ratings: 'school ratings',
   year11_results: 'Year 11 results',
-  skills_experience: 'skills and experience'
+  skills_experience: 'skills and experience',
+  year11_subject_results: 'Year 11 subject results'
 };
 
 export function usesEnglish(uses) {
@@ -51,4 +52,4 @@ export function staleNote(scheme, file, now = new Date()) {
 }
 
 export const TRUE_REWARD_CAVEAT =
-  'Western Sydney may admit you on ATAR release day on specific HSC subject band outcomes rather than on the ATAR. Which bands, for which course, is published by the university — we have not captured that table. Your subject bands are what it reads.';
+  'Western Sydney may offer you a place based on your subject results instead of your ATAR: a conditional offer on Year 11 results, or an unconditional one on Year 12 results. The university publishes which results count for which course — we have not captured that table, so check its page.';

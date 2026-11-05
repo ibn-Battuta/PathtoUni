@@ -1,6 +1,6 @@
 {
   "_comment": "Non-ATAR admission routes. Three of six MVP universities lead with these, and they read Year 11 results. A tool modelling only prerequisites describes a minority of how NSW admission works.",
-  "capturedOn": "2026-08-27",
+  "capturedOn": "2026-11-05",
   "stalenessDays": 180,
   "schemes": [
     {
@@ -8,48 +8,64 @@
       "university": "Macquarie",
       "name": "Leaders and Achievers Early Entry",
       "kind": "holistic",
-      "uses": ["year11_academic", "extracurricular", "casual_work", "community_involvement"],
-      "quote": "Year 11 academic performance alongside your extracurricular activities, casual work experience and community involvement",
-      "source": "https://www.mq.edu.au/study/admissions-and-entry/undergraduate/early-entry",
-      "capturedOn": "2026-08-27",
+      "uses": [
+        "year11_academic",
+        "extracurricular",
+        "casual_work",
+        "community_involvement"
+      ],
+      "quote": "You could receive an early offer if you’ve performed well academically in Year 11 and can demonstrate initiative through sport, volunteering, part-time work, or leadership or personal development activities in Years 11 and/or 12.",
+      "source": "https://www.mq.edu.au/study/admissions-and-entry/pathways/schemes/leaders-achievers",
+      "capturedOn": "2026-11-05",
       "coverage": "most Macquarie degrees",
       "appliedVia": "direct to university",
-      "verification": "verified"
+      "verification": "verified",
+      "_note": "Re-verified 5 Nov 2026 in the desktop browser. Note: a text-only page reader was served an older version of this page (2025 qualifications, \"now open\"); the browser shows the current one."
     },
     {
       "id": "wsu-hsc-true-reward",
       "university": "Western Sydney",
       "name": "HSC True Reward",
       "kind": "subject_bands",
-      "uses": ["hsc_subject_bands"],
-      "quote": "admission on ATAR release day based on specific HSC subject band outcomes rather than the ATAR itself",
+      "uses": [
+        "year11_subject_results",
+        "hsc_subject_bands"
+      ],
+      "quote": "Instead of waiting until the end of Year 12, you could receive an early conditional offer to study at Western based on your Year 11 subject results or an unconditional offer on your Year 12 subject results.",
       "source": "https://www.westernsydney.edu.au/future/study/application-pathways/hsc-true-reward",
-      "capturedOn": "2026-08-27",
+      "capturedOn": "2026-11-05",
       "verification": "verified",
-      "_note": "We hold the scheme, not the per-course band table. Do not compute eligibility."
+      "_note": "Reworded by 24 Oct 2026: offers now also use Year 11 subject results (conditional). We hold the scheme, not the per-course subject table. Do not compute eligibility."
     },
     {
       "id": "wsu-srs",
       "university": "Western Sydney",
       "name": "Schools Recommendation Scheme",
       "kind": "holistic",
-      "uses": ["year11_studies", "school_ratings"],
-      "quote": null,
-      "source": "https://www.uac.edu.au/future-applicants/admission-pathways/schools-recommendation-scheme",
-      "capturedOn": "2026-08-27",
-      "verification": "unverified",
-      "_note": "Was marked verified with an empty quote, which violates rule 1. Demoted until a verbatim quote is recaptured. UI must treat it as absent."
+      "uses": [
+        "year11_studies",
+        "school_ratings"
+      ],
+      "quote": "The Western Sydney University Schools Recommendation Scheme allows current domestic and international Year 12 students who meet the requirements below to receive early offers of undergraduate admission.",
+      "source": "https://uac.edu.au/future-applicants/scholarships-and-schemes/schools-recommendation-schemes/institution-specific-srs-criteria",
+      "capturedOn": "2026-11-05",
+      "verification": "verified",
+      "_note": "Reworded at UAC between 24 Oct and 5 Nov 2026 (\"domestic and international\" added). Re-verified by code in the desktop browser on 5 Nov 2026."
     },
     {
       "id": "uow-early-admission",
       "university": "Wollongong",
       "name": "Early Admission",
       "kind": "holistic",
-      "uses": ["year11_results", "skills_experience"],
-      "quote": "your unique skills and experiences, alongside your Year 11 results",
-      "source": "https://www.uow.edu.au/study/high-school/early-admission/",
-      "capturedOn": "2026-08-27",
-      "verification": "verified"
+      "uses": [
+        "year11_results",
+        "skills_experience"
+      ],
+      "quote": "Instead of relying solely on your final Year 12 results, we consider your Year 11 performance, whether you’ve experienced challenges that have impacted that performance, and your skills and experiences through a written questionnaire.",
+      "source": "https://www.uow.edu.au/the-stand/2026/answering-the-most-common-early-admission-questions.php",
+      "capturedOn": "2026-11-05",
+      "verification": "verified",
+      "_note": "The old page moved (early admission now at https://www.uow.edu.au/early-admission/, which says applications are closed). Quote from UOW's own 2026 FAQ article. 5 Nov 2026: offer release moved from 1 to 17 September 2026 (UOW page); UAC still shows 1 September."
     }
   ]
 }

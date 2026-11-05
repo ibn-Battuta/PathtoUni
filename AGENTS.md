@@ -53,8 +53,10 @@ Pages workflow, then a live-URL verification list.
 
 ## Conventions
 
-- **Never put a model call in the answer path.** The engine is deterministic: same subjects in,
-  same result out. Models belong in the pipeline only.
+- **Never put a model call in the readiness engine or the results.** The engine is deterministic:
+  same subjects in, same result out. The one exception is the opt-in Ask assistant (`assistant/`,
+  `worker/`, decision 33): it may only word answers from the site's own facts, every kept answer
+  cites one, and predictions are discarded. Read `docs/ASSISTANT.md` before touching it.
 - Every rule carries `quote`, `source` and `capturedOn`. A record without them is `unverified`
   and must be treated as absent, never as true.
 - Never let an `unverified` record overwrite a `verified` one. Degrade to stale-with-a-date, not to wrong.

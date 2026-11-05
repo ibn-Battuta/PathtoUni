@@ -21,12 +21,19 @@ const ENGLISH = [
   ['english_eald', 'EAL/D']
 ];
 const BAND_LABEL = {
-  PREPARED: 'ready now',
-  MINOR_GAP: 'small gap',
+  PREPARED: 'ready',
+  MINOR_GAP: 'a little to catch up',
   BRIDGE_IT: 'bridging course',
-  HARD_GAP: 'hard gap',
-  GATED: 'blocked'
+  HARD_GAP: 'a lot to catch up',
+  GATED: 'entry rule not met'
 };
+
+// 2026-09-23 → 23 Sep 2026. Dates a person reads, not a database.
+function niceDate(iso) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || '');
+  if (!m) return iso || '';
+  return Number(m[3]) + ' ' + ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][Number(m[2]) - 1] + ' ' + m[1];
+}
 const BAND_CLASS = {
   PREPARED: 's-prep',
   MINOR_GAP: 's-minor',
@@ -67,9 +74,9 @@ function resultsHref() {
   return BASE + 'results/' + (h ? '#' + h : '');
 }
 
-function homeHref() {
+function subjectsHref() {
   const h = encodeState(state);
-  return BASE + (h ? '#' + h : '');
+  return BASE + 'subjects/' + (h ? '#' + h : '');
 }
 
 function courseHref(id) {
@@ -124,15 +131,15 @@ function unitsPanel() {
   const wrap = el('div', 'pk');
   wrap.dataset.units = '1';
   if (!state.mathsPathway || !state.english.length || !state.year) {
-    wrap.appendChild(el('p', 'hint', 'Choose year, mathematics and English to start counting units.'));
+    wrap.appendChild(el('p', 'hint', 'Pick your year, maths and English, and we’ll start counting your units.'));
     return wrap;
   }
   const pat = validateAtarPattern(profileFrom(state));
   const urow = el('div', 'units');
   const left = el('span');
-  left.append('Units ', el('b', null, String(pat.units)), ' · subject areas ', el('b', null, String(pat.areas)));
+  left.append('Units: ', el('b', null, String(pat.units)), ' · Subject areas: ', el('b', null, String(pat.areas)));
   const right = el('span', pat.valid ? 'ok' : 'bad');
-  right.textContent = pat.valid ? 'ATAR pattern OK' : 'ATAR pattern fails';
+  right.textContent = pat.valid ? 'Enough for an ATAR' : 'Not enough for an ATAR yet';
   urow.append(left, right);
   wrap.appendChild(urow);
   if (!pat.valid && pat.violations[0]) {
@@ -148,7 +155,7 @@ function renderPicker(root, opts = {}) {
   root.replaceChildren();
   if (stepped) {
     const prog = el('div', 'progress');
-    prog.textContent = `Question ${step + 1} of ${STEPS.length}`;
+    prog.textContent = `Step ${step + 1} of ${STEPS.length}`;
     root.appendChild(prog);
   }
 
@@ -162,13 +169,13 @@ function renderPicker(root, opts = {}) {
   }
 
   const grid = el('div', 'picker-grid');
-  grid.appendChild(stepBox('year', 'Year', box => {
+  grid.appendChild(stepBox('year', 'Which year are you in?', box => {
     const c = el('div', 'chips');
     [11, 12].forEach(y => c.appendChild(chip('Year ' + y, state.year === y, () => { state.year = y; })));
     box.appendChild(c);
   }));
 
-  grid.appendChild(stepBox('maths', 'Which mathematics?', box => {
+  grid.appendChild(stepBox('maths', 'Which maths?', box => {
     const c = el('div', 'chips');
     MATHS.forEach(([k, l]) => {
       const locked = k === 'advanced_ext1_ext2' && state.year === 11;
@@ -179,17 +186,17 @@ function renderPicker(root, opts = {}) {
     });
     box.appendChild(c);
     if (state.year === 11) {
-      box.appendChild(el('p', 'hint', 'Extension 2 is a Year 12 course, so it is not available in Year 11.'));
+      box.appendChild(el('p', 'hint', 'Extension 2 is a Year 12 course, so you can’t pick it in Year 11.'));
     }
   }));
 
-  grid.appendChild(stepBox('english', 'English', box => {
+  grid.appendChild(stepBox('english', 'Which English?', box => {
     const c = el('div', 'chips');
     ENGLISH.forEach(([k, l]) => c.appendChild(chip(l, state.english[0] === k, () => { state.english = [k]; })));
     box.appendChild(c);
   }));
 
-  grid.appendChild(stepBox('sciences', 'Sciences', box => {
+  grid.appendChild(stepBox('sciences', 'Any sciences?', box => {
     const c = el('div', 'chips');
     subjects.sciences.forEach(s => {
       const label = s.name === 'Earth and Environmental Science' ? 'Earth & env.'
@@ -199,7 +206,7 @@ function renderPicker(root, opts = {}) {
     box.appendChild(c);
   }));
 
-  grid.appendChild(stepBox('technology', 'Technology', box => {
+  grid.appendChild(stepBox('technology', 'Any technology subjects?', box => {
     const c = el('div', 'chips');
     subjects.technology.forEach(t => {
       const label = t.name === 'Engineering Studies' ? 'Eng. Studies'
@@ -211,8 +218,8 @@ function renderPicker(root, opts = {}) {
     box.appendChild(c);
   }));
 
-  grid.appendChild(stepBox('other', 'Anything else', box => {
-    box.appendChild(el('p', 'hint', 'No effect on STEM readiness — only counted for your ATAR pattern.'));
+  grid.appendChild(stepBox('other', 'Any other subjects?', box => {
+    box.appendChild(el('p', 'hint', 'These don’t change your STEM results. We only count them toward your ATAR.'));
     const row = el('div', 'units');
     const st = el('div', 'stepper');
     const minus = document.createElement('button');
@@ -233,7 +240,7 @@ function renderPicker(root, opts = {}) {
 
   if (showCta) {
     const cta = el('div', 'cta-wrap picker-foot');
-    const go = el('button', 'btn', "See what's open to you");
+    const go = el('button', 'btn', 'See my results');
     go.type = 'button';
     go.disabled = !isCompleteSelection(state);
     go.addEventListener('click', () => { writeHash(); location.href = resultsHref(); });
@@ -247,7 +254,7 @@ function renderPicker(root, opts = {}) {
     back.type = 'button';
     back.disabled = step === 0;
     back.addEventListener('click', () => { step = Math.max(0, step - 1); render(); });
-    const next = el('button', 'btn', step === STEPS.length - 1 ? "See what's open to you" : 'Next');
+    const next = el('button', 'btn', step === STEPS.length - 1 ? 'See my results' : 'Next');
     next.type = 'button';
     next.addEventListener('click', () => {
       if (step === STEPS.length - 1) {
@@ -302,7 +309,7 @@ function courseCard(r, opts = {}) {
   // not only on the course page, because the row is what most people read.
   if (r.restrictedTo) {
     row.appendChild(el('p', 'restrict',
-      'Only open to ' + r.restrictedTo.who + '. Your subjects do not decide this.'));
+      'Only open to ' + r.restrictedTo.who + '. Your subjects don’t change this.'));
     if (r.restrictedTo.quote) row.appendChild(el('p', 'quote', '\u201c' + collapse(r.restrictedTo.quote) + '\u201d'));
   }
 
@@ -316,7 +323,7 @@ function courseCard(r, opts = {}) {
   });
 
   if (!r.complete) {
-    row.appendChild(el('p', 'why', 'We could not fully read this university’s page — this is not a clear result.'));
+    row.appendChild(el('p', 'why', 'We couldn’t fully read this university’s page, so this result isn’t certain.'));
   }
   r.findings.forEach(f => {
     row.appendChild(el('p', 'why', f.why));
@@ -352,12 +359,11 @@ function bandLabel(r) {
   if (r.bandName === 'BRIDGE_IT' && bridging?.subjects?.length) {
     const gaps = (r.findings || []).map(f => f.subject);
     const covered = gaps.filter(g => bridging.subjects.some(b => g.toLowerCase().includes(b.toLowerCase())));
-    if (covered.length) {
+    // A covered gap already says "runs a bridging course for it (~$cost, timing)" in its own
+    // line, from the engine; saying it again here read as two different courses.
+    if (!covered.length && gaps.length) {
       row.appendChild(el('p', 'why',
-        `Bridging is offered in ${covered.join(' and ')} (about $${bridging.costAud}, ${bridging.timing || 'timing unpublished'}).`));
-    } else if (gaps.length) {
-      row.appendChild(el('p', 'why',
-        `This university's bridging courses cover ${bridging.subjects.join(', ')} — not ${gaps.join(' or ')}.`));
+        `This university’s bridging courses cover ${bridging.subjects.join(', ')}, but not ${gaps.join(' or ')}.`));
     }
   }
   const srcs = new Set();
@@ -366,7 +372,7 @@ function bandLabel(r) {
   if (opts.sources && srcs.size) {
     const p = el('p', 'src');
     const date = captureDate(r.course);
-    p.append('Captured ' + date + '. ');
+    p.append('Checked ' + niceDate(date) + '. ');
     [...srcs].slice(0, 2).forEach((u, i) => {
       if (i) p.append(' ');
       const l = document.createElement('a');
@@ -394,7 +400,7 @@ function subjectChips() {
     const t = subjects.technology.find(x => x.id === id);
     if (t) labels.push(t.name);
   });
-  if (state.otherCount) labels.push(state.otherCount + ' other');
+  if (state.otherCount) labels.push(state.otherCount + ' other subject' + (state.otherCount > 1 ? 's' : ''));
   return labels;
 }
 
@@ -424,10 +430,16 @@ function pageHref(slug) {
 }
 
 function renderHome() {
+  // Links made before the picker had its own page carried the subjects on the home address.
+  if (location.hash.length > 1) { location.replace(BASE + 'subjects/' + location.hash); return; }
   // The doors carry whatever the student has already told us, so the three ways in
   // combine instead of starting over.
+  document.querySelectorAll('[data-door="subjects"]').forEach(a => { a.href = pageHref('subjects/'); });
   document.querySelectorAll('[data-door="quiz"]').forEach(a => { a.href = pageHref('quiz/'); });
   document.querySelectorAll('[data-door="industries"]').forEach(a => { a.href = pageHref('industries/'); });
+}
+
+function renderSubjects() {
   const now = document.getElementById('doors-now');
   if (now) {
     const sb = sortingNow();
@@ -504,29 +516,29 @@ function renderQuiz() {
   const chips = el('div', 'chips');
   top.forEach(t => chips.appendChild(el('span', 'chip on', topicLabel(t))));
   res.appendChild(chips);
-  res.appendChild(el('p', 'hint', 'Worked out from your picks with a simple count. It is a starting point for looking, not a verdict on you.'));
+  res.appendChild(el('p', 'hint', 'Based on a simple count of your picks. It’s a place to start looking, not a label for you.'));
 
   const use = el('button', 'btn', isCompleteSelection(state) ? 'Sort my results by these' : 'Use these, then add my subjects');
   use.type = 'button';
   use.addEventListener('click', () => {
     state.interests = top;
-    location.href = isCompleteSelection(state) ? resultsHref() : homeHref() + '';
+    location.href = isCompleteSelection(state) ? resultsHref() : subjectsHref();
   });
   res.appendChild(use);
 
   const { specific, broad } = coursesForTopics(top, CATALOGUE);
   const ranked = sortByInterest(specific.map(c => ({ course: c })), top, []).map(x => x.course);
-  res.appendChild(el('h3', null, 'Degrees whose names match these areas (' + ranked.length + ')'));
-  res.appendChild(el('p', 'hint', 'Our judgement, from each degree’s name. Add your subjects to see which ones you are ready for.'));
+  res.appendChild(el('h3', null, 'Courses that match these areas (' + ranked.length + ')'));
+  res.appendChild(el('p', 'hint', 'Our best guess from each course name. Add your subjects to see which ones you’re ready for.'));
   res.appendChild(degreeList(ranked));
   if (broad.length) {
     const det = document.createElement('details');
     det.className = 'fold';
     const sm = document.createElement('summary');
-    sm.append('Broad degrees that keep these open ');
+    sm.append('Broad degrees that can lead here ');
     sm.appendChild(el('span', 'hint', broad.length + ' courses'));
     det.appendChild(sm);
-    det.appendChild(el('p', 'hint', 'You choose a major later in these. Check the handbook offers one in your area.'));
+    det.appendChild(el('p', 'hint', 'In these you pick a major later. Check the handbook has one in your area.'));
     det.appendChild(degreeList(broad));
     res.appendChild(det);
   }
@@ -539,7 +551,7 @@ function renderIndustries() {
   document.querySelectorAll('a[data-industry]').forEach(a => {
     const next = { ...state, industry: a.dataset.industry };
     const h = encodeState(next);
-    a.href = BASE + (isCompleteSelection(state) ? 'results/' : '') + (h ? '#' + h : '');
+    a.href = BASE + (isCompleteSelection(state) ? 'results/' : 'subjects/') + (h ? '#' + h : '');
     if (!isCompleteSelection(state)) a.textContent = 'Use this, then add my subjects';
   });
   document.querySelectorAll('.industries a[href^="../course/"]').forEach(a => {
@@ -552,10 +564,10 @@ function renderResults() {
   const main = document.getElementById('results');
   if (!isCompleteSelection(state)) {
     main.replaceChildren();
-    main.appendChild(el('p', 'lede', "Choose your subjects to see what's open to you."));
+    main.appendChild(el('p', 'lede', 'Pick your subjects first, and your results will show here.'));
     const go = el('a', 'btn');
-    go.href = homeHref();
-    go.textContent = 'Choose your subjects';
+    go.href = subjectsHref();
+    go.textContent = 'Pick my subjects';
     go.style.display = 'inline-block';
     go.style.textDecoration = 'none';
     main.appendChild(go);
@@ -594,7 +606,7 @@ function renderResults() {
     c.textContent = l;
     inner.appendChild(c);
   });
-  const edit = el('button', 'btn ghost', 'Edit subjects');
+  const edit = el('button', 'btn ghost', 'Change subjects');
   edit.type = 'button';
   edit.addEventListener('click', () => {
     const d = document.getElementById('editor');
@@ -612,7 +624,7 @@ function renderResults() {
       copy.textContent = 'Copied';
       setTimeout(() => { copy.textContent = 'Copy link'; }, 1500);
     } catch {
-      copy.textContent = 'Copy the address bar';
+      copy.textContent = 'Copy the link from the address bar';
     }
   });
   inner.append(edit, copy);
@@ -627,8 +639,8 @@ function renderResults() {
   const gatedAsk = results.some(r => r.needsInput.some(x => /band/i.test(x)));
   if (gatedAsk) {
     const bd = el('div', 'bandask');
-    bd.appendChild(el('label', 'q', 'Expected maths band'));
-    bd.appendChild(el('p', 'hint', 'A course on your list is gated on a mark, not a subject. This is the only thing in NSW that can turn you away. You can skip this if you do not know yet.'));
+    bd.appendChild(el('label', 'q', 'Your expected maths band'));
+    bd.appendChild(el('p', 'hint', 'Some courses on your list need a certain maths mark, not just the subject. It’s the only kind of rule in NSW that can turn you away. Skip this if you don’t know yet.'));
     const target = state.mathsPathway === 'advanced_ext1_ext2' ? 'Mathematics Extension 1'
       : state.mathsPathway === 'advanced_ext1' ? 'Mathematics Extension 1'
         : 'Mathematics Advanced';
@@ -647,7 +659,7 @@ function renderResults() {
   }
 
   main.appendChild(el('p', 'honest',
-    'Most of what follows is open to you. That is the normal answer in New South Wales — universities publish assumed knowledge rather than hard prerequisites, so subjects rarely stop you being admitted. What matters is the short list that is not open, and why.'));
+    'Good news first: most of these courses are open to you. NSW universities mostly list assumed knowledge rather than strict prerequisites, so your subjects rarely stop you getting in. What matters is the shorter list below that needs some catching up, and why.'));
 
   // Print-only: rows drop their individual source lines to fit one page, so collect the
   // distinct sources once. An artefact a family takes away must stay checkable.
@@ -661,8 +673,8 @@ function renderResults() {
       if (r.gate?.source) unis.set(r.university, r.gate.source);
     });
     const bits = [...unis.entries()].map(([u, src]) => u + ' — ' + src.replace(/^https?:\/\//, '').split('/')[0]);
-    printSrc.textContent = 'Rules read ' + (CAPTURED_ON || '') + ' from: ' + bits.join(' \u00b7 ') +
-      '. Full quote and link for every course on this site\u2019s course pages.';
+    printSrc.textContent = 'Rules read on ' + niceDate(CAPTURED_ON) + ' from: ' + bits.join(' \u00b7 ') +
+      '. Every course has its own page on this site with the university\u2019s exact words and a link.';
   }
   main.appendChild(printSrc);
 
@@ -687,10 +699,10 @@ function renderResults() {
   if (sb.active) {
     const secI = el('section'); secI.dataset.sec = 'interests';
     const hI = el('div', 'sh');
-    hI.appendChild(el('h2', null, 'Closest to what you told us'));
+    hI.appendChild(el('h2', null, 'Best matches for your interests'));
     secI.appendChild(hI);
     const lead = el('p', 'lede');
-    lead.append('Sorted by ' + sortingSentence(sb) + '. This changes the order only — every course is still on this page, and no band has changed. ');
+    lead.append('Sorted by ' + sortingSentence(sb) + '. This only changes the order. Every course is still here, and no result has changed. ');
     const change = el('a', null, 'Change');
     change.href = pageHref(sb.industry && !sb.interests.length ? 'industries/' : 'quiz/');
     lead.appendChild(change);
@@ -705,16 +717,16 @@ function renderResults() {
       const rows = el('div', 'rows');
       close.slice(0, 12).forEach(r => rows.appendChild(courseCard(r, { sources: true })));
       secI.appendChild(rows);
-      if (close.length > 12) secI.appendChild(el('p', 'hint', (close.length - 12) + ' more match. They are first in each list below.'));
+      if (close.length > 12) secI.appendChild(el('p', 'hint', (close.length - 12) + ' more match. They’re at the top of each list below.'));
     } else {
-      secI.appendChild(el('p', 'lede', 'No degree name in this view matches. Broad degrees such as Science or Engineering can still lead there — you choose a major later.'));
+      secI.appendChild(el('p', 'lede', 'No course names here match. Broad degrees like Science or Engineering can still lead there, because you pick a major later.'));
     }
     main.appendChild(secI);
   }
 
   const sec1 = el('section'); sec1.dataset.sec = 'attention';
   const h1 = el('div', 'sh');
-  h1.appendChild(el('h2', null, attention.length ? 'What needs attention' : 'Nothing needs attention'));
+  h1.appendChild(el('h2', null, attention.length ? 'Courses that need some catching up' : 'Nothing to catch up on'));
   h1.appendChild(el('span', 'count', attention.length ? attention.length + ' of ' + results.length : results.length + ' courses, no gaps'));
   sec1.appendChild(h1);
   if (attention.length) {
@@ -723,7 +735,7 @@ function renderResults() {
     const parts = Object.entries(missing).sort((a, b) => b[1] - a[1]).map(([s, n]) => `${s} (${n})`);
     if (parts.length) {
       const l = el('p', 'lede');
-      l.textContent = 'Every gap on your list comes down to: ' + parts.join(', ') + '.';
+      l.textContent = 'What’s missing, and how many courses it affects: ' + parts.join(', ') + '.';
       sec1.appendChild(l);
     }
     const rows = el('div', 'rows');
@@ -739,14 +751,14 @@ function renderResults() {
       const byUni = {};
       attention.forEach(r => { byUni[r.university] = (byUni[r.university] || 0) + 1; });
       const more = el('p', 'printmore');
-      more.textContent = attention.length + ' courses have a gap: '
+      more.textContent = attention.length + ' courses need some catching up: '
         + Object.entries(byUni).sort((a, b) => b[1] - a[1]).map(([u, n]) => u + ' ' + n).join(', ')
-        + '. Every one of them, with the quote it rests on, is on the site at this page\u2019s link.';
+        + '. Every one, with the university\u2019s own words, is on the site at this page\u2019s link.';
       sec1.appendChild(more);
     }
     sec1.appendChild(rows);
   } else {
-    sec1.appendChild(el('p', 'lede', 'Your subject set meets the published assumed knowledge for every fully captured course in the catalogue.'));
+    sec1.appendChild(el('p', 'lede', 'Your subjects cover the assumed knowledge for every course we could fully check.'));
   }
   main.appendChild(sec1);
 
@@ -757,7 +769,7 @@ function renderResults() {
     hR.appendChild(el('span', 'count', restricted.length + ' of ' + results.length));
     secR.appendChild(hR);
     secR.appendChild(el('p', 'lede',
-      'These are real courses and they are fully open to the students they are for. They are listed apart because whether you can apply is decided by something other than your subjects.'));
+      'These are real courses, fully open to the students they’re for. They’re listed separately because who can apply depends on something other than your subjects.'));
     const rowsR = el('div', 'rows');
     restricted.forEach(r => rowsR.appendChild(courseCard(r, { sources: true })));
     secR.appendChild(rowsR);
@@ -770,21 +782,29 @@ function renderResults() {
     secE.id = 'early-entry';
     secE.dataset.sec = 'early';
     const hE = el('div', 'sh');
-    hE.appendChild(el('h2', null, 'Three of these universities may admit you before the ATAR'));
+    const nEarly = new Set(schemes.map(s => s.university)).size;
+    hE.appendChild(el('h2', null, (['One', 'Two', 'Three', 'Four', 'Five', 'Six'][nEarly - 1] || nEarly) + ' of these universities may offer you a place before your ATAR comes out'));
     secE.appendChild(hE);
     secE.appendChild(el('p', 'lede',
-      'These are institution-level schemes, not per-course criteria we have captured. None of them is a score, a likelihood, or a readiness band.'));
+      'These are whole-university schemes, not rules for one course. We don’t predict who gets an offer.'));
+    const datesP = el('p', 'lede dates-link');
+    const datesA = document.createElement('a');
+    datesA.href = BASE + 'dates/';
+    datesA.id = 'early-dates-link';
+    datesA.textContent = 'When to apply: every early-offer date, for starting uni in 2027 or 2028';
+    datesP.appendChild(datesA);
+    secE.appendChild(datesP);
     schemes.forEach(s => {
       const card = el('article', 'early');
       card.appendChild(el('h3', null, s.university + ' — ' + s.name));
       const reads = usesEnglish(s.uses);
-      card.appendChild(el('p', 'why', 'Reads: ' + reads.join(', ') + '.'));
+      card.appendChild(el('p', 'why', 'Looks at: ' + reads.join(', ') + '.'));
       card.appendChild(el('p', 'quote', '\u201c' + s.quote + '\u201d'));
       if (s.kind === 'subject_bands') card.appendChild(el('p', 'why', TRUE_REWARD_CAVEAT));
       const stale = staleNote(s, EARLY_ENTRY);
       const meta = el('p', 'src');
       const date = s.capturedOn || EARLY_ENTRY.capturedOn;
-      meta.append('Captured ' + date + '. ');
+      meta.append('Checked ' + niceDate(date) + '. ');
       if (stale) meta.append(stale + '. ');
       if (s.source) {
         const a = document.createElement('a');
@@ -806,9 +826,9 @@ function renderResults() {
   if (candidates.length) {
     const sec2 = el('section'); sec2.dataset.sec = 'drops';
     const h2 = el('div', 'sh');
-    h2.appendChild(el('h2', null, 'If you dropped one'));
+    h2.appendChild(el('h2', null, 'What if you dropped a subject?'));
     sec2.appendChild(h2);
-    sec2.appendChild(el('p', 'lede', 'Each subject re-run against all ' + results.length + ' courses. This is the question Year 11 actually has to answer.'));
+    sec2.appendChild(el('p', 'lede', 'We re-checked all ' + results.length + ' courses without each of your subjects, one at a time. It’s the big question in Year 11.'));
     const wrap = el('div', 'drops');
     candidates.forEach(c => {
       const altState = {
@@ -825,11 +845,11 @@ function renderResults() {
       const d = el('div', 'drop');
       d.appendChild(el('b', null, c.label));
       const delta = el('span', 'delta ' + (worse ? 'cost' : 'free'));
-      delta.textContent = worse ? worse + ' courses worse' : 'nothing changes';
+      delta.textContent = worse ? worse + (worse === 1 ? ' course gets' : ' courses get') + ' harder' : 'nothing changes';
       d.appendChild(delta);
       if (!altPat.valid) {
         const w = el('span', 'delta cost');
-        w.textContent = '· ATAR pattern fails';
+        w.textContent = '· not enough for an ATAR';
         d.appendChild(w);
       }
       wrap.appendChild(d);
@@ -843,27 +863,27 @@ function renderResults() {
     if (unfamiliar.length) {
       const sec3 = el('section'); sec3.dataset.sec = 'unfamiliar';
       const h3 = el('div', 'sh');
-      h3.appendChild(el('h2', null, 'Open to you, and probably unfamiliar'));
-      h3.appendChild(el('span', 'count', unfamiliar.length + ' of ' + prepared.length + ' ready now'));
+      h3.appendChild(el('h2', null, 'Courses you may not have heard of'));
+      h3.appendChild(el('span', 'count', unfamiliar.length + ' of ' + prepared.length + ' you’re ready for'));
       sec3.appendChild(h3);
       sec3.appendChild(el('p', 'lede',
-        'These names appear at one of the six universities in this planner. That count is computed from the catalogue — not a claim about class size or how hard it is to change your mind.'));
+        'Only one of the six universities here offers a course with this name. That’s all it means — it says nothing about class size or how hard the course is.'));
       const rows = el('div', 'rows');
       unfamiliar.slice(0, 24).forEach(r => rows.appendChild(courseCard(r)));
       sec3.appendChild(rows);
       main.appendChild(sec3);
     }
     const rest = prepared.filter(r => r.course.offerCount !== 1);
-    if (rest.length) foldPrepared(main, rest, 'Everything else you are ready for in this view');
+    if (rest.length) foldPrepared(main, rest, 'Everything else you’re ready for here');
   } else if (prepared.length) {
     const secP = el('section');
     secP.dataset.sec = 'browse';
     const hP = el('div', 'sh');
-    hP.appendChild(el('h2', null, 'Ready now — pick an area to browse'));
+    hP.appendChild(el('h2', null, 'Courses you’re ready for'));
     hP.appendChild(el('span', 'count', prepared.length + ' courses'));
     secP.appendChild(hP);
     secP.appendChild(el('p', 'lede',
-      'Most STEM degrees in NSW are open on your subjects. Listing them all at once is wallpaper. Choose Engineering, Computing, Science or Health above to see the list — nothing is removed from the catalogue.'));
+      'Your subjects already fit most STEM courses in NSW. Rather than one very long list, pick Engineering, Computing, Science or Health above to see them.'));
     main.appendChild(secP);
   }
 
@@ -875,7 +895,7 @@ function renderResults() {
   });
   foot.replaceChildren();
   foot.appendChild(el('p', null,
-    'Not UAC and not a university. Rules as at ' + CAPTURED_ON + '. Confirm every preference on UAC and the university handbook before you apply. Your subjects stay in the address hash — they are never sent to a server.'));
+    'We’re independent — not UAC or a university. Course rules from ' + niceDate(CAPTURED_ON) + (RECHECKED_ON && RECHECKED_ON > CAPTURED_ON ? ', re-checked ' + niceDate(RECHECKED_ON) : '') + '. Always check UAC and the university’s website before you apply. Your subjects stay in this page’s link and are never sent to us.'));
   const ul = document.createElement('ul');
   [...srcs].slice(0, 12).forEach(u => {
     const li = document.createElement('li');
@@ -892,10 +912,10 @@ function renderClassifier(allResults, focused) {
   wrap.dataset.sec = 'classify';
   wrap.className = 'classify';
   const h = el('div', 'sh');
-  h.appendChild(el('h2', null, 'Look at one area'));
+  h.appendChild(el('h2', null, 'Narrow it down'));
   wrap.appendChild(h);
   wrap.appendChild(el('p', 'lede',
-    'This is a view filter, not a verdict. Courses you are not looking at are still in the catalogue.'));
+    'Pick an area or a university to see fewer courses. It only changes what’s shown here.'));
   if (state.filterField || state.filterUni) {
     const bits = [];
     const fl = FIELDS.find(x => x.id === state.filterField);
@@ -946,7 +966,7 @@ function renderCompare(main) {
   const patA = validateAtarPattern(profileFrom(state));
   const patB = validateAtarPattern(profileFrom(stateB));
   if (!patA.valid || !patB.valid) {
-    setLead(main, 'These two sets are not comparable on courses until both meet the ATAR pattern.');
+    setLead(main, 'We can compare these two subject sets once both are enough for an ATAR.');
     if (!patA.valid) main.appendChild(el('p', 'lede', 'Set A: ' + patA.violations[0]));
     if (!patB.valid) main.appendChild(el('p', 'lede', 'Set B: ' + patB.violations[0]));
     return;
@@ -957,13 +977,13 @@ function renderCompare(main) {
   setLead(main, cmp.same.length + ' of ' + cmp.total + ' courses are the same either way.');
   const nDiff = cmp.aOpens.length + cmp.bOpens.length;
   if (!nDiff) {
-    main.appendChild(el('p', 'lede', 'No difference list — the two sets open the same courses.'));
+    main.appendChild(el('p', 'lede', 'No difference: both sets lead to the same courses.'));
     return;
   }
-  main.appendChild(el('p', 'lede', 'Here is what the other ' + nDiff + ' are. There is no better set and no score.'));
+  main.appendChild(el('p', 'lede', 'Here are the other ' + nDiff + '. Neither set is “better” — it depends on what you want to study.'));
   if (cmp.aOpens.length) {
     const sec = el('section');
-    sec.appendChild(el('h2', null, 'Set A is more prepared for'));
+    sec.appendChild(el('h2', null, 'Set A prepares you better for'));
     const rows = el('div', 'rows');
     cmp.aOpens.forEach(p => rows.appendChild(diffCard(p, 'b')));
     sec.appendChild(rows);
@@ -971,7 +991,7 @@ function renderCompare(main) {
   }
   if (cmp.bOpens.length) {
     const sec = el('section');
-    sec.appendChild(el('h2', null, 'Set B is more prepared for'));
+    sec.appendChild(el('h2', null, 'Set B prepares you better for'));
     const rows = el('div', 'rows');
     cmp.bOpens.forEach(p => rows.appendChild(diffCard(p, 'a')));
     sec.appendChild(rows);
@@ -1009,6 +1029,7 @@ function foldPrepared(main, list, title) {
 
 function render() {
   if (PAGE === 'home') renderHome();
+  else if (PAGE === 'subjects') renderSubjects();
   else if (PAGE === 'results') renderResults();
   else if (PAGE === 'quiz') renderQuiz();
   else if (PAGE === 'industries') renderIndustries();

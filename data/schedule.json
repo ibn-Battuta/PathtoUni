@@ -1,0 +1,1421 @@
+{
+  "_comment": "Key dates for two school-leaver years: starting university in 2027 (Year 12 in 2026) and in 2028 (Year 11 in 2026). Every date is quoted from the university's, UAC's or the provider's own page and was matched word for word by code in the desktop browser on checkedOn (docs/review/schedule-2026-11-05.md). 'repeats' marks a 2026 date that the 2028 view shows as last year's date, never as a 2027 date: no 2027 round had been published when this was checked. Plain-English fields (what, for, status) are our summaries of the quotes.",
+  "checkedOn": "2026-11-05",
+  "stalenessDays": 120,
+  "cohorts": [
+    {
+      "id": "2027",
+      "label": "Starting uni in 2027",
+      "who": "In Year 12 in 2026"
+    },
+    {
+      "id": "2028",
+      "label": "Starting uni in 2028",
+      "who": "In Year 11 in 2026, Year 12 in 2027"
+    }
+  ],
+  "sections": [
+    {
+      "id": "early",
+      "label": "Early offers",
+      "hint": "Offers made before the ATAR, often on Year 11 results."
+    },
+    {
+      "id": "uac",
+      "label": "UAC and the ATAR",
+      "hint": "Applying through UAC, ATAR release and the main offer rounds."
+    },
+    {
+      "id": "holidays",
+      "label": "Holiday programs",
+      "hint": "Summer and holiday programs to try a field at uni."
+    },
+    {
+      "id": "open-days",
+      "label": "Open days",
+      "hint": "Visit the campus, meet staff and students, ask questions."
+    },
+    {
+      "id": "experience",
+      "label": "Work experience and competitions",
+      "hint": "Lab weeks, industry days and contests while at school."
+    },
+    {
+      "id": "after-school",
+      "label": "Paid pathways after Year 12",
+      "hint": "Apprenticeships and cadetships that pay you after school."
+    }
+  ],
+  "events": [
+    {
+      "id": "unsw-gateway-r1",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "early",
+      "org": "UNSW",
+      "title": "Gateway Admission Pathway — Round 1",
+      "what": "Apply for an early conditional offer. UNSW looks at your Year 11 results and a personal statement.",
+      "for": "Year 12 students who meet at least one equity criterion: you live in a low-socioeconomic area, you are Aboriginal or Torres Strait Islander, you go to a UNSW Gateway partner school, or you hold certain protection visas.",
+      "opens": "2026-04-27",
+      "opensText": "27 or 28 Apr 2026 (two UNSW pages differ)",
+      "date": "2026-07-23",
+      "dateText": "Thu 23 Jul 2026",
+      "result": "2026-09-03",
+      "resultText": "Thu 3 Sep 2026",
+      "flags": [
+        "equity"
+      ],
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "meet at least one of the following equity criteria: currently live in a low-socioeconomic area",
+          "url": "https://www.unsw.edu.au/study/how-to-apply/undergraduate/admission-pathways/gateway/admission-pathway"
+        },
+        {
+          "text": "If you’re completing Year 12, we consider your written personal statement and Year 11 results which we access directly through UAC.",
+          "url": "https://www.unsw.edu.au/study/how-to-apply/undergraduate/admission-pathways/gateway/admission-pathway"
+        },
+        {
+          "text": "Round 1 opens: Tuesday, 28 April 2026",
+          "url": "https://www.unsw.edu.au/study/how-to-apply/undergraduate/admission-pathways/gateway/admission-pathway"
+        },
+        {
+          "text": "Round 1 Opens: Monday, 27 April 2026",
+          "url": "https://www.unsw.edu.au/study/your-future/guide-to-unsw-early-offers"
+        },
+        {
+          "text": "Round 1 closes: Thursday, 23 July 2026",
+          "url": "https://www.unsw.edu.au/study/how-to-apply/undergraduate/admission-pathways/gateway/admission-pathway"
+        },
+        {
+          "text": "Round 1 offer release: Thursday, 3 September 2026",
+          "url": "https://www.unsw.edu.au/study/how-to-apply/undergraduate/admission-pathways/gateway/admission-pathway"
+        }
+      ]
+    },
+    {
+      "id": "unsw-gateway-r2",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "early",
+      "org": "UNSW",
+      "title": "Gateway Admission Pathway — Round 2",
+      "what": "Second and last round for an early conditional offer. Interstate and IB students can only apply in this round.",
+      "for": "The same equity criteria as Round 1.",
+      "opens": "2026-09-03",
+      "opensText": "Thu 3 Sep 2026",
+      "date": "2026-11-09",
+      "dateText": "Mon 9 Nov 2026",
+      "result": "2026-12-03",
+      "resultText": "Thu 3 Dec 2026",
+      "flags": [
+        "equity"
+      ],
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "Round 2 opens: Thursday, 3 September 2026",
+          "url": "https://www.unsw.edu.au/study/how-to-apply/undergraduate/admission-pathways/gateway/admission-pathway"
+        },
+        {
+          "text": "Round 2 closes: Monday, 9 November 2026",
+          "url": "https://www.unsw.edu.au/study/how-to-apply/undergraduate/admission-pathways/gateway/admission-pathway"
+        },
+        {
+          "text": "Round 2 offer release: Thursday, 3 December 2026",
+          "url": "https://www.unsw.edu.au/study/how-to-apply/undergraduate/admission-pathways/gateway/admission-pathway"
+        }
+      ]
+    },
+    {
+      "id": "unsw-gateway-firm",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "early",
+      "org": "UNSW",
+      "title": "Gateway — firm offers",
+      "what": "A Gateway conditional offer becomes a firm offer if your ATAR meets the adjusted ATAR in your offer letter.",
+      "for": "Students holding a Gateway conditional offer.",
+      "date": "2026-12-17",
+      "dateText": "Thu 17 Dec 2026",
+      "flags": [
+        "equity"
+      ],
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "Firm offers will be released on Thursday, 17 December 2026.",
+          "url": "https://www.unsw.edu.au/study/how-to-apply/undergraduate/admission-pathways/gateway/admission-pathway"
+        }
+      ]
+    },
+    {
+      "id": "mq-la-r1",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "early",
+      "org": "Macquarie",
+      "title": "Leaders and Achievers Early Entry — Round 1",
+      "what": "Apply direct to Macquarie. It looks at your Year 11 results and what you do outside class.",
+      "for": "Year 12 students with good Year 11 results who can show sport, volunteering, part-time work, leadership or personal development in Years 11 and/or 12.",
+      "date": "2026-07-24",
+      "dateText": "Fri 24 Jul 2026, 11.59pm",
+      "result": "2026-09-01",
+      "resultText": "Tue 1 Sep 2026",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "You could receive an early offer if you’ve performed well academically in Year 11 and can demonstrate initiative through sport, volunteering, part-time work, or leadership or personal development activities in Years 11 and/or 12.",
+          "url": "https://www.mq.edu.au/study/admissions-and-entry/pathways/schemes/leaders-achievers"
+        },
+        {
+          "text": "Applications for 2027 entry are now closed.",
+          "url": "https://www.mq.edu.au/study/admissions-and-entry/pathways/schemes/leaders-achievers"
+        },
+        {
+          "text": "11.59pm, Fri 24 July",
+          "url": "https://www.mq.edu.au/study/admissions-and-entry/pathways/schemes/leaders-achievers"
+        },
+        {
+          "text": "2pm, Tue 1 September",
+          "url": "https://www.mq.edu.au/study/admissions-and-entry/pathways/schemes/leaders-achievers"
+        },
+        {
+          "text": "24 Jul 2026: applications close",
+          "url": "https://uac.edu.au/current-applicants/undergraduate-applications-and-offers/early-offer-schemes-for-year-12-students"
+        }
+      ]
+    },
+    {
+      "id": "mq-la-r2",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "early",
+      "org": "Macquarie",
+      "title": "Leaders and Achievers Early Entry — Round 2",
+      "what": "Last round. You are assessed once only, in whichever round you apply.",
+      "for": "The same as Round 1.",
+      "date": "2026-09-03",
+      "dateText": "Thu 3 Sep 2026, 7pm",
+      "result": "2026-09-23",
+      "resultText": "Wed 23 Sep 2026",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "7pm, Thu 3 September",
+          "url": "https://www.mq.edu.au/study/admissions-and-entry/pathways/schemes/leaders-achievers"
+        },
+        {
+          "text": "2pm, Wed 23 September",
+          "url": "https://www.mq.edu.au/study/admissions-and-entry/pathways/schemes/leaders-achievers"
+        },
+        {
+          "text": "3 Sep 2026: applications close",
+          "url": "https://uac.edu.au/current-applicants/undergraduate-applications-and-offers/early-offer-schemes-for-year-12-students"
+        }
+      ]
+    },
+    {
+      "id": "wsu-tr-r1",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "early",
+      "org": "Western Sydney",
+      "title": "HSC True Reward — Round 1",
+      "what": "Free direct application. Western checks your subject results against each course's minimum results or bands. Round 1 gives conditional offers on Year 11 results.",
+      "for": "NSW Year 12 students.",
+      "opens": "2026-04-08",
+      "opensText": "Wed 8 Apr 2026",
+      "date": "2026-09-03",
+      "dateText": "Thu 3 Sep 2026, 11.59pm",
+      "result": "2026-09-10",
+      "resultText": "Thu 10 Sep 2026",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "HSC True Reward is Western’s early offer program for NSW Year 12 students.",
+          "url": "https://www.westernsydney.edu.au/future/study/application-pathways/hsc-true-reward"
+        },
+        {
+          "text": "Applications open Wed 8 April 2026",
+          "url": "https://www.westernsydney.edu.au/future/study/application-pathways/hsc-true-reward"
+        },
+        {
+          "text": "to be considered for the next True Reward offer round Thu 3 September 2026",
+          "url": "https://www.westernsydney.edu.au/future/study/application-pathways/hsc-true-reward"
+        },
+        {
+          "text": "Round 1 – Year 11 results Thu 10 September 2026",
+          "url": "https://www.westernsydney.edu.au/future/study/application-pathways/hsc-true-reward"
+        }
+      ]
+    },
+    {
+      "id": "wsu-tr-r2",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "early",
+      "org": "Western Sydney",
+      "title": "HSC True Reward — Round 2",
+      "what": "Conditional offers on Year 11 results.",
+      "for": "NSW Year 12 students.",
+      "date": "2026-11-11",
+      "dateText": "Wed 11 Nov 2026, 11.59pm",
+      "result": "2026-11-20",
+      "resultText": "Fri 20 Nov 2026",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "to be considered for the next True Reward offer round Wed 11 November 2026",
+          "url": "https://www.westernsydney.edu.au/future/study/application-pathways/hsc-true-reward"
+        },
+        {
+          "text": "Round 2 – Year 11 results Fri 20 November 2026",
+          "url": "https://www.westernsydney.edu.au/future/study/application-pathways/hsc-true-reward"
+        }
+      ]
+    },
+    {
+      "id": "wsu-tr-r3",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "early",
+      "org": "Western Sydney",
+      "title": "HSC True Reward — Round 3",
+      "what": "Offers on Year 11 or Year 12 results.",
+      "for": "NSW Year 12 students.",
+      "date": "2026-12-09",
+      "dateText": "Wed 9 Dec 2026, 11.59pm",
+      "result": "2026-12-16",
+      "resultText": "Wed 16 Dec 2026",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "to be considered for the next True Reward offer round Wed 9 December 2026",
+          "url": "https://www.westernsydney.edu.au/future/study/application-pathways/hsc-true-reward"
+        },
+        {
+          "text": "Round 3 – Year 11 or Year 12 results Wed 16 December 2026",
+          "url": "https://www.westernsydney.edu.au/future/study/application-pathways/hsc-true-reward"
+        }
+      ]
+    },
+    {
+      "id": "wsu-tr-r4",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "early",
+      "org": "Western Sydney",
+      "title": "HSC True Reward — Round 4",
+      "what": "Last round. Offers on Year 11 or Year 12 results.",
+      "for": "NSW Year 12 students.",
+      "date": "2026-12-31",
+      "dateText": "Thu 31 Dec 2026, 11.59pm",
+      "result": "2027-01-08",
+      "resultText": "Fri 8 Jan 2027",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "to be considered for the next True Reward offer round Thu 31 December 2026",
+          "url": "https://www.westernsydney.edu.au/future/study/application-pathways/hsc-true-reward"
+        },
+        {
+          "text": "Round 4 – Year 11 or Year 12 results Fri 8 January 2027",
+          "url": "https://www.westernsydney.edu.au/future/study/application-pathways/hsc-true-reward"
+        }
+      ]
+    },
+    {
+      "id": "uow-early-admission",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "early",
+      "org": "Wollongong",
+      "title": "Early Admission",
+      "what": "Apply direct to Wollongong. It looks at your Year 11 results, any challenges that affected them, and a written questionnaire about your skills and experience. No late applications.",
+      "for": "Year 12 students in NSW and the ACT.",
+      "opens": "2026-06-15",
+      "opensText": "Mon 15 Jun 2026",
+      "date": "2026-08-07",
+      "dateText": "Fri 7 Aug 2026",
+      "result": "2026-09-17",
+      "resultText": "Thu 17 Sep 2026 (moved from 1 Sep; UAC's page still says 1 Sep)",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "Instead of relying solely on your final Year 12 results, we consider your Year 11 performance, whether you’ve experienced challenges that have impacted that performance, and your skills and experiences through a written questionnaire.",
+          "url": "https://www.uow.edu.au/the-stand/2026/answering-the-most-common-early-admission-questions.php"
+        },
+        {
+          "text": "Applications open (NSW and ACT): Monday, 15 June, 2026.",
+          "url": "https://www.uow.edu.au/the-stand/2026/answering-the-most-common-early-admission-questions.php"
+        },
+        {
+          "text": "Applications close: Friday, 7 August, 2026.",
+          "url": "https://www.uow.edu.au/the-stand/2026/answering-the-most-common-early-admission-questions.php"
+        },
+        {
+          "text": "the UOW Early Admission offer release has been moved from 1 September to 17 September.",
+          "url": "https://www.uow.edu.au/early-admission/"
+        }
+      ]
+    },
+    {
+      "id": "usyd-gadigal",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "early",
+      "org": "Sydney",
+      "title": "Gadigal Program",
+      "what": "Early conditional offers. Apply through UAC, say you are Aboriginal and/or Torres Strait Islander, list a University of Sydney course and send the Gadigal form.",
+      "for": "Aboriginal and Torres Strait Islander students.",
+      "opens": "2026-04-30",
+      "opensText": "Apr 2026",
+      "date": "2026-08-31",
+      "dateText": "Aug 2026 (UAC gives the month only)",
+      "precision": "month",
+      "result": "2026-09-30",
+      "resultText": "Sep 2026",
+      "flags": [
+        "equity"
+      ],
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "Apr 2026: applications open",
+          "url": "https://uac.edu.au/current-applicants/undergraduate-applications-and-offers/early-offer-schemes-for-year-12-students"
+        },
+        {
+          "text": "Aug 2026: application deadline",
+          "url": "https://uac.edu.au/current-applicants/undergraduate-applications-and-offers/early-offer-schemes-for-year-12-students"
+        },
+        {
+          "text": "Sep 2026: conditional offers released",
+          "url": "https://uac.edu.au/current-applicants/undergraduate-applications-and-offers/early-offer-schemes-for-year-12-students"
+        }
+      ]
+    },
+    {
+      "id": "srs-applications",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "early",
+      "org": "UAC",
+      "title": "Schools Recommendation Scheme (SRS) — applications close",
+      "what": "One UAC application gives early offers from several universities. Of our six: Macquarie and Western Sydney read Year 11 studies and your school's ratings; UTS takes only students eligible for certain Educational Access Schemes (for example a low-socioeconomic area or financial hardship).",
+      "for": "Year 12 students.",
+      "date": "2026-09-11",
+      "dateText": "Fri 11 Sep 2026",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "Applications are processed by UAC and close 11 September 2026.",
+          "url": "https://uac.edu.au/current-applicants/undergraduate-applications-and-offers/early-offer-schemes-for-year-12-students"
+        },
+        {
+          "text": "Selection criteria Western Sydney University will take into account: Year 11 studies school ratings.",
+          "url": "https://uac.edu.au/future-applicants/scholarships-and-schemes/schools-recommendation-schemes/institution-specific-srs-criteria"
+        },
+        {
+          "text": "You must be eligible for UAC Educational Access Schemes (EAS) for at least one of the following:",
+          "url": "https://uac.edu.au/future-applicants/scholarships-and-schemes/schools-recommendation-schemes/institution-specific-srs-criteria"
+        }
+      ]
+    },
+    {
+      "id": "srs-preferences",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "early",
+      "org": "UAC",
+      "title": "SRS — last day to list your SRS courses",
+      "what": "Your SRS course preferences must be in your UAC application by 11.59pm.",
+      "for": "Year 12 students who applied for SRS.",
+      "date": "2026-11-05",
+      "dateText": "Thu 5 Nov 2026, 11.59pm",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "NOVEMBER 5, 2026, 11:59 PM SRS: Course preference deadline for SRS offers",
+          "url": "https://uac.edu.au/key-dates"
+        },
+        {
+          "text": "Your WSU preferences must be included in your UAC application by 11.59pm 5 November 2026.",
+          "url": "https://uac.edu.au/future-applicants/scholarships-and-schemes/schools-recommendation-schemes/institution-specific-srs-criteria"
+        },
+        {
+          "text": "Your Macquarie preferences must be included in your UAC application by 11.59pm 5 November 2026.",
+          "url": "https://uac.edu.au/future-applicants/scholarships-and-schemes/schools-recommendation-schemes/institution-specific-srs-criteria"
+        }
+      ]
+    },
+    {
+      "id": "srs-offers",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "early",
+      "org": "UAC",
+      "title": "SRS offers released",
+      "what": "Conditional and unconditional SRS offers, 10am.",
+      "for": "Year 12 students who applied for SRS.",
+      "date": "2026-11-12",
+      "dateText": "Thu 12 Nov 2026, 10am",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "NOVEMBER 12, 2026, 10:00 AM SRS: Offers released",
+          "url": "https://uac.edu.au/key-dates"
+        },
+        {
+          "text": "SRS offers will be made on 12 November 2026.",
+          "url": "https://uac.edu.au/current-applicants/undergraduate-applications-and-offers/early-offer-schemes-for-year-12-students"
+        }
+      ]
+    },
+    {
+      "id": "uac-dec2-apply",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "uac",
+      "org": "UAC",
+      "title": "Last day to apply for the main offer round",
+      "what": "Apply and pay by 11.59pm to be considered in December Round 2.",
+      "for": "Year 12 students.",
+      "date": "2026-11-26",
+      "dateText": "Thu 26 Nov 2026, 11.59pm",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "NOVEMBER 26, 2026, 11:59 PM Undergraduate (Year 12 and non-school applicants): December Round 2 application deadline",
+          "url": "https://uac.edu.au/key-dates"
+        }
+      ]
+    },
+    {
+      "id": "atar-release",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "uac",
+      "org": "UAC",
+      "title": "ATARs released",
+      "what": "NSW and ACT ATARs, 9am.",
+      "for": "Year 12 students.",
+      "date": "2026-12-16",
+      "dateText": "Wed 16 Dec 2026, 9am",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "DECEMBER 16, 2026, 9:00 AM NSW and ACT ATARs released",
+          "url": "https://uac.edu.au/key-dates"
+        }
+      ]
+    },
+    {
+      "id": "unsw-info-day",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "open-days",
+      "org": "UNSW",
+      "title": "UNSW info day",
+      "what": "Advice on your degree with your ATAR in hand. Kensington campus, 12pm to 3pm.",
+      "for": "Year 12 students after the ATAR.",
+      "date": "2026-12-17",
+      "dateText": "Thu 17 Dec 2026",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "DECEMBER 17, 2026, 12:00 PM Info day: UNSW Sydney",
+          "url": "https://uac.edu.au/key-dates"
+        }
+      ]
+    },
+    {
+      "id": "uts-info-day",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "open-days",
+      "org": "UTS",
+      "title": "UTS info days",
+      "what": "Online and on campus, 9am to 3pm, on two days.",
+      "for": "Year 12 students after the ATAR.",
+      "date": "2026-12-17",
+      "dateText": "Thu 17 Dec 2026",
+      "end": "2026-12-18",
+      "endText": "Fri 18 Dec 2026",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "DECEMBER 17, 2026, 9:00 AM Info day: University of Technology Sydney",
+          "url": "https://uac.edu.au/key-dates"
+        },
+        {
+          "text": "DECEMBER 18, 2026, 9:00 AM Info day: University of Technology Sydney",
+          "url": "https://uac.edu.au/key-dates"
+        }
+      ]
+    },
+    {
+      "id": "uac-dec2-preferences",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "uac",
+      "org": "UAC",
+      "title": "Last day to change preferences for the main round",
+      "what": "After your ATAR, change your UAC preferences by 11.59pm.",
+      "for": "Year 12 students.",
+      "date": "2026-12-18",
+      "dateText": "Fri 18 Dec 2026, 11.59pm",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "DECEMBER 18, 2026, 11:59 PM Undergraduate (Year 12 and non-school applicants): Change preferences for December Round 2 offers",
+          "url": "https://uac.edu.au/key-dates"
+        }
+      ]
+    },
+    {
+      "id": "uac-dec2-offers",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "uac",
+      "org": "UAC",
+      "title": "Main offer round (December Round 2)",
+      "what": "The main offer round for courses starting in semester 1. Offers at 7.30am.",
+      "for": "Year 12 students.",
+      "date": "2026-12-23",
+      "dateText": "Wed 23 Dec 2026, 7.30am",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "DECEMBER 23, 2026, 7:30 AM Undergraduate (Year 12 and non-school applicants): December Round 2 offers released",
+          "url": "https://uac.edu.au/key-dates"
+        },
+        {
+          "text": "This is the Main Offer Round for semester 1 courses.",
+          "url": "https://uac.edu.au/key-dates"
+        }
+      ]
+    },
+    {
+      "id": "uac-jan1-offers",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "uac",
+      "org": "UAC",
+      "title": "January Round 1 offers",
+      "what": "Another chance if you did not get the offer you wanted.",
+      "for": "Year 12 students.",
+      "date": "2027-01-08",
+      "dateText": "Fri 8 Jan 2027, 7.30am",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "JANUARY 8, 2027, 7:30 AM Undergraduate (Year 12 and non-school applicants): January Round 1 offers released",
+          "url": "https://uac.edu.au/key-dates"
+        }
+      ]
+    },
+    {
+      "id": "uac-jan2-offers",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "uac",
+      "org": "UAC",
+      "title": "January Round 2 offers",
+      "what": "A later round for places still open.",
+      "for": "Year 12 students.",
+      "date": "2027-01-21",
+      "dateText": "Thu 21 Jan 2027, 7.30am",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "JANUARY 21, 2027, 7:30 AM Undergraduate (Year 12 and non-school applicants): January Round 2 offers released",
+          "url": "https://uac.edu.au/key-dates"
+        }
+      ]
+    },
+    {
+      "id": "uow-open-day",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "open-days",
+      "org": "Wollongong",
+      "title": "UOW Open Day",
+      "what": "Wollongong campus.",
+      "for": "Anyone. Year 11 is the best time to go.",
+      "date": "2026-06-27",
+      "dateText": "Sat 27 Jun 2026",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "to its Wollongong campus for Open Day on Saturday 27 June.",
+          "url": "https://www.uow.edu.au/media/2026/more-than-5000-to-explore-their-future-at-uow-open-day.php"
+        }
+      ]
+    },
+    {
+      "id": "wsu-open-day",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "open-days",
+      "org": "Western Sydney",
+      "title": "Western Sydney Open Day",
+      "what": "Parramatta South campus, 10am to 4pm.",
+      "for": "Anyone. Year 11 is the best time to go.",
+      "date": "2026-07-05",
+      "dateText": "Sun 5 Jul 2026",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "From 10am–4pm on Sunday 5 July at the Parramatta South campus",
+          "url": "https://www.westernsydney.edu.au/news-centre/stories/2026/find-your-next-step-at-western-sydney-universitys-open-day"
+        }
+      ]
+    },
+    {
+      "id": "mq-open-day",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "open-days",
+      "org": "Macquarie",
+      "title": "Macquarie Open Day",
+      "what": "North Ryde campus.",
+      "for": "Anyone. Year 11 is the best time to go.",
+      "date": "2026-08-15",
+      "dateText": "Sat 15 Aug 2026",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "Macquarie University North Ryde: Sat 15 Aug 2026",
+          "url": "https://uac.edu.au/future-applicants/open-days"
+        }
+      ]
+    },
+    {
+      "id": "usyd-open-day",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "open-days",
+      "org": "Sydney",
+      "title": "University of Sydney Open Day",
+      "what": "9am to 4pm. The same day as UTS — the two campuses are close, so you can do both.",
+      "for": "Anyone. Year 11 is the best time to go.",
+      "date": "2026-08-29",
+      "dateText": "Sat 29 Aug 2026",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "University of Sydney Sat 29 Aug 2026, 9am to 4pm",
+          "url": "https://uac.edu.au/future-applicants/open-days"
+        }
+      ]
+    },
+    {
+      "id": "uts-open-day",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "open-days",
+      "org": "UTS",
+      "title": "UTS Open Day",
+      "what": "9am to 2pm. The same day as the University of Sydney.",
+      "for": "Anyone. Year 11 is the best time to go.",
+      "date": "2026-08-29",
+      "dateText": "Sat 29 Aug 2026",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "University of Technology Sydney Sat 29 Aug 2026, 9am to 2pm",
+          "url": "https://uac.edu.au/future-applicants/open-days"
+        }
+      ]
+    },
+    {
+      "id": "unsw-open-day",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "open-days",
+      "org": "UNSW",
+      "title": "UNSW Open Day",
+      "what": "Kensington campus.",
+      "for": "Anyone. Year 11 is the best time to go.",
+      "date": "2026-09-05",
+      "dateText": "Sat 5 Sep 2026",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "UNSW Kensington campus: Sat 5 Sep 2026",
+          "url": "https://uac.edu.au/future-applicants/open-days"
+        }
+      ]
+    },
+    {
+      "id": "ansto-nextgen",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "experience",
+      "org": "ANSTO",
+      "title": "Nuclear NextGen — Sydney applications close",
+      "what": "One-day sessions in the school holidays at Lucas Heights. You hear by 23 March.",
+      "for": "Years 9–12.",
+      "date": "2026-03-01",
+      "dateText": "Sun 1 Mar 2026",
+      "opportunity": "ansto-nuclear-nextgen",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "Applications for all Lucas Heights (Sydney) programs will close on the 1st of March, with successful applicants notified by the 23rd of March.",
+          "url": "https://www.ansto.gov.au/education/nuclear-nextgen"
+        }
+      ]
+    },
+    {
+      "id": "museum-work-experience",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "experience",
+      "org": "Australian Museum",
+      "title": "Museum work experience — offers",
+      "what": "Five days in Term 3 or 4. Applications close before this; the page did not give the closing date.",
+      "for": "Years 10–12.",
+      "date": "2026-05-25",
+      "dateText": "Week of Mon 25 May 2026",
+      "opportunity": "australian-museum-work-experience",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "Successful applicants will be notified the week of Monday 25 May.",
+          "url": "https://australian.museum/get-involved/work/experience/"
+        },
+        {
+          "text": "The application period for the 2026 work experience program is now closed.",
+          "url": "https://australian.museum/get-involved/work/experience/"
+        }
+      ]
+    },
+    {
+      "id": "bae-whats-my-discipline",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "experience",
+      "org": "BAE Systems",
+      "title": "What's My Discipline? — Sydney",
+      "what": "One day meeting engineers, Liverpool Street, Sydney.",
+      "for": "Years 11 and 12.",
+      "date": "2026-10-09",
+      "dateText": "Fri 9 Oct 2026",
+      "opportunity": "bae-whats-my-discipline",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "9 October 2026 – 175 Liverpool Street, Sydney NSW",
+          "url": "https://careers.baesystems.com/locations/australia/work-experience"
+        }
+      ]
+    },
+    {
+      "id": "cmri-stem-cell-academy",
+      "cohorts": [
+        "2027",
+        "2028"
+      ],
+      "section": "experience",
+      "org": "CMRI",
+      "title": "Stem Cell Academy",
+      "what": "One week in a real lab at Westmead. Applications are closed for 2026.",
+      "for": "Years 10–12, especially Western Sydney.",
+      "date": "2026-11-23",
+      "dateText": "Mon 23 Nov 2026",
+      "end": "2026-11-27",
+      "endText": "Fri 27 Nov 2026",
+      "status": "Applications closed",
+      "opportunity": "cmri-stem-cell-academy",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "This one-week hands-on program from 23-27 November 2026, gives Year 10, 11 and 12 High School students, especially in Western Sydney, a unique opportunity to do real science in a real lab—no experience necessary!",
+          "url": "https://www.cmrijeansforgenes.org.au/research/research-teams/stem-cell-medicine/stem-cell-academy"
+        },
+        {
+          "text": "Applications are now closed.",
+          "url": "https://www.cmrijeansforgenes.org.au/research/research-teams/stem-cell-medicine/stem-cell-academy"
+        }
+      ]
+    },
+    {
+      "id": "scix-fee-waiver",
+      "cohorts": [
+        "2028"
+      ],
+      "section": "holidays",
+      "org": "UNSW",
+      "title": "SciX@UNSW — fee-waiver applications close",
+      "what": "If the $780 fee is a problem, apply for a fee waiver by 11.59pm. Registration opened Tue 27 Oct 2026 and projects go first come, first served.",
+      "for": "Senior high school students.",
+      "date": "2026-11-07",
+      "dateText": "Sat 7 Nov 2026, 11.59pm",
+      "quotes": [
+        {
+          "text": "Fee-waiver applications close Saturday 7 November 2026 at 11:59pm AEDT.",
+          "url": "https://www.unsw.edu.au/science/study-with-us/scix-school-extension-program"
+        },
+        {
+          "text": "Registrations open Tuesday 27 October 2026 at 7:00am",
+          "url": "https://www.unsw.edu.au/science/study-with-us/scix-school-extension-program"
+        },
+        {
+          "text": "Remember, projects are allocated on a first-come, first-served basis.",
+          "url": "https://www.unsw.edu.au/science/study-with-us/scix-school-extension-program"
+        }
+      ]
+    },
+    {
+      "id": "nysf-2027",
+      "cohorts": [
+        "2028"
+      ],
+      "section": "holidays",
+      "org": "NYSF",
+      "title": "National Youth Science Forum — Year 12 Program",
+      "what": "Nine days living on a university campus. Applications for January 2027 are closed, and it is only for students about to start Year 12, so this was the one chance.",
+      "for": "Students in Year 11 about to start Year 12.",
+      "date": "2027-01-06",
+      "dateText": "Wed 6 Jan 2027",
+      "end": "2027-01-21",
+      "endText": "Thu 21 Jan 2027",
+      "status": "Applications closed",
+      "opportunity": "nysf-year-12",
+      "quotes": [
+        {
+          "text": "In 2027 the program runs in Canberra (6–14 January) and Brisbane (13–21 January).",
+          "url": "https://nysf.edu.au/how-to-apply/"
+        },
+        {
+          "text": "Applications for the 2027 NYSF Year 12 Program are now closed.",
+          "url": "https://nysf.edu.au/how-to-apply/"
+        },
+        {
+          "text": "Open to students in Year 11 about to start Year 12, from every background and every part of Australia.",
+          "url": "https://nysf.edu.au/program-year12/"
+        }
+      ]
+    },
+    {
+      "id": "uow-summer-master-classes",
+      "cohorts": [
+        "2028"
+      ],
+      "section": "holidays",
+      "org": "Wollongong",
+      "title": "UOW Summer Master Classes",
+      "what": "A real first-year university subject for credit, $470. Passing earns 6 credit points, and the result supports a UOW Early Admission application. Applications are closed; you can email year12-programs@uow.edu.au with questions.",
+      "for": "Students completing Year 12 in 2027.",
+      "date": "2027-01-04",
+      "dateText": "Mon 4 Jan 2027",
+      "end": "2027-01-22",
+      "endText": "Fri 22 Jan 2027",
+      "status": "Applications closed",
+      "quotes": [
+        {
+          "text": "Summer Master Class 2027 applications are now closed",
+          "url": "https://www.uow.edu.au/engage/schools-parents/high-school/summer-master-classes/"
+        },
+        {
+          "text": "Summer Master Class is for students who will be completing Year 12 in 2027.",
+          "url": "https://www.uow.edu.au/engage/schools-parents/high-school/summer-master-classes/"
+        },
+        {
+          "text": "The program will run 4 - 22 January, 2027.",
+          "url": "https://www.uow.edu.au/engage/schools-parents/high-school/summer-master-classes/"
+        },
+        {
+          "text": "The program fee for Summer Master Classes 2027 is $470 unless you meet eligibility criteria.",
+          "url": "https://www.uow.edu.au/engage/schools-parents/high-school/summer-master-classes/"
+        },
+        {
+          "text": "Summer Master Class results will be considered to support an Early Admission application.",
+          "url": "https://www.uow.edu.au/engage/schools-parents/high-school/summer-master-classes/"
+        }
+      ]
+    },
+    {
+      "id": "qut-start-stem",
+      "cohorts": [
+        "2028"
+      ],
+      "section": "holidays",
+      "org": "QUT (Brisbane)",
+      "title": "START QUT STEM Intensive",
+      "what": "A first-year QUT STEM unit over two weeks, no tuition fee, at Gardens Point in Brisbane. Applications closed on Sat 31 Oct 2026.",
+      "for": "High-achieving Year 11 students entering Year 12 in 2027.",
+      "date": "2027-01-11",
+      "dateText": "Mon 11 Jan 2027",
+      "end": "2027-01-22",
+      "endText": "Fri 22 Jan 2027",
+      "status": "Applications closed",
+      "flags": [
+        "interstate"
+      ],
+      "quotes": [
+        {
+          "text": "High-achieving Year 11 students entering Year 12 in 2027 can undertake a first-year STEM unit over the summer holidays.",
+          "url": "https://www.qut.edu.au/study/options/start-qut-stem-intensive"
+        },
+        {
+          "text": "Applications close 31 October 2026",
+          "url": "https://www.qut.edu.au/study/options/start-qut-stem-intensive"
+        },
+        {
+          "text": "Program dates 11 January - 22 January 2027 (excluding weekend days)",
+          "url": "https://www.qut.edu.au/study/options/start-qut-stem-intensive"
+        },
+        {
+          "text": "Successful applicants pay no tuition fees.",
+          "url": "https://www.qut.edu.au/study/options/start-qut-stem-intensive"
+        }
+      ]
+    },
+    {
+      "id": "fda-jan-a",
+      "cohorts": [
+        "2028"
+      ],
+      "section": "holidays",
+      "org": "NIE Careers (private)",
+      "title": "Future Doctors Australia — Sydney, January (first session)",
+      "what": "A 4-day medicine careers workshop at Chatswood, $2,490. Run by a private company, not a university.",
+      "for": "Ages 14 to 18.",
+      "date": "2027-01-14",
+      "dateText": "Thu 14 Jan 2027",
+      "end": "2027-01-17",
+      "endText": "Sun 17 Jan 2027",
+      "flags": [
+        "private"
+      ],
+      "quotes": [
+        {
+          "text": "4-Day program for ages 14 to 18",
+          "url": "https://www.niecareers.com.au/future-doctors-australia"
+        },
+        {
+          "text": "Sydney (NSW) 14 - 17 Jan 2027 Chatswood",
+          "url": "https://www.niecareers.com.au/future-doctors-australia"
+        },
+        {
+          "text": "PRICE: $2,490",
+          "url": "https://www.niecareers.com.au/future-doctors-australia"
+        }
+      ]
+    },
+    {
+      "id": "scix-summer-school",
+      "cohorts": [
+        "2028"
+      ],
+      "section": "holidays",
+      "org": "UNSW",
+      "title": "SciX@UNSW summer school",
+      "what": "Join a UNSW research group and do your own research project, $780. Pre-work starts in November, the summer school is on campus, and mentors check in until May.",
+      "for": "Senior high school students.",
+      "date": "2027-01-18",
+      "dateText": "Mon 18 Jan 2027",
+      "end": "2027-01-22",
+      "endText": "Fri 22 Jan 2027",
+      "quotes": [
+        {
+          "text": "The SciX@UNSW Program is designed to support passionate senior high school students who are eager to delve into scientific research.",
+          "url": "https://www.unsw.edu.au/science/study-with-us/scix-school-extension-program"
+        },
+        {
+          "text": "Monday, 18 January – Friday, 22 January: SciX Summer School 2027.",
+          "url": "https://www.unsw.edu.au/science/study-with-us/scix-school-extension-program"
+        },
+        {
+          "text": "The SciX@UNSW 2027 program fee is $780 per student.",
+          "url": "https://www.unsw.edu.au/science/study-with-us/scix-school-extension-program"
+        }
+      ]
+    },
+    {
+      "id": "fda-jan-b",
+      "cohorts": [
+        "2028"
+      ],
+      "section": "holidays",
+      "org": "NIE Careers (private)",
+      "title": "Future Doctors Australia — Sydney, January (second session)",
+      "what": "The same 4-day workshop, second January session, Chatswood, $2,490.",
+      "for": "Ages 14 to 18.",
+      "date": "2027-01-21",
+      "dateText": "Thu 21 Jan 2027",
+      "end": "2027-01-24",
+      "endText": "Sun 24 Jan 2027",
+      "flags": [
+        "private"
+      ],
+      "quotes": [
+        {
+          "text": "Sydney (NSW) 21 - 24 Jan 2027 Chatswood",
+          "url": "https://www.niecareers.com.au/future-doctors-australia"
+        },
+        {
+          "text": "PRICE: $2,490",
+          "url": "https://www.niecareers.com.au/future-doctors-australia"
+        }
+      ]
+    },
+    {
+      "id": "fda-apr",
+      "cohorts": [
+        "2028"
+      ],
+      "section": "holidays",
+      "org": "NIE Careers (private)",
+      "title": "Future Doctors Australia — Sydney, April",
+      "what": "The same 4-day workshop in the April holidays, Chatswood, $2,490.",
+      "for": "Ages 14 to 18.",
+      "date": "2027-04-15",
+      "dateText": "Thu 15 Apr 2027",
+      "end": "2027-04-18",
+      "endText": "Sun 18 Apr 2027",
+      "flags": [
+        "private"
+      ],
+      "quotes": [
+        {
+          "text": "Sydney (NSW) 15 - 18 Apr 2027 Chatswood",
+          "url": "https://www.niecareers.com.au/future-doctors-australia"
+        },
+        {
+          "text": "PRICE: $2,490",
+          "url": "https://www.niecareers.com.au/future-doctors-australia"
+        }
+      ]
+    },
+    {
+      "id": "aio-2027",
+      "cohorts": [
+        "2028"
+      ],
+      "section": "experience",
+      "org": "Australian Maths Trust",
+      "title": "Australian Informatics Olympiad — entries close",
+      "what": "A 3-hour programming competition at your school on Thu 26 Aug 2027, $25.90. Your school enters you.",
+      "for": "Students up to Year 12.",
+      "date": "2027-08-20",
+      "dateText": "Fri 20 Aug 2027",
+      "opportunity": "aio",
+      "quotes": [
+        {
+          "text": "Entries close: Friday 20 August 2027",
+          "url": "https://amt.edu.au/aio"
+        },
+        {
+          "text": "DATE Thursday 26 August 2027",
+          "url": "https://amt.edu.au/aio"
+        },
+        {
+          "text": "COST AUD $25.90 per student",
+          "url": "https://amt.edu.au/aio"
+        }
+      ]
+    },
+    {
+      "id": "pecan-ctf-2026",
+      "cohorts": [
+        "2027"
+      ],
+      "section": "experience",
+      "org": "PECAN+ (at UOW)",
+      "title": "PECAN+ cyber security Capture the Flag",
+      "what": "A free two-day cyber security competition at Wollongong: a training day, then the competition. Teams of up to 4.",
+      "for": "Years 10–12.",
+      "date": "2026-08-22",
+      "dateText": "Sat 22 Aug 2026",
+      "end": "2026-08-23",
+      "endText": "Sun 23 Aug 2026",
+      "opportunity": "pecan-ctf",
+      "repeats": true,
+      "quotes": [
+        {
+          "text": "Dates: Saturday 22 August 2026 (Training Day) and Sunday 23 August 2026 (Competition Day)",
+          "url": "https://future-students-events.uow.edu.au/pecan_2026"
+        },
+        {
+          "text": "Cost: FREE!",
+          "url": "https://future-students-events.uow.edu.au/pecan_2026"
+        }
+      ]
+    },
+    {
+      "id": "asd-2028-applications",
+      "cohorts": [
+        "2028"
+      ],
+      "section": "after-school",
+      "org": "ASD",
+      "title": "ASD 2028 apprenticeships and cadetships — applications open",
+      "what": "The Australian Signals Directorate opens its 2028 entry-level programs. The apprenticeship is a paid job for school leavers — work 3 to 4 days a week and study a Certificate IV — so it is instead of full-time university, not alongside it. The cadetship is for university students after their first semester.",
+      "for": "Australian citizens. The apprenticeship needs your Year 12 certificate before you start.",
+      "date": "2027-03-31",
+      "dateText": "Early 2027 (ASD gives no exact date)",
+      "precision": "approx",
+      "quotes": [
+        {
+          "text": "Applications for our 2028 entry-level programs will open in early 2027.",
+          "url": "https://www.asd.gov.au/careers/im-starting-my-career"
+        },
+        {
+          "text": "You must be an Australian citizen to be eligible for our entry-level programs.",
+          "url": "https://www.asd.gov.au/careers/im-starting-my-career"
+        },
+        {
+          "text": "Have obtained a Year 12 Certificate or equivalent prior to commencing the program.",
+          "url": "https://www.asd.gov.au/careers/im-starting-my-career"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "id": "uts-retired",
+      "org": "UTS",
+      "text": "UTS has stopped its Early Entry Program from 2027 entry. UTS still takes part in the Schools Recommendation Scheme, but only for students eligible for certain Educational Access Schemes.",
+      "quotes": [
+        {
+          "text": "We will be retiring the Early Entry Program for undergraduate admissions from Autumn 2027 onwards.",
+          "url": "https://www.uts.edu.au/for-students/admissions-entry/entry-schemes/early-entry"
+        }
+      ]
+    },
+    {
+      "id": "usyd-none",
+      "org": "Sydney",
+      "text": "We found no University of Sydney early offer open to every Year 12 student. Its early offers are the Gadigal Program (Aboriginal and Torres Strait Islander students) and auditions or portfolios for creative arts courses.",
+      "basis": "Our reading of UAC’s list of early offer schemes, checked 5 November 2026.",
+      "source": "https://uac.edu.au/current-applicants/undergraduate-applications-and-offers/early-offer-schemes-for-year-12-students"
+    },
+    {
+      "id": "not-listed",
+      "org": "",
+      "text": "Not listed here: early offers that need an art or design portfolio or an audition (UNSW Portfolio Entry, Sydney's creative arts scheme), and universities outside our six (ANU, Newcastle, ACU and others). UAC lists them all.",
+      "basis": "Our reading of UAC’s list of early offer schemes, checked 5 November 2026.",
+      "source": "https://uac.edu.au/current-applicants/undergraduate-applications-and-offers/early-offer-schemes-for-year-12-students"
+    }
+  ],
+  "anytime": [
+    "nsw-school-work-experience",
+    "usyd-cs-fellowship",
+    "github-student-pack",
+    "nsw-sbat",
+    "aws-educate",
+    "anu-mount-stromlo"
+  ],
+  "year11": [
+    {
+      "text": "Year 11 results count. Macquarie, Western Sydney and Wollongong read them for early offers, and so does UNSW Gateway.",
+      "refs": [
+        "mq-la-r1",
+        "wsu-tr-r1",
+        "uow-early-admission",
+        "unsw-gateway-r1"
+      ]
+    },
+    {
+      "text": "Keep a list of what you do outside class in Years 11 and 12 — sport, volunteering, part-time work, leadership. Macquarie asks for it.",
+      "refs": [
+        "mq-la-r1"
+      ]
+    },
+    {
+      "text": "Use the summer holidays before Year 12. They are the easiest time to try a field.",
+      "refs": [
+        "scix-summer-school"
+      ]
+    },
+    {
+      "text": "Go to open days in Year 11 (last year they ran from late June to early September), not in Year 12.",
+      "refs": [
+        "uow-open-day",
+        "unsw-open-day"
+      ]
+    },
+    {
+      "text": "Ask your careers adviser now about school work experience and programs only schools can nominate for.",
+      "refs": []
+    },
+    {
+      "text": "Early-offer applications for 2028 entry should open around April–June 2027. Check each university's page then — the dates below are last year's.",
+      "refs": [
+        "wsu-tr-r1",
+        "unsw-gateway-r1",
+        "uow-early-admission"
+      ]
+    }
+  ],
+  "afterSchool": [
+    {
+      "id": "asd-apprenticeship",
+      "name": "ASD Apprenticeship Program",
+      "provider": "Australian Signals Directorate",
+      "fitsUni": false,
+      "who": "School leavers and others. Australian citizens with a Year 12 certificate; you must pass a security assessment.",
+      "what": "A paid job: work 3 to 4 days a week and study a Certificate IV (ICT or project management) over 18 months. Starting salary $65,286 plus super.",
+      "when": "Applications for 2028 open in early 2027.",
+      "quotes": [
+        {
+          "text": "Apprentices work 3 to 4 days per week, with the rest of your time dedicated to completing a Certificate IV over an 18-month period.",
+          "url": "https://www.asd.gov.au/careers/im-starting-my-career"
+        },
+        {
+          "text": "Successful candidates commence their apprenticeship on a salary of $65,286 (including 4% Service Allowance), plus 15.4% superannuation.",
+          "url": "https://www.asd.gov.au/careers/im-starting-my-career"
+        },
+        {
+          "text": "Applications for the 2028 ASD Apprenticeship Program will open in early 2027.",
+          "url": "https://www.asd.gov.au/careers/im-starting-my-career"
+        }
+      ]
+    },
+    {
+      "id": "hcltech-techbee",
+      "name": "TechBee — HCLTech's early career program",
+      "provider": "HCLTech Australia",
+      "fitsUni": false,
+      "who": "People who have finished high school and want full-time work.",
+      "what": "12 months of training for an entry-level technology role, then a job.",
+      "when": "Apply through HCLTech's Australian careers page; no intake date is published.",
+      "quotes": [
+        {
+          "text": "A career program for individuals seeking full-time opportunities after completing high school.",
+          "url": "https://careers.hcltech.com/go/Australia/9554555/"
+        },
+        {
+          "text": "Candidates undergo a 12-month training program for entry-level engineering roles.",
+          "url": "https://careers.hcltech.com/go/Australia/9554555/"
+        }
+      ]
+    },
+    {
+      "id": "megt-microsoft-traineeship",
+      "name": "IT Traineeship with Microsoft",
+      "provider": "MEGT, with Microsoft and TAFE",
+      "fitsUni": false,
+      "who": "Anyone hired by one of the program's host employers.",
+      "what": "A paid job with a Microsoft partner while you complete a Certificate IV in Information Technology and Microsoft certifications.",
+      "when": "Positions appear on MEGT's job board through the year.",
+      "quotes": [
+        {
+          "text": "You complete your Certificate IV in Information Technology while working with your host employer.",
+          "url": "https://www.megt.com.au/it-traineeship-program-candidates"
+        }
+      ]
+    },
+    {
+      "id": "mq-techbee",
+      "name": "HCLTech TechBee at Macquarie",
+      "provider": "HCLTech with Macquarie University",
+      "fitsUni": true,
+      "who": "1st or 2nd year Macquarie students in Information Technology, Software Engineering or Computer Science who are Australian citizens or permanent residents.",
+      "what": "Paid part-time work at HCLTech while you study, with mentoring, then a full-time job when you finish.",
+      "when": "Register your interest once you are enrolled.",
+      "quotes": [
+        {
+          "text": "1st or 2nd year university students enrolled in a Bachelor of Information Technology, Software Engineering or Computer Science",
+          "url": "https://www.mq.edu.au/faculty-of-science-and-engineering/departments-and-schools/school-of-computing/study-with-us/hcls-techbee-program"
+        },
+        {
+          "text": "Paid part-time work",
+          "url": "https://www.mq.edu.au/faculty-of-science-and-engineering/departments-and-schools/school-of-computing/study-with-us/hcls-techbee-program"
+        }
+      ]
+    },
+    {
+      "id": "asd-cadetship",
+      "name": "ASD Cadetship Program",
+      "provider": "Australian Signals Directorate",
+      "fitsUni": true,
+      "who": "Australian citizens studying a STEM degree, after at least one semester, with a credit average.",
+      "what": "Paid work while you finish your degree, plus $800 per subject passed, then a full-time job.",
+      "when": "Opens early each year. Starting uni in 2028, the earliest you could apply is early 2029, after a semester — our reading.",
+      "quotes": [
+        {
+          "text": "Have completed a minimum of one semester of their STEM degree at time of application.",
+          "url": "https://www.asd.gov.au/careers/im-starting-my-career"
+        },
+        {
+          "text": "Hold and maintain a minimum credit average at time of application and for the duration of the program.",
+          "url": "https://www.asd.gov.au/careers/im-starting-my-career"
+        }
+      ]
+    },
+    {
+      "id": "aps-data-digital-cadet",
+      "name": "APS Data and Digital Cadet Program",
+      "provider": "Australian Public Service",
+      "fitsUni": true,
+      "who": "Australian citizens who have completed one year of a digital or technical degree when the program starts.",
+      "what": "Guaranteed part-time government work while you finish your degree, an allowance of up to $800 per unit, then a full-time job.",
+      "when": "Applications open 1 April 2027 (for programs starting in 2028). Starting uni in 2028, you would be eligible for the round after — our reading.",
+      "quotes": [
+        {
+          "text": "guaranteed part-time employment while you finish your degree and full-time employment on completion",
+          "url": "https://www.dta.gov.au/join-our-team/data-and-digital-cadet-program"
+        },
+        {
+          "text": "have completed one year or equivalent of a digital or technical degree at the commencement of the program",
+          "url": "https://www.dta.gov.au/join-our-team/data-and-digital-cadet-program"
+        },
+        {
+          "text": "Applications for the Data and Digital Cadet Program will open 1 April 2027.",
+          "url": "https://www.dta.gov.au/join-our-team/data-and-digital-cadet-program"
+        }
+      ]
+    },
+    {
+      "id": "azure-for-students",
+      "name": "Azure for Students",
+      "provider": "Microsoft",
+      "fitsUni": true,
+      "who": "Full-time university or college students aged 18 or over — not high school students.",
+      "what": "Free cloud services and credit for learning.",
+      "when": "Once you are 18 and enrolled at university.",
+      "quotes": [
+        {
+          "text": "You must affirm that you're age 18 or older and attend an accredited, degree-granting, two-year or four-year educational institution where you're a full-time student.",
+          "url": "https://learn.microsoft.com/en-us/azure/education-hub/about-azure-for-students"
+        }
+      ]
+    }
+  ]
+}

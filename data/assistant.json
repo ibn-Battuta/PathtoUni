@@ -1,0 +1,5 @@
+{
+  "_comment": "The Ask assistant. Leave endpoint empty and the site shows no Ask button at all. After the Cloudflare Worker is deployed (docs/ASSISTANT.md), put its address here, e.g. https://pathtouni-ask.<name>.workers.dev, rebuild and publish.",
+  "endpoint": "",
+  "providerName": "OpenAI"
+}

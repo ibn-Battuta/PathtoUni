@@ -3,9 +3,10 @@
   "capturedOn": "2026-08-27",
   "institutionRule": {
     "hasSubjectPrerequisites": false,
-    "quote": "Assumed knowledge is specified in the degree descriptions. While it's not a requirement for acceptance into a degree, you may find the degree difficult if you haven't completed the specified HSC subjects.:https",
+    "quote": "Assumed knowledge is specified in the degree descriptions. While it’s not a requirement for acceptance into a degree, you may find the degree difficult if you haven’t completed the specified HSC subjects.",
     "source": "https://uac.edu.au/institutions/macquarie-university/admission-criteria-and-entry-schemes",
-    "verification": "verified"
+    "verification": "verified",
+    "checkedOn": "2026-10-24"
   },
   "courses": [
     {
@@ -16,9 +17,10 @@
       "assumedKnowledge": [
         {
           "subject": "Mathematics Advanced",
-          "quote": "Mathematics Advanced",
+          "quote": "HSC Mathematics Advanced (Band 4)",
           "source": "https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-engineering-honours",
-          "tier": "A"
+          "tier": "A",
+          "minBand": 4
         }
       ],
       "extraHurdles": [],
@@ -52,9 +54,10 @@
       "assumedKnowledge": [
         {
           "subject": "Mathematics Advanced",
-          "quote": "Mathematics Advanced",
+          "quote": "HSC Mathematics Advanced (Band 4)",
           "source": "https://www.mq.edu.au/study/find-a-course/courses/bachelor-of-science",
-          "tier": "A"
+          "tier": "A",
+          "minBand": 4
         },
         {
           "subject": "Physics",

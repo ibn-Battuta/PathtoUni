@@ -10,7 +10,9 @@
     "pipeline": "node pipeline/index.js",
     "pipeline:usyd": "node pipeline/index.js usyd-table",
     "pipeline:html": "node pipeline/index.js html",
-    "build:site": "node ui/build.js"
+    "build:site": "node ui/build.js",
+    "assistant:build": "node assistant/build-worker.js",
+    "assistant:eval": "node scripts/assistant-eval.js"
   },
   "engines": {
     "node": ">=20"

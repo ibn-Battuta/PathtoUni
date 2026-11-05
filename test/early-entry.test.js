@@ -13,11 +13,15 @@ import { YEAR11, YEAR12_EXT2, STANDARD_MATHS } from './fixtures.js';
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const { courses, gates } = loadCatalogue();
 
-test('wsu-srs is not displayable until it has a verbatim quote', () => {
+test('a scheme is displayable only with a verbatim quote (wsu-srs earned one on 24 Oct 2026)', () => {
   const srs = early.schemes.find(s => s.id === 'wsu-srs');
-  assert.equal(srs.verification, 'unverified');
-  assert.equal(isDisplayableScheme(srs), false);
-  assert.equal(displayableSchemes(early).some(s => s.id === 'wsu-srs'), false);
+  assert.equal(srs.verification, 'verified');
+  // UAC reworded this between 24 Oct and 5 Nov 2026 ("domestic and international" added);
+  // re-verified by code in the desktop browser on 5 Nov 2026.
+  assert.match(srs.quote, /Schools Recommendation Scheme allows current domestic and international Year 12 students/);
+  assert.equal(isDisplayableScheme(srs), true);
+  assert.equal(isDisplayableScheme({ ...srs, quote: null }), false, 'no quote, not shown');
+  assert.equal(isDisplayableScheme({ ...srs, verification: 'unverified' }), false);
 });
 
 test('uses values render as written English, never as casual_work', () => {
@@ -71,11 +75,11 @@ test('displayable schemes never include a score, likelihood, or band colour fiel
   }
 });
 
-test('the built page bundle carries early-entry schemes and not the unquoted SRS', () => {
+test('the built page bundle carries the early-entry schemes', () => {
   const dist = path.join(ROOT, 'dist/app.js');
   if (!fs.existsSync(dist)) return;
   const js = fs.readFileSync(dist, 'utf8');
   assert.match(js, /EARLY_ENTRY/);
   assert.match(js, /wsu-hsc-true-reward/);
-  assert.match(js, /"verification":"unverified"/);
+  assert.match(js, /wsu-srs/);
 });

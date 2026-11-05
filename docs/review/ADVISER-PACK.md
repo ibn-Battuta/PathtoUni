@@ -142,3 +142,9 @@ subjects. Added a second warning note ("A second shape — who is allowed to app
 **D6**, the two computing/data degrees no school leaver can start, with the Western Sydney
 quote. Twenty items now (15 claims + 5 open questions). The readiness claims themselves are
 unchanged: the course data has not been re-captured since 28 Aug 2026.
+
+# Update — 24 Oct 2026
+
+Added **D7**: Wollongong's Mathematics prerequisite (error 22) and our reading of "the equivalent
+of Mathematics Standard 2". Twenty-one items. Every claim was re-checked against the live pages;
+none of the readiness rules in the pack had changed.

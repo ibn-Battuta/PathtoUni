@@ -142,9 +142,9 @@ test('course pages show their interest areas, from the same rules as the quiz', 
   assert.match(mech, /<h3>Interest areas<\/h3>/);
   assert.match(mech, /Robots and machines/);
   assert.match(mech, /industries\/#ind-robotics/, 'a robotics degree should link to the robotics industry');
-  assert.match(mech, /Our judgement, from the degree’s name/);
+  assert.match(mech, /Our best guess from the course name/);
   assert.match(page('usyd-science'), /A broad degree: you choose a major later/);
-  assert.match(page('usyd-project-management'), /does not point to one of our interest areas/);
+  assert.match(page('usyd-project-management'), /doesn’t fit one of our interest areas/);
   // A course nobody can start straight from school is in no list, so it gets no tags.
   assert.doesNotMatch(page('wsu-applied-data-science'), /Interest areas/);
 });

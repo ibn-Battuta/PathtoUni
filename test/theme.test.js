@@ -39,8 +39,8 @@ const dark = tokens(firstBlock(/:root\{([^}]+)\}/));
 const light = tokens(firstBlock(/:root\[data-theme="light"\]\{([^}]+)\}/));
 
 test('bare :root is dark; the OS is consulted only under Match my system', () => {
-  assert.equal(dark.paper, '#0C1119');
-  assert.equal(light.paper, '#EEF2F6');
+  assert.equal(dark.paper, '#0A1712'); // Forest since 5 Nov 2026
+  assert.equal(light.paper, '#FBF3EC'); // warm light since 5 Nov 2026
   assert.match(css, /prefers-color-scheme:\s*light[\s\S]*:root\[data-theme="system"\]/);
   assert.doesNotMatch(css, /prefers-color-scheme:\s*dark[\s\S]*:root:not\(\[data-theme="light"\]\)/);
 });
@@ -86,4 +86,41 @@ test('the boot script runs before the stylesheet and does not throw if storage i
 test('the theme is never written into the shareable hash', () => {
   const hash = fs.readFileSync(path.join(ROOT, 'ui/hash.js'), 'utf8');
   assert.doesNotMatch(hash, /oty-theme|theme/);
+});
+
+test('Key dates: every kind of date has its own colour in both themes, readable on its button', () => {
+  const sections = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/schedule.json'), 'utf8')).sections.map(s => s.id);
+  for (const [name, pal] of [['dark', dark], ['light', light]]) {
+    for (const id of sections) {
+      const c = pal['sec-' + id];
+      assert.ok(c, `${name}: no colour for ${id}`);
+      assert.ok(contrast(pal['on-sec'], c) >= 4.5, `${name} ${id}: button text ${contrast(pal['on-sec'], c).toFixed(2)}:1`);
+      assert.ok(contrast(c, pal.surface) >= 3, `${name} ${id}: stripe ${contrast(c, pal.surface).toFixed(2)}:1`);
+    }
+    assert.equal(new Set(sections.map(id => pal['sec-' + id])).size, sections.length, `${name}: colours are distinct`);
+  }
+});
+
+test('dark colour choices: each one readable, bands unchanged, and the light theme untouched — measured', () => {
+  const blocks = [...css.matchAll(/:root\[data-accent="([a-z]+)"\]\{([^}]+)\}/g)];
+  assert.deepEqual(blocks.map(b => b[1]), ['blue', 'gold', 'amber', 'purple', 'red']);
+  const lightBlock = firstBlock(/:root\[data-theme="light"\]\{([^}]+)\}/);
+  for (const [, id, body] of blocks) {
+    const pal = { ...dark, ...tokens(body) };
+    const r = (a, b) => contrast(pal[a], pal[b]);
+    assert.ok(r('ink', 'paper') >= 15, `${id}: body ${r('ink', 'paper').toFixed(2)}:1`);
+    for (const g of ['paper', 'surface', 'surface-2']) {
+      assert.ok(r('accent', g) >= 4.5, `${id}: links on ${g} ${r('accent', g).toFixed(2)}:1`);
+      assert.ok(r('ink-3', g) >= 4.5, `${id}: quiet text on ${g} ${r('ink-3', g).toFixed(2)}:1`);
+    }
+    assert.ok(r('on-accent', 'accent') >= 4.5, `${id}: text on an accent button`);
+    for (const k of ['prep', 'minor', 'bridge', 'hard', 'gated', 'restrict']) {
+      assert.equal(pal[k], dark[k], `${id}: band ${k} keeps its meaning colour`);
+      assert.ok(r(k, 'surface') >= 4.5, `${id}: ${k} on cards ${r(k, 'surface').toFixed(2)}:1`);
+    }
+    // Every token a colour choice sets is set again by the light theme, which comes later.
+    for (const t of body.matchAll(/--([a-z0-9-]+):/g)) assert.ok(lightBlock.includes(`--${t[1]}:`), `light theme must also set --${t[1]}`);
+  }
+  assert.ok(css.indexOf(':root[data-accent="red"]') < css.indexOf(':root[data-theme="light"]{'), 'colour choices come before the light theme');
+  assert.match(build, /localStorage\.getItem\('oty-accent'\)/);
 });

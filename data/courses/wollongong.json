@@ -3,9 +3,11 @@
   "capturedOn": "2026-08-27",
   "institutionRule": {
     "hasSubjectPrerequisites": false,
-    "quote": "Assumed knowledge is not a compulsory requirement for admission but if you haven't achieved a certain level of knowledge in the subject area you may find the course difficult.:https",
+    "quote": "Assumed knowledge is not a compulsory requirement for admission but if you haven’t achieved a certain level of knowledge in the subject area you may find the course difficult.",
     "source": "https://uac.edu.au/institutions/university-of-wollongong/admission-criteria-and-entry-schemes",
-    "verification": "verified"
+    "verification": "verified",
+    "_note": "True for assumed knowledge. Two UOW degrees in this catalogue (Mathematics; Engineering (Honours)/Mathematics) also carry a published maths prerequisite — see _mathsGate (error 22).",
+    "checkedOn": "2026-10-24"
   },
   "courses": [
     {
@@ -15,14 +17,14 @@
       "hardRules": [],
       "assumedKnowledge": [
         {
-          "subject": "Mathematics Advanced",
-          "quote": "Mathematics Advanced",
+          "subject": "English Standard",
+          "quote": "any two units of English",
           "source": "https://www.uow.edu.au/study/courses/bachelor-of-computer-science/",
           "tier": "A"
         },
         {
           "subject": "Mathematics Standard 2",
-          "quote": "Mathematics Standard 2",
+          "quote": "Mathematics Advanced or Mathematics Standard 2",
           "source": "https://www.uow.edu.au/study/courses/bachelor-of-computer-science/",
           "tier": "A"
         }
@@ -31,53 +33,138 @@
       "nameRecognition": "low",
       "verification": "verified",
       "capturedOn": "2026-08-27",
-      "source": "https://www.uow.edu.au/study/courses/bachelor-of-computer-science/"
+      "source": "https://www.uow.edu.au/study/courses/bachelor-of-computer-science/",
+      "recommendedStudies": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.uow.edu.au/study/courses/bachelor-of-computer-science/"
+        }
+      ],
+      "checkedOn": "2026-10-24"
     },
     {
       "id": "uow-information-technology",
       "name": "Bachelor of Information Technology",
       "field": "science",
       "hardRules": [],
-      "assumedKnowledge": [],
+      "assumedKnowledge": [
+        {
+          "subject": "English Standard",
+          "quote": "any two units of English",
+          "source": "https://www.uow.edu.au/study/courses/bachelor-of-information-technology/",
+          "tier": "A"
+        }
+      ],
       "extraHurdles": [],
       "nameRecognition": "low",
       "verification": "verified",
       "capturedOn": "2026-08-27",
-      "source": "https://www.uow.edu.au/study/courses/bachelor-of-information-technology/"
+      "source": "https://www.uow.edu.au/study/courses/bachelor-of-information-technology/",
+      "recommendedStudies": [
+        {
+          "subject": "Mathematics Standard",
+          "quote": "any two units of Mathematics",
+          "source": "https://www.uow.edu.au/study/courses/bachelor-of-information-technology/"
+        }
+      ],
+      "checkedOn": "2026-10-24"
     },
     {
       "id": "uow-mathematics",
       "name": "Bachelor of Mathematics",
       "field": "science",
-      "hardRules": [],
-      "assumedKnowledge": [],
+      "hardRules": [
+        "uow-maths-std2"
+      ],
+      "assumedKnowledge": [
+        {
+          "subject": "English Standard",
+          "quote": "any two units of English",
+          "source": "https://www.uow.edu.au/study/courses/bachelor-of-mathematics/",
+          "tier": "A"
+        }
+      ],
       "extraHurdles": [],
       "nameRecognition": "low",
       "verification": "verified",
       "capturedOn": "2026-08-27",
-      "source": "https://www.uow.edu.au/study/courses/bachelor-of-mathematics/"
+      "source": "https://www.uow.edu.au/study/courses/bachelor-of-mathematics/",
+      "recommendedStudies": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "Mathematics Extension 1",
+          "source": "https://www.uow.edu.au/study/courses/bachelor-of-mathematics/"
+        }
+      ],
+      "checkedOn": "2026-10-24"
     },
     {
       "id": "uow-nursing",
       "name": "Bachelor of Nursing",
       "field": "health",
       "hardRules": [],
-      "assumedKnowledge": [],
+      "assumedKnowledge": [
+        {
+          "subject": "English Standard",
+          "quote": "any two units of English",
+          "source": "https://www.uow.edu.au/study/courses/bachelor-of-nursing/",
+          "tier": "A"
+        },
+        {
+          "subject": "Mathematics Standard",
+          "quote": "any two units of Mathematics",
+          "source": "https://www.uow.edu.au/study/courses/bachelor-of-nursing/",
+          "tier": "A"
+        },
+        {
+          "subject": "any two units of Science",
+          "quote": "any two units of Science",
+          "source": "https://www.uow.edu.au/study/courses/bachelor-of-nursing/",
+          "tier": "A"
+        }
+      ],
       "extraHurdles": [],
       "nameRecognition": "low",
       "verification": "verified",
       "capturedOn": "2026-08-27",
-      "source": "https://www.uow.edu.au/study/courses/bachelor-of-nursing/"
+      "source": "https://www.uow.edu.au/study/courses/bachelor-of-nursing/",
+      "recommendedStudies": [
+        {
+          "subject": "Mathematics Standard 2",
+          "quote": "Mathematics Standard 2",
+          "source": "https://www.uow.edu.au/study/courses/bachelor-of-nursing/"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "Students who have not completed Chemistry and/or Biology in the HSC (or equivalent) are strongly encouraged to enrol in bridging courses offered in February each year.",
+          "source": "https://www.uow.edu.au/study/courses/bachelor-of-nursing/"
+        },
+        {
+          "subject": "Biology",
+          "quote": "Students who have not completed Chemistry and/or Biology in the HSC (or equivalent) are strongly encouraged to enrol in bridging courses offered in February each year.",
+          "source": "https://www.uow.edu.au/study/courses/bachelor-of-nursing/"
+        }
+      ],
+      "checkedOn": "2026-10-24"
     },
     {
       "id": "uow-engineering-honours-mathematics",
       "name": "Bachelor of Engineering (Honours) - Bachelor of Mathematics",
       "field": "engineering",
-      "hardRules": [],
+      "hardRules": [
+        "uow-maths-std2"
+      ],
       "assumedKnowledge": [
         {
           "subject": "Mathematics Advanced",
-          "quote": "Mathematics Advanced",
+          "quote": "NSW HSC Mathematics Advanced",
+          "source": "https://www.uow.edu.au/study/courses/bachelor-of-engineering-honours---bachelor-of-mathematics/",
+          "tier": "A"
+        },
+        {
+          "subject": "English Standard",
+          "quote": "any two units of NSW HSC English",
           "source": "https://www.uow.edu.au/study/courses/bachelor-of-engineering-honours---bachelor-of-mathematics/",
           "tier": "A"
         }
@@ -86,7 +173,58 @@
       "nameRecognition": "low",
       "verification": "verified",
       "capturedOn": "2026-08-27",
-      "source": "https://www.uow.edu.au/study/courses/bachelor-of-engineering-honours---bachelor-of-mathematics/"
+      "source": "https://www.uow.edu.au/study/courses/bachelor-of-engineering-honours---bachelor-of-mathematics/",
+      "recommendedStudies": [
+        {
+          "subject": "Mathematics Extension 1",
+          "quote": "NSW HSC Mathematics Extension 1",
+          "source": "https://www.uow.edu.au/study/courses/bachelor-of-engineering-honours---bachelor-of-mathematics/"
+        },
+        {
+          "subject": "Engineering Studies",
+          "quote": "NSW HSC Engineering Studies",
+          "source": "https://www.uow.edu.au/study/courses/bachelor-of-engineering-honours---bachelor-of-mathematics/"
+        },
+        {
+          "subject": "Physics",
+          "quote": "NSW HSC Physics",
+          "source": "https://www.uow.edu.au/study/courses/bachelor-of-engineering-honours---bachelor-of-mathematics/"
+        },
+        {
+          "subject": "Chemistry",
+          "quote": "NSW HSC Chemistry",
+          "source": "https://www.uow.edu.au/study/courses/bachelor-of-engineering-honours---bachelor-of-mathematics/"
+        }
+      ],
+      "checkedOn": "2026-10-24"
     }
-  ]
+  ],
+  "_mathsGate": {
+    "id": "uow-maths-std2",
+    "quote": "Students must have studied the equivalent of NSW HSC Mathematics Standard 2 (minimum Band 2) to be admitted into this degree.",
+    "source": "https://www.uow.edu.au/study/courses/bachelor-of-mathematics/",
+    "routes": [
+      {
+        "subject": "Mathematics Standard 2",
+        "minBand": 2,
+        "bandScale": "hsc"
+      },
+      {
+        "subject": "Mathematics Advanced",
+        "minBand": 2,
+        "bandScale": "hsc"
+      },
+      {
+        "subject": "Mathematics Extension 1",
+        "minBand": 1,
+        "bandScale": "extension"
+      },
+      {
+        "subject": "Mathematics Extension 2",
+        "minBand": 1,
+        "bandScale": "extension"
+      }
+    ],
+    "_note": "Only the Standard 2 route is in the university's own words. \"The equivalent of\" is read as including the harder maths courses at the same minimum band (Advanced Band 2, either Extension at any band). That reading is ours and is on the adviser review list. Found 24 Oct 2026 (error 22)."
+  }
 }

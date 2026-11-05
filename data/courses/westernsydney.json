@@ -3,9 +3,10 @@
   "capturedOn": "2026-08-27",
   "institutionRule": {
     "hasSubjectPrerequisites": false,
-    "quote": "If you do not have the assumed knowledge indicated in a course description, you are still eligible to apply for that course.:https",
+    "quote": "If you do not have the assumed knowledge indicated in a course description, you are still eligible to apply for that course.",
     "source": "https://uac.edu.au/institutions/western-sydney-university/admission-criteria-and-entry-schemes",
-    "verification": "verified"
+    "verification": "verified",
+    "checkedOn": "2026-10-24"
   },
   "courses": [
     {

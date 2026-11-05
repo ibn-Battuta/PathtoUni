@@ -49,47 +49,137 @@
    only when the reader has chosen "Match my system". Every token is defined on
    :root first — never only inside a media query. */
 :root{
-  --paper:#0C1119; --surface:#141C27; --surface-2:#1C2634; --sunk:#101822;
-  --ink:#E7EDF4; --ink-2:#AEBBC9; --ink-3:#7A8899;
-  --rule:#293544; --rule-soft:#202A37;
-  --accent:#8DB0E4; --accent-soft:#19263A;
-  --prep:#63C39A;  --prep-soft:#102420;
-  --minor:#8DB0E4; --minor-soft:#19263A;
-  --bridge:#DFA34D; --bridge-soft:#2A2010;
-  --hard:#E07040;  --hard-soft:#2B1A11;
-  --gated:#E27A70; --gated-soft:#2C1512;
-  --restrict:#A3ACEE; --restrict-soft:#1A1F36;
-  --shadow:none;
-  --on-accent:#0C1119;
+  /* Forest (5 Nov 2026, from Ajay's reference palette): green-black ground, neon green accent.
+     Bands keep distinct hues: Prepared green, Minor gap lavender, Bridge it yellow, Hard gap
+     orange, Gated red, Restricted blue. Measured in test/theme.test.js. */
+  --paper:#0A1712; --surface:#10231B; --surface-2:#173329; --sunk:#0D1C16;
+  --ink:#EAF6EF; --ink-2:#B5D2C3; --ink-3:#86A898;
+  --rule:#24443A; --rule-soft:#183229;
+  --accent:#6CFF5A; --accent-soft:#12301C;
+  --prep:#6CFF5A;  --prep-soft:#12301C;
+  --minor:#C59BFF; --minor-soft:#2A2140;
+  --bridge:#F2C94C; --bridge-soft:#2E2810;
+  --hard:#F2994A;  --hard-soft:#2F1D0E;
+  --gated:#FF6B6B; --gated-soft:#321414;
+  --restrict:#7FB2FF; --restrict-soft:#15243D;
+  --shadow:0 0 0 1px rgba(108,255,90,.10), 0 0 22px -8px rgba(108,255,90,.40);
+  --on-accent:#0A1712;
+  --glow-brand:0 0 6px rgba(108,255,90,.8), 0 0 20px rgba(108,255,90,.45), 0 0 40px rgba(108,255,90,.22);
+  --glow-accent:0 0 10px rgba(108,255,90,.5);
+  --glow-box:0 0 14px -2px rgba(108,255,90,.6);
+  --accent-2:#F2C94C; --glow-pink:0 0 8px rgba(242,201,76,.5);
+  /* Key dates: one colour per kind of date. */
+  --sec-early:#7FB2FF; --sec-uac:#F2C94C; --sec-holidays:#F2994A; --sec-open-days:#C59BFF; --sec-experience:#FF6B6B; --sec-after-school:#6CFF5A;
+  --on-sec:#0A1712;
+}
+/* Dark colour choices (6 Nov 2026), from Ajay's reference palette: the reader picks one of six
+   accents under the theme buttons; Green (Forest, above) is the default. Each tints the ground to
+   match. Band colours never change — they carry meaning. These sit before the light blocks, which
+   set every one of these tokens again, so a colour choice never touches the light theme.
+   Measured in test/theme.test.js. */
+:root[data-accent="blue"]{
+  --paper:#0B1220; --surface:#111B2E; --surface-2:#18253D; --sunk:#0D1626;
+  --ink:#F1F0F4; --ink-2:#C9C7D1; --ink-3:#9C99A8;
+  --rule:#26375A; --rule-soft:#18243A;
+  --accent:#7FB2FF; --accent-soft:#15243D;
+  --shadow:0 0 0 1px rgba(127,178,255,.10), 0 0 22px -8px rgba(127,178,255,.40);
+  --on-accent:#0B1220;
+  --glow-brand:0 0 6px rgba(127,178,255,.8), 0 0 20px rgba(127,178,255,.45), 0 0 40px rgba(127,178,255,.22);
+  --glow-accent:0 0 10px rgba(127,178,255,.5);
+  --glow-box:0 0 14px -2px rgba(127,178,255,.6);
+  --accent-2:#F2C94C;
+  --on-sec:#0B1220;
+}
+:root[data-accent="gold"]{
+  --paper:#13110A; --surface:#1D1A0F; --surface-2:#2A2615; --sunk:#17140B;
+  --ink:#F1F0F4; --ink-2:#C9C7D1; --ink-3:#9C99A8;
+  --rule:#433C22; --rule-soft:#2A2617;
+  --accent:#F2C94C; --accent-soft:#2E2810;
+  --shadow:0 0 0 1px rgba(242,201,76,.10), 0 0 22px -8px rgba(242,201,76,.40);
+  --on-accent:#13110A;
+  --glow-brand:0 0 6px rgba(242,201,76,.8), 0 0 20px rgba(242,201,76,.45), 0 0 40px rgba(242,201,76,.22);
+  --glow-accent:0 0 10px rgba(242,201,76,.5);
+  --glow-box:0 0 14px -2px rgba(242,201,76,.6);
+  --accent-2:#F2994A;
+  --on-sec:#13110A;
+}
+:root[data-accent="amber"]{
+  --paper:#140E09; --surface:#1F160E; --surface-2:#2C2015; --sunk:#18110A;
+  --ink:#F1F0F4; --ink-2:#C9C7D1; --ink-3:#9C99A8;
+  --rule:#47321F; --rule-soft:#2D2015;
+  --accent:#F2994A; --accent-soft:#2F1D0E;
+  --shadow:0 0 0 1px rgba(242,153,74,.10), 0 0 22px -8px rgba(242,153,74,.40);
+  --on-accent:#140E09;
+  --glow-brand:0 0 6px rgba(242,153,74,.8), 0 0 20px rgba(242,153,74,.45), 0 0 40px rgba(242,153,74,.22);
+  --glow-accent:0 0 10px rgba(242,153,74,.5);
+  --glow-box:0 0 14px -2px rgba(242,153,74,.6);
+  --accent-2:#F2C94C;
+  --on-sec:#140E09;
+}
+:root[data-accent="purple"]{
+  --paper:#110E1A; --surface:#1A1528; --surface-2:#251E38; --sunk:#140F20;
+  --ink:#F1F0F4; --ink-2:#C9C7D1; --ink-3:#9C99A8;
+  --rule:#3A3055; --rule-soft:#251E37;
+  --accent:#C59BFF; --accent-soft:#2A2140;
+  --shadow:0 0 0 1px rgba(197,155,255,.10), 0 0 22px -8px rgba(197,155,255,.40);
+  --on-accent:#110E1A;
+  --glow-brand:0 0 6px rgba(197,155,255,.8), 0 0 20px rgba(197,155,255,.45), 0 0 40px rgba(197,155,255,.22);
+  --glow-accent:0 0 10px rgba(197,155,255,.5);
+  --glow-box:0 0 14px -2px rgba(197,155,255,.6);
+  --accent-2:#F2C94C;
+  --on-sec:#110E1A;
+}
+:root[data-accent="red"]{
+  --paper:#150B0C; --surface:#211213; --surface-2:#2F1A1B; --sunk:#190D0E;
+  --ink:#F1F0F4; --ink-2:#C9C7D1; --ink-3:#9C99A8;
+  --rule:#4C2829; --rule-soft:#2F191A;
+  --accent:#FF6B6B; --accent-soft:#321414;
+  --shadow:0 0 0 1px rgba(255,107,107,.10), 0 0 22px -8px rgba(255,107,107,.40);
+  --on-accent:#150B0C;
+  --glow-brand:0 0 6px rgba(255,107,107,.8), 0 0 20px rgba(255,107,107,.45), 0 0 40px rgba(255,107,107,.22);
+  --glow-accent:0 0 10px rgba(255,107,107,.5);
+  --glow-box:0 0 14px -2px rgba(255,107,107,.6);
+  --accent-2:#F2C94C;
+  --on-sec:#150B0C;
 }
 :root[data-theme="light"]{
-  --paper:#EEF2F6; --surface:#FFFFFF; --surface-2:#E3EAF1; --sunk:#F6F9FB;
-  --ink:#111926; --ink-2:#3C4A5C; --ink-3:#5A6878;
-  --rule:#CFD9E3; --rule-soft:#E1E8EF;
-  --accent:#2F5183; --accent-soft:#E2E9F4;
-  --prep:#1F6349;  --prep-soft:#DCEBE3;
-  --minor:#2F5183; --minor-soft:#E2E9F4;
-  --bridge:#8A5600; --bridge-soft:#F7EBD6;
-  --hard:#8A4114;  --hard-soft:#F6E4D7;
-  --gated:#9E2F27; --gated-soft:#F6DFDC;
-  --restrict:#4A54A8; --restrict-soft:#EAECF9;
-  --shadow:0 1px 2px rgba(17,25,38,.06), 0 10px 28px -18px rgba(17,25,38,.30);
-  --on-accent:#fff;
+  /* Warm light (5 Nov 2026), after straia.io: cream ground, warm near-black ink, burgundy accent.
+     Measured in test/theme.test.js: body 16.4:1, every band tag at least 5.4:1. */
+  --paper:#FBF3EC; --surface:#FFFCFA; --surface-2:#F6E9DF; --sunk:#FFF4ED;
+  --ink:#1A1615; --ink-2:#453F3D; --ink-3:#6E625E;
+  --rule:#E8D8CC; --rule-soft:#F1E5DB;
+  --accent:#873E3A; --accent-soft:#F6E1DC;
+  --prep:#2F6B47;  --prep-soft:#E3F0E6;
+  --minor:#873E3A; --minor-soft:#F6E1DC;
+  --bridge:#8A4B00; --bridge-soft:#FFE9D3;
+  --hard:#A13A10;  --hard-soft:#FBE2D6;
+  --gated:#9E2F27; --gated-soft:#F8DEDA;
+  --restrict:#5A4FA0; --restrict-soft:#ECE9F8;
+  --shadow:0 1px 2px rgba(26,22,21,.06), 0 12px 30px -18px rgba(135,62,58,.35);
+  --on-accent:#FFFCFA;
+  --glow-brand:none; --glow-accent:none; --glow-box:none;
+  --accent-2:#B0431C; --glow-pink:none;
+  --sec-early:#2F5DA8; --sec-uac:#7A5E00; --sec-holidays:#9A4A0C; --sec-open-days:#6B46B3; --sec-experience:#B3261E; --sec-after-school:#2F6B47;
+  --on-sec:#FFFCFA;
 }
 @media (prefers-color-scheme: light){
   :root[data-theme="system"]{
-    --paper:#EEF2F6; --surface:#FFFFFF; --surface-2:#E3EAF1; --sunk:#F6F9FB;
-    --ink:#111926; --ink-2:#3C4A5C; --ink-3:#5A6878;
-    --rule:#CFD9E3; --rule-soft:#E1E8EF;
-    --accent:#2F5183; --accent-soft:#E2E9F4;
-    --prep:#1F6349;  --prep-soft:#DCEBE3;
-    --minor:#2F5183; --minor-soft:#E2E9F4;
-    --bridge:#8A5600; --bridge-soft:#F7EBD6;
-    --hard:#8A4114;  --hard-soft:#F6E4D7;
-    --gated:#9E2F27; --gated-soft:#F6DFDC;
-    --restrict:#4A54A8; --restrict-soft:#EAECF9;
-    --shadow:0 1px 2px rgba(17,25,38,.06), 0 10px 28px -18px rgba(17,25,38,.30);
-    --on-accent:#fff;
+    --paper:#FBF3EC; --surface:#FFFCFA; --surface-2:#F6E9DF; --sunk:#FFF4ED;
+    --ink:#1A1615; --ink-2:#453F3D; --ink-3:#6E625E;
+    --rule:#E8D8CC; --rule-soft:#F1E5DB;
+    --accent:#873E3A; --accent-soft:#F6E1DC;
+    --prep:#2F6B47;  --prep-soft:#E3F0E6;
+    --minor:#873E3A; --minor-soft:#F6E1DC;
+    --bridge:#8A4B00; --bridge-soft:#FFE9D3;
+    --hard:#A13A10;  --hard-soft:#FBE2D6;
+    --gated:#9E2F27; --gated-soft:#F8DEDA;
+    --restrict:#5A4FA0; --restrict-soft:#ECE9F8;
+    --shadow:0 1px 2px rgba(26,22,21,.06), 0 12px 30px -18px rgba(135,62,58,.35);
+    --on-accent:#FFFCFA;
+    --glow-brand:none; --glow-accent:none; --glow-box:none;
+    --accent-2:#B0431C; --glow-pink:none;
+    --sec-early:#2F5DA8; --sec-uac:#7A5E00; --sec-holidays:#9A4A0C; --sec-open-days:#6B46B3; --sec-experience:#B3261E; --sec-after-school:#2F6B47;
+    --on-sec:#FFFCFA;
   }
 }
 
@@ -127,6 +217,15 @@ h1{
 nav.topnav{display:flex; gap:1rem; flex-wrap:wrap; font-size:.92rem; align-items:center}
 nav.topnav a{color:var(--ink-2); text-decoration:none}
 nav.topnav a:hover{color:var(--accent)}
+.accents{display:flex; gap:.35rem; align-items:center}
+.accents button{width:1.15rem; height:1.15rem; border-radius:50%; padding:0; border:2px solid transparent; background:var(--dot); cursor:pointer; box-shadow:0 0 0 1px rgba(255,255,255,.18)}
+.accents button[aria-pressed="true"]{border-color:var(--ink); box-shadow:0 0 0 2px var(--paper), 0 0 10px var(--dot)}
+:root[data-theme="light"] .accents{display:none}
+@media (prefers-color-scheme: light){ :root[data-theme="system"] .accents{display:none} }
+nav.topnav a[aria-current="page"]{color:var(--accent); font-weight:600; text-decoration:underline; text-underline-offset:.35em; text-decoration-thickness:2px}
+.home-more{margin:1.6rem 0 0}
+.about-more{margin-top:2.4rem}
+.subjects .picker{margin-top:1.2rem}
 .theme{display:flex; gap:.25rem; flex-wrap:wrap}
 .theme button{
   font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:.78rem;
@@ -576,3 +675,253 @@ span.chip{display:inline-block}
 .ind a.btn, .quiz-result .btn{display:inline-block; text-decoration:none}
 .ind details.fold > :not(summary){padding:0 .9rem}
 @media print{ .doors, .quiz-live, .industries .jump{display:none!important} }
+
+/* Try it before you choose */
+.try-it .jump{margin:1rem 0 1.4rem}
+.try-it .jump .chip{text-decoration:none; font-size:.95rem}
+.kind{margin:2rem 0; padding-top:1rem; border-top:1px solid var(--rule)}
+.opp-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 24rem), 1fr)); gap:1rem}
+.opp{background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:1rem 1.1rem; box-shadow:var(--shadow); min-width:0}
+.opp h3{margin:0 0 .2rem; font-size:1.1rem}
+.opp-by{margin:0 0 .6rem; color:var(--ink-3); font-size:.9rem}
+.opp dl{display:grid; grid-template-columns:auto 1fr; gap:.25rem .8rem; margin:0 0 .7rem; font-size:.95rem}
+.opp dt{color:var(--ink-3); font-weight:600}
+.opp dd{margin:0; color:var(--ink-2); overflow-wrap:anywhere}
+.opp .chips .chip{cursor:default; font-size:.85rem; padding:.3rem .55rem}
+.opp .chips .chip:hover{border-color:var(--rule)}
+.opp details.fold{margin-top:.7rem; box-shadow:none}
+.opp details.fold > :not(summary){padding:0 .9rem}
+.opp .quote{margin:.4rem 0 0; border-left:2px solid var(--rule); padding-left:.65rem; font-style:italic; color:var(--ink-2)}
+.opp .src{font-size:.85rem; color:var(--ink-3); margin:.5rem 0 .7rem}
+.try-line{margin:.6rem 0}
+@media (max-width:40rem){ .opp dl{grid-template-columns:1fr; gap:0} .opp dt{margin-top:.45rem} }
+@media print{ .try-it .jump{display:none!important} }
+
+/* Key dates (/dates/). One timeline per starting year; a date block, then the event.
+   .tag sets display, which beats the hidden attribute — so hidden must win explicitly here. */
+.dates [hidden]{display:none !important}
+.t-ok{background:var(--prep-soft); color:var(--prep)}
+.dates .cohort-switch{display:flex; flex-wrap:wrap; gap:.6rem; margin:1rem 0 1.2rem}
+.dates .cohort-switch button{
+  display:flex; flex-direction:column; align-items:flex-start; gap:.15rem; text-align:left;
+  background:var(--surface); color:var(--ink); border:1px solid var(--rule); border-radius:4px;
+  padding:.65rem .95rem; font:inherit; cursor:pointer; min-width:min(100%, 15rem)}
+.dates .cohort-switch button span{font-size:.85rem; color:var(--ink-3)}
+.dates .cohort-switch button[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--on-accent)}
+.dates .cohort-switch button[aria-pressed="true"] span{color:var(--on-accent); opacity:.85}
+.dates .filters{margin:1rem 0 1.4rem}
+.dates .cohort{margin-top:1.2rem; padding-top:1rem; border-top:1px solid var(--rule)}
+.dates .coming-up, .dates .year11, .dates .anytime, .dates .dates-notes{
+  background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:.9rem 1.1rem; margin:1rem 0; max-width:60rem}
+.dates .coming-up{border-left:3px solid var(--accent)}
+.dates .coming-up h3, .dates .year11 h3, .dates .anytime h3, .dates .dates-notes h3{margin:0 0 .5rem; font-size:1.05rem}
+.dates .coming-up ol, .dates .year11 ol, .dates .anytime ul{margin:0; padding-left:1.2rem; color:var(--ink-2)}
+.dates .coming-up li, .dates .year11 li, .dates .anytime li{margin:.3rem 0}
+.dates .year11 .see{font-size:.85rem; color:var(--ink-3)}
+.dates .month h3{font-size:1rem; margin:1.6rem 0 .6rem; color:var(--ink-2); font-family:"IBM Plex Mono", monospace; font-weight:600; letter-spacing:.02em}
+.dates .tl{list-style:none; margin:0; padding:0; display:grid; gap:.7rem; max-width:60rem}
+.dates .ev{display:grid; grid-template-columns:6.5rem 1fr; gap:1rem; background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:.85rem 1rem; box-shadow:var(--shadow); min-width:0}
+.dates .ev[data-kind="last-year"]{border-style:dashed; background:var(--sunk)}
+.dates .ev.passed{opacity:.62}
+.dates .ev-date{display:flex; flex-direction:column; gap:.1rem; font-family:"IBM Plex Mono", monospace}
+.dates .ev-date b{font-size:.95rem; color:var(--ink)}
+.dates .ev-date span{font-size:.8rem; color:var(--ink-3)}
+.dates .ev-body{min-width:0}
+.dates .ev-org{margin:0; font-size:.85rem; color:var(--ink-3)}
+.dates .ev h4{margin:.1rem 0 .35rem; font-size:1.05rem}
+.dates .ev-what{margin:0 0 .5rem; color:var(--ink-2)}
+.dates .ly{margin:0 0 .5rem; font-size:.9rem; color:var(--bridge)}
+.dates .ev dl{display:grid; grid-template-columns:auto 1fr; gap:.2rem .8rem; margin:0 0 .5rem; font-size:.93rem}
+.dates .ev dt{color:var(--ink-3); font-weight:600}
+.dates .ev dd{margin:0; color:var(--ink-2); overflow-wrap:anywhere}
+.dates .tags{margin:.2rem 0 0; display:flex; flex-wrap:wrap; gap:.35rem}
+.dates details.fold{margin-top:.6rem; box-shadow:none}
+.dates details.fold > :not(summary){padding:0 .9rem}
+.dates .quote{margin:.4rem 0 0; border-left:2px solid var(--rule); padding-left:.65rem; font-style:italic; color:var(--ink-2); overflow-wrap:anywhere}
+.dates .quote-plain{margin:.4rem 0 0; color:var(--ink-2)}
+.dates .src{font-size:.85rem; color:var(--ink-3); margin:.5rem 0 .7rem}
+.dates .note + .note{margin-top:.7rem; padding-top:.7rem; border-top:1px solid var(--rule-soft)}
+.dates .note p{margin:0}
+@media (max-width: 40rem){
+  .dates .ev{grid-template-columns:1fr; gap:.35rem}
+  .dates .ev-date{flex-direction:row; gap:.5rem; align-items:baseline}
+  .dates .ev dl{grid-template-columns:1fr; gap:0}
+  .dates .ev dd{margin-bottom:.3rem}
+}
+@media print{
+  .dates-link{display:none}
+  .dates .cohort-switch, .dates .filters{display:none}
+  .dates section.cohort[hidden]{display:block}
+}
+.dates .filters-label{align-self:center; font-size:.9rem; color:var(--ink-3); margin-right:.2rem}
+
+/* Neon glow. Driven by tokens, so light and "Match my system" (light) stay flat, and print
+   (which resets colours) never glows. */
+.brand h1{text-shadow:var(--glow-brand)}
+main > h1{text-shadow:var(--glow-accent)}
+.sh h2{text-shadow:var(--glow-accent)}
+.dates .month h3{color:var(--accent-2); text-shadow:var(--glow-pink)}
+a:hover{text-shadow:var(--glow-accent)}
+.chip[aria-pressed="true"], .dates .cohort-switch button[aria-pressed="true"], .theme button[aria-pressed="true"]{box-shadow:var(--glow-box)}
+@media print{ .brand h1, main > h1, .sh h2, .dates .month h3, a:hover{text-shadow:none} .chip, button{box-shadow:none!important} }
+.dates .after-school{background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:.9rem 1.1rem; margin:1rem 0; max-width:60rem}
+.dates .after-school > h3{margin:0 0 .5rem; font-size:1.05rem}
+.dates .after-h{margin:1rem 0 .5rem; font-size:.95rem; color:var(--accent-2, var(--ink-2))}
+.dates .after-list{list-style:none; margin:0; padding:0; display:grid; gap:.7rem}
+.dates .after-item{background:var(--sunk); border:1px solid var(--rule-soft); border-radius:4px; padding:.75rem .9rem}
+.dates .after-item h4{margin:0; font-size:1rem}
+.dates .after-item dl{display:grid; grid-template-columns:auto 1fr; gap:.2rem .8rem; margin:.4rem 0 0; font-size:.93rem}
+.dates .after-item dt{color:var(--ink-3); font-weight:600}
+.dates .after-item dd{margin:0; color:var(--ink-2)}
+@media (max-width: 40rem){ .dates .after-item dl{grid-template-columns:1fr; gap:0} }
+
+/* Ask assistant panel (only on pages built with an endpoint). */
+.ask-open{font:inherit; color:var(--on-accent); background:var(--accent); border:1px solid var(--accent); border-radius:4px; padding:.25rem .8rem; cursor:pointer; box-shadow:var(--glow-box, none)}
+dialog.ask{width:min(44rem, 94vw); max-height:88vh; background:var(--surface); color:var(--ink); border:1px solid var(--accent); border-radius:6px; padding:1rem 1.2rem 1.2rem; box-shadow:var(--glow-box, none)}
+dialog.ask::backdrop{background:rgba(0,0,0,.6)}
+.ask-close-row{display:flex; justify-content:flex-end; margin:0}
+.ask-close{font:inherit; background:none; color:var(--ink-2); border:1px solid var(--rule); border-radius:4px; padding:.2rem .6rem; cursor:pointer}
+.ask h2{margin:.2rem 0 .5rem; font-size:1.2rem}
+.ask-note{color:var(--ink-2); font-size:.92rem; margin:0 0 .7rem}
+.ask-consent{display:flex; gap:.55rem; align-items:flex-start; font-size:.9rem; color:var(--ink-2); background:var(--sunk); border:1px solid var(--rule-soft); border-radius:4px; padding:.6rem .7rem; margin-bottom:.8rem}
+.ask-consent input{margin-top:.25rem; width:1.1rem; height:1.1rem; flex:none}
+.ask-q-label{display:block; font-weight:600; margin-bottom:.3rem}
+.ask textarea{width:100%; font:inherit; color:var(--ink); background:var(--sunk); border:1px solid var(--rule); border-radius:4px; padding:.55rem .65rem; resize:vertical}
+.ask-actions{display:flex; align-items:center; gap:.8rem; margin:.6rem 0}
+.ask-send{font:inherit; font-weight:600; color:var(--on-accent); background:var(--accent); border:none; border-radius:4px; padding:.45rem 1.1rem; cursor:pointer}
+.ask-send[disabled]{opacity:.45; cursor:not-allowed}
+.ask-count{font-size:.8rem; color:var(--ink-3); font-family:"IBM Plex Mono", monospace}
+.ask-answer{border-top:1px solid var(--rule-soft); padding-top:.6rem}
+.ask-text{margin:.3rem 0 .6rem; white-space:pre-wrap}
+.ask-cite{display:inline-block; font-size:.72rem; vertical-align:super; padding:0 .25rem; margin-left:.1rem; border:1px solid var(--accent); border-radius:3px; text-decoration:none}
+.ask-src-h{font-weight:600; margin:.6rem 0 .2rem; font-size:.92rem}
+.ask-sources{margin:0; padding-left:1.3rem; font-size:.92rem; color:var(--ink-2)}
+.ask-sources li{margin:.2rem 0}
+.ask-warn, .ask-wait{font-size:.85rem; color:var(--bridge)}
+@media print{ .ask-open, dialog.ask{display:none!important} }
+
+/* Warm light theme touches (straia.io): softer, rounder controls; peach for unpressed choices. */
+:root[data-theme="light"] .chip:not([aria-pressed="true"]), :root[data-theme="light"] .theme button:not([aria-pressed="true"]){background:#FFF1E6; border-color:#F2D6C3}
+:root[data-theme="light"] .chip, :root[data-theme="light"] .theme button, :root[data-theme="light"] .ask-open, :root[data-theme="light"] .ask-send,
+:root[data-theme="light"] .opp, :root[data-theme="light"] .dates .ev, :root[data-theme="light"] .dates .cohort-switch button{border-radius:8px}
+@media (prefers-color-scheme: light){
+  :root[data-theme="system"] .chip:not([aria-pressed="true"]){background:#FFF1E6; border-color:#F2D6C3}
+}
+
+/* Home: who it is for, common questions, where the facts come from. */
+.home-who, .home-faq, .home-sources{margin:2.6rem 0 0; padding-top:1.4rem; border-top:1px solid var(--rule); max-width:72rem}
+.home-who h2, .home-faq h2, .home-sources h2{margin:0 0 1rem; font-size:1.35rem}
+.who-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap:1rem}
+.who{background:var(--surface); border:1px solid var(--rule); border-radius:8px; padding:1rem 1.1rem; box-shadow:var(--shadow)}
+.who h3{margin:0 0 .35rem; font-size:1.1rem; color:var(--accent)}
+.who p{margin:0 0 .6rem; color:var(--ink-2)}
+.who ul{margin:0; padding-left:1.1rem; color:var(--ink-2)}
+.who li{margin:.3rem 0}
+.faq{background:var(--surface); border:1px solid var(--rule); border-radius:8px; margin:.55rem 0; max-width:60rem}
+.faq summary{cursor:pointer; padding:.8rem 1rem; font-weight:600; list-style-position:inside}
+.faq[open] summary{border-bottom:1px solid var(--rule-soft)}
+.faq p{margin:0; padding:.75rem 1rem .9rem; color:var(--ink-2)}
+.src-strip{display:flex; flex-wrap:wrap; gap:.5rem; margin:0 0 .7rem}
+.src-strip span{font-family:"IBM Plex Mono", monospace; font-size:.85rem; color:var(--ink-2); border:1px solid var(--rule); border-radius:999px; padding:.3rem .75rem; background:var(--sunk)}
+@media print{ .home-who, .home-faq, .home-sources{display:none} }
+
+/* Key dates on wide screens: timeline on the left, a summary panel on the right that stays in
+   view (5 Nov 2026 — the right third of the page was empty). On phones it stacks, summary first. */
+.dates .dates-layout{display:grid; grid-template-columns:1fr; gap:1.2rem}
+.dates .month-nav{background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:.9rem 1.1rem; margin:1rem 0}
+.dates .month-nav h3{margin:0 0 .5rem; font-size:1.05rem}
+.dates .month-nav ul{list-style:none; margin:0; padding:0; columns:2; column-gap:1rem}
+.dates .month-nav li{margin:.25rem 0; break-inside:avoid}
+.dates .month-nav .n{font-family:"IBM Plex Mono", monospace; font-size:.75rem; color:var(--ink-3)}
+.dates .month{scroll-margin-top:1rem}
+@media (min-width: 72rem){
+  .dates .dates-layout{grid-template-columns:minmax(0, 1fr) minmax(19rem, 25rem); align-items:start; gap:2rem}
+  .dates .dates-side{grid-column:2; grid-row:1; position:sticky; top:1rem; max-height:calc(100vh - 2rem); overflow:auto; padding-right:.2rem}
+  .dates .dates-main{grid-column:1; grid-row:1; min-width:0}
+  .dates .dates-side > *{margin-top:0; max-width:none}
+  .dates .dates-side > * + *{margin-top:1rem}
+  .dates .dates-main .tl, .dates .dates-main .anytime, .dates .dates-main .after-school, .dates .dates-main .dates-notes{max-width:none}
+  .dates .month-nav ul{columns:1}
+  .dates .dates-main .month:first-child h3{margin-top:.2rem}
+}
+:root[data-theme="light"] .dates .month-nav{border-radius:8px}
+
+/* Key dates: each kind of date has its own colour (from Ajay's reference palette) — on its
+   filter button and as a stripe down the left of each date card. Words still carry the meaning;
+   the colour only helps the eye. */
+.dates [data-filter="early"]{--sec:var(--sec-early)} .dates .ev[data-section="early"]{--sec:var(--sec-early)}
+.dates [data-filter="uac"]{--sec:var(--sec-uac)} .dates .ev[data-section="uac"]{--sec:var(--sec-uac)}
+.dates [data-filter="holidays"]{--sec:var(--sec-holidays)} .dates .ev[data-section="holidays"]{--sec:var(--sec-holidays)}
+.dates [data-filter="open-days"]{--sec:var(--sec-open-days)} .dates .ev[data-section="open-days"]{--sec:var(--sec-open-days)}
+.dates [data-filter="experience"]{--sec:var(--sec-experience)} .dates .ev[data-section="experience"]{--sec:var(--sec-experience)}
+.dates [data-filter="after-school"]{--sec:var(--sec-after-school)} .dates .ev[data-section="after-school"]{--sec:var(--sec-after-school)}
+.dates .filters .chip[data-filter]{border-color:var(--sec)}
+.dates .filters .chip[data-filter][aria-pressed="true"]{background:var(--sec); border-color:var(--sec); color:var(--on-sec); box-shadow:none}
+.dates .filters .chip[data-filter][aria-pressed="false"]{background:transparent; color:var(--ink-3); text-decoration:line-through}
+.dates .ev{border-left:4px solid var(--sec, var(--rule))}
+.dates .ev .ev-org{color:var(--sec, var(--ink-3))}
+
+/* Key dates filters as tiles: colour, name, and a one-line explainer; the whole tile toggles. */
+.dates p.filters-label{margin:1.6rem 0 .45rem; font-size:.9rem; color:var(--ink-3)}
+.dates .filters{display:grid; grid-template-columns:repeat(3, 1fr); gap:.6rem; margin:0 0 1.4rem}
+@media (max-width:640px){ .dates .filters{grid-template-columns:repeat(2, 1fr)} }
+.dates .filters .filter-card{display:flex; flex-direction:column; align-items:flex-start; gap:.2rem; text-align:left; padding:.6rem .8rem; min-height:4.6rem; border-radius:8px; border-width:2px}
+.dates .filters .filter-card b{font-weight:700; font-size:.98rem}
+.dates .filters .filter-card span{font-size:.82rem; line-height:1.35; font-weight:400; opacity:.9}
+.dates .filters .chip[data-filter][aria-pressed="false"]{text-decoration:none}
+.dates .filters .chip[data-filter][aria-pressed="false"] b{text-decoration:line-through}
+
+/* Key dates: the four reading notes as tap-to-open questions (5 Nov 2026). */
+.dates .dates-help{margin:1.2rem 0 0; max-width:72rem}
+.dates .dates-help-h{font-size:1rem; margin:0 0 .4rem; color:var(--ink-2)}
+.dates .dates-help{display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap:0 .8rem; align-items:start}
+.dates .dates-help .dates-help-h{grid-column:1 / -1}
+.dates .dates-help .faq{margin:.3rem 0}
+.dates .dates-help .faq summary{padding:.55rem .85rem; font-size:.95rem}
+.dates .dates-help .faq p{padding:.6rem .85rem .75rem; font-size:.93rem}
+/* About: who built this. */
+.builder{background:var(--surface); border:1px solid var(--rule); border-left:4px solid var(--accent); border-radius:8px; padding:1rem 1.1rem; margin:.6rem 0 1.4rem; max-width:60rem; display:flex; gap:1.2rem; align-items:flex-start}
+.builder-photo{width:11rem; height:11rem; flex:none; border-radius:8px; object-fit:cover; border:1px solid var(--rule); box-shadow:var(--glow-box, none)}
+.builder-text p:first-child{margin-top:0}
+@media (max-width: 40rem){ .builder{flex-direction:column} .builder-photo{width:8rem; height:8rem} }
+.builder p{color:var(--ink-2)}
+
+/* Home: tagline and Coming up (6 Nov 2026). */
+.home-tagline{font-size:1.15rem; color:var(--ink); margin:.4rem 0 1rem; max-width:52rem}
+.home-soon{background:var(--surface); border:1px solid var(--rule); border-left:4px solid var(--accent); border-radius:8px; padding:.8rem 1.1rem; margin:0 0 1.4rem; max-width:72rem}
+.home-soon h2{margin:0 0 .4rem; font-size:1.05rem}
+.soon-list{margin:0; padding-left:1.2rem; display:grid; gap:.3rem}
+.soon-list li{color:var(--ink-2)}
+.soon-list li[hidden]{display:none}
+.soon-list .who-tag{font-family:"IBM Plex Mono", monospace; font-size:.75rem; color:var(--ink-3); border:1px solid var(--rule); border-radius:999px; padding:.05rem .5rem; white-space:nowrap; max-width:100%}
+@media (max-width:480px){ .soon-list .who-tag{white-space:normal; display:inline-block; border-radius:8px} }
+.soon-more{margin:.5rem 0 0; font-size:.92rem}
+.home-soon[hidden]{display:none}
+@media print{ .home-soon{display:none} }
+
+/* Plain-language home (6 Nov 2026, after straia.io): headline, icons, clear option names. */
+.ico{display:inline-grid; place-items:center; width:2.6rem; height:2.6rem; flex:none; border:1px solid var(--rule); border-radius:10px; background:var(--sunk); color:var(--accent)}
+.ico svg{width:1.35rem; height:1.35rem}
+.ico-sm{width:1.7rem; height:1.7rem; border-radius:7px}
+.ico-sm svg{width:1rem; height:1rem}
+.hero{margin:.6rem 0 1.4rem; max-width:62rem}
+.hero-h{font-family:"Newsreader", Georgia, serif; font-weight:500; font-size:clamp(1.9rem, 3.4vw, 2.8rem); line-height:1.15; margin:0 0 .6rem; color:var(--ink); text-shadow:var(--glow-accent, none)}
+.hero-sub{font-size:1.15rem; line-height:1.55; color:var(--ink-2); margin:0}
+.home-soon h2{display:flex; align-items:center; gap:.55rem}
+.doors-sub{margin:-.4rem 0 .9rem; color:var(--ink-2)}
+.door{gap:.5rem}
+.door .ico{margin-bottom:.2rem}
+.door-t{font-size:1.2rem}
+.home-intro{display:block; margin:1.6rem 0 .8rem}
+.picker-h{font-size:1.35rem; margin:0 0 .3rem}
+.home-intro .lead{font-size:1.02rem; color:var(--ink-2)}
+.home-trust{margin:2.6rem 0 0; padding-top:1.4rem; border-top:1px solid var(--rule); max-width:72rem}
+.home-trust h2{margin:0 0 1rem; font-size:1.35rem}
+.trust-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap:1rem}
+.trust-item h3{margin:.6rem 0 .25rem; font-size:1.02rem}
+.trust-item p{margin:0; color:var(--ink-2); font-size:.95rem}
+.who .ico{margin-bottom:.5rem}
+.who h3{color:var(--ink)}
+.dates .filters .filter-card .ico{background:transparent; border-color:currentColor; color:inherit; margin-bottom:.2rem}
+.dates .filters .chip[data-filter][aria-pressed="true"] .ico{border-color:rgba(0,0,0,.25)}
+@media print{ .ico{display:none} }

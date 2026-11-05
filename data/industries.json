@@ -1,5 +1,5 @@
 {
-  "_comment": "Future-industries door. Each industry is listed only where an official government source names it, quoted verbatim. The quotes were string-matched (code, not a reader) against the live page or PDF text on each source's checkedOn; the Japan PDF was matched ignoring spaces, because its text layer splits words. Which degrees lead into each industry is computed from ui/topics.js and labelled as our judgement on the page.",
+  "_comment": "Future-industries door. Each industry is listed only where an official government source names it, quoted verbatim. The quotes were string-matched (code, not a reader) against the live page or PDF text on each source's checkedOn; the Japan and US PDFs were matched ignoring spaces, because their text layers split words. All sources re-checked 24 Oct 2026; India's quantum-mission release moved from dst.gov.in (now an empty page) to pmindia.gov.in with the same words. Which degrees lead into each industry is computed from ui/topics.js and labelled as our judgement on the page.",
   "capturedOn": "2026-10-02",
   "stalenessDays": 365,
   "economies": [
@@ -26,7 +26,7 @@
         "medical": "Medical science",
         "renewables": "Renewables and low emission technologies"
       },
-      "checkedOn": "2026-10-02",
+      "checkedOn": "2026-10-24",
       "verification": "verified"
     },
     {
@@ -47,7 +47,7 @@
         "biotech": "biotechnologies",
         "space": "space objects or products for use in, or in connection with, space objects"
       },
-      "checkedOn": "2026-10-02",
+      "checkedOn": "2026-10-24",
       "verification": "verified"
     },
     {
@@ -66,7 +66,7 @@
         "minerals": "To unleash American critical minerals, agencies should invest in R&D for the identification, characterization, and assessment of domestic mineral resources",
         "manufacturing": "Agency R&D investments should advance innovation that fuels the resurgence of domestic manufacturing."
       },
-      "checkedOn": "2026-10-02",
+      "checkedOn": "2026-10-24",
       "verification": "verified"
     },
     {
@@ -82,7 +82,7 @@
         "biotech": "Biotechnologies are key for making critical sectors like healthcare, farming, and the bioeconomy more modern",
         "manufacturing": "Advanced materials, manufacturing and recycling technologies"
       },
-      "checkedOn": "2026-10-02",
+      "checkedOn": "2026-10-24",
       "verification": "verified"
     },
     {
@@ -95,7 +95,7 @@
       "quotes": {
         "frontier": "Investing in priority frontier technologies – ACT, AI, cyber security, engineering biology, quantum and semiconductors – through the government’s record Spending Review settlement for R&D."
       },
-      "checkedOn": "2026-10-02",
+      "checkedOn": "2026-10-24",
       "verification": "verified"
     },
     {
@@ -108,7 +108,7 @@
       "quotes": {
         "clean": "doubling investment levels across our frontier clean energy industries to over £30 billion per year"
       },
-      "checkedOn": "2026-10-02",
+      "checkedOn": "2026-10-24",
       "verification": "verified"
     },
     {
@@ -121,7 +121,7 @@
       "quotes": {
         "industries": "6 advanced manufacturing industries of the future (advanced materials, aerospace, agri-tech, automotive, batteries and space)"
       },
-      "checkedOn": "2026-10-02",
+      "checkedOn": "2026-10-24",
       "verification": "verified"
     },
     {
@@ -134,7 +134,7 @@
       "quotes": {
         "future": "accelerate the development of strategic and emerging industry clusters, including new energy, new materials, aerospace, and low-altitude economy, and to foster future industries, such as quantum technology, biomanufacturing, hydrogen energy and fusion energy, brain-computer interfaces, embodied intelligence, and sixth-generation mobile communications"
       },
-      "checkedOn": "2026-10-02",
+      "checkedOn": "2026-10-24",
       "verification": "verified"
     },
     {
@@ -147,20 +147,20 @@
       "quotes": {
         "ai": "promoting the extensive and in-depth integration of AI across various fields"
       },
-      "checkedOn": "2026-10-02",
+      "checkedOn": "2026-10-24",
       "verification": "verified"
     },
     {
       "id": "in-nqm",
       "economy": "in",
-      "publisher": "Department of Science and Technology (Government of India)",
-      "title": "Cabinet approves National Quantum Mission",
-      "url": "https://dst.gov.in/cabinet-approves-national-quantum-mission-scale-scientific-industrial-rd-quantum-technologies",
+      "publisher": "Prime Minister's Office (Government of India)",
+      "title": "Cabinet approves National Quantum Mission to scale-up scientific & industrial R&D for quantum technologies",
+      "url": "https://www.pmindia.gov.in/en/news_updates/cabinet-approves-national-quantum-mission-to-scale-up-scientific-industrial-rd-for-quantum-technologies/",
       "kind": "html",
       "quotes": {
         "quantum": "approved the National Quantum Mission (NQM) at a total cost of Rs.6003.65 crore from 2023-24 to 2030-31"
       },
-      "checkedOn": "2026-10-02",
+      "checkedOn": "2026-10-24",
       "verification": "verified"
     },
     {
@@ -173,7 +173,7 @@
       "quotes": {
         "ai": "the cabinet approved the India AI mission with a budget outlay of Rs 10,372 crore for five years"
       },
-      "checkedOn": "2026-10-02",
+      "checkedOn": "2026-10-24",
       "verification": "verified"
     },
     {
@@ -186,7 +186,7 @@
       "quotes": {
         "semiconductors": "The India Semiconductor Mission (ISM) aims to build a strong semiconductor and display ecosystem"
       },
-      "checkedOn": "2026-10-02",
+      "checkedOn": "2026-10-24",
       "verification": "verified"
     },
     {
@@ -199,7 +199,7 @@
       "quotes": {
         "minerals": "has approved the launch of the National Critical Mineral Mission (NCMM) with an expenditure of Rs.16,300 crore"
       },
-      "checkedOn": "2026-10-02",
+      "checkedOn": "2026-10-24",
       "verification": "verified"
     },
     {
@@ -212,7 +212,7 @@
       "quotes": {
         "hydrogen": "has approved National Green Hydrogen Mission. The initial outlay for the Mission will be Rs.19,744 crore"
       },
-      "checkedOn": "2026-10-02",
+      "checkedOn": "2026-10-24",
       "verification": "verified"
     },
     {
@@ -232,7 +232,7 @@
         "medical": "The fields of drug discovery and advanced medical care are directly linked to public health and underpin economic activity.",
         "fusion": "Fusion energy is highly anticipated as a next-generation clean energy source."
       },
-      "checkedOn": "2026-10-23",
+      "checkedOn": "2026-10-24",
       "verification": "verified"
     },
     {
@@ -251,7 +251,7 @@
         "materials": "Securing and advancing source nano and materials technologies to address global supply chain issues and lay the foundation for future industries.",
         "moonshot": "undertakes mission-oriented R&D projects in 12 areas, including humanoids, materials, and new drugs."
       },
-      "checkedOn": "2026-10-23",
+      "checkedOn": "2026-10-24",
       "verification": "verified"
     }
   ],
