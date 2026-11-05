@@ -720,3 +720,20 @@ dialog.ask::backdrop{background:rgba(0,0,0,.6)}
 @media (prefers-color-scheme: light){
   :root[data-theme="system"] .chip:not([aria-pressed="true"]){background:#FFF1E6; border-color:#F2D6C3}
 }
+
+/* Home: who it is for, common questions, where the facts come from. */
+.home-who, .home-faq, .home-sources{margin:2.6rem 0 0; padding-top:1.4rem; border-top:1px solid var(--rule); max-width:72rem}
+.home-who h2, .home-faq h2, .home-sources h2{margin:0 0 1rem; font-size:1.35rem}
+.who-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap:1rem}
+.who{background:var(--surface); border:1px solid var(--rule); border-radius:8px; padding:1rem 1.1rem; box-shadow:var(--shadow)}
+.who h3{margin:0 0 .35rem; font-size:1.1rem; color:var(--accent)}
+.who p{margin:0 0 .6rem; color:var(--ink-2)}
+.who ul{margin:0; padding-left:1.1rem; color:var(--ink-2)}
+.who li{margin:.3rem 0}
+.faq{background:var(--surface); border:1px solid var(--rule); border-radius:8px; margin:.55rem 0; max-width:60rem}
+.faq summary{cursor:pointer; padding:.8rem 1rem; font-weight:600; list-style-position:inside}
+.faq[open] summary{border-bottom:1px solid var(--rule-soft)}
+.faq p{margin:0; padding:.75rem 1rem .9rem; color:var(--ink-2)}
+.src-strip{display:flex; flex-wrap:wrap; gap:.5rem; margin:0 0 .7rem}
+.src-strip span{font-family:"IBM Plex Mono", monospace; font-size:.85rem; color:var(--ink-2); border:1px solid var(--rule); border-radius:999px; padding:.3rem .75rem; background:var(--sunk)}
+@media print{ .home-who, .home-faq, .home-sources{display:none} }
