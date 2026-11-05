@@ -805,3 +805,15 @@ dialog.ask::backdrop{background:rgba(0,0,0,.6)}
 .builder-text p:first-child{margin-top:0}
 @media (max-width: 40rem){ .builder{flex-direction:column} .builder-photo{width:8rem; height:8rem} }
 .builder p{color:var(--ink-2)}
+
+/* Home: tagline and Coming up (6 Nov 2026). */
+.home-tagline{font-size:1.15rem; color:var(--ink); margin:.4rem 0 1rem; max-width:52rem}
+.home-soon{background:var(--surface); border:1px solid var(--rule); border-left:4px solid var(--accent); border-radius:8px; padding:.8rem 1.1rem; margin:0 0 1.4rem; max-width:72rem}
+.home-soon h2{margin:0 0 .4rem; font-size:1.05rem}
+.soon-list{margin:0; padding-left:1.2rem; display:grid; gap:.3rem}
+.soon-list li{color:var(--ink-2)}
+.soon-list li[hidden]{display:none}
+.soon-list .who-tag{font-family:"IBM Plex Mono", monospace; font-size:.75rem; color:var(--ink-3); border:1px solid var(--rule); border-radius:999px; padding:.05rem .5rem; white-space:nowrap}
+.soon-more{margin:.5rem 0 0; font-size:.92rem}
+.home-soon[hidden]{display:none}
+@media print{ .home-soon{display:none} }
