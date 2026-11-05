@@ -1004,9 +1004,9 @@ function resultsHref() {
   return BASE + 'results/' + (h ? '#' + h : '');
 }
 
-function homeHref() {
+function subjectsHref() {
   const h = encodeState(state);
-  return BASE + (h ? '#' + h : '');
+  return BASE + 'subjects/' + (h ? '#' + h : '');
 }
 
 function courseHref(id) {
@@ -1360,10 +1360,16 @@ function pageHref(slug) {
 }
 
 function renderHome() {
+  // Links made before the picker had its own page carried the subjects on the home address.
+  if (location.hash.length > 1) { location.replace(BASE + 'subjects/' + location.hash); return; }
   // The doors carry whatever the student has already told us, so the three ways in
   // combine instead of starting over.
+  document.querySelectorAll('[data-door="subjects"]').forEach(a => { a.href = pageHref('subjects/'); });
   document.querySelectorAll('[data-door="quiz"]').forEach(a => { a.href = pageHref('quiz/'); });
   document.querySelectorAll('[data-door="industries"]').forEach(a => { a.href = pageHref('industries/'); });
+}
+
+function renderSubjects() {
   const now = document.getElementById('doors-now');
   if (now) {
     const sb = sortingNow();
@@ -1446,7 +1452,7 @@ function renderQuiz() {
   use.type = 'button';
   use.addEventListener('click', () => {
     state.interests = top;
-    location.href = isCompleteSelection(state) ? resultsHref() : homeHref() + '';
+    location.href = isCompleteSelection(state) ? resultsHref() : subjectsHref();
   });
   res.appendChild(use);
 
@@ -1475,7 +1481,7 @@ function renderIndustries() {
   document.querySelectorAll('a[data-industry]').forEach(a => {
     const next = { ...state, industry: a.dataset.industry };
     const h = encodeState(next);
-    a.href = BASE + (isCompleteSelection(state) ? 'results/' : '') + (h ? '#' + h : '');
+    a.href = BASE + (isCompleteSelection(state) ? 'results/' : 'subjects/') + (h ? '#' + h : '');
     if (!isCompleteSelection(state)) a.textContent = 'Use this, then add my subjects';
   });
   document.querySelectorAll('.industries a[href^="../course/"]').forEach(a => {
@@ -1490,7 +1496,7 @@ function renderResults() {
     main.replaceChildren();
     main.appendChild(el('p', 'lede', 'Pick your subjects first, and your results will show here.'));
     const go = el('a', 'btn');
-    go.href = homeHref();
+    go.href = subjectsHref();
     go.textContent = 'Pick my subjects';
     go.style.display = 'inline-block';
     go.style.textDecoration = 'none';
@@ -1953,6 +1959,7 @@ function foldPrepared(main, list, title) {
 
 function render() {
   if (PAGE === 'home') renderHome();
+  else if (PAGE === 'subjects') renderSubjects();
   else if (PAGE === 'results') renderResults();
   else if (PAGE === 'quiz') renderQuiz();
   else if (PAGE === 'industries') renderIndustries();

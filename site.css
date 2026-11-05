@@ -147,6 +147,10 @@ h1{
 nav.topnav{display:flex; gap:1rem; flex-wrap:wrap; font-size:.92rem; align-items:center}
 nav.topnav a{color:var(--ink-2); text-decoration:none}
 nav.topnav a:hover{color:var(--accent)}
+nav.topnav a[aria-current="page"]{color:var(--accent); font-weight:600; text-decoration:underline; text-underline-offset:.35em; text-decoration-thickness:2px}
+.home-more{margin:1.6rem 0 0}
+.about-more{margin-top:2.4rem}
+.subjects .picker{margin-top:1.2rem}
 .theme{display:flex; gap:.25rem; flex-wrap:wrap}
 .theme button{
   font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:.78rem;

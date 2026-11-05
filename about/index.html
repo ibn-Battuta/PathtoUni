@@ -14,7 +14,7 @@
 <meta property="og:url" content="https://ibn-battuta.github.io/PathtoUni/about/">
 <meta name="twitter:card" content="summary">
 <script>try{var t=localStorage.getItem('oty-theme');if(t==='light'||t==='system')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
-<link rel="stylesheet" href="../site.css?v=fea5599a">
+<link rel="stylesheet" href="../site.css?v=eed4d493">
 </head>
 <body data-page="about" data-base="../">
 <div class="shell">
@@ -22,14 +22,15 @@
     <div class="brandline">
       <div class="brand"><a href="../"><h1>Path to Uni</h1></a></div>
       <nav class="topnav" aria-label="Site">
-        <a href="../#picker">My subjects</a>
+        <a href="../">Home</a>
+        <a href="../subjects/">My subjects</a>
         <a href="../quiz/">Interest quiz</a>
         <a href="../industries/">Future jobs</a>
         <a href="../try-it/">Try it out</a>
         <a href="../dates/">Key dates</a>
         <a href="../results/">My results</a>
         <a href="../guides/assumed-knowledge/">Subject guides</a>
-        <a href="../about/">About</a>
+        <a href="../about/" aria-current="page">About</a>
         
         <div class="theme" role="group" aria-label="Colour theme">
         <button type="button" data-theme-set="dark">Dark</button>
@@ -52,15 +53,56 @@
       <p>This is a personal, independent project — not connected with my employer, UAC or any university. I write about technology and AI at <a href="https://curiousbit.netlify.app/" rel="noopener">CuriousBit</a>, and you can find me on <a href="https://www.linkedin.com/in/ajay-walia-8b066a1b/" rel="noopener">LinkedIn</a>.</p>
       </div>
     </div>
-    <h2>Privacy</h2>
+    <h2 id="privacy">Privacy</h2>
     <p>There’s no account, and nothing about you is stored on a server. Your subjects are kept in the part of the results link after the <span class="mono">#</span>, which browsers never send to a website. That’s why you can share the link (with a careers adviser, say) without us ever seeing your subjects.</p>
     <p>The only thing the site saves on your device is whether you picked the dark or light theme. It never leaves your device, it isn’t in the shared link, and clearing your browser data removes it.</p>
-    <h2>How your results are worked out</h2>
+    <h2 id="how">How your results are worked out</h2>
     <p>Your results are worked out on your own device by a fixed set of rules, the same ones our automated tests check. The same subjects always give the same result, and no AI is involved. The dates below show when we last read each university’s rules.</p>
     
     <ul><li><b>Macquarie University</b> — rules read 27 August 2026 · <a href="https://uac.edu.au/institutions/macquarie-university/admission-criteria-and-entry-schemes">university’s rules page</a></li><li><b>UNSW</b> — rules read 27 August 2026 · <a href="https://www.unsw.edu.au/study/how-to-apply/undergraduate/entry-requirements/assumed-knowledge">university’s rules page</a></li><li><b>University of Sydney</b> — rules read 27 August 2026 · <a href="https://www.sydney.edu.au/study/help/advice/prerequisites-and-assumed-knowledge-explained.html">university’s rules page</a></li><li><b>University of Technology Sydney</b> — rules read 27 August 2026 · <a href="https://uac.edu.au/institutions/university-of-technology-sydney/admission-criteria-and-entry-schemes">university’s rules page</a></li><li><b>Western Sydney University</b> — rules read 27 August 2026 · <a href="https://uac.edu.au/institutions/western-sydney-university/admission-criteria-and-entry-schemes">university’s rules page</a></li><li><b>University of Wollongong</b> — rules read 27 August 2026 · <a href="https://uac.edu.au/institutions/university-of-wollongong/admission-criteria-and-entry-schemes">university’s rules page</a></li></ul>
     <p>130 courses in all. We last read the rules on 28 August 2026, and re-checked every fact against the university’s live website on 24 October 2026.</p>
     <p class="hint">Spotted a mistake? <a href="https://github.com/ibn-Battuta/PathtoUni/issues/new">Let us know</a>.</p>
+  </div>
+  <div class="about-more">
+    <section class="home-who" aria-labelledby="who-h">
+      <h2 id="who-h">Made for students, parents and careers advisers</h2>
+      <div class="who-grid">
+        <div class="who">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5"/><path d="M22 9v6"/></svg></span>
+          <h3>Students</h3>
+          <p>Thinking about dropping a subject, or picking one up? See what it changes before you decide, find ways to try a field, and keep track of the dates for your year.</p>
+          <ul><li><a href="../subjects/">Check my subjects</a></li><li><a href="../try-it/">Try a field before you choose</a></li><li><a href="../dates/">Key dates for your year</a></li></ul>
+        </div>
+        <div class="who">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9.5" r="2.5"/><path d="M15.6 14.3A5 5 0 0 1 21.5 19"/></svg></span>
+          <h3>Parents</h3>
+          <p>Get straight answers about which subjects really matter for which courses. Most subjects don’t close any doors, and we’ll show you the few that do.</p>
+          <ul><li><a href="../guides/dropping-a-subject/">What dropping a subject really means</a></li><li><a href="../dates/">Early offers and open days</a></li><li><a href="../about/#how">How we get our facts</a></li></ul>
+        </div>
+        <div class="who">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 3h6v3H9z"/><path d="M8.5 11h7M8.5 15h5"/></svg></span>
+          <h3>Careers advisers</h3>
+          <p>Share a student’s results with one link, or print them for a meeting. Every rule shows the university’s exact wording, a link and the date we checked it.</p>
+          <ul><li>Results links hold the subjects and nothing else</li><li>Print the results page for a meeting</li><li>Spotted a wrong rule? <a href="https://github.com/ibn-Battuta/PathtoUni/issues/new">Let us know</a>.</li></ul>
+        </div>
+      </div>
+    </section>
+    <section class="home-faq" aria-labelledby="faq-h">
+      <h2 id="faq-h">Common questions</h2>
+      <details class="faq"><summary>Will this tell me my ATAR, or whether I’ll get in?</summary><p>No. It shows how well your subjects prepare you for each course and what you’d need to catch up on. It doesn’t predict ATARs or offers. Your ATAR comes from UAC, and this year’s Year 12s get theirs on Wed 16 Dec 2026, 9am.</p></details>
+      <details class="faq"><summary>Do I need certain subjects to get into a course?</summary><p>Hardly ever. Of the 6 universities here, only the University of Sydney and the University of Wollongong have a must-have subject rule, and only on 30 of the courses we list. For everything else the subjects are “assumed knowledge”. <a href="../guides/prerequisites/">Read more about prerequisites</a>.</p></details>
+      <details class="faq"><summary>What does “assumed knowledge” mean?</summary><p>It’s what a course expects you to know when you start. It doesn’t stop you applying, but if you haven’t studied it you’ll need to catch up, and some universities run short bridging courses for that. <a href="../guides/assumed-knowledge/">Read more about assumed knowledge</a>.</p></details>
+      <details class="faq"><summary>Do Year 11 results matter?</summary><p>Yes, for early offers. Macquarie, Western Sydney and Wollongong can make you an offer before your ATAR comes out, based partly on your Year 11 results. So can UNSW’s Gateway scheme, for students who meet certain equity criteria. All the dates are on <a href="../dates/">Key dates</a>.</p></details>
+      <details class="faq"><summary>Where does your information come from?</summary><p>Straight from each university’s website and UAC. We quote their exact words, link to the page, and note the date we checked. We last re-checked the course rules on 24 October 2026 and the dates on 5 November 2026.</p></details>
+      <details class="faq"><summary>Do you store my details?</summary><p>No. There’s no sign-up, and your subjects stay in your browser. They’re never sent to us. <a href="../about/#privacy">Read more about privacy</a>.</p></details>
+      <details class="faq"><summary>Which universities and courses are included?</summary><p>130 STEM courses, including health, at Macquarie University, UNSW, University of Sydney, University of Technology Sydney, University of Wollongong and Western Sydney University.</p></details>
+      <details class="faq"><summary>Is this an official site?</summary><p>No. We’re independent. We’re not UAC or a university, and no one pays to be listed. Always double-check on UAC and the university’s website before you apply.</p></details>
+    </section>
+    <section class="home-sources" aria-labelledby="src-h">
+      <h2 id="src-h">Where our information comes from</h2>
+      <p class="src-strip"><span>UAC</span><span>NESA</span><span>Macquarie University</span><span>UNSW</span><span>University of Sydney</span><span>University of Technology Sydney</span><span>University of Wollongong</span><span>Western Sydney University</span></p>
+      <p class="hint">We also use official government investment plans from Australia, the US, the EU, the UK, China, India, Japan and South Korea, and each program’s own website. We quote these sources, but they don’t endorse us.</p>
+    </section>
   </div>
   <footer class="foot" id="foot">
     <p>We’re independent — not UAC or a university. Course rules from 28 August 2026, re-checked 24 October 2026. Always check UAC and the university’s website before you apply.</p>
