@@ -597,3 +597,61 @@ span.chip{display:inline-block}
 .try-line{margin:.6rem 0}
 @media (max-width:40rem){ .opp dl{grid-template-columns:1fr; gap:0} .opp dt{margin-top:.45rem} }
 @media print{ .try-it .jump{display:none!important} }
+
+/* Key dates (/dates/). One timeline per starting year; a date block, then the event.
+   .tag sets display, which beats the hidden attribute — so hidden must win explicitly here. */
+.dates [hidden]{display:none !important}
+.t-ok{background:var(--prep-soft); color:var(--prep)}
+.dates .cohort-switch{display:flex; flex-wrap:wrap; gap:.6rem; margin:1rem 0 1.2rem}
+.dates .cohort-switch button{
+  display:flex; flex-direction:column; align-items:flex-start; gap:.15rem; text-align:left;
+  background:var(--surface); color:var(--ink); border:1px solid var(--rule); border-radius:4px;
+  padding:.65rem .95rem; font:inherit; cursor:pointer; min-width:min(100%, 15rem)}
+.dates .cohort-switch button span{font-size:.85rem; color:var(--ink-3)}
+.dates .cohort-switch button[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--on-accent)}
+.dates .cohort-switch button[aria-pressed="true"] span{color:var(--on-accent); opacity:.85}
+.dates .filters{margin:1rem 0 1.4rem}
+.dates .cohort{margin-top:1.2rem; padding-top:1rem; border-top:1px solid var(--rule)}
+.dates .coming-up, .dates .year11, .dates .anytime, .dates .dates-notes{
+  background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:.9rem 1.1rem; margin:1rem 0; max-width:60rem}
+.dates .coming-up{border-left:3px solid var(--accent)}
+.dates .coming-up h3, .dates .year11 h3, .dates .anytime h3, .dates .dates-notes h3{margin:0 0 .5rem; font-size:1.05rem}
+.dates .coming-up ol, .dates .year11 ol, .dates .anytime ul{margin:0; padding-left:1.2rem; color:var(--ink-2)}
+.dates .coming-up li, .dates .year11 li, .dates .anytime li{margin:.3rem 0}
+.dates .year11 .see{font-size:.85rem; color:var(--ink-3)}
+.dates .month h3{font-size:1rem; margin:1.6rem 0 .6rem; color:var(--ink-2); font-family:"IBM Plex Mono", monospace; font-weight:600; letter-spacing:.02em}
+.dates .tl{list-style:none; margin:0; padding:0; display:grid; gap:.7rem; max-width:60rem}
+.dates .ev{display:grid; grid-template-columns:6.5rem 1fr; gap:1rem; background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:.85rem 1rem; box-shadow:var(--shadow); min-width:0}
+.dates .ev[data-kind="last-year"]{border-style:dashed; background:var(--sunk)}
+.dates .ev.passed{opacity:.62}
+.dates .ev-date{display:flex; flex-direction:column; gap:.1rem; font-family:"IBM Plex Mono", monospace}
+.dates .ev-date b{font-size:.95rem; color:var(--ink)}
+.dates .ev-date span{font-size:.8rem; color:var(--ink-3)}
+.dates .ev-body{min-width:0}
+.dates .ev-org{margin:0; font-size:.85rem; color:var(--ink-3)}
+.dates .ev h4{margin:.1rem 0 .35rem; font-size:1.05rem}
+.dates .ev-what{margin:0 0 .5rem; color:var(--ink-2)}
+.dates .ly{margin:0 0 .5rem; font-size:.9rem; color:var(--bridge)}
+.dates .ev dl{display:grid; grid-template-columns:auto 1fr; gap:.2rem .8rem; margin:0 0 .5rem; font-size:.93rem}
+.dates .ev dt{color:var(--ink-3); font-weight:600}
+.dates .ev dd{margin:0; color:var(--ink-2); overflow-wrap:anywhere}
+.dates .tags{margin:.2rem 0 0; display:flex; flex-wrap:wrap; gap:.35rem}
+.dates details.fold{margin-top:.6rem; box-shadow:none}
+.dates details.fold > :not(summary){padding:0 .9rem}
+.dates .quote{margin:.4rem 0 0; border-left:2px solid var(--rule); padding-left:.65rem; font-style:italic; color:var(--ink-2); overflow-wrap:anywhere}
+.dates .quote-plain{margin:.4rem 0 0; color:var(--ink-2)}
+.dates .src{font-size:.85rem; color:var(--ink-3); margin:.5rem 0 .7rem}
+.dates .note + .note{margin-top:.7rem; padding-top:.7rem; border-top:1px solid var(--rule-soft)}
+.dates .note p{margin:0}
+@media (max-width: 40rem){
+  .dates .ev{grid-template-columns:1fr; gap:.35rem}
+  .dates .ev-date{flex-direction:row; gap:.5rem; align-items:baseline}
+  .dates .ev dl{grid-template-columns:1fr; gap:0}
+  .dates .ev dd{margin-bottom:.3rem}
+}
+@media print{
+  .dates-link{display:none}
+  .dates .cohort-switch, .dates .filters{display:none}
+  .dates section.cohort[hidden]{display:block}
+}
+.dates .filters-label{align-self:center; font-size:.9rem; color:var(--ink-3); margin-right:.2rem}
