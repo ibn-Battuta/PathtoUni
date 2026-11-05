@@ -226,6 +226,9 @@ by code in the browser.
   published from gh-pages, so the workflow is not used; earlier source pushes had left it out,
   and this session's had not. The source branch is now built from `master` minus `.github`, as
   one commit on top of what GitHub already has. `Deploy PathtoUni.command` now says "Path to Uni".
+- **Colour dots beside the site name** (6 Nov, Ajay: "can we put colours next to Path to Uni").
+  The six dots moved from beside the theme buttons to right after the "Path to Uni" title; on a
+  phone they wrap just below it. Still shown only in dark.
 - **Key dates: "How to read these dates"** — the four reading notes are now four tap-to-open
   questions in one row (Ajay: "does this not belong to FAQ?"), so the dates start much higher.
 - **About: "Who built this"** — a short intro of Ajay Walia (25+ years in technology, began as

@@ -196,8 +196,9 @@ const THEME_UI = `<div class="theme" role="group" aria-label="Colour theme">
         <button type="button" data-theme-set="dark">Dark</button>
         <button type="button" data-theme-set="light">Light</button>
         <button type="button" data-theme-set="system">Match my device</button>
-      </div>
-      <div class="accents" role="group" aria-label="Dark theme colour">
+      </div>`;
+// The colour dots sit beside the site name (Ajay, 6 Nov), shown only while the page is dark.
+const ACCENT_UI = `<div class="accents" role="group" aria-label="Colour">
         ${ACCENTS.map(([id, name, dot]) => `<button type="button" data-accent-set="${id}" style="--dot:${dot}" title="${name}" aria-label="${name}"></button>`).join('')}
       </div>`;
 const THEME_BIND = `<script>
@@ -292,7 +293,7 @@ ${THEME_BOOT}
 <div class="shell">
   <header class="top">
     <div class="brandline">
-      <div class="brand"><a href="${rel}"><h1>${esc(SITE_NAME)}</h1></a></div>
+      <div class="brand"><a href="${rel}"><h1>${esc(SITE_NAME)}</h1></a>${ACCENT_UI}</div>
       <nav class="topnav" aria-label="Site">
         ${NAV.map(([href, label, pg]) => `<a href="${rel}${href}"${pg === page ? ' aria-current="page"' : ''}>${label}</a>`).join('\n        ')}
         ${ASK_ENDPOINT ? '<button type="button" class="ask-open" data-ask-open>Ask</button>' : ''}
