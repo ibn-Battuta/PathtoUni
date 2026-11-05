@@ -685,3 +685,28 @@ a:hover{text-shadow:var(--glow-accent)}
 .dates .after-item dt{color:var(--ink-3); font-weight:600}
 .dates .after-item dd{margin:0; color:var(--ink-2)}
 @media (max-width: 40rem){ .dates .after-item dl{grid-template-columns:1fr; gap:0} }
+
+/* Ask assistant panel (only on pages built with an endpoint). */
+.ask-open{font:inherit; color:var(--on-accent); background:var(--accent); border:1px solid var(--accent); border-radius:4px; padding:.25rem .8rem; cursor:pointer; box-shadow:var(--glow-box, none)}
+dialog.ask{width:min(44rem, 94vw); max-height:88vh; background:var(--surface); color:var(--ink); border:1px solid var(--accent); border-radius:6px; padding:1rem 1.2rem 1.2rem; box-shadow:var(--glow-box, none)}
+dialog.ask::backdrop{background:rgba(0,0,0,.6)}
+.ask-close-row{display:flex; justify-content:flex-end; margin:0}
+.ask-close{font:inherit; background:none; color:var(--ink-2); border:1px solid var(--rule); border-radius:4px; padding:.2rem .6rem; cursor:pointer}
+.ask h2{margin:.2rem 0 .5rem; font-size:1.2rem}
+.ask-note{color:var(--ink-2); font-size:.92rem; margin:0 0 .7rem}
+.ask-consent{display:flex; gap:.55rem; align-items:flex-start; font-size:.9rem; color:var(--ink-2); background:var(--sunk); border:1px solid var(--rule-soft); border-radius:4px; padding:.6rem .7rem; margin-bottom:.8rem}
+.ask-consent input{margin-top:.25rem; width:1.1rem; height:1.1rem; flex:none}
+.ask-q-label{display:block; font-weight:600; margin-bottom:.3rem}
+.ask textarea{width:100%; font:inherit; color:var(--ink); background:var(--sunk); border:1px solid var(--rule); border-radius:4px; padding:.55rem .65rem; resize:vertical}
+.ask-actions{display:flex; align-items:center; gap:.8rem; margin:.6rem 0}
+.ask-send{font:inherit; font-weight:600; color:var(--on-accent); background:var(--accent); border:none; border-radius:4px; padding:.45rem 1.1rem; cursor:pointer}
+.ask-send[disabled]{opacity:.45; cursor:not-allowed}
+.ask-count{font-size:.8rem; color:var(--ink-3); font-family:"IBM Plex Mono", monospace}
+.ask-answer{border-top:1px solid var(--rule-soft); padding-top:.6rem}
+.ask-text{margin:.3rem 0 .6rem; white-space:pre-wrap}
+.ask-cite{display:inline-block; font-size:.72rem; vertical-align:super; padding:0 .25rem; margin-left:.1rem; border:1px solid var(--accent); border-radius:3px; text-decoration:none}
+.ask-src-h{font-weight:600; margin:.6rem 0 .2rem; font-size:.92rem}
+.ask-sources{margin:0; padding-left:1.3rem; font-size:.92rem; color:var(--ink-2)}
+.ask-sources li{margin:.2rem 0}
+.ask-warn, .ask-wait{font-size:.85rem; color:var(--bridge)}
+@media print{ .ask-open, dialog.ask{display:none!important} }
