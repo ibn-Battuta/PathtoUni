@@ -217,7 +217,8 @@ h1{
 nav.topnav{display:flex; gap:1rem; flex-wrap:wrap; font-size:.92rem; align-items:center}
 nav.topnav a{color:var(--ink-2); text-decoration:none}
 nav.topnav a:hover{color:var(--accent)}
-.accents{display:flex; gap:.35rem; align-items:center}
+.brand{display:flex; align-items:center; gap:1rem; flex-wrap:wrap}
+.accents{display:flex; gap:.4rem; align-items:center}
 .accents button{width:1.15rem; height:1.15rem; border-radius:50%; padding:0; border:2px solid transparent; background:var(--dot); cursor:pointer; box-shadow:0 0 0 1px rgba(255,255,255,.18)}
 .accents button[aria-pressed="true"]{border-color:var(--ink); box-shadow:0 0 0 2px var(--paper), 0 0 10px var(--dot)}
 :root[data-theme="light"] .accents{display:none}
