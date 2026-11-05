@@ -40,93 +40,92 @@
     </div>
   </header>
   
-    <p class="home-tagline">Which NSW STEM degrees do your HSC subjects prepare you for — and what would a gap cost? Free and independent, with every rule quoted from the university.</p>
+    <section class="hero" aria-labelledby="hero-h">
+      <h2 id="hero-h" class="hero-h">See which uni courses your HSC subjects lead to</h2>
+      <p class="hero-sub">Open To You checks your subjects against 130 STEM courses at six NSW universities. It shows which ones you’re ready for, which need some catching up, and how to catch up, using each university’s own published rules.</p>
+    </section>
     <section class="home-soon" aria-labelledby="soon-h">
-      <h2 id="soon-h">Coming up</h2>
+      <h2 id="soon-h"><span class="ico ico-sm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span> Dates coming up</h2>
       <ol class="soon-list"><li data-end="2026-11-07"><a href="dates/#ev-2028-scix-fee-waiver"><b>Sat 7 Nov 2026, 11.59pm</b> — UNSW: SciX@UNSW — fee-waiver applications close</a> <span class="who-tag">Year 11 now</span></li><li data-end="2026-11-09"><a href="dates/#ev-2027-unsw-gateway-r2"><b>Mon 9 Nov 2026</b> — UNSW: Gateway Admission Pathway — Round 2 closes</a> <span class="who-tag">Year 12 now · some students only</span></li><li data-end="2026-11-11"><a href="dates/#ev-2027-wsu-tr-r2"><b>Wed 11 Nov 2026, 11.59pm</b> — Western Sydney: HSC True Reward — Round 2 closes</a> <span class="who-tag">Year 12 now</span></li><li hidden data-end="2026-11-12"><a href="dates/#ev-2027-srs-offers"><b>Thu 12 Nov 2026, 10am</b> — UAC: SRS offers released</a> <span class="who-tag">Year 12 now</span></li><li hidden data-end="2026-11-26"><a href="dates/#ev-2027-uac-dec2-apply"><b>Thu 26 Nov 2026, 11.59pm</b> — UAC: Last day to apply for the main offer round</a> <span class="who-tag">Year 12 now</span></li><li hidden data-end="2026-12-09"><a href="dates/#ev-2027-wsu-tr-r3"><b>Wed 9 Dec 2026, 11.59pm</b> — Western Sydney: HSC True Reward — Round 3 closes</a> <span class="who-tag">Year 12 now</span></li><li hidden data-end="2026-12-16"><a href="dates/#ev-2027-atar-release"><b>Wed 16 Dec 2026, 9am</b> — UAC: ATARs released</a> <span class="who-tag">Year 12 now</span></li><li hidden data-end="2026-12-17"><a href="dates/#ev-2027-unsw-gateway-firm"><b>Thu 17 Dec 2026</b> — UNSW: Gateway — firm offers</a> <span class="who-tag">Year 12 now · some students only</span></li><li hidden data-end="2026-12-17"><a href="dates/#ev-2027-unsw-info-day"><b>Thu 17 Dec 2026</b> — UNSW: UNSW info day</a> <span class="who-tag">Year 12 now</span></li><li hidden data-end="2026-12-18"><a href="dates/#ev-2027-uts-info-day"><b>Thu 17 Dec 2026</b> — UTS: UTS info days</a> <span class="who-tag">Year 12 now</span></li><li hidden data-end="2026-12-18"><a href="dates/#ev-2027-uac-dec2-preferences"><b>Fri 18 Dec 2026, 11.59pm</b> — UAC: Last day to change preferences for the main round</a> <span class="who-tag">Year 12 now</span></li><li hidden data-end="2026-12-23"><a href="dates/#ev-2027-uac-dec2-offers"><b>Wed 23 Dec 2026, 7.30am</b> — UAC: Main offer round (December Round 2)</a> <span class="who-tag">Year 12 now</span></li></ol>
       <p class="soon-more"><a href="dates/">All key dates →</a></p>
     </section>
     <script>(function(){var d=new Date(),t=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'),n=0;
     document.querySelectorAll('.soon-list li').forEach(function(li){var show=li.getAttribute('data-end')>=t&&n<3;li.hidden=!show;if(show)n++;});
     if(!n){var s=document.querySelector('.home-soon');if(s)s.hidden=true;}})();</script>
-    <section class="doors" aria-label="Ways in">
-      <h2 class="doors-h">Three ways in. Use one, or put them together.</h2>
+    <section class="doors" aria-labelledby="doors-h">
+      <h2 class="doors-h" id="doors-h">Where would you like to start?</h2>
+      <p class="doors-sub">Pick whichever suits you. You can always try the others.</p>
       <div class="door-grid">
         <a class="door" href="#picker" data-door="subjects">
-          <span class="door-n">1</span>
-          <span class="door-t">Start with my subjects</span>
-          <span class="door-d">Pick your HSC subjects. See which degrees you are ready for, and what a gap would cost.</span>
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5h6a4 4 0 0 1 4 4v11a3 3 0 0 0-3-3H2z"/><path d="M22 5h-6a4 4 0 0 0-4 4v11a3 3 0 0 1 3-3h7z"/></svg></span>
+          <span class="door-t">Check my subjects</span>
+          <span class="door-d">Already chosen your subjects, or still deciding? See which courses they prepare you for and what you’d need to catch up on.</span>
         </a>
         <a class="door" href="quiz/" data-door="quiz">
-          <span class="door-n">2</span>
-          <span class="door-t">What do I enjoy?</span>
-          <span class="door-d">Ten quick this-or-that picks. They sort degrees by interest. They never hide one.</span>
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg></span>
+          <span class="door-t">Help me find what I enjoy</span>
+          <span class="door-d">Answer ten quick either-or questions. We’ll list the courses that match your interests first, without hiding any others.</span>
         </a>
         <a class="door" href="industries/" data-door="industries">
-          <span class="door-n">3</span>
-          <span class="door-t">Where is the world investing?</span>
-          <span class="door-d">9 areas named in official plans by Australia, the US, the EU, the UK, China, India, Japan and South Korea — quoted word for word.</span>
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg></span>
+          <span class="door-t">Explore jobs of the future</span>
+          <span class="door-d">Pick from 9 fields that governments are investing in, like artificial intelligence, quantum technology and computer chips, and see which courses lead there.</span>
         </a>
       </div>
       <p class="doors-now" id="doors-now" hidden></p>
     </section>
     <div class="home-intro" id="subjects-intro">
-      <p class="lead">Tell us what you are studying. We check it against every STEM degree at six NSW universities and show you which ones you are ready for, which have a gap, and what closing that gap would take.</p>
-      <ul class="trust">
-        <li><b>Independent.</b> We are not UAC and not a university. Nobody pays to appear here.</li>
-        <li><b>Quoted, not summarised.</b> Every requirement is the university’s own wording, with the date we read it.</li>
-        <li><b>Private by design.</b> The calculation happens on your device. Your subjects stay in the address hash — they are never sent to a server, and there is no account.</li>
-        <li><b>Not the last word.</b> Rules change. Check UAC before you submit preferences.</li>
-      </ul>
+      <h2 class="picker-h">Check my subjects</h2>
+      <p class="lead">Start with your year, maths and English, then add the rest. It takes about a minute, and nothing you enter leaves your device.</p>
     </div>
     <form class="picker" id="picker" aria-label="Your subjects" data-mode="steps"></form>
+    <section class="home-trust" aria-labelledby="trust-h">
+      <h2 id="trust-h">Why you can rely on it</h2>
+      <div class="trust-grid">
+        <div class="trust-item"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span><h3>Independent</h3><p>We’re not a university or UAC, and no one pays to be listed.</p></div>
+        <div class="trust-item"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg></span><h3>Straight from the source</h3><p>Every rule is the university’s own words, with a link and the date we checked it.</p></div>
+        <div class="trust-item"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><h3>Private</h3><p>No sign-up. Your subjects stay on your device and are never sent to us.</p></div>
+        <div class="trust-item"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.8 2.8 5.7-5.8"/></svg></span><h3>Check before you apply</h3><p>Rules change, so confirm on UAC before you lock in your preferences.</p></div>
+      </div>
+    </section>
     <section class="home-who" aria-labelledby="who-h">
-      <h2 id="who-h">Who it is for</h2>
+      <h2 id="who-h">Made for students, parents and careers advisers</h2>
       <div class="who-grid">
         <div class="who">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5"/><path d="M22 9v6"/></svg></span>
           <h3>Students</h3>
-          <p>Choosing or dropping a subject? See what it changes before you decide.</p>
-          <ul>
-            <li><a href="#picker">Start with your subjects</a></li>
-            <li><a href="try-it/">Try a field before you choose</a> — work experience, holiday programs, competitions</li>
-            <li><a href="dates/">Key dates for your year</a></li>
-          </ul>
+          <p>Thinking about dropping a subject, or picking one up? See what it changes before you decide, find ways to try a field, and keep track of the dates for your year.</p>
+          <ul><li><a href="#picker">Check my subjects</a></li><li><a href="try-it/">Try a field before you choose</a></li><li><a href="dates/">Key dates for your year</a></li></ul>
         </div>
         <div class="who">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9.5" r="2.5"/><path d="M15.6 14.3A5 5 0 0 1 21.5 19"/></svg></span>
           <h3>Parents</h3>
-          <p>Plain answers to “does this subject close a door?” — usually it does not.</p>
-          <ul>
-            <li><a href="guides/dropping-a-subject/">What dropping a subject really costs</a></li>
-            <li><a href="dates/">Early offers and open days</a> — Year 11 results count</li>
-            <li><a href="about/">How the answers are made</a></li>
-          </ul>
+          <p>Get straight answers about which subjects really matter for which courses. Most subjects don’t close any doors, and we’ll show you the few that do.</p>
+          <ul><li><a href="guides/dropping-a-subject/">What dropping a subject really means</a></li><li><a href="dates/">Early offers and open days</a></li><li><a href="about/">How we get our facts</a></li></ul>
         </div>
         <div class="who">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 3h6v3H9z"/><path d="M8.5 11h7M8.5 15h5"/></svg></span>
           <h3>Careers advisers</h3>
-          <p>Every requirement is the university’s own wording, with a source and the date it was read.</p>
-          <ul>
-            <li>Share a student’s results: the link holds their subjects, nothing else</li>
-            <li>Print the results page for a meeting</li>
-            <li>Spot a wrong rule? <a href="https://github.com/ibn-Battuta/PathtoUni/issues/new">open an issue</a>.</li>
-          </ul>
+          <p>Share a student’s results with one link, or print them for a meeting. Every rule shows the university’s exact wording, a link and the date we checked it.</p>
+          <ul><li>Results links hold the subjects and nothing else</li><li>Print the results page for a meeting</li><li>Spot a wrong rule? <a href="https://github.com/ibn-Battuta/PathtoUni/issues/new">open an issue</a>.</li></ul>
         </div>
       </div>
     </section>
     <section class="home-faq" aria-labelledby="faq-h">
       <h2 id="faq-h">Common questions</h2>
-      <details class="faq"><summary>Does this predict my ATAR, or my chance of an offer?</summary><p>No. It shows how ready your subjects make you for each degree, and what a gap would cost — never whether you will get in. ATARs come from UAC (for this year’s Year 12: Wed 16 Dec 2026, 9am).</p></details>
-      <details class="faq"><summary>Do NSW degrees have subject prerequisites?</summary><p>Almost never as a gate. Of the 6 universities here, only University of Sydney and University of Wollongong have a hard subject rule on the degrees we list (30 degrees). Everything else is <a href="guides/assumed-knowledge/">assumed knowledge</a>. <a href="guides/prerequisites/">Read the details</a>.</p></details>
-      <details class="faq"><summary>What is assumed knowledge?</summary><p>What a course expects you to know on day one. It does not stop you applying. It tells you what first year will feel like if you have not done the subject — sometimes a bridging course closes the gap. <a href="guides/assumed-knowledge/">More</a>.</p></details>
-      <details class="faq"><summary>Do Year 11 results matter?</summary><p>For early offers, yes. Macquarie, Western Sydney and Wollongong make early offers that read Year 11 results, before the ATAR, and so does UNSW’s Gateway scheme for students who meet an equity criterion. Every round, with its dates, is on <a href="dates/">Key dates</a>.</p></details>
-      <details class="faq"><summary>Where do the facts come from?</summary><p>From each university’s own published pages and UAC, quoted word for word with the date we read them. Course rules were last re-checked on 24 October 2026; dates and programs on 5 November 2026.</p></details>
-      <details class="faq"><summary>Is my information stored?</summary><p>No. There is no account. Your subjects stay in your browser’s address bar and are never sent to a server. <a href="about/">More on privacy</a>.</p></details>
-      <details class="faq"><summary>Which universities and degrees are covered?</summary><p>130 STEM degrees, including health, at Macquarie University, UNSW, University of Sydney, University of Technology Sydney, University of Wollongong and Western Sydney University.</p></details>
-      <details class="faq"><summary>Is this official?</summary><p>No. It is independent — not UAC and not a university, and nobody pays to appear. Confirm everything on UAC and the university’s page before you apply.</p></details>
+      <details class="faq"><summary>Will this tell me my ATAR, or whether I’ll get in?</summary><p>No. It shows how well your subjects prepare you for each course and what you’d need to catch up on. It doesn’t predict ATARs or offers. Your ATAR comes from UAC, and this year’s Year 12s get theirs on Wed 16 Dec 2026, 9am.</p></details>
+      <details class="faq"><summary>Do I need certain subjects to get into a course?</summary><p>Hardly ever. Of the 6 universities here, only the University of Sydney and the University of Wollongong have a must-have subject rule, and only on 30 of the courses we list. For everything else the subjects are “assumed knowledge”. <a href="guides/prerequisites/">Read more about prerequisites</a>.</p></details>
+      <details class="faq"><summary>What does “assumed knowledge” mean?</summary><p>It’s what a course expects you to know when you start. It doesn’t stop you applying, but if you haven’t studied it you’ll need to catch up, and some universities run short bridging courses for that. <a href="guides/assumed-knowledge/">Read more about assumed knowledge</a>.</p></details>
+      <details class="faq"><summary>Do Year 11 results matter?</summary><p>Yes, for early offers. Macquarie, Western Sydney and Wollongong can make you an offer before your ATAR comes out, based partly on your Year 11 results. So can UNSW’s Gateway scheme, for students who meet certain equity criteria. All the dates are on <a href="dates/">Key dates</a>.</p></details>
+      <details class="faq"><summary>Where does your information come from?</summary><p>Straight from each university’s website and UAC. We quote their exact words, link to the page, and note the date we checked. We last re-checked the course rules on 24 October 2026 and the dates on 5 November 2026.</p></details>
+      <details class="faq"><summary>Do you store my details?</summary><p>No. There’s no sign-up, and your subjects stay in your browser. They’re never sent to us. <a href="about/">Read more about privacy</a>.</p></details>
+      <details class="faq"><summary>Which universities and courses are included?</summary><p>130 STEM courses, including health, at Macquarie University, UNSW, University of Sydney, University of Technology Sydney, University of Wollongong and Western Sydney University.</p></details>
+      <details class="faq"><summary>Is this an official site?</summary><p>No. We’re independent. We’re not UAC or a university, and no one pays to be listed. Always double-check on UAC and the university’s website before you apply.</p></details>
     </section>
     <section class="home-sources" aria-labelledby="src-h">
-      <h2 id="src-h">Where our facts come from</h2>
+      <h2 id="src-h">Where our information comes from</h2>
       <p class="src-strip"><span>UAC</span><span>NESA</span><span>Macquarie University</span><span>UNSW</span><span>University of Sydney</span><span>University of Technology Sydney</span><span>University of Wollongong</span><span>Western Sydney University</span></p>
-      <p class="hint">Plus official government investment plans from Australia, the US, the EU, the UK, China, India, Japan and South Korea, and each program’s own page. We quote them; we are not endorsed by them.</p>
+      <p class="hint">We also use official government investment plans from Australia, the US, the EU, the UK, China, India, Japan and South Korea, and each program’s own website. We quote these sources, but they don’t endorse us.</p>
     </section>
   
   <footer class="foot" id="foot">

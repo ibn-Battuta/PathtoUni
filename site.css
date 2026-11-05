@@ -784,7 +784,8 @@ dialog.ask::backdrop{background:rgba(0,0,0,.6)}
 
 /* Key dates filters as tiles: colour, name, and a one-line explainer; the whole tile toggles. */
 .dates p.filters-label{margin:1.6rem 0 .45rem; font-size:.9rem; color:var(--ink-3)}
-.dates .filters{display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 10.5rem), 1fr)); gap:.6rem; margin:0 0 1.4rem}
+.dates .filters{display:grid; grid-template-columns:repeat(3, 1fr); gap:.6rem; margin:0 0 1.4rem}
+@media (max-width:640px){ .dates .filters{grid-template-columns:repeat(2, 1fr)} }
 .dates .filters .filter-card{display:flex; flex-direction:column; align-items:flex-start; gap:.2rem; text-align:left; padding:.6rem .8rem; min-height:4.6rem; border-radius:8px; border-width:2px}
 .dates .filters .filter-card b{font-weight:700; font-size:.98rem}
 .dates .filters .filter-card span{font-size:.82rem; line-height:1.35; font-weight:400; opacity:.9}
@@ -813,7 +814,35 @@ dialog.ask::backdrop{background:rgba(0,0,0,.6)}
 .soon-list{margin:0; padding-left:1.2rem; display:grid; gap:.3rem}
 .soon-list li{color:var(--ink-2)}
 .soon-list li[hidden]{display:none}
-.soon-list .who-tag{font-family:"IBM Plex Mono", monospace; font-size:.75rem; color:var(--ink-3); border:1px solid var(--rule); border-radius:999px; padding:.05rem .5rem; white-space:nowrap}
+.soon-list .who-tag{font-family:"IBM Plex Mono", monospace; font-size:.75rem; color:var(--ink-3); border:1px solid var(--rule); border-radius:999px; padding:.05rem .5rem; white-space:nowrap; max-width:100%}
+@media (max-width:480px){ .soon-list .who-tag{white-space:normal; display:inline-block; border-radius:8px} }
 .soon-more{margin:.5rem 0 0; font-size:.92rem}
 .home-soon[hidden]{display:none}
 @media print{ .home-soon{display:none} }
+
+/* Plain-language home (6 Nov 2026, after straia.io): headline, icons, clear option names. */
+.ico{display:inline-grid; place-items:center; width:2.6rem; height:2.6rem; flex:none; border:1px solid var(--rule); border-radius:10px; background:var(--sunk); color:var(--accent)}
+.ico svg{width:1.35rem; height:1.35rem}
+.ico-sm{width:1.7rem; height:1.7rem; border-radius:7px}
+.ico-sm svg{width:1rem; height:1rem}
+.hero{margin:.6rem 0 1.4rem; max-width:62rem}
+.hero-h{font-family:"Newsreader", Georgia, serif; font-weight:500; font-size:clamp(1.9rem, 3.4vw, 2.8rem); line-height:1.15; margin:0 0 .6rem; color:var(--ink); text-shadow:var(--glow-accent, none)}
+.hero-sub{font-size:1.15rem; line-height:1.55; color:var(--ink-2); margin:0}
+.home-soon h2{display:flex; align-items:center; gap:.55rem}
+.doors-sub{margin:-.4rem 0 .9rem; color:var(--ink-2)}
+.door{gap:.5rem}
+.door .ico{margin-bottom:.2rem}
+.door-t{font-size:1.2rem}
+.home-intro{display:block; margin:1.6rem 0 .8rem}
+.picker-h{font-size:1.35rem; margin:0 0 .3rem}
+.home-intro .lead{font-size:1.02rem; color:var(--ink-2)}
+.home-trust{margin:2.6rem 0 0; padding-top:1.4rem; border-top:1px solid var(--rule); max-width:72rem}
+.home-trust h2{margin:0 0 1rem; font-size:1.35rem}
+.trust-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap:1rem}
+.trust-item h3{margin:.6rem 0 .25rem; font-size:1.02rem}
+.trust-item p{margin:0; color:var(--ink-2); font-size:.95rem}
+.who .ico{margin-bottom:.5rem}
+.who h3{color:var(--ink)}
+.dates .filters .filter-card .ico{background:transparent; border-color:currentColor; color:inherit; margin-bottom:.2rem}
+.dates .filters .chip[data-filter][aria-pressed="true"] .ico{border-color:rgba(0,0,0,.25)}
+@media print{ .ico{display:none} }
