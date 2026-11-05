@@ -49,24 +49,28 @@
    only when the reader has chosen "Match my system". Every token is defined on
    :root first — never only inside a media query. */
 :root{
-  /* Neon (5 Nov 2026): near-black ground, glowing cyan / green / yellow / orange / pink / violet.
-     Each band keeps its own hue, and every pair is measured in test/theme.test.js. */
-  --paper:#06060C; --surface:#0E0E1A; --surface-2:#171728; --sunk:#0A0A14;
-  --ink:#F2F4FF; --ink-2:#B9BEE0; --ink-3:#8A8FB8;
-  --rule:#2A2A4A; --rule-soft:#1B1B30;
-  --accent:#00E5FF; --accent-soft:#05262E;
-  --prep:#39FF88;  --prep-soft:#06281A;
-  --minor:#00E5FF; --minor-soft:#05262E;
-  --bridge:#FFE600; --bridge-soft:#2B2700;
-  --hard:#FF8A1F;  --hard-soft:#2E1704;
-  --gated:#FF3D81; --gated-soft:#2E0717;
-  --restrict:#C38BFF; --restrict-soft:#1F1236;
-  --shadow:0 0 0 1px rgba(0,229,255,.10), 0 0 22px -8px rgba(0,229,255,.45);
-  --on-accent:#06060C;
-  --glow-brand:0 0 6px rgba(255,61,129,.85), 0 0 20px rgba(255,61,129,.55), 0 0 40px rgba(255,61,129,.30);
-  --glow-accent:0 0 10px rgba(0,229,255,.55);
-  --glow-box:0 0 14px -2px rgba(0,229,255,.65);
-  --accent-2:#FF3D81; --glow-pink:0 0 8px rgba(255,61,129,.6);
+  /* Forest (5 Nov 2026, from Ajay's reference palette): green-black ground, neon green accent.
+     Bands keep distinct hues: Prepared green, Minor gap lavender, Bridge it yellow, Hard gap
+     orange, Gated red, Restricted blue. Measured in test/theme.test.js. */
+  --paper:#0A1712; --surface:#10231B; --surface-2:#173329; --sunk:#0D1C16;
+  --ink:#EAF6EF; --ink-2:#B5D2C3; --ink-3:#86A898;
+  --rule:#24443A; --rule-soft:#183229;
+  --accent:#6CFF5A; --accent-soft:#12301C;
+  --prep:#6CFF5A;  --prep-soft:#12301C;
+  --minor:#C59BFF; --minor-soft:#2A2140;
+  --bridge:#F2C94C; --bridge-soft:#2E2810;
+  --hard:#F2994A;  --hard-soft:#2F1D0E;
+  --gated:#FF6B6B; --gated-soft:#321414;
+  --restrict:#7FB2FF; --restrict-soft:#15243D;
+  --shadow:0 0 0 1px rgba(108,255,90,.10), 0 0 22px -8px rgba(108,255,90,.40);
+  --on-accent:#0A1712;
+  --glow-brand:0 0 6px rgba(108,255,90,.8), 0 0 20px rgba(108,255,90,.45), 0 0 40px rgba(108,255,90,.22);
+  --glow-accent:0 0 10px rgba(108,255,90,.5);
+  --glow-box:0 0 14px -2px rgba(108,255,90,.6);
+  --accent-2:#F2C94C; --glow-pink:0 0 8px rgba(242,201,76,.5);
+  /* Key dates: one colour per kind of date. */
+  --sec-early:#7FB2FF; --sec-uac:#F2C94C; --sec-holidays:#F2994A; --sec-open-days:#C59BFF; --sec-experience:#FF6B6B; --sec-after-school:#6CFF5A;
+  --on-sec:#0A1712;
 }
 :root[data-theme="light"]{
   /* Warm light (5 Nov 2026), after straia.io: cream ground, warm near-black ink, burgundy accent.
@@ -85,6 +89,8 @@
   --on-accent:#FFFCFA;
   --glow-brand:none; --glow-accent:none; --glow-box:none;
   --accent-2:#B0431C; --glow-pink:none;
+  --sec-early:#2F5DA8; --sec-uac:#7A5E00; --sec-holidays:#9A4A0C; --sec-open-days:#6B46B3; --sec-experience:#B3261E; --sec-after-school:#2F6B47;
+  --on-sec:#FFFCFA;
 }
 @media (prefers-color-scheme: light){
   :root[data-theme="system"]{
@@ -102,6 +108,8 @@
     --on-accent:#FFFCFA;
     --glow-brand:none; --glow-accent:none; --glow-box:none;
     --accent-2:#B0431C; --glow-pink:none;
+    --sec-early:#2F5DA8; --sec-uac:#7A5E00; --sec-holidays:#9A4A0C; --sec-open-days:#6B46B3; --sec-experience:#B3261E; --sec-after-school:#2F6B47;
+    --on-sec:#FFFCFA;
   }
 }
 
@@ -758,3 +766,18 @@ dialog.ask::backdrop{background:rgba(0,0,0,.6)}
   .dates .dates-main .month:first-child h3{margin-top:.2rem}
 }
 :root[data-theme="light"] .dates .month-nav{border-radius:8px}
+
+/* Key dates: each kind of date has its own colour (from Ajay's reference palette) — on its
+   filter button and as a stripe down the left of each date card. Words still carry the meaning;
+   the colour only helps the eye. */
+.dates [data-filter="early"]{--sec:var(--sec-early)} .dates .ev[data-section="early"]{--sec:var(--sec-early)}
+.dates [data-filter="uac"]{--sec:var(--sec-uac)} .dates .ev[data-section="uac"]{--sec:var(--sec-uac)}
+.dates [data-filter="holidays"]{--sec:var(--sec-holidays)} .dates .ev[data-section="holidays"]{--sec:var(--sec-holidays)}
+.dates [data-filter="open-days"]{--sec:var(--sec-open-days)} .dates .ev[data-section="open-days"]{--sec:var(--sec-open-days)}
+.dates [data-filter="experience"]{--sec:var(--sec-experience)} .dates .ev[data-section="experience"]{--sec:var(--sec-experience)}
+.dates [data-filter="after-school"]{--sec:var(--sec-after-school)} .dates .ev[data-section="after-school"]{--sec:var(--sec-after-school)}
+.dates .filters .chip[data-filter]{border-color:var(--sec)}
+.dates .filters .chip[data-filter][aria-pressed="true"]{background:var(--sec); border-color:var(--sec); color:var(--on-sec); box-shadow:none}
+.dates .filters .chip[data-filter][aria-pressed="false"]{background:transparent; color:var(--ink-3); text-decoration:line-through}
+.dates .ev{border-left:4px solid var(--sec, var(--rule))}
+.dates .ev .ev-org{color:var(--sec, var(--ink-3))}
