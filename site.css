@@ -49,18 +49,24 @@
    only when the reader has chosen "Match my system". Every token is defined on
    :root first — never only inside a media query. */
 :root{
-  --paper:#0C1119; --surface:#141C27; --surface-2:#1C2634; --sunk:#101822;
-  --ink:#E7EDF4; --ink-2:#AEBBC9; --ink-3:#7A8899;
-  --rule:#293544; --rule-soft:#202A37;
-  --accent:#8DB0E4; --accent-soft:#19263A;
-  --prep:#63C39A;  --prep-soft:#102420;
-  --minor:#8DB0E4; --minor-soft:#19263A;
-  --bridge:#DFA34D; --bridge-soft:#2A2010;
-  --hard:#E07040;  --hard-soft:#2B1A11;
-  --gated:#E27A70; --gated-soft:#2C1512;
-  --restrict:#A3ACEE; --restrict-soft:#1A1F36;
-  --shadow:none;
-  --on-accent:#0C1119;
+  /* Neon (5 Nov 2026): near-black ground, glowing cyan / green / yellow / orange / pink / violet.
+     Each band keeps its own hue, and every pair is measured in test/theme.test.js. */
+  --paper:#06060C; --surface:#0E0E1A; --surface-2:#171728; --sunk:#0A0A14;
+  --ink:#F2F4FF; --ink-2:#B9BEE0; --ink-3:#8A8FB8;
+  --rule:#2A2A4A; --rule-soft:#1B1B30;
+  --accent:#00E5FF; --accent-soft:#05262E;
+  --prep:#39FF88;  --prep-soft:#06281A;
+  --minor:#00E5FF; --minor-soft:#05262E;
+  --bridge:#FFE600; --bridge-soft:#2B2700;
+  --hard:#FF8A1F;  --hard-soft:#2E1704;
+  --gated:#FF3D81; --gated-soft:#2E0717;
+  --restrict:#C38BFF; --restrict-soft:#1F1236;
+  --shadow:0 0 0 1px rgba(0,229,255,.10), 0 0 22px -8px rgba(0,229,255,.45);
+  --on-accent:#06060C;
+  --glow-brand:0 0 6px rgba(255,61,129,.85), 0 0 20px rgba(255,61,129,.55), 0 0 40px rgba(255,61,129,.30);
+  --glow-accent:0 0 10px rgba(0,229,255,.55);
+  --glow-box:0 0 14px -2px rgba(0,229,255,.65);
+  --accent-2:#FF3D81; --glow-pink:0 0 8px rgba(255,61,129,.6);
 }
 :root[data-theme="light"]{
   --paper:#EEF2F6; --surface:#FFFFFF; --surface-2:#E3EAF1; --sunk:#F6F9FB;
@@ -75,6 +81,8 @@
   --restrict:#4A54A8; --restrict-soft:#EAECF9;
   --shadow:0 1px 2px rgba(17,25,38,.06), 0 10px 28px -18px rgba(17,25,38,.30);
   --on-accent:#fff;
+  --glow-brand:none; --glow-accent:none; --glow-box:none;
+  --accent-2:#3C4A5C; --glow-pink:none;
 }
 @media (prefers-color-scheme: light){
   :root[data-theme="system"]{
@@ -90,6 +98,8 @@
     --restrict:#4A54A8; --restrict-soft:#EAECF9;
     --shadow:0 1px 2px rgba(17,25,38,.06), 0 10px 28px -18px rgba(17,25,38,.30);
     --on-accent:#fff;
+    --glow-brand:none; --glow-accent:none; --glow-box:none;
+    --accent-2:#3C4A5C; --glow-pink:none;
   }
 }
 
@@ -655,3 +665,13 @@ span.chip{display:inline-block}
   .dates section.cohort[hidden]{display:block}
 }
 .dates .filters-label{align-self:center; font-size:.9rem; color:var(--ink-3); margin-right:.2rem}
+
+/* Neon glow. Driven by tokens, so light and "Match my system" (light) stay flat, and print
+   (which resets colours) never glows. */
+.brand h1{text-shadow:var(--glow-brand)}
+main > h1{text-shadow:var(--glow-accent)}
+.sh h2{text-shadow:var(--glow-accent)}
+.dates .month h3{color:var(--accent-2); text-shadow:var(--glow-pink)}
+a:hover{text-shadow:var(--glow-accent)}
+.chip[aria-pressed="true"], .dates .cohort-switch button[aria-pressed="true"], .theme button[aria-pressed="true"]{box-shadow:var(--glow-box)}
+@media print{ .brand h1, main > h1, .sh h2, .dates .month h3, a:hover{text-shadow:none} .chip, button{box-shadow:none!important} }
