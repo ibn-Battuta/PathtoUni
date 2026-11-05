@@ -790,3 +790,15 @@ dialog.ask::backdrop{background:rgba(0,0,0,.6)}
 .dates .filters .filter-card span{font-size:.82rem; line-height:1.35; font-weight:400; opacity:.9}
 .dates .filters .chip[data-filter][aria-pressed="false"]{text-decoration:none}
 .dates .filters .chip[data-filter][aria-pressed="false"] b{text-decoration:line-through}
+
+/* Key dates: the four reading notes as tap-to-open questions (5 Nov 2026). */
+.dates .dates-help{margin:1.2rem 0 0; max-width:72rem}
+.dates .dates-help-h{font-size:1rem; margin:0 0 .4rem; color:var(--ink-2)}
+.dates .dates-help{display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap:0 .8rem; align-items:start}
+.dates .dates-help .dates-help-h{grid-column:1 / -1}
+.dates .dates-help .faq{margin:.3rem 0}
+.dates .dates-help .faq summary{padding:.55rem .85rem; font-size:.95rem}
+.dates .dates-help .faq p{padding:.6rem .85rem .75rem; font-size:.93rem}
+/* About: who built this. */
+.builder{background:var(--surface); border:1px solid var(--rule); border-left:4px solid var(--accent); border-radius:8px; padding:.4rem 1.1rem; margin:.6rem 0 1.4rem; max-width:52rem}
+.builder p{color:var(--ink-2)}
