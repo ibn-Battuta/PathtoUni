@@ -72,6 +72,76 @@
   --sec-early:#7FB2FF; --sec-uac:#F2C94C; --sec-holidays:#F2994A; --sec-open-days:#C59BFF; --sec-experience:#FF6B6B; --sec-after-school:#6CFF5A;
   --on-sec:#0A1712;
 }
+/* Dark colour choices (6 Nov 2026), from Ajay's reference palette: the reader picks one of six
+   accents under the theme buttons; Green (Forest, above) is the default. Each tints the ground to
+   match. Band colours never change — they carry meaning. These sit before the light blocks, which
+   set every one of these tokens again, so a colour choice never touches the light theme.
+   Measured in test/theme.test.js. */
+:root[data-accent="blue"]{
+  --paper:#0B1220; --surface:#111B2E; --surface-2:#18253D; --sunk:#0D1626;
+  --ink:#F1F0F4; --ink-2:#C9C7D1; --ink-3:#9C99A8;
+  --rule:#26375A; --rule-soft:#18243A;
+  --accent:#7FB2FF; --accent-soft:#15243D;
+  --shadow:0 0 0 1px rgba(127,178,255,.10), 0 0 22px -8px rgba(127,178,255,.40);
+  --on-accent:#0B1220;
+  --glow-brand:0 0 6px rgba(127,178,255,.8), 0 0 20px rgba(127,178,255,.45), 0 0 40px rgba(127,178,255,.22);
+  --glow-accent:0 0 10px rgba(127,178,255,.5);
+  --glow-box:0 0 14px -2px rgba(127,178,255,.6);
+  --accent-2:#F2C94C;
+  --on-sec:#0B1220;
+}
+:root[data-accent="gold"]{
+  --paper:#13110A; --surface:#1D1A0F; --surface-2:#2A2615; --sunk:#17140B;
+  --ink:#F1F0F4; --ink-2:#C9C7D1; --ink-3:#9C99A8;
+  --rule:#433C22; --rule-soft:#2A2617;
+  --accent:#F2C94C; --accent-soft:#2E2810;
+  --shadow:0 0 0 1px rgba(242,201,76,.10), 0 0 22px -8px rgba(242,201,76,.40);
+  --on-accent:#13110A;
+  --glow-brand:0 0 6px rgba(242,201,76,.8), 0 0 20px rgba(242,201,76,.45), 0 0 40px rgba(242,201,76,.22);
+  --glow-accent:0 0 10px rgba(242,201,76,.5);
+  --glow-box:0 0 14px -2px rgba(242,201,76,.6);
+  --accent-2:#F2994A;
+  --on-sec:#13110A;
+}
+:root[data-accent="amber"]{
+  --paper:#140E09; --surface:#1F160E; --surface-2:#2C2015; --sunk:#18110A;
+  --ink:#F1F0F4; --ink-2:#C9C7D1; --ink-3:#9C99A8;
+  --rule:#47321F; --rule-soft:#2D2015;
+  --accent:#F2994A; --accent-soft:#2F1D0E;
+  --shadow:0 0 0 1px rgba(242,153,74,.10), 0 0 22px -8px rgba(242,153,74,.40);
+  --on-accent:#140E09;
+  --glow-brand:0 0 6px rgba(242,153,74,.8), 0 0 20px rgba(242,153,74,.45), 0 0 40px rgba(242,153,74,.22);
+  --glow-accent:0 0 10px rgba(242,153,74,.5);
+  --glow-box:0 0 14px -2px rgba(242,153,74,.6);
+  --accent-2:#F2C94C;
+  --on-sec:#140E09;
+}
+:root[data-accent="purple"]{
+  --paper:#110E1A; --surface:#1A1528; --surface-2:#251E38; --sunk:#140F20;
+  --ink:#F1F0F4; --ink-2:#C9C7D1; --ink-3:#9C99A8;
+  --rule:#3A3055; --rule-soft:#251E37;
+  --accent:#C59BFF; --accent-soft:#2A2140;
+  --shadow:0 0 0 1px rgba(197,155,255,.10), 0 0 22px -8px rgba(197,155,255,.40);
+  --on-accent:#110E1A;
+  --glow-brand:0 0 6px rgba(197,155,255,.8), 0 0 20px rgba(197,155,255,.45), 0 0 40px rgba(197,155,255,.22);
+  --glow-accent:0 0 10px rgba(197,155,255,.5);
+  --glow-box:0 0 14px -2px rgba(197,155,255,.6);
+  --accent-2:#F2C94C;
+  --on-sec:#110E1A;
+}
+:root[data-accent="red"]{
+  --paper:#150B0C; --surface:#211213; --surface-2:#2F1A1B; --sunk:#190D0E;
+  --ink:#F1F0F4; --ink-2:#C9C7D1; --ink-3:#9C99A8;
+  --rule:#4C2829; --rule-soft:#2F191A;
+  --accent:#FF6B6B; --accent-soft:#321414;
+  --shadow:0 0 0 1px rgba(255,107,107,.10), 0 0 22px -8px rgba(255,107,107,.40);
+  --on-accent:#150B0C;
+  --glow-brand:0 0 6px rgba(255,107,107,.8), 0 0 20px rgba(255,107,107,.45), 0 0 40px rgba(255,107,107,.22);
+  --glow-accent:0 0 10px rgba(255,107,107,.5);
+  --glow-box:0 0 14px -2px rgba(255,107,107,.6);
+  --accent-2:#F2C94C;
+  --on-sec:#150B0C;
+}
 :root[data-theme="light"]{
   /* Warm light (5 Nov 2026), after straia.io: cream ground, warm near-black ink, burgundy accent.
      Measured in test/theme.test.js: body 16.4:1, every band tag at least 5.4:1. */
@@ -147,6 +217,11 @@ h1{
 nav.topnav{display:flex; gap:1rem; flex-wrap:wrap; font-size:.92rem; align-items:center}
 nav.topnav a{color:var(--ink-2); text-decoration:none}
 nav.topnav a:hover{color:var(--accent)}
+.accents{display:flex; gap:.35rem; align-items:center}
+.accents button{width:1.15rem; height:1.15rem; border-radius:50%; padding:0; border:2px solid transparent; background:var(--dot); cursor:pointer; box-shadow:0 0 0 1px rgba(255,255,255,.18)}
+.accents button[aria-pressed="true"]{border-color:var(--ink); box-shadow:0 0 0 2px var(--paper), 0 0 10px var(--dot)}
+:root[data-theme="light"] .accents{display:none}
+@media (prefers-color-scheme: light){ :root[data-theme="system"] .accents{display:none} }
 nav.topnav a[aria-current="page"]{color:var(--accent); font-weight:600; text-decoration:underline; text-underline-offset:.35em; text-decoration-thickness:2px}
 .home-more{margin:1.6rem 0 0}
 .about-more{margin-top:2.4rem}
