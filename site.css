@@ -69,37 +69,39 @@
   --accent-2:#FF3D81; --glow-pink:0 0 8px rgba(255,61,129,.6);
 }
 :root[data-theme="light"]{
-  --paper:#EEF2F6; --surface:#FFFFFF; --surface-2:#E3EAF1; --sunk:#F6F9FB;
-  --ink:#111926; --ink-2:#3C4A5C; --ink-3:#5A6878;
-  --rule:#CFD9E3; --rule-soft:#E1E8EF;
-  --accent:#2F5183; --accent-soft:#E2E9F4;
-  --prep:#1F6349;  --prep-soft:#DCEBE3;
-  --minor:#2F5183; --minor-soft:#E2E9F4;
-  --bridge:#8A5600; --bridge-soft:#F7EBD6;
-  --hard:#8A4114;  --hard-soft:#F6E4D7;
-  --gated:#9E2F27; --gated-soft:#F6DFDC;
-  --restrict:#4A54A8; --restrict-soft:#EAECF9;
-  --shadow:0 1px 2px rgba(17,25,38,.06), 0 10px 28px -18px rgba(17,25,38,.30);
-  --on-accent:#fff;
+  /* Warm light (5 Nov 2026), after straia.io: cream ground, warm near-black ink, burgundy accent.
+     Measured in test/theme.test.js: body 16.4:1, every band tag at least 5.4:1. */
+  --paper:#FBF3EC; --surface:#FFFCFA; --surface-2:#F6E9DF; --sunk:#FFF4ED;
+  --ink:#1A1615; --ink-2:#453F3D; --ink-3:#6E625E;
+  --rule:#E8D8CC; --rule-soft:#F1E5DB;
+  --accent:#873E3A; --accent-soft:#F6E1DC;
+  --prep:#2F6B47;  --prep-soft:#E3F0E6;
+  --minor:#873E3A; --minor-soft:#F6E1DC;
+  --bridge:#8A4B00; --bridge-soft:#FFE9D3;
+  --hard:#A13A10;  --hard-soft:#FBE2D6;
+  --gated:#9E2F27; --gated-soft:#F8DEDA;
+  --restrict:#5A4FA0; --restrict-soft:#ECE9F8;
+  --shadow:0 1px 2px rgba(26,22,21,.06), 0 12px 30px -18px rgba(135,62,58,.35);
+  --on-accent:#FFFCFA;
   --glow-brand:none; --glow-accent:none; --glow-box:none;
-  --accent-2:#3C4A5C; --glow-pink:none;
+  --accent-2:#B0431C; --glow-pink:none;
 }
 @media (prefers-color-scheme: light){
   :root[data-theme="system"]{
-    --paper:#EEF2F6; --surface:#FFFFFF; --surface-2:#E3EAF1; --sunk:#F6F9FB;
-    --ink:#111926; --ink-2:#3C4A5C; --ink-3:#5A6878;
-    --rule:#CFD9E3; --rule-soft:#E1E8EF;
-    --accent:#2F5183; --accent-soft:#E2E9F4;
-    --prep:#1F6349;  --prep-soft:#DCEBE3;
-    --minor:#2F5183; --minor-soft:#E2E9F4;
-    --bridge:#8A5600; --bridge-soft:#F7EBD6;
-    --hard:#8A4114;  --hard-soft:#F6E4D7;
-    --gated:#9E2F27; --gated-soft:#F6DFDC;
-    --restrict:#4A54A8; --restrict-soft:#EAECF9;
-    --shadow:0 1px 2px rgba(17,25,38,.06), 0 10px 28px -18px rgba(17,25,38,.30);
-    --on-accent:#fff;
+    --paper:#FBF3EC; --surface:#FFFCFA; --surface-2:#F6E9DF; --sunk:#FFF4ED;
+    --ink:#1A1615; --ink-2:#453F3D; --ink-3:#6E625E;
+    --rule:#E8D8CC; --rule-soft:#F1E5DB;
+    --accent:#873E3A; --accent-soft:#F6E1DC;
+    --prep:#2F6B47;  --prep-soft:#E3F0E6;
+    --minor:#873E3A; --minor-soft:#F6E1DC;
+    --bridge:#8A4B00; --bridge-soft:#FFE9D3;
+    --hard:#A13A10;  --hard-soft:#FBE2D6;
+    --gated:#9E2F27; --gated-soft:#F8DEDA;
+    --restrict:#5A4FA0; --restrict-soft:#ECE9F8;
+    --shadow:0 1px 2px rgba(26,22,21,.06), 0 12px 30px -18px rgba(135,62,58,.35);
+    --on-accent:#FFFCFA;
     --glow-brand:none; --glow-accent:none; --glow-box:none;
-    --accent-2:#3C4A5C; --glow-pink:none;
+    --accent-2:#B0431C; --glow-pink:none;
   }
 }
 
@@ -710,3 +712,11 @@ dialog.ask::backdrop{background:rgba(0,0,0,.6)}
 .ask-sources li{margin:.2rem 0}
 .ask-warn, .ask-wait{font-size:.85rem; color:var(--bridge)}
 @media print{ .ask-open, dialog.ask{display:none!important} }
+
+/* Warm light theme touches (straia.io): softer, rounder controls; peach for unpressed choices. */
+:root[data-theme="light"] .chip:not([aria-pressed="true"]), :root[data-theme="light"] .theme button:not([aria-pressed="true"]){background:#FFF1E6; border-color:#F2D6C3}
+:root[data-theme="light"] .chip, :root[data-theme="light"] .theme button, :root[data-theme="light"] .ask-open, :root[data-theme="light"] .ask-send,
+:root[data-theme="light"] .opp, :root[data-theme="light"] .dates .ev, :root[data-theme="light"] .dates .cohort-switch button{border-radius:8px}
+@media (prefers-color-scheme: light){
+  :root[data-theme="system"] .chip:not([aria-pressed="true"]){background:#FFF1E6; border-color:#F2D6C3}
+}
