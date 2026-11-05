@@ -737,3 +737,24 @@ dialog.ask::backdrop{background:rgba(0,0,0,.6)}
 .src-strip{display:flex; flex-wrap:wrap; gap:.5rem; margin:0 0 .7rem}
 .src-strip span{font-family:"IBM Plex Mono", monospace; font-size:.85rem; color:var(--ink-2); border:1px solid var(--rule); border-radius:999px; padding:.3rem .75rem; background:var(--sunk)}
 @media print{ .home-who, .home-faq, .home-sources{display:none} }
+
+/* Key dates on wide screens: timeline on the left, a summary panel on the right that stays in
+   view (5 Nov 2026 — the right third of the page was empty). On phones it stacks, summary first. */
+.dates .dates-layout{display:grid; grid-template-columns:1fr; gap:1.2rem}
+.dates .month-nav{background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:.9rem 1.1rem; margin:1rem 0}
+.dates .month-nav h3{margin:0 0 .5rem; font-size:1.05rem}
+.dates .month-nav ul{list-style:none; margin:0; padding:0; columns:2; column-gap:1rem}
+.dates .month-nav li{margin:.25rem 0; break-inside:avoid}
+.dates .month-nav .n{font-family:"IBM Plex Mono", monospace; font-size:.75rem; color:var(--ink-3)}
+.dates .month{scroll-margin-top:1rem}
+@media (min-width: 72rem){
+  .dates .dates-layout{grid-template-columns:minmax(0, 1fr) minmax(19rem, 25rem); align-items:start; gap:2rem}
+  .dates .dates-side{grid-column:2; grid-row:1; position:sticky; top:1rem; max-height:calc(100vh - 2rem); overflow:auto; padding-right:.2rem}
+  .dates .dates-main{grid-column:1; grid-row:1; min-width:0}
+  .dates .dates-side > *{margin-top:0; max-width:none}
+  .dates .dates-side > * + *{margin-top:1rem}
+  .dates .dates-main .tl, .dates .dates-main .anytime, .dates .dates-main .after-school, .dates .dates-main .dates-notes{max-width:none}
+  .dates .month-nav ul{columns:1}
+  .dates .dates-main .month:first-child h3{margin-top:.2rem}
+}
+:root[data-theme="light"] .dates .month-nav{border-radius:8px}
